@@ -4,3 +4,6 @@
 [submodule "apps/game-block-puzzle"]
 	path = apps/game-block-puzzle
 	url = https://github.com/ya-spark/game-block-puzzle.git
+[submodule "apps/game-block-fall"]
+	path = apps/game-block-fall
+	url = https://github.com/ya-spark/game-block-fall.git
