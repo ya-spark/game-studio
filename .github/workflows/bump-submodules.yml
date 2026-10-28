@@ -1,0 +1,43 @@
+# Opens a PR that moves every submodule pin to the latest commit of its default branch.
+# Needs a repository secret STUDIO_SUBMODULE_TOKEN: a fine-grained personal access token with
+# read access to contents of all repos listed in .gitmodules, plus contents and pull requests
+# write on this repo. (The built-in GITHUB_TOKEN cannot read other private repos.)
+name: bump-submodules
+
+on:
+  schedule:
+    - cron: "17 5 * * 1" # Mondays 05:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    env:
+      TOKEN: ${{ secrets.STUDIO_SUBMODULE_TOKEN }}
+    steps:
+      - name: Check secret
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error title=Missing secret::STUDIO_SUBMODULE_TOKEN is not set. Create a fine-grained PAT (read contents on every submodule repo; contents + pull requests write on game-studio) and add it under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.STUDIO_SUBMODULE_TOKEN }}
+          submodules: false
+      - name: Update pins
+        run: |
+          git config --global url."https://x-access-token:${TOKEN}@github.com/".insteadOf "https://github.com/"
+          git submodule update --init --remote --depth 1
+          git submodule status
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.STUDIO_SUBMODULE_TOKEN }}
+          branch: bump-submodules
+          title: "Bump submodule pins"
+          commit-message: "Bump submodule pins"
+          body: "Moves each submodule pin to the latest commit of its default branch. Merge when the games' CI is green."
