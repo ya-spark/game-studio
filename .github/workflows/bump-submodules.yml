@@ -4,9 +4,10 @@
 # write on this repo. (The built-in GITHUB_TOKEN cannot read other private repos.)
 name: bump-submodules
 
+# Manual only for now. The weekly schedule is off because the secret below does not exist yet;
+# until it does, Claude's hourly factory-runner keeps the pins current. To automate it again, add
+# the STUDIO_SUBMODULE_TOKEN secret and re-add a `schedule:` trigger here.
 on:
-  schedule:
-    - cron: "17 5 * * 1" # Mondays 05:17 UTC
   workflow_dispatch:
 
 permissions:
