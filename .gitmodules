@@ -7,3 +7,6 @@
 [submodule "apps/game-block-fall"]
 	path = apps/game-block-fall
 	url = https://github.com/ya-spark/game-block-fall.git
+[submodule "apps/game-wingy"]
+	path = apps/game-wingy
+	url = https://github.com/ya-spark/game-wingy.git
