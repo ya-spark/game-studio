@@ -1,6 +1,6 @@
-[submodule "app-factory"]
-	path = app-factory
-	url = https://github.com/ya-spark/app-factory.git
+[submodule "game-factory"]
+	path = game-factory
+	url = https://github.com/ya-spark/game-factory.git
 [submodule "apps/game-block-puzzle"]
 	path = apps/game-block-puzzle
 	url = https://github.com/ya-spark/game-block-puzzle.git
