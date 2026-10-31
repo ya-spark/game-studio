@@ -63,11 +63,6 @@ fi
 
 # Step 1: pull the latest parent repo, then check out the submodule commits it pins.
 if [ -z "${NO_PULL:-}" ]; then
-  # Keep this script out of git's way: exclude it locally (not committed) so pulls never conflict with it.
-  exclude_file="$(git -C "$ROOT_DIR" rev-parse --git-path info/exclude)"
-  case "$exclude_file" in /*) ;; *) exclude_file="$ROOT_DIR/$exclude_file" ;; esac
-  mkdir -p "$(dirname "$exclude_file")"
-  grep -qxF 'scripts/' "$exclude_file" 2>/dev/null || echo 'scripts/' >> "$exclude_file"
   echo "==> Pulling parent repo"
   if git -C "$ROOT_DIR" rev-parse --abbrev-ref '@{u}' >/dev/null 2>&1; then
     git -C "$ROOT_DIR" pull --ff-only || echo "    parent pull failed, continuing with current checkout" >&2
