@@ -9,7 +9,7 @@ This repo only pins submodules. Do not put code here. See `README.md`.
 
 ## Submodules and pins
 
-`game-studio` is the master repo. The four submodules are `game-factory/` (the `app-factory` repo) and `apps/game-block-fall`, `apps/game-block-puzzle`, `apps/game-wingy`.
+`game-studio` is the master repo. The four submodules are `game-factory/` and `apps/game-block-fall`, `apps/game-block-puzzle`, `apps/game-wingy`.
 
 - Whenever a PR merges into `main` of any submodule repo, the master pin must be updated to that new `main` commit. Do it in the same session, not later.
 - To move a pin: branch in this repo, `git submodule update --remote <path>` (or check out the submodule's `main` tip), commit only the pointer change, open a PR, merge it when checks are green.
