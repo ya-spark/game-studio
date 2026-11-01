@@ -3,6 +3,7 @@
 #
 # Usage: ./run-web.sh [game-name ...]     (default: every game-* folder here)
 # Env:   BASE_PORT=8081  HOST=0.0.0.0  MODE=debug|release  NO_PULL=1 (skip git pull)
+#        NO_OPEN=1 (don't open the browser automatically)
 #
 # Step 1 is a fresh pull: the parent repo is fast-forwarded, then each game
 # submodule is checked out at the commit the parent pins (not latest main).
@@ -75,6 +76,61 @@ if [ -z "${NO_PULL:-}" ]; then
     || echo "    submodule update failed (local changes?), continuing" >&2
 fi
 
+# Phone-sized browser windows with DevTools. Chrome has no flag for the DevTools device
+# toolbar, so this approximates it: window = phone viewport + DevTools dock, mobile user agent.
+# Samsung Galaxy A-series viewport (~412x915 CSS px) is assumed for the A57.
+DEVICE_W="${DEVICE_W:-412}"
+DEVICE_H="${DEVICE_H:-915}"
+DEVTOOLS_W="${DEVTOOLS_W:-500}"
+MOBILE_UA="Mozilla/5.0 (Linux; Android 15; Samsung Galaxy A57) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36"
+
+find_chrome() {
+  local c
+  for c in "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" \
+           "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe" \
+           "/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"; do
+    [ -x "$c" ] && { echo "$c"; return; }
+  done
+  command -v google-chrome || command -v chromium || true
+}
+
+# Open "$1" (URL); "$2" is the game index, used to offset windows so they don't overlap.
+open_url() {
+  local url="$1" idx="${2:-0}" chrome profile
+  chrome="$(find_chrome)"
+  if [ -n "$chrome" ]; then
+    # A separate profile is required, otherwise Chrome hands the URL to the running
+    # instance and ignores the flags.
+    if [[ "$chrome" == /mnt/c/* ]]; then
+      profile="$(cmd.exe /c 'echo %TEMP%' 2>/dev/null | tr -d '\r')\\run-web-profile-$idx"
+    else
+      profile="/tmp/run-web-profile-$idx"
+    fi
+    "$chrome" --user-data-dir="$profile" --new-window --no-first-run --no-default-browser-check \
+      --auto-open-devtools-for-tabs --user-agent="$MOBILE_UA" \
+      --window-size="$((DEVICE_W + DEVTOOLS_W)),$((DEVICE_H + 90))" \
+      --window-position="$((idx * 60)),$((idx * 40))" \
+      "$url" >/dev/null 2>&1 &
+    return
+  fi
+  # Fallback: default browser, no phone sizing.
+  if command -v wslview >/dev/null 2>&1; then wslview "$url"
+  elif grep -qi microsoft /proc/version 2>/dev/null && command -v explorer.exe >/dev/null 2>&1; then explorer.exe "$url" || true
+  elif command -v xdg-open >/dev/null 2>&1; then xdg-open "$url"
+  elif command -v open >/dev/null 2>&1; then open "$url"
+  else echo "    no browser opener found; open $url manually" >&2
+  fi >/dev/null 2>&1
+}
+
+# Wait (up to ~10 min, first build is slow) until the server answers, then open the browser.
+open_when_ready() {
+  local url="$1" idx="$2" i
+  for ((i = 0; i < 300; i++)); do
+    if curl -s -o /dev/null "$url"; then open_url "$url" "$idx"; return; fi
+    sleep 2
+  done
+}
+
 pids=()
 cleanup() {
   echo; echo "Stopping games..."
@@ -101,6 +157,10 @@ for game in "${games[@]}"; do
       >"$LOG_DIR/$game.run.log" 2>&1) &
   pids+=("$!")
   echo "    starting on http://localhost:$port  (log: $LOG_DIR/$game.run.log)"
+  if [ -z "${NO_OPEN:-}" ]; then
+    open_when_ready "http://localhost:$port" "$((port - BASE_PORT))" &
+    pids+=("$!")
+  fi
   port=$((port + 1))
 done
 
