@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 # Push `main` of every submodule, move the master pins to those commits, push the master.
-# Commit your work inside each submodule first; uncommitted changes are not pushed (warned).
-# Only submodule pointers are committed in master; other master changes are left alone.
+# Uncommitted changes in each submodule are committed first (git add -A).
+# Usage: push.sh [commit message]   (default message: "Update")
+# Master changes (pins and anything else) are committed too (git add -A).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
+
+MSG="${1:-Update}"
 
 paths=$(git submodule --quiet foreach 'echo $displaypath')
 
@@ -30,19 +33,22 @@ fi
 
 for dir in $paths; do
   if [[ -n "$(git -C "$dir" status --porcelain)" ]]; then
-    echo "WARNING: $dir has uncommitted changes (not pushed)."
+    echo "== $dir: commit changes"
+    git -C "$dir" add -A
+    git -C "$dir" commit -m "$MSG
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
   fi
   echo "== $dir: push main"
   git -C "$dir" push origin main
 done
 
-echo "== master: update pins"
-# shellcheck disable=SC2086
-git add $paths
+echo "== master: commit changes and pins"
+git add -A
 if git diff --cached --quiet; then
-  echo "Pins already up to date."
+  echo "Master already up to date."
 else
-  git commit -m "Update submodule pins
+  git commit -m "$MSG
 
 Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
 fi
