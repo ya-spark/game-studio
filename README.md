@@ -23,9 +23,9 @@ All repos are private; use HTTPS with a token that can read them.
 ## Rules
 
 - The master **pins** commits; it does not follow `main`. Claude's hourly factory-runner (or a live
-  session) moves a pin forward in a PR once the game's CI on that commit is green.
+  session) moves a pin forward with a direct commit to `main` once the game's CI on that commit is green.
 - Game CI and releases run in each game's own repo and never depend on this one.
-- Inside a submodule, check out a branch before committing (avoids a detached HEAD).
+- Inside a submodule, check out `main` before committing (avoids a detached HEAD).
 - No secrets live here. Signing keys and Play credentials exist only in each game repo's secrets.
 - Adding a game: the `/new-app` flow in `game-factory` creates it; then add it here with
   `git submodule add https://github.com/ya-spark/game-<id>.git apps/game-<id>`.
