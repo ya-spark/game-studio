@@ -10,7 +10,7 @@
 #
 # With exactly one game (./run-web.sh game-block-puzzle) flutter runs in the foreground, so
 # hot reload works: press r (hot reload), R (hot restart), q (quit) in this terminal, then
-# refresh the browser tab. With several games they run in the background (no hot reload).
+# refresh the browser tab (no window is opened automatically; OPEN=1 opens one). With several games they run in the background (no hot reload).
 #
 # Each game gets its own port (BASE_PORT, BASE_PORT+1, ...). Open the printed
 # URLs in a browser (Chrome recommended). Ctrl+C stops everything.
@@ -161,7 +161,8 @@ for game in "${games[@]}"; do
   if [ "${#games[@]}" -eq 1 ]; then
     # Single game: foreground, so stdin reaches flutter (r / R / q).
     echo "    starting on http://localhost:$port  (r = hot reload, R = hot restart, q = quit)"
-    if [ -z "${NO_OPEN:-}" ]; then
+    # Keep your existing tab and refresh it after r / R; set OPEN=1 to open a window anyway.
+    if [ -n "${OPEN:-}" ] && [ -z "${NO_OPEN:-}" ]; then
       open_when_ready "http://localhost:$port" 0 &
       pids+=("$!")
     fi
