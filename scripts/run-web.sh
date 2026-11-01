@@ -102,7 +102,8 @@ open_url() {
     # A separate profile is required, otherwise Chrome hands the URL to the running
     # instance and ignores the flags.
     if [[ "$chrome" == /mnt/c/* ]]; then
-      profile="$(cmd.exe /c 'echo %TEMP%' 2>/dev/null | tr -d '\r')\\run-web-profile-$idx"
+      # Run cmd.exe from /mnt/c: from a WSL path it prints a UNC warning to stdout.
+      profile="$(cd /mnt/c && cmd.exe /c 'echo %TEMP%' 2>/dev/null | tr -d '\r')\\run-web-profile-$idx"
     else
       profile="/tmp/run-web-profile-$idx"
     fi
