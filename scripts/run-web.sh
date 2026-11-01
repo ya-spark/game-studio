@@ -8,6 +8,10 @@
 # Step 1 is a fresh pull: the parent repo is fast-forwarded, then each game
 # submodule is checked out at the commit the parent pins (not latest main).
 #
+# With exactly one game (./run-web.sh game-block-puzzle) flutter runs in the foreground, so
+# hot reload works: press r (hot reload), R (hot restart), q (quit) in this terminal, then
+# refresh the browser tab. With several games they run in the background (no hot reload).
+#
 # Each game gets its own port (BASE_PORT, BASE_PORT+1, ...). Open the printed
 # URLs in a browser (Chrome recommended). Ctrl+C stops everything.
 #
@@ -153,6 +157,17 @@ for game in "${games[@]}"; do
   fi
   (cd "$dir" && flutter pub get >"$LOG_DIR/$game.pub.log" 2>&1) \
     || { echo "    pub get failed, see $LOG_DIR/$game.pub.log" >&2; continue; }
+
+  if [ "${#games[@]}" -eq 1 ]; then
+    # Single game: foreground, so stdin reaches flutter (r / R / q).
+    echo "    starting on http://localhost:$port  (r = hot reload, R = hot restart, q = quit)"
+    if [ -z "${NO_OPEN:-}" ]; then
+      open_when_ready "http://localhost:$port" 0 &
+      pids+=("$!")
+    fi
+    (cd "$dir" && flutter run -d web-server --web-hostname "$HOST" --web-port "$port" "--$MODE")
+    exit 0
+  fi
 
   (cd "$dir" && exec flutter run -d web-server --web-hostname "$HOST" --web-port "$port" "--$MODE" \
       >"$LOG_DIR/$game.run.log" 2>&1) &
