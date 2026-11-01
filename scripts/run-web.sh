@@ -4,9 +4,14 @@
 # Usage: ./run-web.sh [game-name ...]     (default: every game-* folder here)
 # Env:   BASE_PORT=8081  HOST=0.0.0.0  MODE=debug|release  NO_PULL=1 (skip git pull)
 #        NO_OPEN=1 (don't open the browser automatically)
+#        HOT=reload|restart|off (what to do when a source file is saved; default reload)
 #
 # Step 1 is a fresh pull: the parent repo is fast-forwarded, then each game
 # submodule is checked out at the commit the parent pins (not latest main).
+#
+# Hot reload on save: each game runs with --pid-file and a watcher sends it SIGUSR1 (hot
+# reload) whenever a file under lib/ or assets/ changes. HOT=restart sends SIGUSR2 (hot
+# restart) instead; HOT=off disables the watcher. Keep the browser tab open: it reloads itself.
 #
 # With exactly one game (./run-web.sh game-block-puzzle) flutter runs in the foreground, so
 # hot reload works: press r (hot reload), R (hot restart), q (quit) in this terminal, then
@@ -136,6 +141,23 @@ open_when_ready() {
   done
 }
 
+HOT="${HOT:-reload}"
+
+# Poll a game's sources and signal its flutter process (pid file) on change.
+watch_game() {
+  local dir="$1" pidfile="$2" stamp sig=USR1
+  [ "$HOT" = restart ] && sig=USR2
+  stamp="$(mktemp)"
+  while sleep 1; do
+    [ -s "$pidfile" ] || continue
+    if [ -n "$(find "$dir/lib" "$dir/assets" "$dir/pubspec.yaml" -type f -newer "$stamp" -print -quit 2>/dev/null)" ]; then
+      touch "$stamp"
+      sleep 0.5   # let the editor finish writing
+      kill "-$sig" "$(cat "$pidfile")" 2>/dev/null || true
+    fi
+  done
+}
+
 pids=()
 cleanup() {
   echo; echo "Stopping games..."
@@ -158,6 +180,14 @@ for game in "${games[@]}"; do
   (cd "$dir" && flutter pub get >"$LOG_DIR/$game.pub.log" 2>&1) \
     || { echo "    pub get failed, see $LOG_DIR/$game.pub.log" >&2; continue; }
 
+  pidfile="$LOG_DIR/$game.pid"
+  pidargs=()
+  if [ "$HOT" != off ]; then
+    pidargs=(--pid-file "$pidfile")
+    watch_game "$dir" "$pidfile" &
+    pids+=("$!")
+  fi
+
   if [ "${#games[@]}" -eq 1 ]; then
     # Single game: foreground, so stdin reaches flutter (r / R / q).
     echo "    starting on http://localhost:$port  (r = hot reload, R = hot restart, q = quit)"
@@ -166,11 +196,11 @@ for game in "${games[@]}"; do
       open_when_ready "http://localhost:$port" 0 &
       pids+=("$!")
     fi
-    (cd "$dir" && flutter run -d web-server --web-hostname "$HOST" --web-port "$port" "--$MODE")
+    (cd "$dir" && flutter run -d web-server --web-hostname "$HOST" --web-port "$port" "--$MODE" "${pidargs[@]}")
     exit 0
   fi
 
-  (cd "$dir" && exec flutter run -d web-server --web-hostname "$HOST" --web-port "$port" "--$MODE" \
+  (cd "$dir" && exec flutter run -d web-server --web-hostname "$HOST" --web-port "$port" "--$MODE" "${pidargs[@]}" \
       >"$LOG_DIR/$game.run.log" 2>&1) &
   pids+=("$!")
   echo "    starting on http://localhost:$port  (log: $LOG_DIR/$game.run.log)"
