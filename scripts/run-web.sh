@@ -15,7 +15,7 @@
 #
 # With exactly one game (./run-web.sh game-block-puzzle) flutter runs in the foreground, so
 # hot reload works: press r (hot reload), R (hot restart), q (quit) in this terminal, then
-# refresh the browser tab (windows open only once, at startup). With several games they run in the background (no hot reload).
+# refresh the browser tab (windows open only once, at startup). With several games they run in the background; r / R / q typed in this terminal are forwarded to every game.
 #
 # Each game gets its own port (BASE_PORT, BASE_PORT+1, ...). Open the printed
 # URLs in a browser (Chrome recommended). Ctrl+C stops everything.
@@ -181,9 +181,8 @@ for game in "${games[@]}"; do
     || { echo "    pub get failed, see $LOG_DIR/$game.pub.log" >&2; continue; }
 
   pidfile="$LOG_DIR/$game.pid"
-  pidargs=()
+  pidargs=(--pid-file "$pidfile")
   if [ "$HOT" != off ]; then
-    pidargs=(--pid-file "$pidfile")
     watch_game "$dir" "$pidfile" &
     pids+=("$!")
   fi
@@ -215,4 +214,21 @@ done
 echo
 echo "Compiling... first build takes a minute or two. Tail a log to watch progress."
 echo "Ctrl+C to stop all."
+if [ -t 0 ]; then
+  # Several games run in the background, so forward keys to all of them.
+  echo "Keys: r = hot reload all, R = hot restart all, q = quit"
+  signal_all() {
+    local f
+    for f in "$LOG_DIR"/*.pid; do
+      [ -s "$f" ] && kill "-$1" "$(cat "$f")" 2>/dev/null || true
+    done
+  }
+  while IFS= read -rsn1 key; do
+    case "$key" in
+      r) echo "Hot reload (all games)"; signal_all USR1 ;;
+      R) echo "Hot restart (all games)"; signal_all USR2 ;;
+      q) exit 0 ;;
+    esac
+  done
+fi
 wait
