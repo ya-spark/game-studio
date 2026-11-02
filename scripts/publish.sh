@@ -85,7 +85,24 @@ trigger_one() {
 # Phase 2: follow one run, prefixing every line with the game name.
 watch_one() {
   local name="$1" repo="$2" id="$3"
-  gh run watch "$id" --repo "$repo" --exit-status 2>&1 | sed -u "s/^/[$name] /"
+  local attempt status conclusion
+  for attempt in 1 2 3 4 5 6 7 8 9 10; do
+    gh run watch "$id" --repo "$repo" --exit-status 2>&1 | sed -u "s/^/[$name] /"
+    [[ "${PIPESTATUS[0]}" -eq 0 ]] && return 0
+    # The watch can die from a network blip while the run is fine; ask GitHub for the real
+    # outcome and only fail on a genuine failure.
+    status="" conclusion=""
+    { read -r status conclusion; } < <(gh run view "$id" --repo "$repo" \
+      --json status,conclusion --jq '"\(.status) \(.conclusion)"' 2>/dev/null)
+    if [[ "$status" == "completed" ]]; then
+      [[ "$conclusion" == "success" ]] && return 0
+      echo "[$name] run finished: $conclusion" >&2
+      return 1
+    fi
+    echo "[$name] watch interrupted (run still ${status:-unknown}); reconnecting (attempt $attempt)..." >&2
+    sleep 5
+  done
+  return 1
 }
 
 declare -A run_ids=()
