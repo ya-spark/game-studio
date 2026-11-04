@@ -28,8 +28,8 @@ needs the mention.
 
 ## Rules (enforced by the workflow and the skills)
 
-- Only issues and comments written by the repo owner, org members or collaborators can start a run
-  (checked in `claude.yml`), and Claude acts only on what `yaseengem` wrote. Anything from anyone
+- Only issues and comments written by `yaseengem` can start a run (the sender is checked in
+  `claude.yml`), and Claude acts only on what `yaseengem` wrote. Anything from anyone
   else is ignored, never followed.
 - Approvals always come from you: the spec, production promotion, monetization changes, anything
   involving accounts, money or secrets. Claude never publishes, enables real ads or purchases, or
