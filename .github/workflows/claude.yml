@@ -1,0 +1,99 @@
+# The studio's only entry point for work from GitHub (also from the phone, overnight).
+#   - Open an issue from a form ([new-game] / [change]): starts a run.
+#   - Write `@claude ...` in an issue comment (or a PR comment/review): continues or adjusts it.
+# The run starts at the game-studio root with all submodules checked out, so the skills and agents
+# in .claude/ apply. It follows the overnight rules in CLAUDE.md: it pushes each touched submodule's
+# `main` and moves the pin here. See docs/INBOX.md.
+#
+# Needs: the Claude GitHub App (https://github.com/apps/claude) on the repos, and two secrets here:
+#   CLAUDE_CODE_OAUTH_TOKEN  from `claude setup-token`
+#   CROSS_REPO_TOKEN         fine-grained token, Contents + Pull requests + Issues write on
+#                            game-studio, game-factory and every game repo
+# It never references the release secrets (keystore, Play service account), those live in the game repos.
+name: claude
+
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+
+env:
+  # Pinned. Keep in sync with the game repos' ci.yml and the factory's .flutter-version.
+  FLUTTER_VERSION: "3.47.8"
+
+# One run at a time per issue or PR, and never cancel one that is mid-push.
+concurrency:
+  group: claude-${{ github.event.issue.number || github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  claude:
+    # Only the owner, org members and collaborators can start a run. The repos are public and the
+    # CROSS_REPO_TOKEN can write to every main, so this check is the gate.
+    if: >-
+      (github.event_name == 'issues'
+        && (startsWith(github.event.issue.title, '[new-game]')
+          || startsWith(github.event.issue.title, '[change]')
+          || contains(github.event.issue.body, '@claude'))
+        && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association))
+      || (github.event_name == 'issue_comment'
+        && contains(github.event.comment.body, '@claude')
+        && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
+      || (github.event_name == 'pull_request_review_comment'
+        && contains(github.event.comment.body, '@claude')
+        && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
+      || (github.event_name == 'pull_request_review'
+        && contains(github.event.review.body, '@claude')
+        && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.review.author_association))
+    runs-on: ubuntu-latest
+    timeout-minutes: 60 # a stuck run must not burn the quota overnight
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.CROSS_REPO_TOKEN }}
+          submodules: recursive
+          fetch-depth: 0
+
+      # Submodules are checked out detached at the pinned commit. Work happens on main.
+      - name: Put every submodule on its main
+        shell: bash
+        run: |
+          git config --global user.name "claude[bot]"
+          git config --global user.email "noreply@anthropic.com"
+          git submodule foreach --recursive 'git checkout main && git pull --ff-only origin main'
+          git submodule status
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - uses: anthropics/claude-code-action@v1
+        env:
+          GH_TOKEN: ${{ secrets.CROSS_REPO_TOKEN }}
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.CROSS_REPO_TOKEN }}
+          # A new form issue has no @claude mention, so give it an explicit instruction.
+          # Comment events carry their own @claude request.
+          prompt: >-
+            ${{ github.event_name == 'issues' && format('Handle issue #{0} in ya-spark/game-studio: {1}. Follow CLAUDE.md (overnight rules), docs/INBOX.md and the /new-app or /change-app skill that matches the title. Comment progress on the issue.', github.event.issue.number, github.event.issue.title) || '' }}
+          claude_args: >-
+            --max-turns 100
+            --allowedTools "Bash(git:*),Bash(gh run:*),Bash(gh issue:*),Bash(flutter:*),Bash(dart:*),Bash(python3 game-factory/scripts/*),Bash(bash apps/*/scripts/*),Bash(bash scripts/*)"
