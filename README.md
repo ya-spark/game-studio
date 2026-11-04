@@ -21,7 +21,7 @@ git clone --recurse-submodules https://github.com/ya-spark/game-studio.git
 git submodule update --init --recursive
 ```
 
-All repos are private; use HTTPS with a token that can read them.
+All repos are public; use HTTPS (a token is only needed to push).
 
 ## Rules
 
