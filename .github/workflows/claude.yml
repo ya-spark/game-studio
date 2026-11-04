@@ -93,7 +93,7 @@ jobs:
           # A new form issue has no @claude mention, so give it an explicit instruction.
           # Comment events carry their own @claude request.
           prompt: >-
-            ${{ github.event_name == 'issues' && format('Handle issue #{0} in ya-spark/game-studio: {1}. Follow CLAUDE.md (overnight rules), docs/INBOX.md and the /new-app or /change-app skill that matches the title. Comment progress on the issue.', github.event.issue.number, github.event.issue.title) || '' }}
+            ${{ github.event_name == 'issues' && format('Handle issue #{0} in ya-spark/game-studio: {1}. Follow CLAUDE.md (overnight rules), docs/INBOX.md and the /new-app or /change-app skill that matches the title. Whatever happens, finish by commenting on the issue with `gh issue comment {0} --body ...`: what you changed with commit links, or exactly what stopped you (for example a denied tool).', github.event.issue.number, github.event.issue.title) || '' }}
           claude_args: >-
             --max-turns 100
-            --allowedTools "Bash(git:*),Bash(gh run:*),Bash(gh issue:*),Bash(flutter:*),Bash(dart:*),Bash(python3 game-factory/scripts/*),Bash(bash apps/*/scripts/*),Bash(bash scripts/*)"
+            --allowedTools "Edit,Write,MultiEdit,Bash(git:*),Bash(gh run:*),Bash(gh issue:*),Bash(flutter:*),Bash(dart:*),Bash(python3 game-factory/scripts/*),Bash(bash apps/*/scripts/*),Bash(bash scripts/*)"
