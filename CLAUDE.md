@@ -15,6 +15,9 @@ The factory rules (no backend, interfaces, secrets, ...) apply to every change:
 - Branch/PR workflow is suspended for now: changes may be committed and pushed directly to `main`, in any
   repo. That is permission, not an instruction: outside the overnight rules below, commit and push
   only when the owner asks.
+- Specs go to issues, not code (owner, 2026-11-05): when a spec or change is planned in a live session,
+  push it as a `game-studio` issue (see `docs/INBOX.md`) so an `@claude` run implements it. Do not
+  implement it in the live session unless the owner explicitly says to code it there.
 
 ## Overnight `@claude` runs (standing authorization from the owner, 2026-11-05)
 
