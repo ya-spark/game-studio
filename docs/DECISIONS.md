@@ -24,8 +24,9 @@ each section with the date.
 - Public developer/studio name: **Active Mind Craft**. Do not show the owner's personal name or
   GitHub username in anything public (policies, store listings, links).
 - Package prefix: `com.activemindcraft.<game>` (the owner owns activemindcraft.com).
-- Contact email shown in policies and listings: `ggadmuser@gmail.com` (Play requires a working
-  address).
+- Public contact email (policies, store listings): `ggprouser@gmail.com` (owner, 2026-11-05). Play requires a
+  working address. `ggadmuser@gmail.com` is for internal and Google purposes (Play Console account, the
+  content rating questionnaire, Google notices); never show it publicly.
 - Repos: one private repo per game named `ya-spark/game-<id-kebab>`; master repo
   `ya-spark/game-studio` pins game-factory and every game as submodules.
 - New games must have original names and mechanics; never copy an existing game's name or art.
