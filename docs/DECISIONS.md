@@ -33,6 +33,7 @@ each section with the date.
 ## Privacy policies
 - Hosted by GitHub Pages from the public repo `ya-spark/public` (source: `ya-spark/public`,
   branch `main`, root). Keep that repo public.
+- `ya-spark/public` is a submodule of `game-studio` at `public/` (owner, 2026-11-05). Policies live at `blockfall/privacy.md`, `blockpuzzle/privacy.md` and `wingy/privacy.md`; the index page lists them. Changing a policy: edit it there and in the game's `store/google-play/privacy_policy.md`, then move the pin.
 - URLs: `https://ya-spark.github.io/public/<game>/privacy` (for example `.../wingy/privacy`,
   `.../blockfall/privacy`). The same text lives in each game's `store/google-play/privacy_policy.md`;
   keep them in sync.

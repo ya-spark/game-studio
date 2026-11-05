@@ -10,3 +10,6 @@
 [submodule "apps/game-wingy"]
 	path = apps/game-wingy
 	url = https://github.com/ya-spark/game-wingy.git
+[submodule "public"]
+	path = public
+	url = https://github.com/ya-spark/public.git
