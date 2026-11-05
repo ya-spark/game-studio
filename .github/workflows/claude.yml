@@ -84,6 +84,11 @@ jobs:
           channel: stable
           cache: true
 
+      # Remember when this run started, to check at the end that it commented on the issue.
+      - name: Note the start time
+        id: t0
+        run: echo "start=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+
       - uses: anthropics/claude-code-action@v1
         env:
           GH_TOKEN: ${{ secrets.CROSS_REPO_TOKEN }}
@@ -97,3 +102,20 @@ jobs:
           claude_args: >-
             --max-turns 100
             --allowedTools "Edit,Write,MultiEdit,Bash(git:*),Bash(gh run:*),Bash(gh issue:*),Bash(flutter:*),Bash(dart:*),Bash(python3 game-factory/scripts/*),Bash(bash apps/*/scripts/*),Bash(bash scripts/*)"
+
+      # A run is only done when it commented on the issue (what changed, or what stopped it).
+      # A run that ends without a comment, for example after a denied tool, used to show a green
+      # check; this step turns it red instead. It only looks at comments written after this run began.
+      - name: Fail if the run left no comment on the issue
+        if: success() && (github.event_name == 'issues' || github.event_name == 'issue_comment')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+          START: ${{ steps.t0.outputs.start }}
+        run: |
+          count=$(gh api "repos/${GITHUB_REPOSITORY}/issues/${ISSUE}/comments?since=${START}&per_page=100" --jq "[.[] | select(.created_at >= \"${START}\")] | length")
+          echo "Comments on #${ISSUE} since ${START}: ${count}"
+          if [ "${count}" = "0" ]; then
+            echo "::error::The run finished without commenting on issue #${ISSUE}. Treat it as not done."
+            exit 1
+          fi
