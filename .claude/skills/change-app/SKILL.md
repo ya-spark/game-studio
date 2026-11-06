@@ -27,7 +27,7 @@ A failed gate goes back to the agent that owns the cause.
 ## 3. Rules
 - One subagent at a time per repo.
 - Branch/PR workflow is suspended for now: commit directly to `main`.
-- Never publish beyond internal, enable real ads or purchases, spend money, or touch secrets without the user.
+- Never publish to production (internal, closed and beta tracks are allowed when the owner or the issue asks), enable real ads or purchases, spend money, or touch secrets without the user.
 - Work from the `game-studio` root only, never from inside a game repo or `game-factory`.
 - After the game repo's `main` changes, update its pin in game-studio (see its `CLAUDE.md`).
 - Report briefly after each stage: what changed, commit link, what is next.

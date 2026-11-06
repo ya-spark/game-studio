@@ -87,7 +87,7 @@ a run of `.github/workflows/claude.yml`, which does this without the user presen
   **internal** track; (3) if the tag push is refused, run `release.yml` from `main` with
   `track=internal` and `upload=true` instead (that leaves a draft, so say so in the comment);
   (4) watch the run and comment the result (marker `released-internal`) and then close the issue.
-  This never promotes beyond internal, never enables real ads or purchases beyond what the
+  This auto-release stays on internal (other non-production tracks only when the owner asks), never promotes to production, never enables real ads or purchases beyond what the
   config already holds, and never touches secrets. If the release is blocked (missing secrets,
   first release in Play Console, listing not approved), say exactly what is needed once and stop.
 

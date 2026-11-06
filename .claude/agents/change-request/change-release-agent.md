@@ -12,7 +12,7 @@ tools: Read, Write, Edit, Grep, Glob, Bash
 1. Raise the build number in `pubspec.yaml` `version:` (and the patch version for a user-visible change). Commit to `main`, wait for CI green.
 2. Push the matching tag `vX.Y.Z` from that `main` commit; this makes `release.yml` build the signed bundle and upload it to the **internal** track.
 3. If the tag push is refused, run `release.yml` from `main` with `track=internal` and `upload=true` (that leaves a draft; say so).
-4. Watch the run and report the result. Never promote beyond internal.
+4. Watch the run and report the result. Never promote to production; other non-production tracks only when the owner asks.
 5. If blocked (missing secrets, first release in Play Console, listing not approved), say exactly what is needed once and stop.
 
 ## Gate (done when)

@@ -47,6 +47,15 @@ each section with the date.
 - Wingy (`game-wingy`): stages spec through listing done; build and publish unblocked (secrets and AdMob IDs in place, 2026-10-31), first internal build with tag v1.0.1.
 - Check `python3 game-factory/scripts/pipeline.py status` for the current truth.
 
+## Release tracks (owner, 2026-11-06)
+- Claude may send an app to **any Play track except production**: internal testing, closed testing (Alpha) and open testing (beta).
+  Use the `release` workflow (`track=internal|alpha|beta`, `upload=true`) or a version tag.
+- **Production always needs the owner**: no production release, promotion or rollout without the owner's explicit approval in the
+  conversation (`promote-production` stays owner-only).
+- The Play service account holds: view app information, view app quality information, release apps to testing tracks, manage testing
+  tracks and tester lists, manage store presence. It must not get production release, Admin, financial or draft-delete permissions.
+- Declarations (Advertising ID, Data safety, content rating, target audience, trader status) are made by the owner in Play Console.
+
 ## Needs the owner (everything else is automated)
 1. Review the store text drafts in each game's `store/google-play/`.
 2. Create the Google Play developer account (identity verification; 12-tester closed test for 14
