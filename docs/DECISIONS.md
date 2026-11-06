@@ -32,9 +32,9 @@ each section with the date.
 - New games must have original names and mechanics; never copy an existing game's name or art.
 
 ## Craft family: education games (owner, 2026-11-06)
-- Three apps, shipped together, one per age band, sharing one engine and one content format:
-  **Craft Cubs** (ages 4-7), **Craft Crew** (8-11), **Craft Masters** (12-15). Ids: `craft-cubs`, `craft-crew`, `craft-masters`
-  (repos `ya-spark/game-craft-cubs` etc., created by the owner; packages `com.activemindcraft.craftcubs` etc.).
+- Three apps, shipped together, one per age band, sharing one engine and one content format (final names, owner, 2026-11-06):
+  **Craft Cub Games** (ages 4-7), **Craft Ranger Games** (8-11), **Craft Legend Games** (12-15). Ids: `craft-cub`, `craft-ranger`, `craft-legend`
+  (repos `ya-spark/game-craft-cub` etc., created by the owner; packages `com.activemindcraft.craftcub` etc.). Play Store and trademark checks still pending.
 - Each app is a hub of minigames (door runner for multiple choice, series builder, match pairs, true/false, block drop);
   the student content plugs into them. Content packs carry an age-band tag and a content type (MCQ, series, pairs, true/false).
 - Content sources, behind a `ContentSource` interface: built-in default packs, and static files (signed JSON and asset
