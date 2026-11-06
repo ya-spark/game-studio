@@ -1,59 +1,34 @@
 #!/usr/bin/env bash
-# Push `main` of every submodule, move the master pins to those commits, push the master.
-# Uncommitted changes in each submodule are committed first (git add -A).
-# Usage: push.sh [commit message]   (default message: "Update")
-# Master changes (pins and anything else) are committed too (git add -A).
+# Push every submodule's main, then update the master pins and push the master.
+#
+# Usage: ./scripts/push.sh ["pin commit message"]
+#
+# Submodules are pushed first so the master never pins a commit that is not
+# on the submodule's main. Uncommitted work is never committed here; the
+# script only pushes existing commits and commits the pointer changes.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+MSG="${1:-Update submodule pins}"
 
-MSG="${1:-Update}"
+git submodule foreach --quiet '
+  echo "==> $sm_path"
+  [ "$(git rev-parse --abbrev-ref HEAD)" = main ] || { echo "not on main, skipping"; exit 0; }
+  [ -z "$(git status --porcelain)" ] || echo "warning: uncommitted changes (not pushed)"
+  git push origin main
+'
 
-paths=$(git submodule --quiet foreach 'echo $displaypath')
-
-# Preflight: every repo must be on main before anything is pushed.
-bad=0
-master_branch="$(git rev-parse --abbrev-ref HEAD)"
-if [[ "$master_branch" != "main" ]]; then
-  echo "ERROR: master is on '$master_branch', not main." >&2
-  bad=1
-fi
-for dir in $paths; do
-  branch="$(git -C "$dir" rev-parse --abbrev-ref HEAD)"
-  if [[ "$branch" != "main" ]]; then
-    echo "ERROR: $dir is on '$branch', not main." >&2
-    bad=1
-  fi
-done
-if [[ "$bad" -ne 0 ]]; then
-  echo "Aborting: nothing was pushed." >&2
-  exit 1
-fi
-
-for dir in $paths; do
-  if [[ -n "$(git -C "$dir" status --porcelain)" ]]; then
-    echo "== $dir: commit changes"
-    git -C "$dir" add -A
-    git -C "$dir" commit -m "$MSG
-
-Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
-  fi
-  echo "== $dir: push main"
-  git -C "$dir" push origin main
-done
-
-echo "== master: commit changes and pins"
-git add -A
-if git diff --cached --quiet; then
-  echo "Master already up to date."
-else
+echo "==> game-studio"
+pins=$(git diff --name-only --ignore-submodules=none | while read -r p; do [ -e "$p/.git" ] && echo "$p"; done || true)
+if [ -n "$pins" ]; then
+  # shellcheck disable=SC2086
+  git add $pins
   git commit -m "$MSG
 
 Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
 fi
-
-echo "== master: push"
 git push origin main
 
+echo
 git submodule status
