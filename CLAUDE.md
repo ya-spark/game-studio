@@ -15,9 +15,14 @@ The factory rules (no backend, interfaces, secrets, ...) apply to every change:
 - Branch/PR workflow is suspended for now: changes may be committed and pushed directly to `main`, in any
   repo. That is permission, not an instruction: outside the overnight rules below, commit and push
   only when the owner asks.
-- Specs go to issues, not code (owner, 2026-11-05): when a spec or change is planned in a live session,
-  push it as a `game-studio` issue (see `docs/INBOX.md`) so an `@claude` run implements it. Do not
-  implement it in the live session unless the owner explicitly says to code it there.
+- Live VS Code sessions do the work directly (owner, 2026-11-06): when the owner asks for something in a
+  session from the VS Code IDE, do it in that session. Do not turn it into a `game-studio` issue, do not
+  comment `@claude` on an issue, and do not hand it to an `@claude` run. If anything is unclear, ask the
+  owner in the session instead of filing an issue. Commit and push only when the owner asks (see above).
+  This replaces the earlier rule "Specs go to issues, not code" (owner, 2026-11-05) for IDE sessions.
+- Issues and `@claude` runs are for work the owner starts by writing an issue (see `docs/INBOX.md`). In a
+  session from anywhere other than the VS Code IDE, a planned spec or change still goes to a `game-studio`
+  issue, as before, unless the owner says to code it there.
 
 ## Overnight `@claude` runs (standing authorization from the owner, 2026-11-05)
 
