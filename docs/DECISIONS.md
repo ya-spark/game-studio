@@ -31,6 +31,18 @@ each section with the date.
   `ya-spark/game-studio` pins game-factory and every game as submodules.
 - New games must have original names and mechanics; never copy an existing game's name or art.
 
+## Craft family: education games (owner, 2026-11-06)
+- Three apps, shipped together, one per age band, sharing one engine and one content format:
+  **Craft Cubs** (ages 4-7), **Craft Crew** (8-11), **Craft Masters** (12-15). Ids: `craft-cubs`, `craft-crew`, `craft-masters`
+  (repos `ya-spark/game-craft-cubs` etc., created by the owner; packages `com.activemindcraft.craftcubs` etc.).
+- Each app is a hub of minigames (door runner for multiple choice, series builder, match pairs, true/false, block drop);
+  the student content plugs into them. Content packs carry an age-band tag and a content type (MCQ, series, pairs, true/false).
+- Content sources, behind a `ContentSource` interface: built-in default packs, and static files (signed JSON and asset
+  bundles on a CDN, versioned, cached offline) uploaded by the owner. Static hosting only: no backend, logins or user data.
+  A third source (another platform, with subscription) is deferred; it needs a new owner decision on auth and Play Billing.
+- Children's apps: family-safe ad networks only; parental gate in front of purchases and any external link; no chat,
+  no personal data. "Remove Ads" is a one-time Play Billing purchase (parents). Little band: no timers, picture and voice questions.
+
 ## Privacy policies
 - Hosted by GitHub Pages from the public repo `ya-spark/public` (source: `ya-spark/public`,
   branch `main`, root). Keep that repo public.
