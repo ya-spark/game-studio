@@ -41,7 +41,17 @@ each section with the date.
   bundles on a CDN, versioned, cached offline) uploaded by the owner. Static hosting only: no backend, logins or user data.
   A third source (another platform, with subscription) is deferred; it needs a new owner decision on auth and Play Billing.
 - Children's apps: family-safe ad networks only; parental gate in front of purchases and any external link; no chat,
-  no personal data. "Remove Ads" is a one-time Play Billing purchase (parents). Little band: no timers, picture and voice questions.
+  no personal data, no Play Games sign-in (owner, 2026-11-06). "Remove Ads" is a one-time Play Billing purchase (parents). Little band: no timers, picture and voice questions.
+
+## Casual games hub, fourth app (owner, 2026-11-06)
+- A fourth app, general audience and non-education (name still open), holds many casual games: Block Puzzle, Blockfall and Wingy
+  plus new ones (merge, solitaire, sudoku, ball sort, stack tower, brick breaker, mahjong tile match, snake). Games are built as modules
+  so a hub and a standalone app share the same code.
+- The three existing apps (`game-block-puzzle`, `game-block-fall`, `game-wingy`) stay standalone.
+- One shared "Remove Ads" purchase in the hub covers all its games. It is separate from the standalone apps' purchases.
+- Play Games sign-in: **none in the three Craft apps** (progress is saved on the device only). **Play Games sign-in in the hub**, optional,
+  so the hub works fully without it (players under the account age limit cannot sign in).
+- Build order: hub with the new games first; converting the three existing games to modules comes as a second step.
 
 ## Privacy policies
 - Hosted by GitHub Pages from the public repo `ya-spark/public` (source: `ya-spark/public`,
