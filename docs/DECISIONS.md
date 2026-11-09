@@ -35,8 +35,8 @@ each section with the date.
 - Three apps, shipped together, one per age band, sharing one engine and one content format. The names **Craft Scout Games** (Foundation to Year 6, ages about 5-12),
   **Craft Ranger Games** (Years 7-10, about 12-16) and **Craft Champion Games** (Years 11-12, senior secondary, about 16-18) are used **only on Google Play** (owner, 2026-11-09). In the repos, the
   factory registry and the code, the apps use the age-band names. Repos (created by the owner, kept as named): `ya-spark/game-craft-lowteen`
-  (Scout), `ya-spark/game-craft-preteen` (Ranger), `ya-spark/game-craft_highteen` (Champion; the underscore is kept, so check the scripts accept it).
-  Proposed ids: `craft-lowteen`, `craft-preteen`, `craft-highteen`. Packages (owner confirmed 2026-11-09, permanent once uploaded to Play):
+  (Scout), `ya-spark/game-craft-preteen` (Ranger), `ya-spark/game-craft_highteen` (Champion; the underscore is kept; the generator's `--repo` override is needed because it writes kebab-case repo names).
+  Ids (snake_case, as the generator requires): `craft_lowteen`, `craft_preteen`, `craft_highteen`. Packages (owner confirmed 2026-11-09, permanent once uploaded to Play):
   `com.activemindcraft.craftscout`, `.craftranger`, `.craftchampion`; casual hubs `com.activemindcraft.mindember`, `.mindzip`. Play Store and trademark checks for the three store names still pending.
 - Each app is a hub of minigames (door runner for multiple choice, series builder, match pairs, true/false, block drop);
   the student content plugs into them. Content packs carry an age-band tag and a content type (MCQ, series, pairs, true/false).
@@ -86,7 +86,7 @@ each section with the date.
 - Build order: hub with the new games first; converting the three existing games to modules comes as a second step.
 
 ## Casual hub names (owner, 2026-11-09)
-- The two casual hubs are **Mind Ember Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind-1` (Ember), `mind-9` (Zip).
+- The two casual hubs are **Mind Ember Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind_1` (Ember), `mind_9` (Zip).
   Provisional: web searches found no exact app or trademark for either. Known risk (owner accepted, 2026-11-09): a MindZip flashcard learning app exists on Android (Polish review), so Mind Zip carries a medium naming risk. Check it first in the Play Store and USPTO searches; fallbacks for the fast hub are Mind Clip (suggests short, not fast) and Mind Dart. Play Store, USPTO and domain checks are still pending.
   Ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mind Zen, Mind Zoom, Mind Flex (Mattel MINDFLEX), Mind Aura (MIND AURA marks), Mind Haze (cannabis connotation), Mindora, and the plain Chill, Zip, Aura, Flex and Rizz Games names. Mind Quill, Mind Glide and Mind Nitro were considered and replaced.
 
