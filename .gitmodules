@@ -13,3 +13,18 @@
 [submodule "public"]
 	path = public
 	url = https://github.com/ya-spark/public.git
+[submodule "apps/game-craft-lowteen"]
+	path = apps/game-craft-lowteen
+	url = https://github.com/ya-spark/game-craft-lowteen.git
+[submodule "apps/game-craft-preteen"]
+	path = apps/game-craft-preteen
+	url = https://github.com/ya-spark/game-craft-preteen.git
+[submodule "apps/game-craft_highteen"]
+	path = apps/game-craft_highteen
+	url = https://github.com/ya-spark/game-craft_highteen.git
+[submodule "apps/game-mind-1"]
+	path = apps/game-mind-1
+	url = https://github.com/ya-spark/game-mind-1.git
+[submodule "apps/game-mind-9"]
+	path = apps/game-mind-9
+	url = https://github.com/ya-spark/game-mind-9.git

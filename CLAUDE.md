@@ -43,7 +43,7 @@ authorization.
 
 ## Submodules and pins
 
-`game-studio` is the master repo. The five submodules are `game-factory/`, `apps/game-block-fall`, `apps/game-block-puzzle`, `apps/game-wingy` and `public/` (the privacy policy site, served by GitHub Pages from `ya-spark/public`; one policy per game at `<game>/privacy.md`, kept in sync with each game's `store/google-play/privacy_policy.md`; the repo must stay public).
+`game-studio` is the master repo. The submodules are `game-factory/`, `apps/game-block-fall`, `apps/game-block-puzzle`, `apps/game-wingy`, the five new apps (`apps/game-craft-lowteen` = Craft Scout, `apps/game-craft-preteen` = Craft Ranger, `apps/game-craft_highteen` = Craft Champion, `apps/game-mind-1` = Mind Ember, `apps/game-mind-9` = Mind Zip; see `docs/PLAN-new-apps.md`) and `public/` (the privacy policy site, served by GitHub Pages from `ya-spark/public`; one policy per game at `<game>/privacy.md`, kept in sync with each game's `store/google-play/privacy_policy.md`; the repo must stay public).
 
 - Whenever `main` of any submodule repo changes, the master pin must be updated to that new `main` commit. Do it in the same session, not later.
 - To move a pin: `git submodule update --remote <path>` (or check out the submodule's `main` tip) and commit only the pointer change.
