@@ -46,6 +46,12 @@ each section with the date.
 - Children's apps: family-safe ad networks only; parental gate in front of purchases and any external link; no chat,
   no personal data, no Play Games sign-in (owner, 2026-11-06). "Remove Ads" is a one-time Play Billing purchase (parents). Little band: no timers, picture and voice questions.
 
+- Planning answers (owner, 2026-11-09): the static content host is the owner's Hostinger VPS behind Caddy (static files only); English only at launch with the content format ready
+  for more languages; each learning app ships with built-in starter packs that populate its games, plus updates from the server; starter subjects are maths and English, a few hundred
+  items per app, topics from each school year, written to be aligned with the Australian curriculum **without mentioning it anywhere in the apps, store listings or policies**
+  (original items only, Australian spelling, no copied textbook or test content); all five apps are built together on one shared engine and design system (same UI principles and styling,
+  with per-app colours and vibe); Craft apps use child-safe ads only, and Remove Ads sits behind a parental gate.
+
 ## Casual games hub, fourth app (owner, 2026-11-06)
 - A fourth app, general audience and non-education (name still open), holds many casual games: Block Puzzle, Blockfall and Wingy
   plus new ones (merge, solitaire, sudoku, ball sort, stack tower, brick breaker, mahjong tile match, snake). Games are built as modules
