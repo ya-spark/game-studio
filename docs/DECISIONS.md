@@ -58,6 +58,15 @@ each section with the date.
   the pre-installed Playwright Chromium, and walk each SPEC rule and key `Key('...')` test ID (start, play, game over, restart,
   settings). Report pass/fail per feature with screenshots. Any failure blocks the release and goes back to the code agent.
   Web is a test harness only (Android-only product); platform-only features (ads, billing, Play Games) are checked by the existing unit and bot tests, not in the browser.
+- **Alpha goes live at once (owner, 2026-11-09).** `release.yml` publishes alpha (closed testing) and internal as `completed`, so
+  testers get the build without a Roll out click in Play Console. Beta stays a draft.
+- **Testing countries: Australia and India only (owner, 2026-11-09).** The owner's games are tested only in those two countries, so
+  the closed testing (alpha) track targets Australia and India, and each game's one-time products (`remove_ads_all`, `coins_500`,
+  `coins_1500`, `coins_4000`) need availability and prices there. Tester Google accounts must have a Play country of Australia or
+  India, be in the alpha tester list, and install from the closed-testing link. The shop shows "These items are not on Google Play
+  yet" when a product is not available in the account's country. Suggested prices: Remove Ads A$4.49 / ₹149, Coin Pack A$1.49 / ₹29,
+  Big Coin Pack A$3.99 / ₹79, Coin Chest A$7.99 / ₹149 (US base $2.99, $0.99, $2.49, $4.99). Pricing for other countries is set
+  only when a public launch is planned. Do not assume any other market when testing ads, billing or the listing.
 - **Production always needs the owner**: no production release, promotion or rollout without the owner's explicit approval in the
   conversation (`promote-production` stays owner-only).
 - The Play service account holds: view app information, view app quality information, release apps to testing tracks, manage testing
