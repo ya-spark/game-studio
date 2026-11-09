@@ -33,7 +33,7 @@ each section with the date.
 
 ## Craft family: education games (owner, 2026-11-06)
 - Three apps, shipped together, one per age band, sharing one engine and one content format (final names, owner, 2026-11-06):
-  **Craft Scout Games** (ages 4-7), **Craft Ranger Games** (8-11), **Craft Legend Games** (12-15). Ids: `craft-scout`, `craft-ranger`, `craft-legend`
+  **Craft Scout Games** (ages 4-7), **Craft Ranger Games** (8-11), **Craft Champion Games** (12-15). Ids: `craft-scout`, `craft-ranger`, `craft-champion`
   (repos `ya-spark/game-craft-scout` etc., created by the owner; packages `com.activemindcraft.craftscout` etc.). Play Store and trademark checks still pending.
 - Each app is a hub of minigames (door runner for multiple choice, series builder, match pairs, true/false, block drop);
   the student content plugs into them. Content packs carry an age-band tag and a content type (MCQ, series, pairs, true/false).
