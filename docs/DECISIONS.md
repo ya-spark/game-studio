@@ -55,7 +55,7 @@ each section with the date.
 
 ## Casual hub names (owner, 2026-11-09)
 - The two casual hubs are **Mind Ember Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind-ember`, `mind-zip`.
-  Provisional: web searches found no exact app or trademark for either, and no close neighbour. Play Store, USPTO and domain checks are still pending.
+  Provisional: web searches found no exact app or trademark for either. Known risk (owner accepted, 2026-11-09): a MindZip flashcard learning app exists on Android (Polish review), so Mind Zip carries a medium naming risk; check it first in the Play Store and USPTO searches, with Mind Dart and Mind Clip as fallbacks. Play Store, USPTO and domain checks are still pending.
   Ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mind Zen, Mind Zoom, Mind Flex (Mattel MINDFLEX), Mind Aura (MIND AURA marks), Mind Haze (cannabis connotation), Mindora, and the plain Chill, Zip, Aura, Flex and Rizz Games names. Mind Quill, Mind Glide and Mind Nitro were considered and replaced.
 
 ## Privacy policies
