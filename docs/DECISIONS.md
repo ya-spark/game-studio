@@ -57,14 +57,14 @@ each section with the date.
 - Build order: hub with the new games first; converting the three existing games to modules comes as a second step.
 
 ## Casual hub names (owner, 2026-11-09)
-- The two casual hubs are **Mind Ember Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind-ember`, `mind-zip`.
+- The two casual hubs are **Mind Ember Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind-1` (Ember), `mind-9` (Zip).
   Provisional: web searches found no exact app or trademark for either. Known risk (owner accepted, 2026-11-09): a MindZip flashcard learning app exists on Android (Polish review), so Mind Zip carries a medium naming risk. Check it first in the Play Store and USPTO searches; fallbacks for the fast hub are Mind Clip (suggests short, not fast) and Mind Dart. Play Store, USPTO and domain checks are still pending.
   Ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mind Zen, Mind Zoom, Mind Flex (Mattel MINDFLEX), Mind Aura (MIND AURA marks), Mind Haze (cannabis connotation), Mindora, and the plain Chill, Zip, Aura, Flex and Rizz Games names. Mind Quill, Mind Glide and Mind Nitro were considered and replaced.
 
 ## Studio website (owner, 2026-11-09)
 - `ya-spark/activemindcraft-website` is a private repo for the Active Mind Craft website. It holds a second copy of the privacy policies; the canonical public URLs stay on `ya-spark/public` (GitHub Pages) until the website is live and the store listings are moved.
 - Hosting: the owner deploys it later on their Hostinger VPS, behind the Caddy instance that already serves several sites there, as one more site. Static files only (no backend). Deployment credentials (SSH keys, tokens) are never committed; the owner sets them up.
-- The casual hub repos are `ya-spark/game-mind-ember` and `ya-spark/game-mind-zip` (created as `mind-ember` and `mind-zip`; the owner renames them).
+- The casual hub repos are `ya-spark/game-mind-1` (Mind Ember, calm) and `ya-spark/game-mind-9` (Mind Zip, fast), renamed by the owner on 2026-11-09. Like the Craft repos, the repo names are internal; the store names are Mind Ember Games and Mind Zip Games unless the owner says otherwise.
 
 ## Privacy policies
 - Hosted by GitHub Pages from the public repo `ya-spark/public` (source: `ya-spark/public`,
