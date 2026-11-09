@@ -18,6 +18,9 @@ Learning content is bought with **real money**, never coins. Each extra pack has
 - **Year bundles:** the catalogue can define a bundle product that unlocks all packs of a year; the app treats it as owning each pack in it.
 - **Docs:** `docs/PUBLISHING.md` (publishing a pack in five steps, product-id rules, price tiers, signing on and off, restore behaviour, the Play API note: the one-time products API, the app must exist in Play Console, and a first build with the billing permission may be needed before products can be created).
 
+## Run discipline (the workflow stops a run after 100 turns, so work in small steps)
+Do the work in small steps. After each step whose checks pass, commit and push it to `main` (and move the pin) so nothing is lost. If you are running low on turns, push what passes, then comment exactly what is done and what remains, so the owner can post the rest as a new issue.
+
 ## Acceptance
 All template checks pass. Tests: product-id rule accepted and rejected cases, price tier lookup, `products` output (JSON and CSV) for sample packs and bundles, `status` handling in the app (draft hidden, live buyable), bundle ownership, restore against the index.
 
