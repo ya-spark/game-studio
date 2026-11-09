@@ -13,5 +13,8 @@ Generate the app from the template with the shared engine, then build the launch
 - Never commit secrets. Test ad IDs only until the owner supplies real IDs. Assets listed in `assets/LICENSES.md`.
 - `docs/SPEC.md` in the repo is the source of truth for behaviour; write it in the first commit.
 
+## CI
+The generated repo skips CI until the owner sets the repository variable `CI_ENABLED=true`. Set it after the first working build so the full checks run on GitHub.
+
 ## Needs from the owner
 AdMob app and ad unit IDs, Play Console setup, spec approval, official name checks.
