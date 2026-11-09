@@ -32,8 +32,8 @@ each section with the date.
 - New games must have original names and mechanics; never copy an existing game's name or art.
 
 ## Craft family: education games (owner, 2026-11-06)
-- Three apps, shipped together, one per age band, sharing one engine and one content format. The names **Craft Scout Games** (ages 4-7),
-  **Craft Ranger Games** (8-11) and **Craft Champion Games** (12-15) are used **only on Google Play** (owner, 2026-11-09). In the repos, the
+- Three apps, shipped together, one per age band, sharing one engine and one content format. The names **Craft Scout Games** (Foundation to Year 6, ages about 5-12),
+  **Craft Ranger Games** (Years 7-10, about 12-16) and **Craft Champion Games** (Years 11-12, senior secondary, about 16-18) are used **only on Google Play** (owner, 2026-11-09). In the repos, the
   factory registry and the code, the apps use the age-band names. Repos (created by the owner, kept as named): `ya-spark/game-craft-lowteen`
   (Scout), `ya-spark/game-craft-preteen` (Ranger), `ya-spark/game-craft_highteen` (Champion; the underscore is kept, so check the scripts accept it).
   Proposed ids: `craft-lowteen`, `craft-preteen`, `craft-highteen`. Packages (owner confirmed 2026-11-09, permanent once uploaded to Play):
@@ -51,6 +51,11 @@ each section with the date.
   items per app, topics from each school year, written to be aligned with the Australian curriculum **without mentioning it anywhere in the apps, store listings or policies**
   (original items only, Australian spelling, no copied textbook or test content); all five apps are built together on one shared engine and design system (same UI principles and styling,
   with per-app colours and vibe); Craft apps use child-safe ads only, and Remove Ads sits behind a parental gate.
+
+- Age bands corrected (owner, 2026-11-09): the apps are split by school stage, not the earlier 4-7 / 8-11 / 12-15 split. Scout = Foundation to Year 6, Ranger = Years 7-10, Champion = senior
+  secondary (Years 11-12). Starter content (maths and English) is tagged by school year. Open points to settle in the specs: the Play target-audience declarations (Scout is child-directed under
+  the Families policy; Ranger straddles the under-13 and 13+ line and Champion is mostly 16+, so ads and policy settings may differ by app), and whether Scout needs two interface levels
+  (about 5-8 and 9-12). The earlier rule of no Play Games sign-in in the Craft apps stands.
 
 ## Casual games hub, fourth app (owner, 2026-11-06)
 - A fourth app, general audience and non-education (name still open), holds many casual games: Block Puzzle, Blockfall and Wingy
