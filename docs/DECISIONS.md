@@ -80,6 +80,21 @@ each section with the date.
   Navigation in the Craft apps is a bottom bar that changes with the mode (Game: Play, Challenges, Shop; Study: Learn, Progress, Revise) plus a mode toggle in the top bar. The interface level of Scout and Ranger follows the year
   level (Scout: Foundation to Year 2 and Years 3 to 6; Ranger: Years 7 to 8 and Years 9 to 10). New repos start with CI off (the `CI_ENABLED` repository variable), and the owner turns it on after the first working build.
 
+- **Later decisions (owner, 2026-11-09), which win where earlier text differs:**
+  - Craft rewards: children earn **stars** (1 per item passed the first time, bonus stars for finishing a topic and for a daily streak); stars are progress only, never spent, and parents see them in the progress report.
+    **Coins** are bought by a parent, plus a small earned trickle for finishing a topic, daily streak milestones, a daily learning goal and a weekly goal, capped at 60 coins a week per child. Coins buy avatars, colours and
+    permanent unlocks of coin-locked minigames; they never buy learning content. The Mind hubs keep coins earned in play and bought in packs, no stars.
+  - Games are either `free_with_ads` or `coins` (a permanent unlock); Quick quiz and Study mode are always free. This applies to the Craft apps and the Mind hubs. Prices are proposed later and approved by the owner.
+  - Ads: no interstitials anywhere. Craft apps: child-safe banner only, no rewarded ads. Mind hubs: banner plus an optional rewarded ad for Continue. The banner shows only before and after a game, never during play.
+    Remove Ads is one purchase per app and removes every ad. This replaces the earlier 12 ad units: the owner needs 5 AdMob apps and 7 ad units (a banner for each Craft app; a banner and a rewarded unit for each Mind hub).
+  - Learning content is bought with **real money**, never coins, with a Play product per extra pack created dynamically from the pack manifests (price tiers, permanent product-id rule, optional year bundles); Full Unlock is one product per app.
+  - The content lives in a separate private repo, `ya-spark/game-content`, a submodule of game-studio. Hosting starts on the owner's Hostinger VPS behind Caddy (no extra cost), with the free Cloudflare proxy in front later if needed;
+    deploy is over SSH with a key restricted to the content folder. One `sync-products` workflow in the content repo creates products for all five apps through the Play API with the existing service account
+    (Manage store presence covers in-app products; the owner adds each app to its permissions); it never runs from an overnight run. Content signing stays optional until the owner adds a key.
+  - Scout content: about 100 items per subject and year, 1,400 in total (maths and English, Foundation to Year 6), written in seven content issues in `game-content`. Ranger and Champion content follow the same pattern.
+  - Issue structure: 1A (done, #90), 1B (#91), 1C, 1D, the Figma design phase, 02, shared minigames M1 (door runner, balloon pop), M2 (memory match, sort into bins), M3 (series builder, word builder), 09 (content repo), then the five app issues,
+    then the content issues, then 08. Drafts are in `docs/issue-drafts/`.
+
 ## Casual games hub, fourth app (owner, 2026-11-06)
 - A fourth app, general audience and non-education (name still open), holds many casual games: Block Puzzle, Blockfall and Wingy
   plus new ones (merge, solitaire, sudoku, ball sort, stack tower, brick breaker, mahjong tile match, snake). Games are built as modules

@@ -116,3 +116,13 @@ Factory rules apply: no backend, vendor SDKs only behind the service interfaces,
 - Final price points for Full Unlock and extra packs, and the exact numbers for the daily release (defaults above).
 - Whether Champion later gets more subjects (maths and English only at launch).
 - Whether the Mind apps later get paid extras beyond Remove Ads and coin packs.
+
+## 11. Later decisions (supersede earlier text where they differ)
+
+- **Rewards (Craft apps):** stars (progress, never spent) and coins (bought, plus a capped earned trickle of 60 a week per child). Learning content is bought with real money only. Mind hubs: coins earned in play and bought, no stars.
+- **Games:** each minigame is `free_with_ads` or `coins` (permanent unlock). Quick quiz and Study mode are always free.
+- **Ads:** no interstitials. Craft apps: banner only. Mind hubs: banner plus optional rewarded Continue. Banner only before and after a game. Remove Ads is one per app. AdMob: 5 apps and **7 ad units** (not 12).
+- **Content:** real-money products per extra pack, created from manifests with price tiers; Full Unlock per app; a separate private `ya-spark/game-content` repo; hosting on the Hostinger VPS first (free Cloudflare proxy later);
+  a manual `sync-products` workflow in the content repo using the Play API; signing optional until a key is added.
+- **Scout content:** about 100 items per subject and year (1,400 in total), in seven content issues.
+- **Issue order and drafts:** see `docs/issue-drafts/README.md`.

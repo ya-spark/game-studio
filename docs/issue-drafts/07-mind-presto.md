@@ -9,7 +9,7 @@ Generate the app from the template with the shared engine, then build the launch
 - Fast, energetic look. A hub with one shared coin balance; each minigame defines its own coin sinks.
 - Launch minigames: snake, brick breaker, stack tower, runner, balloon pop. Wingy joins later through the module conversion (issue 08).
 - No study content; no brain-health or medical claims in store text.
-- Ads and purchases: same ads as the existing games (banner on menu, paced interstitials, optional rewarded); one Remove Ads for the hub; coin packs; optional Play Games sign-in
+- Ads and purchases: **banner plus an optional rewarded ad for Continue; no interstitials**; the banner shows only before and after a game, never during play. One Remove Ads for the hub; coin packs; coins earned in play and bought. Games are free-with-ads or coin-locked. Optional Play Games sign-in.
 - Never commit secrets. Test ad IDs only until the owner supplies real IDs. Assets listed in `assets/LICENSES.md`.
 - `docs/SPEC.md` in the repo is the source of truth for behaviour; write it in the first commit.
 
