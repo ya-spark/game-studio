@@ -8,7 +8,7 @@ Generate the app with `--profile craft --audience child`, wire in the engine, th
 ## Scope
 - Two interface levels (about 5-8, Foundation to Year 2; and 9-12, Years 3 to 6) set from the child's year level. Younger level: pictures and voice, no timers, reading aloud automatic.
 - Game mode (default) and Study mode with the top-bar toggle, the bottom bar for each mode and the optional parent lock.
-- Minigames: Quick quiz, door runner, balloon pop, memory match, sort into bins, series builder, word builder. Quick quiz and Study mode are always free. For the others, each is set to `free_with_ads` or `coins`; the owner decides which (default proposal: door runner and memory match free-with-ads, the rest unlockable with coins) and proposes prices during this issue's planning.
+- Minigames and access (owner delegated, 2026-11-09): **free with ads:** Quick quiz, memory match, sort into bins, series builder, word builder. **Coin-locked (200 coins, permanent unlock):** door runner, balloon pop. Quick quiz and Study mode are always free. Shop prices: avatar 40 coins, colour theme 60, streak freeze 100; coin packs 500, 1500 and 4000.
 - Rewards: stars for first passes, bonus stars for topics and streaks; coins bought by a parent plus the earned trickle (up to 60 a week per child). The shop sells avatars, colours and the coin-locked minigames for coins. Learning content is bought with real money (Full Unlock and extra packs).
 - Daily challenges and a weekly goal are learning goals (pass N items, finish a topic, answer in a row) that pay stars and a few coins.
 - Ads: child-safe network, **banner only**, shown before and after a game, never during play. No interstitials, no rewarded ads. Remove Ads (one per app) behind the parent gate.
@@ -20,4 +20,4 @@ Generate the app with `--profile craft --audience child`, wire in the engine, th
 The generated repo skips CI until the owner sets the repository variable `CI_ENABLED=true`. Set it after the first working build so the full checks run on GitHub.
 
 ## Needs from the owner
-AdMob app and banner unit ID, Play Console setup and child-directed declarations, spec approval, price decisions for coin-locked games, official name checks.
+AdMob app and banner unit ID, Play Console setup and child-directed declarations, spec approval, official name checks.

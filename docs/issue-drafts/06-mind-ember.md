@@ -10,6 +10,7 @@ Generate the app from the template with the shared engine, then build the launch
 - Launch minigames: Sudoku, Solitaire, ball sort, mahjong tile match, merge. Block Puzzle and Blockfall join later through the module conversion (issue 08).
 - No study content; no brain-health or medical claims in store text.
 - Ads and purchases: **banner plus an optional rewarded ad for Continue; no interstitials**; the banner shows only before and after a game, never during play. One Remove Ads for the hub; coin packs; coins earned in play and bought. Games are free-with-ads or coin-locked. Optional Play Games sign-in.
+- Games and access: **free with ads:** Sudoku, Solitaire, ball sort. **Coin-locked (300 coins):** mahjong tile match, merge. Block Puzzle and Blockfall (issue 08) stay free with ads.
 - Never commit secrets. Test ad IDs only until the owner supplies real IDs. Assets listed in `assets/LICENSES.md`.
 - `docs/SPEC.md` in the repo is the source of truth for behaviour; write it in the first commit.
 

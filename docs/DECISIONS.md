@@ -95,6 +95,13 @@ each section with the date.
   - Issue structure: 1A (done, #90), 1B (#91), 1C, 1D, the Figma design phase, 02, shared minigames M1 (door runner, balloon pop), M2 (memory match, sort into bins), M3 (series builder, word builder), 09 (content repo), then the five app issues,
     then the content issues, then 08. Drafts are in `docs/issue-drafts/`.
 
+- **Game access and coin prices (owner delegated the choice, 2026-11-09; Claude's recommendation adopted):** principle: practice-style games that teach stay free with ads; the arcade-style extras cost coins. Coin prices: a coin-locked game
+  200 coins in the Craft apps and 300 in the Mind hubs; an avatar 40; a colour theme 60; a streak freeze 100. Coin packs stay 500, 1500 and 4000 as in the other games; the real-money price points are decided later with the price tiers.
+  Craft Scout: free with ads = Quick quiz, memory match, sort into bins, series builder, word builder; coins = door runner, balloon pop. Craft Ranger: free = Quick quiz, series builder, word search and crossword, equation builder,
+  sort into bins, true or false; coins = door runner and tug-of-war quiz. Craft Champion: free = Quick quiz, equation builder, cloze and grammar fix, flash review, true or false; coins = door runner and tug-of-war quiz.
+  Mind Ember: free = Sudoku, Solitaire, ball sort; coins = mahjong and merge. Mind Presto: free = snake, brick breaker, stack tower; coins = runner and balloon pop. The existing three games stay free with ads inside the hubs. Quick quiz and Study mode are always free.
+  With the 60 coins a week trickle, a child can earn a coin-locked game in about a month, or a parent can buy a coin pack.
+
 ## Casual games hub, fourth app (owner, 2026-11-06)
 - A fourth app, general audience and non-education (name still open), holds many casual games: Block Puzzle, Blockfall and Wingy
   plus new ones (merge, solitaire, sudoku, ball sort, stack tower, brick breaker, mahjong tile match, snake). Games are built as modules
