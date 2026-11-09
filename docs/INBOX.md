@@ -21,7 +21,7 @@ work immediately.
 | Reply `@claude approve` (or what to change) | Marks the spec done, or revises it. Then: repo, code, assets, tests, listing, each pushed to `main` with CI green. One short comment per finished stage. |
 | Create the empty repo `ya-spark/game-<id>` when asked | Detects the repo itself on the next run and continues. |
 | Set secrets / do the Play and AdMob steps when asked, then `@claude continue` | Continues from `blocked` once the requirement exists. |
-| Open a change request | Updates the spec and code directly on `main` of the game repo, checks CI is green, moves the pin in `game-studio`, then (if nothing is needed from you) raises the version, runs a browser test of the features, then tags it so the build goes to the **closed** testing track (as a draft) automatically, comments the result and closes the issue. Production still needs your approval. |
+| Open a change request | Updates the spec and code directly on `main` of the game repo, checks CI is green, moves the pin in `game-studio`, then (if nothing is needed from you) raises the version, runs a browser test of the features, then tags it so the build goes to the **closed** testing track (live to the closed testers at once) automatically, comments the result and closes the issue. Production still needs your approval. |
 
 A comment only wakes a run when it contains `@claude`, so each reply that should continue the work
 needs the mention.

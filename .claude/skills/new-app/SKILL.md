@@ -79,7 +79,7 @@ a run of `.github/workflows/claude.yml`, which does this without the user presen
   the game's `docs/SPEC.md` if rules or behaviour change, then the code, directly on `main` in
   the game repo; check CI is green; comment and close. For "factory": commit to game-factory `main`.
   Either way, move the pin in `game-studio` in the same run.
-- **Auto-release to CLOSED testing (game changes, owner-standing decision; track changed from internal on 2026-11-09, never use internal unless the owner or issue says so; `release.yml` now defaults to `alpha`, so a tag push goes to closed testing as a draft; where the steps below say internal, read closed/alpha; run the browser test from `docs/DECISIONS.md` before step 2 and stop without releasing if it fails):** when the change is
+- **Auto-release to CLOSED testing (game changes, owner-standing decision; track changed from internal on 2026-11-09, never use internal unless the owner or issue says so; `release.yml` now defaults to `alpha`, so a tag push goes to closed testing and is live to testers at once; where the steps below say internal, read closed/alpha; run the browser test from `docs/DECISIONS.md` before step 2 and stop without releasing if it fails):** when the change is
   pushed to `main` and nothing is needed from the owner, finish the job without asking: (1) in the same commit
   or a follow-up commit raise the `version:` build number (and patch version for a user-visible
   change) in `pubspec.yaml`, with CI green; (2) push the matching tag (`vX.Y.Z`) from the
