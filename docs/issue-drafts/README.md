@@ -4,14 +4,14 @@ Drafts for the five new apps and the shared work behind them. Nothing here has b
 starts an automatic run (see `docs/INBOX.md`), so the owner approves each one first. Read `docs/PLAN-new-apps.md` and `docs/DECISIONS.md` before any of them.
 The `@claude` workflow needs `CROSS_REPO_TOKEN` to include the five new repos before any run can check them out.
 
-Order: 01a, 01b, 01c (shared engine, one after the other), then 02 (design system and modes), then 03 to 07 (the five apps) together, then 08.
+Order: 01a, 01b, 01c (shared engine, one after the other), then the design phase (a live session in Figma, not an issue), then 02 (design system and modes), then 03 to 07 (the five apps) together, then 08.
 
 | File | Content |
 |---|---|
 | 01a | Content model, validator and authoring tool |
 | 01b | Profiles, content delivery, built-in daily release, Full Unlock, extra packs, parent area |
 | 01c | Minigame framework, Quick quiz, reading aloud, compliance profiles, generator, engine sync |
-| 02 | Design system, per-app themes, Game or Study mode |
+| 02 | Design system, per-app themes, Game and Study mode, navigation, parent lock (needs the Figma design phase first) |
 | 03 to 05 | Craft Scout, Craft Ranger, Craft Champion |
 | 06, 07 | Mind Ember, Mind Presto |
 | 08 | Convert the existing games into modules (later) |

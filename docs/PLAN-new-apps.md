@@ -99,6 +99,8 @@ Factory rules apply: no backend, vendor SDKs only behind the service interfaces,
 4. Convert Block Puzzle, Blockfall and Wingy into modules and add them to the hubs. The three standalone apps stay.
 5. Store listings, privacy policies, content ratings, then the internal testing track. Production always needs the owner.
 
+**Design phase:** between the shared core and the Craft apps, a live session with the owner designs the design system and each app's look in Figma (Claude designs, the owner reviews) and exports SVG and WebP assets plus a tokens file per app into the repos. Issue 2 then builds the themes, modes and navigation from those files. Navigation: a bottom bar that changes with the mode (Game: Play, Challenges, Shop; Study: Learn, Progress, Revise).
+
 ## 9. Owner tasks
 
 - AdMob: create 5 apps and 12 ad units and send the IDs. Craft apps: banner and rewarded only (set child-directed treatment). Mind apps: banner, interstitial and rewarded.

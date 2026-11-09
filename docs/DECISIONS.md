@@ -75,6 +75,11 @@ each section with the date.
   Content is served from `https://content.activemindcraft.com/v1/` (static files on the owner's Hostinger VPS behind Caddy), language `en-AU`. **Content signing is optional until the owner adds a key**; the Android upload
   keystore (GitHub secrets) is never used for content signing, and the owner creates a separate Ed25519 key and keeps the private key off every repo.
 
+- Design decisions (owner, 2026-11-09): Claude proposes each app's palette and style and designs it in Figma in a live session, the owner reviews; handoff is exported assets (SVG for icons, avatars and mascots, WebP for illustrated backgrounds)
+  plus a tokens file committed to the repos, because automatic runs cannot open Figma. All art is original and listed in `assets/LICENSES.md`: no stock illustrations and no AI-generated images. Open-licensed fonts are bundled.
+  Navigation in the Craft apps is a bottom bar that changes with the mode (Game: Play, Challenges, Shop; Study: Learn, Progress, Revise) plus a mode toggle in the top bar. The interface level of Scout and Ranger follows the year
+  level (Scout: Foundation to Year 2 and Years 3 to 6; Ranger: Years 7 to 8 and Years 9 to 10). New repos start with CI off (the `CI_ENABLED` repository variable), and the owner turns it on after the first working build.
+
 ## Casual games hub, fourth app (owner, 2026-11-06)
 - A fourth app, general audience and non-education (name still open), holds many casual games: Block Puzzle, Blockfall and Wingy
   plus new ones (merge, solitaire, sudoku, ball sort, stack tower, brick breaker, mahjong tile match, snake). Games are built as modules
