@@ -54,10 +54,9 @@ each section with the date.
 - Build order: hub with the new games first; converting the three existing games to modules comes as a second step.
 
 ## Casual hub names (owner, 2026-11-09)
-- The two casual hubs are **Mind Haze Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind-haze`, `mind-zip`.
-  Provisional: web searches found no exact app or trademark for either. Nearest: Mental Haze (a horror game, different name) and a pending MY HAZE mark (clothing); no near neighbour for Zip.
-  "Haze" also has a cannabis connotation, so keep store text and art clean. Play Store, USPTO and domain checks are still pending.
-  Ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mind Zen, Mind Zoom, Mindora. Mind Glide and Mind Nitro were considered and replaced.
+- The two casual hubs are **Mind Quill Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind-quill`, `mind-zip`.
+  Provisional: web searches found no exact app or trademark for either, and no close neighbour. Play Store, USPTO and domain checks are still pending.
+  Ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mind Zen, Mind Zoom, Mind Haze (cannabis connotation, pending MY HAZE mark), Mindora. Mind Glide and Mind Nitro were considered and replaced.
 
 ## Privacy policies
 - Hosted by GitHub Pages from the public repo `ya-spark/public` (source: `ya-spark/public`,
