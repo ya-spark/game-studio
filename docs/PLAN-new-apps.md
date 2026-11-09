@@ -7,11 +7,11 @@ Nothing here is implemented. The issue drafts are in `docs/issue-drafts/` and ar
 
 | App (Play Store name) | Audience | Repo | Package | Id |
 |---|---|---|---|---|
-| Craft Scout Games | Foundation to Year 6, about 5-12 | `ya-spark/game-craft-lowteen` | `com.activemindcraft.craftscout` | `craft-lowteen` |
-| Craft Ranger Games | Years 7-10, includes under-13s | `ya-spark/game-craft-preteen` | `com.activemindcraft.craftranger` | `craft-preteen` |
-| Craft Champion Games | Years 11-12 (senior secondary), about 16-18 | `ya-spark/game-craft_highteen` | `com.activemindcraft.craftchampion` | `craft-highteen` |
-| Mind Ember Games | Adults, calm puzzle and block games | `ya-spark/game-mind-1` | `com.activemindcraft.mindember` | `mind-1` |
-| Mind Zip Games | Adults, fast casual games | `ya-spark/game-mind-9` | `com.activemindcraft.mindzip` | `mind-9` |
+| Craft Scout Games | Foundation to Year 6, about 5-12 | `ya-spark/game-craft-lowteen` | `com.activemindcraft.craftscout` | `craft_lowteen` |
+| Craft Ranger Games | Years 7-10, includes under-13s | `ya-spark/game-craft-preteen` | `com.activemindcraft.craftranger` | `craft_preteen` |
+| Craft Champion Games | Years 11-12 (senior secondary), about 16-18 | `ya-spark/game-craft_highteen` | `com.activemindcraft.craftchampion` | `craft_highteen` |
+| Mind Ember Games | Adults, calm puzzle and block games | `ya-spark/game-mind-1` | `com.activemindcraft.mindember` | `mind_1` |
+| Mind Zip Games | Adults, fast casual games | `ya-spark/game-mind-9` | `com.activemindcraft.mindzip` | `mind_9` |
 
 - The Scout, Ranger, Champion, Ember and Zip names are used only on Google Play. Repos, registry ids and code use the internal names above.
 - Names are provisional until the official USPTO, national-register, Play Store and domain checks pass. Known risk: a MindZip flashcard learning app exists
@@ -38,40 +38,36 @@ and 4000 as consumables; a parent gate ("Ask a grown-up") before every real-mone
 
 ## 3. Money model
 
-| Item | How it is bought |
+| Item | How it works |
 |---|---|
-| Starter content (built in) | Free |
-| Extra learning packs (topic or year bundles) | Real money, plain price, parent gate |
+| Built-in content | Partly open. A small part opens each day (10 items per subject at the start, then 2 per subject per day, only when every open item has been passed). |
+| Full Unlock | One non-consumable per app, behind the parent gate. Opens all built-in content and its updates at once. |
+| Extra packs | Each has a free **preview** (a parent downloads it without charge; what it holds depends on the pack) and a **full** part, bought once per pack behind the parent gate. |
 | Game extras (Continue, power-ups, skins) | Coins |
-| Coins | Earned in play and study; coin packs for sale behind the parent gate |
+| Coins | Earned in play and study; coin packs for sale behind the parent gate, as in the existing games |
 | Remove Ads | One-time purchase |
 
 - Coins never buy learning content, and no real-money purchase is converted into content through coins (avoids hidden pricing in children's apps).
-- Core curriculum starter content stays free. Wording never pressures children.
-- No backend means the server cannot check who paid. Paid packs unlock on the device after Play Billing confirms the purchase (client-side entitlement). Content is low value, so some
-  leakage is accepted. Packs are signed so they cannot be tampered with.
+- The year level is chosen at first launch by a parent; the daily release follows it. Items stay open once opened. Wording never pressures children.
+- No backend means the server cannot check who paid. Unlocks are decided on the device after Play Billing confirms the purchase. The full part of an extra pack is downloaded only after the purchase.
 
-## 4. Shared engine (mostly reused from game-factory)
+## 4. Shared engine (vendored, mostly reused from game-factory)
 
-Already in the template: service interfaces, ads pacing, `products.yaml`, coins, daily reward, streaks, challenges, parent gate. New work:
-- Content format and loader (section 5).
-- Minigame framework: each minigame reads typed content items.
-- Mode system for the Craft apps (section 6).
-- Design system with per-app theme tokens (colours, art, type) and two layout levels for Scout and Ranger.
-- Per-app compliance profile: child-directed (Scout, Ranger, Champion) versus adult (Mind).
+Already in the template: service interfaces, ads pacing, `products.yaml`, coins, daily reward, streaks, challenges, parent gate. New work lives in a self-contained `lib/engine/` that the generator
+copies into each game; `scripts/sync_engine.py` and a CI drift check keep the copies identical to the factory (it can be turned into packages later).
+- Content model, validator and authoring tool (issue 1A); delivery, daily release, Full Unlock and extra packs (1B); minigame framework, compliance profiles, generator (1C).
+- Mode system and design system with per-app theme tokens and two layout levels for Scout and Ranger (issue 2).
 Factory rules apply: no backend, vendor SDKs only behind the service interfaces, pure-Dart rules, test IDs on every interactive widget, test ad IDs only until the owner supplies real ones.
 
 ## 5. Content
 
-- Subjects: maths and English first, for all three Craft apps. A few hundred items per app, tagged by school year (Scout: Foundation to Year 6; Ranger: Years 7-10; Champion: Years 11-12),
-  topic and difficulty.
-- Written to be aligned with the Australian curriculum, but the curriculum is never mentioned in the apps, store listings or policies. Original items only, Australian spelling,
-  no copied textbook or test content.
+- Subjects: maths and English first, for all three Craft apps. A few hundred items per app, tagged by school year (Scout: Foundation to Year 6; Ranger: Years 7-10; Champion: Years 11-12), topic and difficulty.
+- Written to be aligned with the Australian curriculum, but the curriculum is never mentioned in the apps, store listings or policies. Original items only, language `en-AU`, no copied textbook or test content.
 - Item types: multiple choice (including true or false), ordered series, pairs, word with hint, category items.
-- Built-in starter packs ship inside each app. Updates come from a static server (signed index, versioned packs, hash checks, offline cache). A `ContentSource` interface covers built-in and
-  static-server sources; a third source (another platform with subscription) is deferred and needs a new owner decision.
+- Built-in starter packs ship inside each app. Extra packs and updates come from `https://content.activemindcraft.com/v1/` (static files, one index per app, versioned immutable pack files, hash checks, offline cache).
+- Signing is optional until the owner adds a key: the app accepts an unsigned index while no public key is set; once a key is set a valid Ed25519 signature is required (no downgrade, no rollback). The owner creates a separate
+  signing key (not the Android upload keystore) and never shares the private key.
 - Maths answers are checked by automated validators. English items need owner review before release.
-- Signing keys are secrets: the owner holds them, they are never committed.
 
 ## 6. Craft apps: Game mode and Study mode
 
@@ -115,7 +111,7 @@ Factory rules apply: no backend, vendor SDKs only behind the service interfaces,
 
 ## 10. Open points
 
-- Paid learning packs: one-time per pack or a yearly bundle.
 - Which minigames to cut from the first release.
+- Final price points for Full Unlock and extra packs, and the exact numbers for the daily release (defaults above).
 - Whether Champion later gets more subjects (maths and English only at launch).
 - Whether the Mind apps later get paid extras beyond Remove Ads and coin packs.

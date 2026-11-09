@@ -66,6 +66,15 @@ each section with the date.
 - AdMob (owner, 2026-11-09): the owner creates 5 AdMob apps and 12 ad units (Craft: banner and rewarded; Mind: banner, interstitial and rewarded) and sends the IDs. Claude has no AdMob access and
   credentials are never shared. Test ad IDs only until the real IDs arrive. Full plan: `docs/PLAN-new-apps.md`; issue drafts (not posted): `docs/issue-drafts/`.
 
+- Content and engine decisions (owner, 2026-11-09), which supersede the earlier "starter content free, extra packs bought" wording: **built-in content** is partly open and a small part opens each day
+  (defaults: 10 items per subject at the start, 2 per subject per day, only when every open item has been passed; per year level chosen at first launch); a parent buys **Full Unlock** (one non-consumable per app)
+  to open all built-in content. **Extra packs** have a free preview, downloadable by a parent without charge (its contents depend on the pack), and a full part bought once per pack; the full part is downloaded after the
+  purchase. A parent area behind the parent gate holds the extra packs. Coins never buy learning content.
+- Engine delivery (owner, 2026-11-09): the shared engine is **vendored** (`lib/engine/` copied into each game, with a sync script and a CI drift check), not Dart packages. Issue 1 is split into 1A (content model and tools),
+  1B (delivery, daily release, Full Unlock, extra packs) and 1C (minigame framework, compliance profiles, generator). Game ids are snake_case: `craft_lowteen`, `craft_preteen`, `craft_highteen`, `mind_1`, `mind_9`.
+  Content is served from `https://content.activemindcraft.com/v1/` (static files on the owner's Hostinger VPS behind Caddy), language `en-AU`. **Content signing is optional until the owner adds a key**; the Android upload
+  keystore (GitHub secrets) is never used for content signing, and the owner creates a separate Ed25519 key and keeps the private key off every repo.
+
 ## Casual games hub, fourth app (owner, 2026-11-06)
 - A fourth app, general audience and non-education (name still open), holds many casual games: Block Puzzle, Blockfall and Wingy
   plus new ones (merge, solitaire, sudoku, ball sort, stack tower, brick breaker, mahjong tile match, snake). Games are built as modules
