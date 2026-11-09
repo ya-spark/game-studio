@@ -47,9 +47,17 @@ each section with the date.
 - Wingy (`game-wingy`): stages spec through listing done; build and publish unblocked (secrets and AdMob IDs in place, 2026-10-31), first internal build with tag v1.0.1.
 - Check `python3 game-factory/scripts/pipeline.py status` for the current truth.
 
-## Release tracks (owner, 2026-11-06)
-- Claude may send an app to **any Play track except production**: internal testing, closed testing (Alpha) and open testing (beta).
-  Use the `release` workflow (`track=internal|alpha|beta`, `upload=true`) or a version tag.
+## Release tracks (owner, 2026-11-06; default changed 2026-11-09)
+- **Default release track is closed testing (Alpha, `track=alpha`).** Never release to internal testing unless the owner
+  or the issue explicitly says so (owner, 2026-11-09). This applies to every release, including auto-releases after a change.
+- Claude may send an app to **any Play track except production**: closed testing (Alpha) by default; internal testing and open
+  testing (beta) only when the owner or the issue asks. Use the `release` workflow (`track=alpha`, `upload=true`).
+- **Browser test before closed testing (owner, 2026-11-09).** Before every closed-testing release, check in a real browser that the
+  features in the game's `docs/SPEC.md` work: build the web target (`flutter build web --release`, temporary; Flutter pinned by
+  `FLUTTER_VERSION` in the workflows, do not commit `platforms.web.enabled` changes or secrets), serve it locally, drive it with
+  the pre-installed Playwright Chromium, and walk each SPEC rule and key `Key('...')` test ID (start, play, game over, restart,
+  settings). Report pass/fail per feature with screenshots. Any failure blocks the release and goes back to the code agent.
+  Web is a test harness only (Android-only product); platform-only features (ads, billing, Play Games) are checked by the existing unit and bot tests, not in the browser.
 - **Production always needs the owner**: no production release, promotion or rollout without the owner's explicit approval in the
   conversation (`promote-production` stays owner-only).
 - The Play service account holds: view app information, view app quality information, release apps to testing tracks, manage testing

@@ -1,6 +1,6 @@
 ---
 name: change-release-agent
-description: Bumps the version and ships a finished change to the internal testing track. Use after change-code-agent when a release is wanted.
+description: Bumps the version and ships a finished change to the closed testing track (never internal unless the owner says so). Use after change-code-agent when a release is wanted.
 tools: Read, Write, Edit, Grep, Glob, Bash
 ---
 
@@ -10,13 +10,14 @@ tools: Read, Write, Edit, Grep, Glob, Bash
 
 ## Steps
 1. Raise the build number in `pubspec.yaml` `version:` (and the patch version for a user-visible change). Commit to `main`, wait for CI green.
-2. Push the matching tag `vX.Y.Z` from that `main` commit; this makes `release.yml` build the signed bundle and upload it to the **internal** track.
-3. If the tag push is refused, run `release.yml` from `main` with `track=internal` and `upload=true` (that leaves a draft; say so).
-4. Watch the run and report the result. Never promote to production; other non-production tracks only when the owner asks.
-5. If blocked (missing secrets, first release in Play Console, listing not approved), say exactly what is needed once and stop.
+2. **Browser test first (owner, 2026-11-09):** before any closed-testing release, run the browser check in `docs/DECISIONS.md` ("Browser test before closed testing") against the new `main` commit. If it fails, stop, report what failed and release nothing.
+3. Release to the **closed testing (alpha)** track only: push the matching tag `vX.Y.Z` from that `main` commit (`release.yml` now defaults to `alpha`), or run `release.yml` from `main` with `track=alpha` and `upload=true`. The upload is a draft; say so.
+4. Never use the internal track unless the owner or the issue explicitly says so (owner, 2026-11-09).
+5. Watch the run and report the result. Never promote to production; open testing (beta) only when the owner asks.
+6. If blocked (missing secrets, first release in Play Console, listing not approved), say exactly what is needed once and stop.
 
 ## Gate (done when)
-The internal build is uploaded, or the exact blocker is reported to the user.
+The closed-testing build is uploaded, or the exact blocker is reported to the user.
 
 ## Hands over
 Result to the user.
