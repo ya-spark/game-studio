@@ -57,6 +57,15 @@ each section with the date.
   the Families policy; Ranger straddles the under-13 and 13+ line and Champion is mostly 16+, so ads and policy settings may differ by app), and whether Scout needs two interface levels
   (about 5-8 and 9-12). The earlier rule of no Play Games sign-in in the Craft apps stands.
 
+- Craft apps, more decisions (owner, 2026-11-09): Game mode is the default on first launch and the app remembers the last mode; a mode toggle sits in the top bar, with an optional parent lock behind
+  the parent gate. Child-safe ads in all three Craft apps (including Champion), banner and rewarded only, no interstitials. Play Games sign-in only where the age allows it: Champion and the Mind apps,
+  never Scout or Ranger (this amends the 2026-11-06 rule). Coin packs are sold like the other apps, behind the parent gate. **Money model:** starter content free; extra learning packs bought with real
+  money at a plain price behind the parent gate; coins buy game extras only, never learning content. Paid packs unlock on the device after Play Billing confirms the purchase (no backend).
+- Mind apps (owner, 2026-11-09): the Mind series is for adults (18+). Ads are the same as the existing games (banner on menu, paced interstitials, optional rewarded). One Remove Ads per hub; coins
+  buy per-minigame extras such as Continue. Optional Play Games sign-in. Existing games join the hubs as modules later; the standalone apps stay.
+- AdMob (owner, 2026-11-09): the owner creates 5 AdMob apps and 12 ad units (Craft: banner and rewarded; Mind: banner, interstitial and rewarded) and sends the IDs. Claude has no AdMob access and
+  credentials are never shared. Test ad IDs only until the real IDs arrive. Full plan: `docs/PLAN-new-apps.md`; issue drafts (not posted): `docs/issue-drafts/`.
+
 ## Casual games hub, fourth app (owner, 2026-11-06)
 - A fourth app, general audience and non-education (name still open), holds many casual games: Block Puzzle, Blockfall and Wingy
   plus new ones (merge, solitaire, sudoku, ball sort, stack tower, brick breaker, mahjong tile match, snake). Games are built as modules
