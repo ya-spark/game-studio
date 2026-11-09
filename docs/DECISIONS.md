@@ -34,7 +34,8 @@ each section with the date.
 ## Craft family: education games (owner, 2026-11-06)
 - Three apps, shipped together, one per age band, sharing one engine and one content format (final names, owner, 2026-11-06):
   **Craft Scout Games** (ages 4-7), **Craft Ranger Games** (8-11), **Craft Champion Games** (12-15). Ids: `craft-scout`, `craft-ranger`, `craft-champion`
-  (repos `ya-spark/game-craft-scout` etc., created by the owner; packages `com.activemindcraft.craftscout` etc.). Play Store and trademark checks still pending.
+  (repos `ya-spark/game-craft-scout`, `game-craft-ranger`, `game-craft-champion`, created by the owner; packages `com.activemindcraft.craftscout` etc.). Play Store and trademark checks still pending.
+  The owner created the repos as `craft-lowteen` (Scout, 4-7), `craft-preteen` (Ranger, 8-11) and `craft_highteen` (Champion, 12-15) and will rename them to the `game-` names (2026-11-09).
 - Each app is a hub of minigames (door runner for multiple choice, series builder, match pairs, true/false, block drop);
   the student content plugs into them. Content packs carry an age-band tag and a content type (MCQ, series, pairs, true/false).
 - Content sources, behind a `ContentSource` interface: built-in default packs, and static files (signed JSON and asset
@@ -57,6 +58,11 @@ each section with the date.
 - The two casual hubs are **Mind Ember Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind-ember`, `mind-zip`.
   Provisional: web searches found no exact app or trademark for either. Known risk (owner accepted, 2026-11-09): a MindZip flashcard learning app exists on Android (Polish review), so Mind Zip carries a medium naming risk. Check it first in the Play Store and USPTO searches; fallbacks for the fast hub are Mind Clip (suggests short, not fast) and Mind Dart. Play Store, USPTO and domain checks are still pending.
   Ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mind Zen, Mind Zoom, Mind Flex (Mattel MINDFLEX), Mind Aura (MIND AURA marks), Mind Haze (cannabis connotation), Mindora, and the plain Chill, Zip, Aura, Flex and Rizz Games names. Mind Quill, Mind Glide and Mind Nitro were considered and replaced.
+
+## Studio website (owner, 2026-11-09)
+- `ya-spark/activemindcraft-website` is a private repo for the Active Mind Craft website. It holds a second copy of the privacy policies; the canonical public URLs stay on `ya-spark/public` (GitHub Pages) until the website is live and the store listings are moved.
+- Hosting: the owner deploys it later on their Hostinger VPS, behind the Caddy instance that already serves several sites there, as one more site. Static files only (no backend). Deployment credentials (SSH keys, tokens) are never committed; the owner sets them up.
+- The casual hub repos are `ya-spark/game-mind-ember` and `ya-spark/game-mind-zip` (created as `mind-ember` and `mind-zip`; the owner renames them).
 
 ## Privacy policies
 - Hosted by GitHub Pages from the public repo `ya-spark/public` (source: `ya-spark/public`,
