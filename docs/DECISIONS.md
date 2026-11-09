@@ -36,8 +36,8 @@ each section with the date.
   **Craft Ranger Games** (8-11) and **Craft Champion Games** (12-15) are used **only on Google Play** (owner, 2026-11-09). In the repos, the
   factory registry and the code, the apps use the age-band names. Repos (created by the owner, kept as named): `ya-spark/game-craft-lowteen`
   (Scout), `ya-spark/game-craft-preteen` (Ranger), `ya-spark/game-craft_highteen` (Champion; the underscore is kept, so check the scripts accept it).
-  Proposed ids: `craft-lowteen`, `craft-preteen`, `craft-highteen`. Proposed packages, permanent once uploaded to Play and still to be confirmed by
-  the owner: `com.activemindcraft.craftscout`, `.craftranger`, `.craftchampion`. Play Store and trademark checks for the three store names still pending.
+  Proposed ids: `craft-lowteen`, `craft-preteen`, `craft-highteen`. Packages (owner confirmed 2026-11-09, permanent once uploaded to Play):
+  `com.activemindcraft.craftscout`, `.craftranger`, `.craftchampion`; casual hubs `com.activemindcraft.mindember`, `.mindzip`. Play Store and trademark checks for the three store names still pending.
 - Each app is a hub of minigames (door runner for multiple choice, series builder, match pairs, true/false, block drop);
   the student content plugs into them. Content packs carry an age-band tag and a content type (MCQ, series, pairs, true/false).
 - Content sources, behind a `ContentSource` interface: built-in default packs, and static files (signed JSON and asset
