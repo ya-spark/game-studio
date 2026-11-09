@@ -54,9 +54,9 @@ each section with the date.
 - Build order: hub with the new games first; converting the three existing games to modules comes as a second step.
 
 ## Casual hub names (owner, 2026-11-09)
-- The two casual hubs are **Mind Ember Games** (calm puzzle and block games) and **Mind Clip Games** (fast, energetic games). Ids: `mind-ember`, `mind-clip`.
-  Provisional: web searches found no exact app or trademark for either. Nearest to Clip is the new MINDCLUB application (behavioral-health software, a different word). Play Store, USPTO and domain checks are still pending.
-  Ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mind Zen, Mind Zoom, Mind Flex (Mattel MINDFLEX), Mind Aura (MIND AURA marks), Mind Haze (cannabis connotation), Mind Zip (a MindZip flashcard learning app exists), Mindora, and the plain Chill, Zip, Aura, Flex and Rizz Games names. Mind Quill, Mind Glide and Mind Nitro were considered and replaced; Mind Dart is the fallback for the fast hub.
+- The two casual hubs are **Mind Ember Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind-ember`, `mind-zip`.
+  Provisional: web searches found no exact app or trademark for either. Known risk (owner accepted, 2026-11-09): a MindZip flashcard learning app exists on Android (Polish review), so Mind Zip carries a medium naming risk. Check it first in the Play Store and USPTO searches; fallbacks for the fast hub are Mind Clip (suggests short, not fast) and Mind Dart. Play Store, USPTO and domain checks are still pending.
+  Ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mind Zen, Mind Zoom, Mind Flex (Mattel MINDFLEX), Mind Aura (MIND AURA marks), Mind Haze (cannabis connotation), Mindora, and the plain Chill, Zip, Aura, Flex and Rizz Games names. Mind Quill, Mind Glide and Mind Nitro were considered and replaced.
 
 ## Privacy policies
 - Hosted by GitHub Pages from the public repo `ya-spark/public` (source: `ya-spark/public`,
