@@ -9,7 +9,7 @@ Order: 01a, 01b, 01c (shared engine, one after the other), then 02 (design syste
 | File | Content |
 |---|---|
 | 01a | Content model, validator and authoring tool |
-| 01b | Content delivery, built-in daily release, Full Unlock, extra packs |
+| 01b | Profiles, content delivery, built-in daily release, Full Unlock, extra packs, parent area |
 | 01c | Minigame framework, compliance profiles, generator |
 | 02 | Design system, per-app themes, Game or Study mode |
 | 03 to 05 | Craft Scout, Craft Ranger, Craft Champion |
