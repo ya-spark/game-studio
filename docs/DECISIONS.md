@@ -53,6 +53,11 @@ each section with the date.
   so the hub works fully without it (players under the account age limit cannot sign in).
 - Build order: hub with the new games first; converting the three existing games to modules comes as a second step.
 
+## Casual hub names (owner, 2026-11-09)
+- The two casual hubs are **Mind Glide Games** (calm puzzle and block games) and **Mind Nitro Games** (fast, energetic games). Ids: `mind-glide`, `mind-nitro`.
+  Provisional: web searches found no exact app or trademark, but MINDGLOW (registered, software) is a near neighbour of Glide and NITRO is a common brand word.
+  Play Store, USPTO and domain checks are still pending. Earlier candidates ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mindora.
+
 ## Privacy policies
 - Hosted by GitHub Pages from the public repo `ya-spark/public` (source: `ya-spark/public`,
   branch `main`, root). Keep that repo public.
