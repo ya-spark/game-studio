@@ -1,6 +1,6 @@
-# [new-game] Mind Zip Games (fast casual hub)
+# [new-game] Mind Presto Games (fast casual hub)
 
-**Repo:** ya-spark/game-mind-9   **Package:** com.activemindcraft.mindzip   **Audience:** Adults
+**Repo:** ya-spark/game-mind-9   **Package:** com.activemindcraft.mindpresto   **Audience:** Adults
 
 ## Goal
 Generate the app from the template with the shared engine, then build the launch minigames and starter content.

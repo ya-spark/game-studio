@@ -11,17 +11,16 @@ Nothing here is implemented. The issue drafts are in `docs/issue-drafts/` and ar
 | Craft Ranger Games | Years 7-10, includes under-13s | `ya-spark/game-craft-preteen` | `com.activemindcraft.craftranger` | `craft_preteen` |
 | Craft Champion Games | Years 11-12 (senior secondary), about 16-18 | `ya-spark/game-craft_highteen` | `com.activemindcraft.craftchampion` | `craft_highteen` |
 | Mind Ember Games | Adults, calm puzzle and block games | `ya-spark/game-mind-1` | `com.activemindcraft.mindember` | `mind_1` |
-| Mind Zip Games | Adults, fast casual games | `ya-spark/game-mind-9` | `com.activemindcraft.mindzip` | `mind_9` |
+| Mind Presto Games | Adults, fast casual games | `ya-spark/game-mind-9` | `com.activemindcraft.mindpresto` | `mind_9` |
 
-- The Scout, Ranger, Champion, Ember and Zip names are used only on Google Play. Repos, registry ids and code use the internal names above.
-- Names are provisional until the official USPTO, national-register, Play Store and domain checks pass. Known risk: a MindZip flashcard learning app exists
-  (fallbacks for the fast hub: Mind Clip, Mind Dart). Package names are permanent once uploaded to Play.
+- The Scout, Ranger, Champion, Ember and Presto names are used only on Google Play. Repos, registry ids and code use the internal names above.
+- Names are provisional until the official USPTO, national-register, Play Store and domain checks pass. Mind Zip was dropped (a MindZip learning app by MindZip.net GmbH exists). Mind Presto's nearest risk is the many PRESTO marks owned by others; check classes 9, 28 and 41. Package names are permanent once uploaded to Play.
 - The studio website is `ya-spark/activemindcraft-website` (private, static, deployed later by the owner on a Hostinger VPS behind Caddy).
 - All five apps are built together on one shared engine and design system (same UI principles and styling), with per-app colours and vibe.
 
 ## 2. Settings by app
 
-| | Scout | Ranger | Champion | Mind Ember / Mind Zip |
+| | Scout | Ranger | Champion | Mind Ember / Mind Presto |
 |---|---|---|---|---|
 | Play audience | Child-directed (Families policy) | Child-directed (includes under-13s) | Teens, child-safe ads by choice | Adults (18+) |
 | Ads | Child-safe network, banner (menu only) and rewarded | Same | Same | Same as the existing games: banner on menu, paced interstitials, optional rewarded |
@@ -89,7 +88,7 @@ Factory rules apply: no backend, vendor SDKs only behind the service interfaces,
 - Ranger: door runner, series builder, tug-of-war quiz, word search and crossword, equation builder, sort into bins, true or false.
 - Champion: door runner, tug-of-war quiz, series builder, equation builder, cloze and grammar fix, flash review, true or false. Mature art and sound.
 - Mind Ember: Block Puzzle, Blockfall, Sudoku, Solitaire, ball sort, mahjong, merge.
-- Mind Zip: Wingy, snake, brick breaker, stack tower, runner, balloon pop.
+- Mind Presto: Wingy, snake, brick breaker, stack tower, runner, balloon pop.
 - Each minigame defines its own coin sinks (Continue, hints, skips, power-ups); a hub or app shares one coin balance.
 
 ## 8. Build order

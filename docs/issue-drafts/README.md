@@ -13,5 +13,5 @@ Order: 01a, 01b, 01c (shared engine, one after the other), then 02 (design syste
 | 01c | Minigame framework, compliance profiles, generator |
 | 02 | Design system, per-app themes, Game or Study mode |
 | 03 to 05 | Craft Scout, Craft Ranger, Craft Champion |
-| 06, 07 | Mind Ember, Mind Zip |
+| 06, 07 | Mind Ember, Mind Presto |
 | 08 | Convert the existing games into modules (later) |
