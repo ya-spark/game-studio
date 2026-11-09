@@ -32,10 +32,12 @@ each section with the date.
 - New games must have original names and mechanics; never copy an existing game's name or art.
 
 ## Craft family: education games (owner, 2026-11-06)
-- Three apps, shipped together, one per age band, sharing one engine and one content format (final names, owner, 2026-11-06):
-  **Craft Scout Games** (ages 4-7), **Craft Ranger Games** (8-11), **Craft Champion Games** (12-15). Ids: `craft-scout`, `craft-ranger`, `craft-champion`
-  (repos `ya-spark/game-craft-scout`, `game-craft-ranger`, `game-craft-champion`, created by the owner; packages `com.activemindcraft.craftscout` etc.). Play Store and trademark checks still pending.
-  The owner created the repos as `craft-lowteen` (Scout, 4-7), `craft-preteen` (Ranger, 8-11) and `craft_highteen` (Champion, 12-15) and will rename them to the `game-` names (2026-11-09).
+- Three apps, shipped together, one per age band, sharing one engine and one content format. The names **Craft Scout Games** (ages 4-7),
+  **Craft Ranger Games** (8-11) and **Craft Champion Games** (12-15) are used **only on Google Play** (owner, 2026-11-09). In the repos, the
+  factory registry and the code, the apps use the age-band names. Repos (created by the owner, kept as named): `ya-spark/game-craft-lowteen`
+  (Scout), `ya-spark/game-craft-preteen` (Ranger), `ya-spark/game-craft_highteen` (Champion; the underscore is kept, so check the scripts accept it).
+  Proposed ids: `craft-lowteen`, `craft-preteen`, `craft-highteen`. Proposed packages, permanent once uploaded to Play and still to be confirmed by
+  the owner: `com.activemindcraft.craftscout`, `.craftranger`, `.craftchampion`. Play Store and trademark checks for the three store names still pending.
 - Each app is a hub of minigames (door runner for multiple choice, series builder, match pairs, true/false, block drop);
   the student content plugs into them. Content packs carry an age-band tag and a content type (MCQ, series, pairs, true/false).
 - Content sources, behind a `ContentSource` interface: built-in default packs, and static files (signed JSON and asset
