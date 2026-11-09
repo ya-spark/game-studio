@@ -31,6 +31,61 @@ each section with the date.
   `ya-spark/game-studio` pins game-factory and every game as submodules.
 - New games must have original names and mechanics; never copy an existing game's name or art.
 
+## Craft family: education games (owner, 2026-11-06)
+- Three apps, shipped together, one per age band, sharing one engine and one content format. The names **Craft Scout Games** (Foundation to Year 6, ages about 5-12),
+  **Craft Ranger Games** (Years 7-10, about 12-16) and **Craft Champion Games** (Years 11-12, senior secondary, about 16-18) are used **only on Google Play** (owner, 2026-11-09). In the repos, the
+  factory registry and the code, the apps use the age-band names. Repos (created by the owner, kept as named): `ya-spark/game-craft-lowteen`
+  (Scout), `ya-spark/game-craft-preteen` (Ranger), `ya-spark/game-craft_highteen` (Champion; the underscore is kept, so check the scripts accept it).
+  Proposed ids: `craft-lowteen`, `craft-preteen`, `craft-highteen`. Packages (owner confirmed 2026-11-09, permanent once uploaded to Play):
+  `com.activemindcraft.craftscout`, `.craftranger`, `.craftchampion`; casual hubs `com.activemindcraft.mindember`, `.mindzip`. Play Store and trademark checks for the three store names still pending.
+- Each app is a hub of minigames (door runner for multiple choice, series builder, match pairs, true/false, block drop);
+  the student content plugs into them. Content packs carry an age-band tag and a content type (MCQ, series, pairs, true/false).
+- Content sources, behind a `ContentSource` interface: built-in default packs, and static files (signed JSON and asset
+  bundles on a CDN, versioned, cached offline) uploaded by the owner. Static hosting only: no backend, logins or user data.
+  A third source (another platform, with subscription) is deferred; it needs a new owner decision on auth and Play Billing.
+- Children's apps: family-safe ad networks only; parental gate in front of purchases and any external link; no chat,
+  no personal data, no Play Games sign-in (owner, 2026-11-06). "Remove Ads" is a one-time Play Billing purchase (parents). Little band: no timers, picture and voice questions.
+
+- Planning answers (owner, 2026-11-09): the static content host is the owner's Hostinger VPS behind Caddy (static files only); English only at launch with the content format ready
+  for more languages; each learning app ships with built-in starter packs that populate its games, plus updates from the server; starter subjects are maths and English, a few hundred
+  items per app, topics from each school year, written to be aligned with the Australian curriculum **without mentioning it anywhere in the apps, store listings or policies**
+  (original items only, Australian spelling, no copied textbook or test content); all five apps are built together on one shared engine and design system (same UI principles and styling,
+  with per-app colours and vibe); Craft apps use child-safe ads only, and Remove Ads sits behind a parental gate.
+
+- Age bands corrected (owner, 2026-11-09): the apps are split by school stage, not the earlier 4-7 / 8-11 / 12-15 split. Scout = Foundation to Year 6, Ranger = Years 7-10, Champion = senior
+  secondary (Years 11-12). Starter content (maths and English) is tagged by school year. Open points to settle in the specs: the Play target-audience declarations (Scout is child-directed under
+  the Families policy; Ranger straddles the under-13 and 13+ line and Champion is mostly 16+, so ads and policy settings may differ by app), and whether Scout needs two interface levels
+  (about 5-8 and 9-12). The earlier rule of no Play Games sign-in in the Craft apps stands.
+
+- Craft apps, more decisions (owner, 2026-11-09): Game mode is the default on first launch and the app remembers the last mode; a mode toggle sits in the top bar, with an optional parent lock behind
+  the parent gate. Child-safe ads in all three Craft apps (including Champion), banner and rewarded only, no interstitials. Play Games sign-in only where the age allows it: Champion and the Mind apps,
+  never Scout or Ranger (this amends the 2026-11-06 rule). Coin packs are sold like the other apps, behind the parent gate. **Money model:** starter content free; extra learning packs bought with real
+  money at a plain price behind the parent gate; coins buy game extras only, never learning content. Paid packs unlock on the device after Play Billing confirms the purchase (no backend).
+- Mind apps (owner, 2026-11-09): the Mind series is for adults (18+). Ads are the same as the existing games (banner on menu, paced interstitials, optional rewarded). One Remove Ads per hub; coins
+  buy per-minigame extras such as Continue. Optional Play Games sign-in. Existing games join the hubs as modules later; the standalone apps stay.
+- AdMob (owner, 2026-11-09): the owner creates 5 AdMob apps and 12 ad units (Craft: banner and rewarded; Mind: banner, interstitial and rewarded) and sends the IDs. Claude has no AdMob access and
+  credentials are never shared. Test ad IDs only until the real IDs arrive. Full plan: `docs/PLAN-new-apps.md`; issue drafts (not posted): `docs/issue-drafts/`.
+
+## Casual games hub, fourth app (owner, 2026-11-06)
+- A fourth app, general audience and non-education (name still open), holds many casual games: Block Puzzle, Blockfall and Wingy
+  plus new ones (merge, solitaire, sudoku, ball sort, stack tower, brick breaker, mahjong tile match, snake). Games are built as modules
+  so a hub and a standalone app share the same code.
+- The three existing apps (`game-block-puzzle`, `game-block-fall`, `game-wingy`) stay standalone.
+- One shared "Remove Ads" purchase in the hub covers all its games. It is separate from the standalone apps' purchases.
+- Play Games sign-in: **none in the three Craft apps** (progress is saved on the device only). **Play Games sign-in in the hub**, optional,
+  so the hub works fully without it (players under the account age limit cannot sign in).
+- Build order: hub with the new games first; converting the three existing games to modules comes as a second step.
+
+## Casual hub names (owner, 2026-11-09)
+- The two casual hubs are **Mind Ember Games** (calm puzzle and block games) and **Mind Zip Games** (fast, energetic games). Ids: `mind-1` (Ember), `mind-9` (Zip).
+  Provisional: web searches found no exact app or trademark for either. Known risk (owner accepted, 2026-11-09): a MindZip flashcard learning app exists on Android (Polish review), so Mind Zip carries a medium naming risk. Check it first in the Play Store and USPTO searches; fallbacks for the fast hub are Mind Clip (suggests short, not fast) and Mind Dart. Play Store, USPTO and domain checks are still pending.
+  Ruled out: Mind Spark, Mind Stack, Mind Flow, Mind Rush, Mind Arcade, Mind Bolt, Mind Breeze, Mind Haven, Mind Zen, Mind Zoom, Mind Flex (Mattel MINDFLEX), Mind Aura (MIND AURA marks), Mind Haze (cannabis connotation), Mindora, and the plain Chill, Zip, Aura, Flex and Rizz Games names. Mind Quill, Mind Glide and Mind Nitro were considered and replaced.
+
+## Studio website (owner, 2026-11-09)
+- `ya-spark/activemindcraft-website` is a private repo for the Active Mind Craft website. It holds a second copy of the privacy policies; the canonical public URLs stay on `ya-spark/public` (GitHub Pages) until the website is live and the store listings are moved.
+- Hosting: the owner deploys it later on their Hostinger VPS, behind the Caddy instance that already serves several sites there, as one more site. Static files only (no backend). Deployment credentials (SSH keys, tokens) are never committed; the owner sets them up.
+- The casual hub repos are `ya-spark/game-mind-1` (Mind Ember, calm) and `ya-spark/game-mind-9` (Mind Zip, fast), renamed by the owner on 2026-11-09. Like the Craft repos, the repo names are internal; the store names are Mind Ember Games and Mind Zip Games unless the owner says otherwise.
+
 ## Privacy policies
 - Hosted by GitHub Pages from the public repo `ya-spark/public` (source: `ya-spark/public`,
   branch `main`, root). Keep that repo public.
