@@ -10,7 +10,7 @@ Order: 01a, 01b, 01c (shared engine, one after the other), then 02 (design syste
 |---|---|
 | 01a | Content model, validator and authoring tool |
 | 01b | Profiles, content delivery, built-in daily release, Full Unlock, extra packs, parent area |
-| 01c | Minigame framework, compliance profiles, generator |
+| 01c | Minigame framework, Quick quiz, reading aloud, compliance profiles, generator, engine sync |
 | 02 | Design system, per-app themes, Game or Study mode |
 | 03 to 05 | Craft Scout, Craft Ranger, Craft Champion |
 | 06, 07 | Mind Ember, Mind Presto |
