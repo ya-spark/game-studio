@@ -35,7 +35,7 @@ Claude designs in Figma and the owner reviews. The result is committed as files,
 All template checks pass. Tests: every theme builds; the contrast test passes for every token pair; mode persistence per child; the lock blocks switching and shows its icon; the tab set changes with the mode; the level follows the year level (including a change of year); no layout overflow at 150 percent text on the main screens; screen-reader labels present; reduce motion honoured.
 
 ## Needs from the owner
-Review and approval of the Figma designs in the design phase, before this issue is posted.
+Nothing before this issue: the design phase is done and approved (2026-11-10). The owner reviews the result on a device after the run.
 
 ## Out of scope
 The real minigames (the five app issues), real artwork beyond what the design phase produced, real AdMob IDs, any AI feature.
