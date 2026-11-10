@@ -13,7 +13,7 @@ then 09 (content repo; the owner creates the empty repo first), then 03 to 07 (t
 | 01c2 | Reading aloud, ad placements, compliance profiles and checks |
 | 01c3 | Generator profiles, CI guard, engine sync |
 | 01d | Pack catalogue, price tiers, product ids, `status`, publishing tools |
-| 02A, 02B | Design system, themes and shared widgets (02A); Game and Study modes, navigation, screens, parent lock (02B). Both need the design phase, which is done (design files in game-factory) |
+| 02A (done), 02B1, 02B2 | Design system and themes (02A); modes, parent lock, card data, Game mode screens (02B1); Study screens, Mind home, docs (02B2) |
 | M1, M2, M3 | Shared minigames: door runner and balloon pop; memory match and sort into bins; series builder and word builder |
 | 09 | The `game-content` repo: validation, publish and product sync workflows |
 | 03 to 05 | Craft Scout, Craft Ranger, Craft Champion |
