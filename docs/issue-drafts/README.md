@@ -20,4 +20,4 @@ then 09 (content repo; the owner creates the empty repo first), then 03 to 07 (t
 | 03 to 05 | Craft Scout, Craft Ranger, Craft Champion |
 | 06, 07 | Mind Ember, Mind Presto |
 | C | Scout content issues C1 to C7 (about 200 items each, in `game-content`) |
-| 08 | Convert the existing games into modules (later) |
+| 08a, 08b, 08c | Existing games as shared modules: mechanism and Block Puzzle (08a), Blockfall and Wingy (08b), inclusion in the hubs (08c); owner approval between phases |
