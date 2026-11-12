@@ -31,3 +31,6 @@
 [submodule "content"]
 	path = content
 	url = https://github.com/ya-spark/game-content.git
+[submodule "games-web"]
+	path = games-web
+	url = https://github.com/ya-spark/games-web.git
