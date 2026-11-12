@@ -17,7 +17,7 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
-- #142 Fix template-ci (generator tests, engine lock, emulator job)
+- #143 Engine lock exclusions for hub-only files (owner chose B); then re-run template-ci (workflow_dispatch) and report. Emulator step edited by hand-push in game-factory 07ede11 (pin still to move).
 
 ## Next (post in this order, as dependencies finish)
 1. Screenshots: only when the owner asks (do not re-render on your own). Method below.
