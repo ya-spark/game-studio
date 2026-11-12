@@ -19,7 +19,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 ## Active
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): check result.
-- #149 (stage 1 pushed: game-factory ef7359f web build template; run errored at 17 min, resumed 2026-11-12 18:xx for stages 2 and 3: Scout, then four apps) web build for the Hostinger VPS (stub platform features, web-vps deploy workflow template in docs/workflows; owner does DNS, Caddy auth, deploy key and VPS_SSH_* secrets per docs/WEB-VPS.md). After it: install web-vps.yml into each app's .github/workflows via the studio session.
+- #149 Hostinger VPS web build: stage 1 template done (game-factory ef7359f, checks pass). Run asked two questions; decided 2026-11-12 ~23:15 AEDT: scripted port `scripts/port_web.py` per app (Scout first, then Ranger, Champion, Ember, Presto), no engine-sync change; Playwright smoke is run by the studio session (pre-installed here), not by the run. Next: when each app is pushed, move its pin, run `scripts/web_smoke.sh`, then install web-vps.yml into each app's .github/workflows. Owner does VPS steps (docs/WEB-VPS.md).
 - Screenshots: last, when the owner says.
 
 ## Next (post in this order, as dependencies finish)
