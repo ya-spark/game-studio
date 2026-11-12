@@ -11,7 +11,7 @@
 # Each game is served at https://<domain>/<game>/ (flutter build web --base-href /<game>/).
 # Builds use the submodule commits checked out here (the pins), not latest main. A game that fails to
 # build is reported and skipped; its previous copy on the VPS is left alone. Other games' folders on the
-# VPS are never removed. Stops local run-web.sh processes (scripts/stop.sh) before building.
+# VPS are never removed. DRY_RUN=1 builds only (no SSH, no upload). Stops local run-web.sh processes (scripts/stop.sh) before building.
 
 set -euo pipefail
 
@@ -45,7 +45,7 @@ done
 
 # Target: the alias argument, else VPS_HOST (environment or .env). The alias from ~/.ssh/config supplies user/key/port.
 VPS_HOST="${alias_arg:-${VPS_HOST:-}}"
-if [ -z "$VPS_HOST" ]; then
+if [ -z "$VPS_HOST" ] && [ -z "${DRY_RUN:-}" ]; then
   echo "No target. Usage: scripts/deploy.sh [<ssh-alias>] [game ...]   (or set VPS_HOST)"
   exit 1
 fi
@@ -78,11 +78,13 @@ cleanup_local() {
 }
 trap cleanup_local EXIT
 
+if [ -z "${DRY_RUN:-}" ]; then
 echo "Checking SSH access to $SSH_TARGET..."
 if ! "$SSH" "${SSH_OPTS[@]}" -o ConnectTimeout=15 "$SSH_TARGET" "true"; then
   echo "SSH failed for $SSH_TARGET."
   echo "  - Pass an alias from ~/.ssh/config that sets User and IdentityFile: scripts/deploy.sh <alias>"
   exit 1
+fi
 fi
 
 echo "Stopping local run-web processes..."
@@ -102,7 +104,7 @@ for game in "${games[@]}"; do
       flutter create --platforms=web --project-name "$(sed -n 's/^name: *//p' pubspec.yaml | head -1)" . >/dev/null
     fi
     flutter pub get >/dev/null
-    flutter build web --release --base-href "/$game/"
+    flutter build web --release --no-web-resources-cdn --base-href "/$game/"
   ); then
     cp -R "$dir/build/web" "$STAGE_DIR/web/$game"
     built+=("$game")
@@ -112,6 +114,12 @@ for game in "${games[@]}"; do
   fi
 done
 [ "${#built[@]}" -gt 0 ] || { echo "Nothing built."; exit 1; }
+
+if [ -n "${DRY_RUN:-}" ]; then
+  echo "DRY_RUN: built ${built[*]}; nothing uploaded."
+  [ "${#failed[@]}" -eq 0 ] || { echo "Build failed or skipped: ${failed[*]}"; exit 1; }
+  exit 0
+fi
 
 cp "$SCRIPT_DIR/ecosystem.config.cjs" "$SCRIPT_DIR/serve-static.cjs" "$STAGE_DIR/scripts/"
 cp "$CONFIG_FILE" "$STAGE_DIR/"

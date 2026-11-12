@@ -1,5 +1,17 @@
 # Hostinger VPS web hosting (owner decision 2026-11-12)
 
+> **Update 2026-11-13: superseded by the studio-level deploy.** The VPS web copy is UAT for all games. One
+> workflow in this repo, `.github/workflows/web-vps.yml` (Actions, web-vps, Run workflow; optional `games`
+> and `dry_run` inputs), builds each game's `main` and runs `scripts/deploy.sh`: it uploads one zip over SSH
+> and restarts PM2 `game-studio-web` (port 7000, `config.json`) on the new VPS (`hostinger-vps-2`). Games are
+> served at `https://web.activemindcraft.com/<game>/` (for example `/game-wingy/`, no `scout`/`ranger` names).
+> Basic auth (user `web`) and the Caddy route live in the cloud-deploy master repo (`apps.json`); add them once
+> with `scripts/deploy.sh proxy` there. Secrets in THIS repo: `CROSS_REPO_TOKEN`, `VPS_SSH_KEY`, `VPS_SSH_HOST`,
+> `VPS_SSH_USER`, `VPS_SSH_KNOWN_HOSTS`. The deploy key must be a normal login for the deploy user (the script
+> runs unzip and pm2), so keep it dedicated to this workflow. The per-game `web-vps.yml` files and the sections
+> below are the earlier design (rsync into `/srv/web`) and are no longer the path to use.
+> Locally: `scripts/deploy.sh <ssh-alias> [game ...]`, or `DRY_RUN=1 scripts/deploy.sh game-wingy` to build only.
+
 Goal: a web copy of each new app on the owner's Hostinger VPS, behind Caddy.
 The product stays Android-only; the web copy is for testing on the Hostinger VPS. Auth is in Caddy, not in the apps. Builds are uploaded by a
 GitHub workflow over SSH, the same pattern as `game-content` publish.
