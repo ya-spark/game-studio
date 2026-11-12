@@ -17,13 +17,7 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
-- #141 Image loader (factory)
-- #140 Craft Challenges payouts
-- template-ci manual run on game-factory main (check result)
-- #139 Craft Settings and Parent area screens
-- #138 Hub art and game-based challenges (follow-up to #137)
-- #136 Presto games H3 (Snake, Brick breaker, Stack tower, Runner)
-- #137 Mind hubs must not behave like learning apps (generator, picker, challenges, duplicate tiles, art)
+- #142 Fix template-ci (generator tests, engine lock, emulator job)
 
 ## Next (post in this order, as dependencies finish)
 1. Screenshots: only when the owner asks (do not re-render on your own). Method below.
@@ -34,7 +28,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 Design phase and Figma file; factory 1A to 1D, 2A, 2B1, 2B2; minigames M1 to M4b; five apps generated (#113 to #117, #121,
 #122, #130, #131); content Scout Years 0 to 6 (70 packs), Ranger Years 7 to 10 (40), Champion Years 11 to 12 (20);
 hub sync script and Block Puzzle, Blockfall (#120, #129), Wingy (#133); Ember Sudoku, Solitaire, Ball sort (#134), Mahjong, Merge (#135); Presto Snake, Brick breaker, Stack tower, Runner (#136); hubs no longer learning apps (#137, art left to #138);
-Craft screen fixes (#132).
+Craft screen fixes (#132); hub art and game-based challenges (#138); Craft Settings and Parent area (#139); Craft Challenges payouts (#140); AppImage loader in the template (#141; copying into the five apps left for regeneration).
 
 ## Owner items (not for runs)
 Review content packs and each app's `docs/SPEC.md`; copy game-content workflows and add secrets; Cloudflare and VPS;
