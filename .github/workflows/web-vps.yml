@@ -1,8 +1,8 @@
 # Deploy the web build of every game (or chosen games) from `main` to the Hostinger VPS for UAT.
 # Started by hand only: Actions, web-vps, Run workflow. See docs/WEB-VPS.md.
 #
-# Builds each game's current main (not the pinned commit), bakes all games into one Docker image, streams it
-# over SSH and restarts the container game-studio, via scripts/deploy.sh. The login (basic auth) and the Caddy
+# Builds each game's current main (not the pinned commit), uploads the built games over SSH, and the VPS builds
+# one Docker image with all games and restarts the container game-studio, via scripts/deploy.sh. The login (basic auth) and the Caddy
 # route live in the cloud-deploy master repo; a one-off `scripts/deploy.sh proxy` there adds the route.
 #
 # Repo secrets (Settings, Secrets and variables, Actions; never in a file):
