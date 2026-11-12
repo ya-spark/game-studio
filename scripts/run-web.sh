@@ -2,7 +2,7 @@
 # Enable web support for each Flutter game in apps/ and serve them all.
 #
 # Usage: ./run-web.sh [game-name ...]     (default: every game-* folder here)
-# Env:   BASE_PORT=8081  HOST=0.0.0.0  MODE=debug|release  NO_PULL=1 (skip git pull)
+# Env:   BASE_PORT=7001  HOST=0.0.0.0  MODE=debug|release  NO_PULL=1 (skip git pull)
 #        NO_OPEN=1 (don't open the browser automatically)
 #        HOT=reload|restart|off (what to do when a source file is saved; default reload)
 #
@@ -24,42 +24,16 @@
 # Don't commit it unless you intend to.
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-APPS_DIR="$ROOT_DIR/apps"
-BASE_PORT="${BASE_PORT:-8081}"
-HOST="${HOST:-0.0.0.0}"
-MODE="${MODE:-debug}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Shared settings: ROOT_DIR, APPS_DIR, BASE_PORT / HOST / MODE (from config.json, env overrides), PID_DIR.
+source "$SCRIPT_DIR/config.sh"
 LOG_DIR="$(mktemp -d)"
+rm -rf "$PID_DIR"; mkdir -p "$PID_DIR"
 
-# Prerequisites: install any missing tools (Debian/Ubuntu/WSL via apt).
-declare -A pkg_for=([git]=git [curl]=curl [unzip]=unzip [zip]=zip [xz]=xz-utils [which]=debianutils)
-missing_pkgs=()
-for cmd in "${!pkg_for[@]}"; do
-  command -v "$cmd" >/dev/null 2>&1 || missing_pkgs+=("${pkg_for[$cmd]}")
-done
-if [ "${#missing_pkgs[@]}" -gt 0 ]; then
-  echo "Installing missing prerequisites: ${missing_pkgs[*]}"
-  if command -v apt-get >/dev/null 2>&1; then
-    sudo apt-get update -y && sudo apt-get install -y "${missing_pkgs[@]}"
-  else
-    echo "No apt-get found; install manually: ${missing_pkgs[*]}" >&2
-    exit 1
-  fi
-fi
-
+# Prerequisites (apt tools, Flutter SDK, web support) are installed once by scripts/setup.sh.
 FLUTTER_HOME="${FLUTTER_HOME:-$HOME/flutter}"
-if ! command -v flutter >/dev/null 2>&1; then
-  if [ ! -x "$FLUTTER_HOME/bin/flutter" ]; then
-    echo "flutter not found; installing stable SDK to $FLUTTER_HOME (one-time, a few minutes)..."
-    git clone --depth 1 -b stable https://github.com/flutter/flutter.git "$FLUTTER_HOME"
-  fi
-  export PATH="$FLUTTER_HOME/bin:$PATH"
-  echo "Using $FLUTTER_HOME. To use flutter in your shell too:"
-  echo "  echo 'export PATH=\"$FLUTTER_HOME/bin:\$PATH\"' >> ~/.bashrc"
-fi
-flutter --version
-
-flutter config --enable-web >/dev/null
+[ -x "$FLUTTER_HOME/bin/flutter" ] && export PATH="$FLUTTER_HOME/bin:$PATH"
+command -v flutter >/dev/null 2>&1 || { echo "flutter not found: run scripts/setup.sh first" >&2; exit 1; }
 
 if [ "$#" -gt 0 ]; then
   games=("$@")
@@ -180,7 +154,12 @@ for game in "${games[@]}"; do
   (cd "$dir" && flutter pub get >"$LOG_DIR/$game.pub.log" 2>&1) \
     || { echo "    pub get failed, see $LOG_DIR/$game.pub.log" >&2; continue; }
 
-  pidfile="$LOG_DIR/$game.pid"
+  if port_in_use "$port"; then
+    echo "Port $port is already in use: run scripts/stop.sh first" >&2
+    exit 1
+  fi
+
+  pidfile="$PID_DIR/$game.pid"
   pidargs=(--pid-file "$pidfile")
   if [ "$HOT" != off ]; then
     watch_game "$dir" "$pidfile" &
@@ -219,7 +198,7 @@ if [ -t 0 ]; then
   echo "Keys: r = hot reload all, R = hot restart all, q = quit"
   signal_all() {
     local f
-    for f in "$LOG_DIR"/*.pid; do
+    for f in "$PID_DIR"/*.pid; do
       [ -s "$f" ] && kill "-$1" "$(cat "$f")" 2>/dev/null || true
     done
   }

@@ -1,0 +1,10 @@
+{
+  "domain": "web.activemindcraft.com",
+  "vpsDeployPath": "/home/track/pro/game-studio",
+  "host": "0.0.0.0",
+  "mode": "debug",
+  "ports": {
+    "web": 7000,
+    "devBase": 7001
+  }
+}
