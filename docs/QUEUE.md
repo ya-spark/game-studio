@@ -19,7 +19,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 ## Active
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): check result.
-- #149 Hostinger VPS web build: stage 1 template done (game-factory ef7359f, checks pass). Run asked two questions; decided 2026-11-12 ~23:15 AEDT: scripted port `scripts/port_web.py` per app (Scout first, then Ranger, Champion, Ember, Presto), no engine-sync change; Playwright smoke is run by the studio session (pre-installed here), not by the run. Next: when each app is pushed, move its pin, run `scripts/web_smoke.sh`, then install web-vps.yml into each app's .github/workflows. Owner does VPS steps (docs/WEB-VPS.md).
+- #149 Hostinger VPS web build: DONE in code. game-factory 70ce161 (port_web.py), five apps on main with the web build (Scout db63190, Ranger 0fbfdef, Champion 234568f, Ember e1492c2, Presto 4b6246f), web-vps.yml installed in each app's .github/workflows (studio session, 2026-11-13 ~01:15 AEDT). Smoke tests (Playwright) being run by the studio session; then move the pins for the workflow commits. Owner: VPS steps in docs/WEB-VPS.md (DNS, Caddy login, deploy key, VPS_SSH_* secrets), then run web-vps with dry_run first.
 - Screenshots: last, when the owner says.
 
 ## Next (post in this order, as dependencies finish)
