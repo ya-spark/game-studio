@@ -149,5 +149,5 @@ REMOTE
 
 echo "Deployed: ${built[*]}"
 [ "${#failed[@]}" -eq 0 ] || echo "NOT deployed (build failed or skipped): ${failed[*]}"
-echo "Served at https://${DOMAIN}/<game>/ once the master proxy has the route (cloud-deploy: scripts/deploy.sh proxy)."
+echo "Served at https://${DOMAIN}/<game>/ (and www.) once the master proxy has the route (cloud-deploy: scripts/deploy.sh proxy)."
 [ "${#failed[@]}" -eq 0 ]

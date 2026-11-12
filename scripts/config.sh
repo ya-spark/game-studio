@@ -34,7 +34,7 @@ read_config_port() {
   printf '%s' "$value"
 }
 
-DOMAIN="$(read_config_string domain)"
+DOMAIN="$(read_config_string domains.0)"   # primary; config.json "domains" lists all
 VPS_DEPLOY_PATH="$(read_config_string vpsDeployPath)"
 WEB_PORT="$(read_config_port ports.web)"
 # Env vars override config.json for local runs, as before.

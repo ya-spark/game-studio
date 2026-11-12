@@ -4,8 +4,8 @@
 > workflow in this repo, `.github/workflows/web-vps.yml` (Actions, web-vps, Run workflow; optional `games`
 > and `dry_run` inputs), builds each game's `main` and runs `scripts/deploy.sh`: it uploads one zip over SSH
 > and restarts PM2 `game-studio-web` (port 7000, `config.json`) on the new VPS (`hostinger-vps-2`). Games are
-> served at `https://web.activemindcraft.com/<game>/` (for example `/game-wingy/`, no `scout`/`ranger` names).
-> Basic auth (user `web`) and the Caddy route live in the cloud-deploy master repo (`apps.json`); add them once
+> served at `https://activemindcraft.com/<game>/` and `https://www.activemindcraft.com/<game>/` (for example `/game-wingy/`, no `scout`/`ranger` names).
+> Basic auth (user `web`) and the Caddy route live in the cloud-deploy master repo (`apps.json`, hosts from `config.json` `domains`); add them once
 > with `scripts/deploy.sh proxy` there. Secrets in THIS repo: `CROSS_REPO_TOKEN`, `VPS_SSH_KEY`, `VPS_SSH_HOST`,
 > `VPS_SSH_USER`, `VPS_SSH_KNOWN_HOSTS`. The deploy key must be a normal login for the deploy user (the script
 > runs unzip and pm2), so keep it dedicated to this workflow. The per-game `web-vps.yml` files and the sections

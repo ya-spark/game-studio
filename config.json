@@ -1,5 +1,8 @@
 {
-  "domain": "web.activemindcraft.com",
+  "domains": [
+    "activemindcraft.com",
+    "www.activemindcraft.com"
+  ],
   "vpsDeployPath": "/home/track/pro/game-studio",
   "host": "0.0.0.0",
   "mode": "debug",
