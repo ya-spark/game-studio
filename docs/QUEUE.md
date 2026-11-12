@@ -20,7 +20,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): check result.
 - #149 DONE (2026-11-13 ~04:30 AEDT): web build on all five apps, web-vps.yml installed (with --no-web-resources-cdn), Playwright smoke PASS for all five (hubs skip the Settings check). Real bugs fixed on the way: daily release never ran, Craft year picker range, Champion packs asset line. Pins at game-studio 43c4a5d. Owner: VPS steps in docs/WEB-VPS.md, then run web-vps with dry_run first.
-- #150 DONE (2026-11-13 ~03:15 AEDT, game-studio 48d3948): hub Settings gear (was a bug), Craft parent year switch via yearChoices(), generator adds assets/content/packs/ for craft. Smoke re-run by the studio session in progress to confirm hubs run the Settings step.
+- #150 DONE (game-studio 48d3948) and web smoke PASS for all five apps with the Settings step running (2026-11-13 ~05:00 AEDT). Hubs needed Back and Pause tooltips on the game screens (Ember e1e3798, Presto bcdfad2). Next: owner VPS steps (docs/WEB-VPS.md), then run web-vps with dry_run first.
 - Screenshots: last, when the owner says.
 
 ## Next (post in this order, as dependencies finish)
