@@ -18,7 +18,9 @@ One web host on the Hostinger VPS, one folder per app (Flutter web uses hash URL
 Host name and folder are suggestions; change them in the workflow variables if you prefer others.
 
 ## Owner steps (Claude does not touch the VPS, DNS, Cloudflare or secrets)
-1. **DNS.** Add `web.activemindcraft.com` pointing at the VPS (in Cloudflare, leave it DNS-only or set a cache bypass; this host must not be cached).
+1. **DNS.** Everything under `activemindcraft.com` points at the Hostinger VPS (owner, 2026-11-12). Add an A record for the VPS
+   address on `web` (or one wildcard `*` record), next to the existing `content` record. One Caddy covers every host.
+   If the free Cloudflare proxy is in front later, leave `web` DNS-only or set a cache bypass for it; the web copy must not be cached.
 2. **Caddy.** Add a site block like this and reload Caddy. Create the password hash with `caddy hash-password`.
    ```
    web.activemindcraft.com {
