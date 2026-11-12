@@ -5,7 +5,8 @@
  * the URL prefix SERVE_BASE (e.g. /appgames, so a game is at /appgames/wingy/). Caddy forwards the prefix unchanged.
  * Flutter web uses hash URLs, so no SPA rewrite is needed; unknown paths are 404.
  * No auth here: the login is enforced by Caddy (basic_auth on the route in cloud-deploy apps.json).
- * Listens on 127.0.0.1 only, so Caddy is the only way in.
+ * Listens on SERVE_HOST (default 127.0.0.1, so Caddy is the only way in; the container sets 0.0.0.0 and
+ * publishes the port on 127.0.0.1 only).
  */
 const http = require('http');
 const fs = require('fs');
@@ -93,4 +94,4 @@ http.createServer((req, res) => {
   }
   res.writeHead(200, { ...headers, 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream' });
   fs.createReadStream(file).pipe(res);
-}).listen(port, '127.0.0.1');
+}).listen(port, process.env.SERVE_HOST || '127.0.0.1');

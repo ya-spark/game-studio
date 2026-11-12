@@ -2,13 +2,14 @@
 
 > **Update 2026-11-13: superseded by the studio-level deploy.** The VPS web copy is UAT for all games. One
 > workflow in this repo, `.github/workflows/web-vps.yml` (Actions, web-vps, Run workflow; optional `games`
-> and `dry_run` inputs), builds each game's `main` and runs `scripts/deploy.sh`: it uploads one zip over SSH
-> and restarts PM2 `game-studio-web` (port 7000, `config.json`) on the new VPS (`hostinger-vps-2`). Games are
+> and `dry_run` inputs), builds each game's `main` and runs `scripts/deploy.sh`: it bakes all games into one
+> Docker image, streams it over SSH and restarts the container `game-studio` (port 7000, `config.json`) on the
+> new VPS (`hostinger-vps-2`). Deploying only some games copies the deployed ones out of the running container first, so the others stay. Games are
 > served at `https://activemindcraft.com/appgames/<name>/` and the same under `www.` (for example `/appgames/wingy/`: the folder name without `game-`; no `scout`/`ranger` names). Other apps share the domain under their own paths (astro-writer is `/writer`).
 > Basic auth (user `web`) and the Caddy route live in the cloud-deploy master repo (`apps.json`, hosts from `config.json` `domains`); add them once
 > with `scripts/deploy.sh proxy` there. Secrets in THIS repo: `CROSS_REPO_TOKEN`, `VPS_SSH_KEY`, `VPS_SSH_HOST`,
 > `VPS_SSH_USER`, `VPS_SSH_KNOWN_HOSTS`. The deploy key must be a normal login for the deploy user (the script
-> runs unzip and pm2), so keep it dedicated to this workflow. The per-game `web-vps.yml` files and the sections
+> runs docker), so keep it dedicated to this workflow. The per-game `web-vps.yml` files and the sections
 > below are the earlier design (rsync into `/srv/web`) and are no longer the path to use.
 > Locally: `scripts/deploy.sh <ssh-alias> [game ...]` (`wingy` or `game-wingy`), or `DRY_RUN=1 scripts/deploy.sh wingy` to build only.
 

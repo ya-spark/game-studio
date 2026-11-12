@@ -1,9 +1,9 @@
 # Deploy the web build of every game (or chosen games) from `main` to the Hostinger VPS for UAT.
 # Started by hand only: Actions, web-vps, Run workflow. See docs/WEB-VPS.md.
 #
-# Builds each game's current main (not the pinned commit), uploads one zip over SSH and restarts the
-# PM2 process game-studio-web, via scripts/deploy.sh. The login (basic auth) and the Caddy route live in the
-# cloud-deploy master repo; a one-off `scripts/deploy.sh proxy` there adds the route.
+# Builds each game's current main (not the pinned commit), bakes all games into one Docker image, streams it
+# over SSH and restarts the container game-studio, via scripts/deploy.sh. The login (basic auth) and the Caddy
+# route live in the cloud-deploy master repo; a one-off `scripts/deploy.sh proxy` there adds the route.
 #
 # Repo secrets (Settings, Secrets and variables, Actions; never in a file):
 #   CROSS_REPO_TOKEN     already used by claude.yml (read access to every submodule, incl. private ones)

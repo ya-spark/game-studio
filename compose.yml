@@ -1,0 +1,20 @@
+# Runs on the VPS from the deploy directory. scripts/deploy.sh sets TAG, PORT and BASE_PATH (from config.json).
+services:
+  game-studio:
+    image: game-studio:${TAG:-latest}
+    container_name: game-studio
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:${PORT:?PORT is required}:${PORT}'
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:'+process.env.SERVE_PORT+process.env.SERVE_BASE+'/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

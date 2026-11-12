@@ -1,18 +1,22 @@
 #!/usr/bin/env bash
-# Build the games for web locally, zip, upload one archive, unzip on the VPS, reload PM2.
+# Build the games for web, bake them into one Docker image, stream it to the VPS, run it with Docker Compose.
 # Usage: scripts/deploy.sh [<ssh-alias>] [game-name ...]
 #   scripts/deploy.sh hostinger-vps-2                    every apps/game-* with a pubspec.yaml
 #   scripts/deploy.sh hostinger-vps-2 wingy              just one game (game-wingy also works; several allowed)
 #   VPS_HOST=hostinger-vps-2 scripts/deploy.sh wingy   alias from VPS_HOST (environment or .env)
 # An argument that is a folder under apps/ is a game; any other first argument is the ssh alias
-# (from ~/.ssh/config). Deploying one game leaves the other games on the VPS untouched.
-# The VPS needs Node, PM2 and unzip. The login (basic auth) and the shared Caddy proxy live in the master
-# cloud-deploy repo (apps.json + scripts/deploy.sh proxy); no .env is needed for this app.
+# (from ~/.ssh/config). The image holds ALL games. Deploying only some games first copies the games that are
+# deployed now out of the running container (or the old web/ folder on the VPS) into the build, then replaces
+# just the chosen ones, so the others are unchanged. Needs Docker on this machine (or run the web-vps workflow)
+# and Docker + Compose on the VPS (user in the docker group). No .env is needed for this app.
+# The container is named game-studio and publishes 127.0.0.1:<config.json ports.web> only. The login (basic
+# auth) and the shared Caddy proxy live in the master cloud-deploy repo (apps.json + scripts/deploy.sh proxy).
 # Each game is served at https://<domain><basePath>/<name>/ where <name> is the folder minus "game-"
 # (game-wingy -> /appgames/wingy/), built with flutter build web --base-href <basePath>/<name>/.
 # Builds use the submodule commits checked out here (the pins), not latest main. A game that fails to
-# build is reported and skipped; its previous copy on the VPS is left alone. Other games' folders on the
-# VPS are never removed. DRY_RUN=1 builds only (no SSH, no upload). Stops local run-web.sh processes (scripts/stop.sh) before building.
+# build is reported and skipped; its previous copy stays in the image. DRY_RUN=1 builds the games only
+# (no Docker, no SSH, no upload). Stops local run-web.sh processes (scripts/stop.sh) before building.
+# Images are tagged with a timestamp and "latest"; old images are deleted after a healthy deploy.
 
 set -euo pipefail
 
@@ -45,6 +49,8 @@ for arg in "$@"; do
     exit 1
   fi
 done
+PARTIAL=0
+[ "${#games[@]}" -gt 0 ] && PARTIAL=1
 
 # Target: the alias argument, else VPS_HOST (environment or .env). The alias from ~/.ssh/config supplies user/key/port.
 VPS_HOST="${alias_arg:-${VPS_HOST:-}}"
@@ -72,30 +78,51 @@ if [ "${#games[@]}" -eq 0 ]; then
 fi
 [ "${#games[@]}" -gt 0 ] || { echo "No games found in $APPS_DIR"; exit 1; }
 
-REMOTE_ZIP="/tmp/game-studio-deploy.zip"
-LOCAL_ZIP="$ROOT_DIR/.deploy-artifacts.zip"
+IMAGE="game-studio"
+TAG="$(date +%Y%m%d%H%M%S)"
 STAGE_DIR=""
 cleanup_local() {
-  rm -f "$LOCAL_ZIP"
   if [ -n "$STAGE_DIR" ] && [ -d "$STAGE_DIR" ]; then rm -rf "$STAGE_DIR"; fi
 }
 trap cleanup_local EXIT
 
 if [ -z "${DRY_RUN:-}" ]; then
-echo "Checking SSH access to $SSH_TARGET..."
-if ! "$SSH" "${SSH_OPTS[@]}" -o ConnectTimeout=15 "$SSH_TARGET" "true"; then
-  echo "SSH failed for $SSH_TARGET."
-  echo "  - Pass an alias from ~/.ssh/config that sets User and IdentityFile: scripts/deploy.sh <alias>"
-  exit 1
-fi
+  command -v docker >/dev/null 2>&1 || { echo "Docker is not installed on this machine. Install it, or run the web-vps GitHub workflow."; exit 1; }
+  echo "Checking SSH access and Docker on $SSH_TARGET..."
+  if ! "$SSH" "${SSH_OPTS[@]}" -o ConnectTimeout=15 "$SSH_TARGET" "docker compose version >/dev/null && docker info >/dev/null"; then
+    echo "SSH or Docker failed for $SSH_TARGET."
+    echo "  - Pass an alias from ~/.ssh/config that sets User and IdentityFile: scripts/deploy.sh <alias>"
+    echo "  - The VPS user must be in the docker group (sudo usermod -aG docker <user>, then log in again)."
+    exit 1
+  fi
 fi
 
 echo "Stopping local run-web processes..."
 "$SCRIPT_DIR/stop.sh"
 
-flutter config --enable-web >/dev/null
 STAGE_DIR="$(mktemp -d)"
-mkdir -p "$STAGE_DIR/web" "$STAGE_DIR/scripts"
+mkdir -p "$STAGE_DIR/web"
+
+# Deploying only some games: start from the games that are deployed now, so the others stay as they are.
+if [ "$PARTIAL" = 1 ] && [ -z "${DRY_RUN:-}" ]; then
+  echo "Copying the games deployed now from the VPS..."
+  if ! "$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s <<REMOTE | tar -xf - -C "$STAGE_DIR/web"
+set -e
+if [ -n "\$(docker ps -q -f name='^$IMAGE\$')" ]; then
+  docker exec $IMAGE tar -C /app/web -cf - .
+elif [ -d '$VPS_DEPLOY_PATH/web' ]; then
+  tar -C '$VPS_DEPLOY_PATH/web' -cf - .
+else
+  exit 3
+fi
+REMOTE
+  then
+    echo "Could not read the deployed games from the VPS. Deploy all games first (no game names)."
+    exit 1
+  fi
+fi
+
+flutter config --enable-web >/dev/null
 built=(); failed=()
 for game in "${games[@]}"; do
   dir="$APPS_DIR/$game"
@@ -110,6 +137,7 @@ for game in "${games[@]}"; do
     flutter pub get >/dev/null
     flutter build web --release --no-web-resources-cdn --base-href "$BASE_PATH/$slug/"
   ); then
+    rm -rf "${STAGE_DIR:?}/web/$slug"   # replace, don't nest inside, a game copied from the VPS
     cp -R "$dir/build/web" "$STAGE_DIR/web/$slug"
     built+=("$slug")
   else
@@ -125,34 +153,46 @@ if [ -n "${DRY_RUN:-}" ]; then
   exit 0
 fi
 
-cp "$SCRIPT_DIR/ecosystem.config.cjs" "$SCRIPT_DIR/serve-static.cjs" "$STAGE_DIR/scripts/"
-cp "$CONFIG_FILE" "$STAGE_DIR/"
+cp "$SCRIPT_DIR/serve-static.cjs" "$STAGE_DIR/"
+echo "Building image $IMAGE:$TAG (games in image: $(ls "$STAGE_DIR/web" | tr '\n' ' '))..."
+docker build -f "$ROOT_DIR/Dockerfile" -t "$IMAGE:$TAG" -t "$IMAGE:latest" \
+  --build-arg "SERVE_PORT=$WEB_PORT" --build-arg "SERVE_BASE=$BASE_PATH" "$STAGE_DIR"
 
-echo "Packing deploy artifacts..."
-rm -f "$LOCAL_ZIP"
-(cd "$STAGE_DIR" && zip -r -q "$LOCAL_ZIP" .)
-echo "Uploading archive to $SSH_TARGET:$REMOTE_ZIP..."
-"$SCP" "${SSH_OPTS[@]}" "$LOCAL_ZIP" "$SSH_TARGET:$REMOTE_ZIP"
+echo "Streaming image to $SSH_TARGET (docker save | gzip | ssh | docker load)..."
+"$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" "mkdir -p '$VPS_DEPLOY_PATH'"
+docker save "$IMAGE:$TAG" "$IMAGE:latest" | gzip | "$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" "gunzip | docker load"
 
-echo "Extracting on VPS and restarting the web server..."
+echo "Uploading compose.yml..."
+"$SCP" "${SSH_OPTS[@]}" "$ROOT_DIR/compose.yml" "$SSH_TARGET:$VPS_DEPLOY_PATH/compose.yml"
+
+echo "Starting the container and checking health..."
 "$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s <<REMOTE
 set -e
-DEPLOY_PATH='$VPS_DEPLOY_PATH'
-REMOTE_ZIP='$REMOTE_ZIP'
-GAMES='${built[*]}'
-command -v unzip >/dev/null 2>&1 || { echo "unzip is not installed on the VPS"; exit 1; }
-mkdir -p "\$DEPLOY_PATH/web" "\$DEPLOY_PATH/scripts"
-rm -rf "\$DEPLOY_PATH"/web/game-*   # legacy layout (before /appgames/<name>/)
-for g in \$GAMES; do rm -rf "\$DEPLOY_PATH/web/\$g"; done
-unzip -o "\$REMOTE_ZIP" -d "\$DEPLOY_PATH"
-rm -f "\$REMOTE_ZIP"
-. "\$HOME/.nvm/nvm.sh"
-pm2 delete game-studio-web 2>/dev/null || true
-pm2 start "\$DEPLOY_PATH/scripts/ecosystem.config.cjs" --only game-studio-web --update-env
-pm2 save
+cd '$VPS_DEPLOY_PATH'
+printf 'TAG=%s\nPORT=%s\n' '$TAG' '$WEB_PORT' > .env
+# One-time hand-off: the old PM2 process (named game-studio-web before this was a container) holds the port.
+. "\$HOME/.nvm/nvm.sh" 2>/dev/null || true
+if command -v pm2 >/dev/null 2>&1 && pm2 describe game-studio-web >/dev/null 2>&1; then
+  pm2 delete game-studio-web && pm2 save
+fi
+docker compose up -d --remove-orphans
+for i in \$(seq 1 30); do
+  if curl -fsS -o /dev/null "http://127.0.0.1:$WEB_PORT$BASE_PATH/"; then
+    echo "Healthy."
+    # Remove every other $IMAGE image and any dangling layers.
+    docker images $IMAGE --format '{{.Repository}}:{{.Tag}}' | grep -v -e ":$TAG\$" -e ':latest\$' | xargs -r docker rmi || true
+    docker image prune -f >/dev/null
+    exit 0
+  fi
+  sleep 1
+done
+echo "Health check failed: docker compose logs $IMAGE"
+docker compose logs --tail 40 $IMAGE || true
+exit 1
 REMOTE
 
 echo "Deployed: ${built[*]}"
 [ "${#failed[@]}" -eq 0 ] || echo "NOT deployed (build failed or skipped): ${failed[*]}"
 echo "Served at https://${DOMAIN}${BASE_PATH}/<name>/ (and www.) once the master proxy has the route (cloud-deploy: scripts/deploy.sh proxy)."
+echo "Rollback: deploy the earlier commit again; old images are not kept."
 [ "${#failed[@]}" -eq 0 ]
