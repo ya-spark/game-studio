@@ -17,7 +17,7 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
-- #144 Move MiniGame.starsForBest/standalone into template engine, then sync Mind hubs (follows #143: engine.exclude done, Craft synced, hubs not yet). After it: re-run template-ci by hand (workflow_dispatch in game-factory) and report; emulator step was edited in 07ede11.
+- template-ci manual re-run on game-factory main started ~17:40 AEDT (after #142 to #144): check result, report. Failures to expect at most: emulator job (continue-on-error).
 
 ## Next (post in this order, as dependencies finish)
 1. Screenshots: only when the owner asks (do not re-render on your own). Method below.
@@ -28,7 +28,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 Design phase and Figma file; factory 1A to 1D, 2A, 2B1, 2B2; minigames M1 to M4b; five apps generated (#113 to #117, #121,
 #122, #130, #131); content Scout Years 0 to 6 (70 packs), Ranger Years 7 to 10 (40), Champion Years 11 to 12 (20);
 hub sync script and Block Puzzle, Blockfall (#120, #129), Wingy (#133); Ember Sudoku, Solitaire, Ball sort (#134), Mahjong, Merge (#135); Presto Snake, Brick breaker, Stack tower, Runner (#136); hubs no longer learning apps (#137, art left to #138);
-Craft screen fixes (#132); hub art and game-based challenges (#138); Craft Settings and Parent area (#139); Craft Challenges payouts (#140); AppImage loader in the template (#141; copying into the five apps left for regeneration).
+Craft screen fixes (#132); engine lock fixes, engine.exclude, hubs and Craft apps synced (#142 to #144); hub art and game-based challenges (#138); Craft Settings and Parent area (#139); Craft Challenges payouts (#140); AppImage loader in the template (#141; copying into the five apps left for regeneration).
 
 ## Owner items (not for runs)
 Review content packs and each app's `docs/SPEC.md`; copy game-content workflows and add secrets; Cloudflare and VPS;
