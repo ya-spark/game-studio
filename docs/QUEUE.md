@@ -17,6 +17,7 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
+- #139 Craft Settings and Parent area screens
 - #138 Hub art and game-based challenges (follow-up to #137)
 - #136 Presto games H3 (Snake, Brick breaker, Stack tower, Runner)
 - #137 Mind hubs must not behave like learning apps (generator, picker, challenges, duplicate tiles, art)
@@ -24,7 +25,6 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 ## Next (post in this order, as dependencies finish)
 1. Screenshots: only when the owner asks (do not re-render on your own). Method below.
 2. Image-loader follow-up in game-factory (not drafted).
-3. Settings and parent-area screens issue for the Craft apps (not drafted).
 4. Craft Challenges: engine payouts for "pass N new questions", "try a new topic", "revise N mistakes" (left out by #132).
 5. One manual `template-ci` run (workflow_dispatch in game-factory) before any real app build; report the result.
 6. Ranger registry: memory match, balloon pop, word builder, cloze fix are not offered (owner to say if wanted).
@@ -33,7 +33,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 ## Done
 Design phase and Figma file; factory 1A to 1D, 2A, 2B1, 2B2; minigames M1 to M4b; five apps generated (#113 to #117, #121,
 #122, #130, #131); content Scout Years 0 to 6 (70 packs), Ranger Years 7 to 10 (40), Champion Years 11 to 12 (20);
-hub sync script and Block Puzzle, Blockfall (#120, #129), Wingy (#133); Ember Sudoku, Solitaire, Ball sort (#134), Mahjong, Merge (#135); hubs no longer learning apps (#137, art left to #138);
+hub sync script and Block Puzzle, Blockfall (#120, #129), Wingy (#133); Ember Sudoku, Solitaire, Ball sort (#134), Mahjong, Merge (#135); Presto Snake, Brick breaker, Stack tower, Runner (#136); hubs no longer learning apps (#137, art left to #138);
 Craft screen fixes (#132).
 
 ## Owner items (not for runs)
