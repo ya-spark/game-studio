@@ -17,7 +17,7 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
-- #143 Engine lock exclusions for hub-only files (owner chose B); then re-run template-ci (workflow_dispatch) and report. Emulator step edited by hand-push in game-factory 07ede11 (pin still to move).
+- #144 Move MiniGame.starsForBest/standalone into template engine, then sync Mind hubs (follows #143: engine.exclude done, Craft synced, hubs not yet). After it: re-run template-ci by hand (workflow_dispatch in game-factory) and report; emulator step was edited in 07ede11.
 
 ## Next (post in this order, as dependencies finish)
 1. Screenshots: only when the owner asks (do not re-render on your own). Method below.
