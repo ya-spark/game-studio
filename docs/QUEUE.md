@@ -19,7 +19,8 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 ## Active
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): check result.
-- #149 Hostinger VPS web build: DONE in code. game-factory 70ce161 (port_web.py), five apps on main with the web build (Scout db63190, Ranger 0fbfdef, Champion 234568f, Ember e1492c2, Presto 4b6246f), web-vps.yml installed in each app's .github/workflows (studio session, 2026-11-13 ~01:15 AEDT). Smoke tests (Playwright) being run by the studio session; then move the pins for the workflow commits. Owner: VPS steps in docs/WEB-VPS.md (DNS, Caddy login, deploy key, VPS_SSH_* secrets), then run web-vps with dry_run first.
+- #149 DONE (2026-11-13 ~04:30 AEDT): web build on all five apps, web-vps.yml installed (with --no-web-resources-cdn), Playwright smoke PASS for all five (hubs skip the Settings check). Real bugs fixed on the way: daily release never ran, Craft year picker range, Champion packs asset line. Pins at game-studio 43c4a5d. Owner: VPS steps in docs/WEB-VPS.md, then run web-vps with dry_run first.
+- #150 follow-ups: hub Settings entry, Craft parent-area year range, generator content-packs asset line (posted).
 - Screenshots: last, when the owner says.
 
 ## Next (post in this order, as dependencies finish)
