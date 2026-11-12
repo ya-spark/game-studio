@@ -135,7 +135,7 @@ if [ -n "${DRY_RUN:-}" ]; then
 fi
 
 cp "$SCRIPT_DIR/serve-static.cjs" "$STAGE_DIR/"
-cp "$ROOT_DIR/Dockerfile" "$ROOT_DIR/compose.yml" "$STAGE_DIR/"
+cp "$ROOT_DIR/deploy/Dockerfile" "$ROOT_DIR/deploy/compose.yml" "$STAGE_DIR/"
 # The workflow runs with umask 077 and mktemp makes a 0700 dir: make everything readable for the image's non-root user.
 chmod -R a+rX "$STAGE_DIR"
 LOCAL_ARCHIVE="$STAGE_DIR.tgz"
