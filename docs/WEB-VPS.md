@@ -4,13 +4,13 @@
 > workflow in this repo, `.github/workflows/web-vps.yml` (Actions, web-vps, Run workflow; optional `games`
 > and `dry_run` inputs), builds each game's `main` and runs `scripts/deploy.sh`: it uploads one zip over SSH
 > and restarts PM2 `game-studio-web` (port 7000, `config.json`) on the new VPS (`hostinger-vps-2`). Games are
-> served at `https://activemindcraft.com/<game>/` and `https://www.activemindcraft.com/<game>/` (for example `/game-wingy/`, no `scout`/`ranger` names).
+> served at `https://activemindcraft.com/appgames/<name>/` and the same under `www.` (for example `/appgames/wingy/`: the folder name without `game-`; no `scout`/`ranger` names). Other apps share the domain under their own paths (astro-writer is `/writer`).
 > Basic auth (user `web`) and the Caddy route live in the cloud-deploy master repo (`apps.json`, hosts from `config.json` `domains`); add them once
 > with `scripts/deploy.sh proxy` there. Secrets in THIS repo: `CROSS_REPO_TOKEN`, `VPS_SSH_KEY`, `VPS_SSH_HOST`,
 > `VPS_SSH_USER`, `VPS_SSH_KNOWN_HOSTS`. The deploy key must be a normal login for the deploy user (the script
 > runs unzip and pm2), so keep it dedicated to this workflow. The per-game `web-vps.yml` files and the sections
 > below are the earlier design (rsync into `/srv/web`) and are no longer the path to use.
-> Locally: `scripts/deploy.sh <ssh-alias> [game ...]`, or `DRY_RUN=1 scripts/deploy.sh game-wingy` to build only.
+> Locally: `scripts/deploy.sh <ssh-alias> [game ...]` (`wingy` or `game-wingy`), or `DRY_RUN=1 scripts/deploy.sh wingy` to build only.
 
 Goal: a web copy of each new app on the owner's Hostinger VPS, behind Caddy.
 The product stays Android-only; the web copy is for testing on the Hostinger VPS. Auth is in Caddy, not in the apps. Builds are uploaded by a

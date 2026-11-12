@@ -3,6 +3,7 @@
     "activemindcraft.com",
     "www.activemindcraft.com"
   ],
+  "basePath": "/appgames",
   "vpsDeployPath": "/home/track/pro/game-studio",
   "host": "0.0.0.0",
   "mode": "debug",

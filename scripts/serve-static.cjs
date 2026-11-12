@@ -1,7 +1,8 @@
 'use strict';
 
 /**
- * Serves the Flutter web builds: SERVE_PATH/<game>/ per game, plus an index page listing them.
+ * Serves the Flutter web builds: SERVE_PATH/<game>/ per game, plus an index page listing them, all under
+ * the URL prefix SERVE_BASE (e.g. /appgames, so a game is at /appgames/wingy/). Caddy forwards the prefix unchanged.
  * Flutter web uses hash URLs, so no SPA rewrite is needed; unknown paths are 404.
  * No auth here: the login is enforced by Caddy (basic_auth on the route in cloud-deploy apps.json).
  * Listens on 127.0.0.1 only, so Caddy is the only way in.
@@ -16,6 +17,7 @@ if (!root) throw new Error('SERVE_PATH is not set');
 if (!Number.isInteger(port) || port < 1 || port > 65535) {
   throw new Error('SERVE_PORT must be an integer 1-65535');
 }
+const base = (process.env.SERVE_BASE || '').replace(/\/+$/, '');
 const rootAbs = path.resolve(root);
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -41,7 +43,7 @@ function indexPage() {
   const games = fs.readdirSync(rootAbs, { withFileTypes: true })
     .filter((d) => d.isDirectory() && fs.existsSync(path.join(rootAbs, d.name, 'index.html')))
     .map((d) => d.name).sort();
-  const items = games.map((g) => `<li><a href="/${g}/">${g}</a></li>`).join('') || '<li>No games deployed yet</li>';
+  const items = games.map((g) => `<li><a href="${base}/${g}/">${g}</a></li>`).join('') || '<li>No games deployed yet</li>';
   return `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">` +
     `<title>Game Studio web</title><h1>Game Studio web</h1><ul>${items}</ul>`;
 }
@@ -65,17 +67,26 @@ function resolveFile(urlPath) {
 
 http.createServer((req, res) => {
   const headers = { 'Cache-Control': 'no-cache', 'X-Robots-Tag': 'noindex, nofollow' };
-  const pathname = (req.url || '/').split('?')[0];
+  const full = (req.url || '/').split('?')[0];
+  if (base && full === base) {
+    res.writeHead(301, { ...headers, Location: base + '/' }).end();
+    return;
+  }
+  if (base && !full.startsWith(base + '/')) {
+    res.writeHead(404, headers).end('Not Found');
+    return;
+  }
+  const pathname = base ? full.slice(base.length) : full;
   if (pathname === '/') {
     res.writeHead(200, { ...headers, 'Content-Type': MIME['.html'] }).end(indexPage());
     return;
   }
-  // /<game> without a trailing slash: redirect so relative asset URLs (base href) resolve.
+  // <base>/<game> without a trailing slash: redirect so relative asset URLs (base href) resolve.
   if (/^\/[^/]+$/.test(pathname) && resolveFile(pathname)?.endsWith('index.html')) {
-    res.writeHead(301, { ...headers, Location: pathname + '/' }).end();
+    res.writeHead(301, { ...headers, Location: base + pathname + '/' }).end();
     return;
   }
-  const file = resolveFile(req.url);
+  const file = resolveFile(pathname);
   if (!file) {
     res.writeHead(404, headers).end('Not Found');
     return;

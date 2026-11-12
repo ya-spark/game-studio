@@ -2,13 +2,14 @@
 # Build the games for web locally, zip, upload one archive, unzip on the VPS, reload PM2.
 # Usage: scripts/deploy.sh [<ssh-alias>] [game-name ...]
 #   scripts/deploy.sh hostinger-vps-2                    every apps/game-* with a pubspec.yaml
-#   scripts/deploy.sh hostinger-vps-2 game-wingy         just one game (or several, space separated)
-#   VPS_HOST=hostinger-vps-2 scripts/deploy.sh game-wingy   alias from VPS_HOST (environment or .env)
+#   scripts/deploy.sh hostinger-vps-2 wingy              just one game (game-wingy also works; several allowed)
+#   VPS_HOST=hostinger-vps-2 scripts/deploy.sh wingy   alias from VPS_HOST (environment or .env)
 # An argument that is a folder under apps/ is a game; any other first argument is the ssh alias
 # (from ~/.ssh/config). Deploying one game leaves the other games on the VPS untouched.
 # The VPS needs Node, PM2 and unzip. The login (basic auth) and the shared Caddy proxy live in the master
 # cloud-deploy repo (apps.json + scripts/deploy.sh proxy); no .env is needed for this app.
-# Each game is served at https://<domain>/<game>/ (flutter build web --base-href /<game>/).
+# Each game is served at https://<domain><basePath>/<name>/ where <name> is the folder minus "game-"
+# (game-wingy -> /appgames/wingy/), built with flutter build web --base-href <basePath>/<name>/.
 # Builds use the submodule commits checked out here (the pins), not latest main. A game that fails to
 # build is reported and skipped; its previous copy on the VPS is left alone. Other games' folders on the
 # VPS are never removed. DRY_RUN=1 builds only (no SSH, no upload). Stops local run-web.sh processes (scripts/stop.sh) before building.
@@ -35,6 +36,8 @@ games=(); alias_arg=""
 for arg in "$@"; do
   if [ -f "$APPS_DIR/$arg/pubspec.yaml" ]; then
     games+=("$arg")
+  elif [ -f "$APPS_DIR/game-${arg#game-}/pubspec.yaml" ]; then
+    games+=("game-${arg#game-}")
   elif [ -z "$alias_arg" ] && [ ! -e "$APPS_DIR/$arg" ] && [[ "$arg" != game-* ]]; then
     alias_arg="$arg"
   else
@@ -97,17 +100,18 @@ built=(); failed=()
 for game in "${games[@]}"; do
   dir="$APPS_DIR/$game"
   [ -f "$dir/pubspec.yaml" ] || { echo "Skipping $game: no pubspec.yaml"; failed+=("$game"); continue; }
-  echo "==> Building $game (base href /$game/)"
+  slug="${game#game-}"
+  echo "==> Building $game (base href $BASE_PATH/$slug/)"
   if (
     cd "$dir"
     if [ ! -d web ]; then
       flutter create --platforms=web --project-name "$(sed -n 's/^name: *//p' pubspec.yaml | head -1)" . >/dev/null
     fi
     flutter pub get >/dev/null
-    flutter build web --release --no-web-resources-cdn --base-href "/$game/"
+    flutter build web --release --no-web-resources-cdn --base-href "$BASE_PATH/$slug/"
   ); then
-    cp -R "$dir/build/web" "$STAGE_DIR/web/$game"
-    built+=("$game")
+    cp -R "$dir/build/web" "$STAGE_DIR/web/$slug"
+    built+=("$slug")
   else
     echo "    build failed: $game"
     failed+=("$game")
@@ -138,6 +142,7 @@ REMOTE_ZIP='$REMOTE_ZIP'
 GAMES='${built[*]}'
 command -v unzip >/dev/null 2>&1 || { echo "unzip is not installed on the VPS"; exit 1; }
 mkdir -p "\$DEPLOY_PATH/web" "\$DEPLOY_PATH/scripts"
+rm -rf "\$DEPLOY_PATH"/web/game-*   # legacy layout (before /appgames/<name>/)
 for g in \$GAMES; do rm -rf "\$DEPLOY_PATH/web/\$g"; done
 unzip -o "\$REMOTE_ZIP" -d "\$DEPLOY_PATH"
 rm -f "\$REMOTE_ZIP"
@@ -149,5 +154,5 @@ REMOTE
 
 echo "Deployed: ${built[*]}"
 [ "${#failed[@]}" -eq 0 ] || echo "NOT deployed (build failed or skipped): ${failed[*]}"
-echo "Served at https://${DOMAIN}/<game>/ (and www.) once the master proxy has the route (cloud-deploy: scripts/deploy.sh proxy)."
+echo "Served at https://${DOMAIN}${BASE_PATH}/<name>/ (and www.) once the master proxy has the route (cloud-deploy: scripts/deploy.sh proxy)."
 [ "${#failed[@]}" -eq 0 ]

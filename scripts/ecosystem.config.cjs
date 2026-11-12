@@ -16,6 +16,7 @@ module.exports = {
       env: {
         SERVE_PATH: path.join(__dirname, '..', 'web'),
         SERVE_PORT: String(webPort),
+        SERVE_BASE: config.basePath || '',
       },
     },
   ],

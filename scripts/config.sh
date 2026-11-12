@@ -36,6 +36,7 @@ read_config_port() {
 
 DOMAIN="$(read_config_string domains.0)"   # primary; config.json "domains" lists all
 VPS_DEPLOY_PATH="$(read_config_string vpsDeployPath)"
+BASE_PATH="$(read_config_string basePath)"   # URL prefix on the shared domain, e.g. /appgames
 WEB_PORT="$(read_config_port ports.web)"
 # Env vars override config.json for local runs, as before.
 BASE_PORT="${BASE_PORT:-$(read_config_port ports.devBase)}"
