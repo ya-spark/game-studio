@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
-# Build the games for web, bake them into one Docker image, stream it to the VPS, run it with Docker Compose.
+# Build the games for web, upload the build files only, build the Docker image on the VPS and run it with Compose.
 # Usage: scripts/deploy.sh [<ssh-alias>] [game-name ...]
 #   scripts/deploy.sh hostinger-vps-2                    every apps/game-* with a pubspec.yaml
 #   scripts/deploy.sh hostinger-vps-2 wingy              just one game (game-wingy also works; several allowed)
 #   VPS_HOST=hostinger-vps-2 scripts/deploy.sh wingy   alias from VPS_HOST (environment or .env)
 # An argument that is a folder under apps/ is a game; any other first argument is the ssh alias
-# (from ~/.ssh/config). The image holds ALL games. Deploying only some games first copies the games that are
-# deployed now out of the running container (or the old web/ folder on the VPS) into the build, then replaces
-# just the chosen ones, so the others are unchanged. Needs Docker on this machine (or run the web-vps workflow)
-# and Docker + Compose on the VPS (user in the docker group). No .env is needed for this app.
+# (from ~/.ssh/config). The image holds ALL games. Deploying only some games uploads just those games; the VPS
+# copies the games deployed now out of the running container (or the old web/ folder) and replaces only the chosen
+# ones, so the others are unchanged. No Docker is needed on this machine; the VPS needs Docker + Compose (user in
+# the docker group). No .env is needed for this app.
 # The container is named game-studio and publishes 127.0.0.1:<config.json ports.web> only. The login (basic
 # auth) and the shared Caddy proxy live in the master cloud-deploy repo (apps.json + scripts/deploy.sh proxy).
 # Each game is served at https://<domain><basePath>/<name>/ where <name> is the folder minus "game-"
 # (game-wingy -> /appgames/wingy/), built with flutter build web --base-href <basePath>/<name>/.
 # Builds use the submodule commits checked out here (the pins), not latest main. A game that fails to
 # build is reported and skipped; its previous copy stays in the image. DRY_RUN=1 builds the games only
-# (no Docker, no SSH, no upload). Stops local run-web.sh processes (scripts/stop.sh) before building.
-# Images are tagged with a timestamp and "latest"; old images are deleted after a healthy deploy.
+# (no SSH, no upload). Stops local run-web.sh processes (scripts/stop.sh) before building.
+# Images are tagged with a timestamp and "latest"; old images are deleted after a healthy deploy; if the new
+# container is not healthy the previous image is started again.
 
 set -euo pipefail
 
@@ -87,7 +88,6 @@ cleanup_local() {
 trap cleanup_local EXIT
 
 if [ -z "${DRY_RUN:-}" ]; then
-  command -v docker >/dev/null 2>&1 || { echo "Docker is not installed on this machine. Install it, or run the web-vps GitHub workflow."; exit 1; }
   echo "Checking SSH access and Docker on $SSH_TARGET..."
   if ! "$SSH" "${SSH_OPTS[@]}" -o ConnectTimeout=15 "$SSH_TARGET" "docker compose version >/dev/null && docker info >/dev/null"; then
     echo "SSH or Docker failed for $SSH_TARGET."
@@ -102,25 +102,6 @@ echo "Stopping local run-web processes..."
 
 STAGE_DIR="$(mktemp -d)"
 mkdir -p "$STAGE_DIR/web"
-
-# Deploying only some games: start from the games that are deployed now, so the others stay as they are.
-if [ "$PARTIAL" = 1 ] && [ -z "${DRY_RUN:-}" ]; then
-  echo "Copying the games deployed now from the VPS..."
-  if ! "$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s <<REMOTE | tar -xf - -C "$STAGE_DIR/web"
-set -e
-if [ -n "\$(docker ps -q -f name='^$IMAGE\$')" ]; then
-  docker exec $IMAGE tar -C /app/web -cf - .
-elif [ -d '$VPS_DEPLOY_PATH/web' ]; then
-  tar -C '$VPS_DEPLOY_PATH/web' -cf - .
-else
-  exit 3
-fi
-REMOTE
-  then
-    echo "Could not read the deployed games from the VPS. Deploy all games first (no game names)."
-    exit 1
-  fi
-fi
 
 flutter config --enable-web >/dev/null
 built=(); failed=()
@@ -154,43 +135,86 @@ if [ -n "${DRY_RUN:-}" ]; then
 fi
 
 cp "$SCRIPT_DIR/serve-static.cjs" "$STAGE_DIR/"
+cp "$ROOT_DIR/Dockerfile" "$ROOT_DIR/compose.yml" "$STAGE_DIR/"
 # The workflow runs with umask 077 and mktemp makes a 0700 dir: make everything readable for the image's non-root user.
 chmod -R a+rX "$STAGE_DIR"
-echo "Building image $IMAGE:$TAG (games in image: $(ls "$STAGE_DIR/web" | tr '\n' ' '))..."
-docker build -f "$ROOT_DIR/Dockerfile" -t "$IMAGE:$TAG" -t "$IMAGE:latest" \
-  --build-arg "SERVE_PORT=$WEB_PORT" --build-arg "SERVE_BASE=$BASE_PATH" "$STAGE_DIR"
+LOCAL_ARCHIVE="$STAGE_DIR.tgz"
+tar -C "$STAGE_DIR" -czf "$LOCAL_ARCHIVE" .
+trap 'cleanup_local; rm -f "$LOCAL_ARCHIVE"' EXIT
 
-echo "Streaming image to $SSH_TARGET (docker save | gzip | ssh | docker load)..."
+echo "Uploading ${built[*]} to $SSH_TARGET..."
 "$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" "mkdir -p '$VPS_DEPLOY_PATH'"
-docker save "$IMAGE:$TAG" "$IMAGE:latest" | gzip | "$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" "gunzip | docker load"
+"$SCP" "${SSH_OPTS[@]}" "$LOCAL_ARCHIVE" "$SSH_TARGET:/tmp/game-studio-deploy.tgz"
 
-echo "Uploading compose.yml..."
-"$SCP" "${SSH_OPTS[@]}" "$ROOT_DIR/compose.yml" "$SSH_TARGET:$VPS_DEPLOY_PATH/compose.yml"
+echo "Building the image and starting the container on the VPS..."
+"$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s -- "$VPS_DEPLOY_PATH" "$IMAGE" "$TAG" "$WEB_PORT" "$BASE_PATH" "$PARTIAL" "${built[*]}" <<'REMOTE'
+set -euo pipefail
+DEPLOY="$1"; IMAGE="$2"; TAG="$3"; PORT="$4"; BASE="$5"; PARTIAL="$6"; BUILT="$7"
+ARCHIVE=/tmp/game-studio-deploy.tgz
 
-echo "Starting the container and checking health..."
-"$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s <<REMOTE
-set -e
-cd '$VPS_DEPLOY_PATH'
-printf 'TAG=%s\nPORT=%s\n' '$TAG' '$WEB_PORT' > .env
-# One-time hand-off: the old PM2 process (named game-studio-web before this was a container) holds the port.
-. "\$HOME/.nvm/nvm.sh" 2>/dev/null || true
+cd "$DEPLOY"
+rm -rf "${DEPLOY:?}/.build"
+mkdir -p "$DEPLOY/.build"
+tar -xzf "$ARCHIVE" -C "$DEPLOY/.build"
+rm -f "$ARCHIVE"
+cp "$DEPLOY/.build/compose.yml" "$DEPLOY/compose.yml"
+
+if [ "$PARTIAL" = 1 ]; then
+  echo "Keeping the games deployed now (only $BUILT is replaced)..."
+  mkdir -p "$DEPLOY/.build/seed"
+  if [ -n "$(docker ps -q -f name="^$IMAGE\$")" ]; then
+    docker cp "$IMAGE:/app/web/." "$DEPLOY/.build/seed/"
+  elif [ -d "$DEPLOY/web" ]; then
+    cp -a "$DEPLOY/web/." "$DEPLOY/.build/seed/"
+  else
+    echo "No deployed games to keep (no running container and no web/ folder). Deploy all games first (no game names)."
+    exit 1
+  fi
+  for g in $BUILT; do
+    rm -rf "${DEPLOY:?}/.build/seed/$g"
+    mv "$DEPLOY/.build/web/$g" "$DEPLOY/.build/seed/$g"
+  done
+  rm -rf "${DEPLOY:?}/.build/web"
+  mv "$DEPLOY/.build/seed" "$DEPLOY/.build/web"
+fi
+chmod -R a+rX "$DEPLOY/.build"
+echo "Games in the image: $(ls "$DEPLOY/.build/web" | tr '\n' ' ')"
+
+echo "docker build $IMAGE:$TAG..."
+docker build -f "$DEPLOY/.build/Dockerfile" -t "$IMAGE:$TAG" -t "$IMAGE:latest" \
+  --build-arg "SERVE_PORT=$PORT" --build-arg "SERVE_BASE=$BASE" "$DEPLOY/.build"
+
+# Remember what is running now, so a failed deploy can go back to it.
+PREV="$(docker inspect -f '{{.Config.Image}}' "$IMAGE" 2>/dev/null || true)"
+PREV_TAG="${PREV#*:}"
+
+# One-time hand-off: an old PM2 process (named game-studio-web before this was a container) would hold the port.
+. "$HOME/.nvm/nvm.sh" 2>/dev/null || true
 if command -v pm2 >/dev/null 2>&1 && pm2 describe game-studio-web >/dev/null 2>&1; then
   pm2 delete game-studio-web && pm2 save
 fi
-docker compose up -d --remove-orphans
-for i in \$(seq 1 30); do
-  if curl -fsS -o /dev/null "http://127.0.0.1:$WEB_PORT$BASE_PATH/"; then
-    echo "Healthy."
-    # Remove every other $IMAGE image and any dangling layers.
-    docker images $IMAGE --format '{{.Repository}}:{{.Tag}}' | grep -v -e ":$TAG\$" -e ':latest\$' | xargs -r docker rmi || true
-    docker image prune -f >/dev/null
-    exit 0
-  fi
+
+echo "Starting the container..."
+TAG="$TAG" PORT="$PORT" docker compose up -d --remove-orphans
+ok=0
+for i in $(seq 1 30); do
+  if curl -fsS -o /dev/null "http://127.0.0.1:$PORT$BASE/"; then ok=1; break; fi
   sleep 1
 done
-echo "Health check failed: docker compose logs $IMAGE"
-docker compose logs --tail 40 $IMAGE || true
-exit 1
+if [ "$ok" != 1 ]; then
+  echo "Health check failed. Last logs:"
+  docker compose logs --tail 40 "$IMAGE" || true
+  if [ -n "$PREV" ] && [ "$PREV_TAG" != "$TAG" ] && docker image inspect "$PREV" >/dev/null 2>&1; then
+    echo "Starting the previous image $PREV again..."
+    TAG="$PREV_TAG" PORT="$PORT" docker compose up -d
+  fi
+  exit 1
+fi
+echo "Healthy."
+rm -rf "${DEPLOY:?}/.build"
+# Remove every other image of this app and any dangling layers.
+docker images "$IMAGE" --format '{{.Repository}}:{{.Tag}}' | grep -v -e ":$TAG\$" -e ':latest$' | xargs -r docker rmi || true
+docker image prune -f >/dev/null
 REMOTE
 
 echo "Deployed: ${built[*]}"
