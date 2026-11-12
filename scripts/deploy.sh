@@ -154,6 +154,8 @@ if [ -n "${DRY_RUN:-}" ]; then
 fi
 
 cp "$SCRIPT_DIR/serve-static.cjs" "$STAGE_DIR/"
+# The workflow runs with umask 077 and mktemp makes a 0700 dir: make everything readable for the image's non-root user.
+chmod -R a+rX "$STAGE_DIR"
 echo "Building image $IMAGE:$TAG (games in image: $(ls "$STAGE_DIR/web" | tr '\n' ' '))..."
 docker build -f "$ROOT_DIR/Dockerfile" -t "$IMAGE:$TAG" -t "$IMAGE:latest" \
   --build-arg "SERVE_PORT=$WEB_PORT" --build-arg "SERVE_BASE=$BASE_PATH" "$STAGE_DIR"
