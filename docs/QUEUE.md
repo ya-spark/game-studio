@@ -17,6 +17,9 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
+- #141 Image loader (factory)
+- #140 Craft Challenges payouts
+- template-ci manual run on game-factory main (check result)
 - #139 Craft Settings and Parent area screens
 - #138 Hub art and game-based challenges (follow-up to #137)
 - #136 Presto games H3 (Snake, Brick breaker, Stack tower, Runner)
@@ -24,9 +27,6 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 
 ## Next (post in this order, as dependencies finish)
 1. Screenshots: only when the owner asks (do not re-render on your own). Method below.
-2. Image-loader follow-up in game-factory (not drafted).
-4. Craft Challenges: engine payouts for "pass N new questions", "try a new topic", "revise N mistakes" (left out by #132).
-5. One manual `template-ci` run (workflow_dispatch in game-factory) before any real app build; report the result.
 6. Ranger registry: memory match, balloon pop, word builder, cloze fix are not offered (owner to say if wanted).
 7. Issue 10 (purchase check on the VPS): only after the owner has set up VPS and Cloudflare.
 
