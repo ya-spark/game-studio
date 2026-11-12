@@ -17,9 +17,9 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
-- #148 curriculum coverage, Maths then English Years 0 to 12 (no pack limit). Batch 1 done: map in content/docs/CURRICULUM-GAPS.md (unverified, site blocked), 8 new packs Y0 and Y1 maths, Scout 78 packs. Resumed with `@claude Please continue`.
+- None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): check result.
-- Then screenshots (owner: last, after everything).
+- Screenshots: last, when the owner says.
 
 ## Next (post in this order, as dependencies finish)
 1. Screenshots: owner wants them once, at the very end after #145, #146 and #148 are done (2026-11-12). Method below.
