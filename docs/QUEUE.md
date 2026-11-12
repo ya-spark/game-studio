@@ -17,15 +17,16 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
-- #145 generator fix (craft/mind sample games fail analyze: profile_store imports stripped game_challenges.dart); #146 Ranger four minigames; #147 Science packs was cancelled and closed (owner: no Science yet, 2026-11-12). #148 curriculum gap check for Maths and English Years 0 to 12 (owner: no pack limit, cover the entire Maths and English curriculum; restarted 2026-11-12 after the body was widened). Then screenshots.
-- template-ci manual re-run on game-factory main started ~17:40 AEDT (after #142 to #144): check result, report. Failures to expect at most: emulator job (continue-on-error).
+- #148 curriculum coverage, Maths then English Years 0 to 12 (no pack limit). Batch 1 done: map in content/docs/CURRICULUM-GAPS.md (unverified, site blocked), 8 new packs Y0 and Y1 maths, Scout 78 packs. Resumed with `@claude Please continue`.
+- template-ci manual re-run on game-factory main (after #145): check result.
+- Then screenshots (owner: last, after everything).
 
 ## Next (post in this order, as dependencies finish)
 1. Screenshots: owner wants them once, at the very end after #145, #146 and #148 are done (2026-11-12). Method below.
 7. Issue 10 (purchase check on the VPS): only after the owner has set up VPS and Cloudflare.
 
 ## Done
-Design phase and Figma file; factory 1A to 1D, 2A, 2B1, 2B2; minigames M1 to M4b; five apps generated (#113 to #117, #121,
+#145 (game_challenges moved to core/retention; all four generated audiences pass); #146 Ranger four minigames registered; #147 Science cancelled by owner. Design phase and Figma file; factory 1A to 1D, 2A, 2B1, 2B2; minigames M1 to M4b; five apps generated (#113 to #117, #121,
 #122, #130, #131); content Scout Years 0 to 6 (70 packs), Ranger Years 7 to 10 (40), Champion Years 11 to 12 (20);
 hub sync script and Block Puzzle, Blockfall (#120, #129), Wingy (#133); Ember Sudoku, Solitaire, Ball sort (#134), Mahjong, Merge (#135); Presto Snake, Brick breaker, Stack tower, Runner (#136); hubs no longer learning apps (#137, art left to #138);
 Craft screen fixes (#132); engine lock fixes, engine.exclude, hubs and Craft apps synced (#142 to #144); hub art and game-based challenges (#138); Craft Settings and Parent area (#139); Craft Challenges payouts (#140); AppImage loader in the template (#141; copying into the five apps left for regeneration).
