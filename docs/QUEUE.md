@@ -17,11 +17,11 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
+- #145 generator fix (craft/mind sample games fail analyze: profile_store imports stripped game_challenges.dart); #146 Ranger four minigames; #147 Science packs Years 0 to 10 (owner approved 2026-11-12). Then screenshots.
 - template-ci manual re-run on game-factory main started ~17:40 AEDT (after #142 to #144): check result, report. Failures to expect at most: emulator job (continue-on-error).
 
 ## Next (post in this order, as dependencies finish)
-1. Screenshots: only when the owner asks (do not re-render on your own). Method below.
-6. Ranger registry: memory match, balloon pop, word builder, cloze fix are not offered (owner to say if wanted).
+1. Screenshots: owner wants them once, at the very end after #145 to #147 are done (2026-11-12). Method below.
 7. Issue 10 (purchase check on the VPS): only after the owner has set up VPS and Cloudflare.
 
 ## Done
