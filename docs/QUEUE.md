@@ -22,7 +22,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 - #137 Mind hubs must not behave like learning apps (generator, picker, challenges, duplicate tiles, art)
 
 ## Next (post in this order, as dependencies finish)
-1. Re-render screenshots of all five apps after #137 (method below) and send them to the owner.
+1. Screenshots: only when the owner asks (do not re-render on your own). Method below.
 2. Image-loader follow-up in game-factory (not drafted).
 3. Settings and parent-area screens issue for the Craft apps (not drafted).
 4. Craft Challenges: engine payouts for "pass N new questions", "try a new topic", "revise N mistakes" (left out by #132).
