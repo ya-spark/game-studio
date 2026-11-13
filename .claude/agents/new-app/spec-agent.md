@@ -21,9 +21,5 @@ docs/SPEC.md complete and the user approved it. Set `awaiting_approval` after wr
 ## Hands over
 An approved SPEC.md the other agents treat as the contract.
 
-## Rules for every stage agent
-- Read `CLAUDE.md` and `game-factory/CLAUDE.md` (hard rules) and the game's `docs/SPEC.md` first. Branch/PR workflow is suspended for now: commit directly to `main`.
-- Record progress with `python3 game-factory/scripts/pipeline.py set <game_id> spec <status> [--note ...] [--pr URL]`. `in_progress` when you start, `done` when the gate below holds, `awaiting_approval` when a human must approve, `blocked` (with a note saying exactly what is needed) when you cannot continue.
-- Never create, read, print or commit secrets. Never publish, enable real ads or purchases, or spend money without the user's explicit approval in the conversation.
-- The GitHub connection cannot create repos in ya-spark (403): the user creates them.
-- Final message: what changed, the commit link, the new stage status, and anything the next agent or the user must know.
+## Rules
+Follow [`../RULES.md`](../RULES.md). Your stage name for `pipeline.py` is `spec`.

@@ -19,15 +19,16 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 ## Active
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): check result.
-- #149 DONE (2026-11-13 ~04:30 AEDT): web build on all five apps, web-vps.yml installed (with --no-web-resources-cdn), Playwright smoke PASS for all five (hubs skip the Settings check). Real bugs fixed on the way: daily release never ran, Craft year picker range, Champion packs asset line. Pins at game-studio 43c4a5d. Owner: VPS steps in docs/WEB-VPS.md, then run web-vps with dry_run first.
-- #150 DONE; web smoke PASS for all five. Owner (2026-11-13) replaced the per-game web-vps.yml design with ONE studio-level workflow `.github/workflows/web-vps.yml` + `scripts/deploy.sh` (zip over SSH, PM2 game-studio-web, served at https://activemindcraft.com/appgames/<name>/, basic auth and Caddy in the cloud-deploy repo). The per-app `.github/workflows/web-vps.yml` files installed by the studio session (and docs/WEB-VPS.md sections below the update note) are superseded; leave them unless the owner says to remove them. New submodule `games-web` (ya-spark/games-web) added by the owner; not in this session's repo scope. Claude does not run the real deploy (VPS is owner only); a `dry_run` build-only run is fine if the owner asks.
+- #149 DONE (2026-11-13): web build on all five apps; Playwright smoke PASS for all five (hubs skip the Settings check). Real bugs fixed on the way: daily release never ran, Craft year picker range, Champion packs asset line.
+- #150 DONE; web smoke PASS for all five. Owner (2026-11-13) replaced the per-game web design with ONE studio-level workflow, `deploy-to-vps-as-web` (see `docs/DEPLOY-TO-VPS-AS-WEB.md`). The per-game `web-vps.yml` files are removed. The VPS is owner only; Claude may run a `dry_run` build-only run if asked. The `games-web` submodule (ya-spark/games-web) was added by the owner.
 - Screenshots: last, when the owner says.
 
 ## Next (post in this order, as dependencies finish)
 1. Screenshots: owner wants them once, at the very end after #145, #146 and #148 are done (2026-11-12). Method below.
-7. Issue 10 (purchase check on the VPS): only after the owner has set up VPS and Cloudflare.
+2. Issue 10 (purchase check on the VPS): only after the owner has set up VPS and Cloudflare.
 
 ## Done
+Workflow streamlining (2026-11-13): clear names, shared pipelines in game-factory with thin callers in the five new apps and the template, per-game web-vps removed, one `change-agent`, shared agent rules, issue handling in INBOX.md (see DECISIONS.md, "Workflow structure and names"). Not converted: the three older games and their `store-screenshots`.
 Privacy pages in ya-spark/public for Craft Scout, Craft Champion and Mind Presto (copied from each app's store policy; index lists all eight games). #145 (game_challenges moved to core/retention; all four generated audiences pass); #146 Ranger four minigames registered; #147 Science cancelled by owner. Design phase and Figma file; factory 1A to 1D, 2A, 2B1, 2B2; minigames M1 to M4b; five apps generated (#113 to #117, #121,
 #122, #130, #131); content Scout Years 0 to 6 (70 packs), Ranger Years 7 to 10 (40), Champion Years 11 to 12 (20);
 hub sync script and Block Puzzle, Blockfall (#120, #129), Wingy (#133); Ember Sudoku, Solitaire, Ball sort (#134), Mahjong, Merge (#135); Presto Snake, Brick breaker, Stack tower, Runner (#136); hubs no longer learning apps (#137, art left to #138);

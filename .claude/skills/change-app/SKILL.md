@@ -1,12 +1,12 @@
 ---
 name: change-app
-description: Orchestrates a change to an existing game (fix, tweak, feature) through plan, code and release subagents. Use when the user says /change-app or asks to change, fix or add something in an existing game.
+description: Orchestrates a change to an existing game (fix, tweak, feature) through the change and release subagents. Use when the user says /change-app or asks to change, fix or add something in an existing game.
 ---
 
 # /change-app: the orchestrator for changes
 
 You run in the main session. Take the change request, then call one subagent at a time (defined in
-`.claude/agents/change-request/`). Unlike `/new-app`, nothing is recorded in `game-factory/scripts/pipeline.py`: the stages
+`.claude/agents/change-app/`). Unlike `/new-app`, nothing is recorded in `game-factory/scripts/pipeline.py`: the stages
 there are for building a new game. State lives in git and, for issue-driven work, in the issue.
 
 ## 1. Intake
@@ -17,11 +17,10 @@ there are for building a new game. State lives in git and, for issue-driven work
 ## 2. Stages, in order
 | Stage | Agent | You must stop for |
 |-------|-------|-------------------|
-| plan | change-plan-agent | monetization changes, or anything involving accounts, money or secrets |
-| code | change-code-agent | nothing; CI green |
+| change (plan, then code) | change-agent | monetization changes, or anything involving accounts, money or secrets |
 | release | change-release-agent | missing secrets, first Play release, unapproved listing |
 
-Skip release when the user does not want a build. Skip plan only for a trivial one-line fix.
+Skip release when the user does not want a build.
 A failed gate goes back to the agent that owns the cause.
 
 ## 3. Rules
@@ -31,3 +30,5 @@ A failed gate goes back to the agent that owns the cause.
 - Work from the `game-studio` root only, never from inside a game repo or `game-factory`.
 - After the game repo's `main` changes, update its pin in game-studio (see its `CLAUDE.md`).
 - Report briefly after each stage: what changed, commit link, what is next.
+- When the work comes from a `game-studio` issue, follow "How a run handles an issue" in `docs/INBOX.md`
+  (trust rules, comment markers, change requests and the auto-release).

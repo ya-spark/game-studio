@@ -10,7 +10,7 @@ The factory rules (no backend, interfaces, secrets, ...) apply to every change:
 
 - Application code is not written in this repo's own files: it is changed inside the submodule checkouts
   (`game-factory/` and `apps/*`). This repo holds pins, orchestration and workflow config.
-- Never commit secrets. `.github/workflows/claude.yml` uses only `CLAUDE_CODE_OAUTH_TOKEN` and
+- Never commit secrets. `.github/workflows/run-claude-from-issues.yml` uses only `CLAUDE_CODE_OAUTH_TOKEN` and
   `CROSS_REPO_TOKEN` (Actions secrets); release secrets live in the game repos.
 - Branch/PR workflow is suspended for now: changes may be committed and pushed directly to `main`, in any
   repo. That is permission, not an instruction: outside the overnight rules below, commit and push
@@ -43,7 +43,7 @@ authorization.
 
 ## Submodules and pins
 
-`game-studio` is the master repo. The submodules are `game-factory/`, `apps/game-block-fall`, `apps/game-block-puzzle`, `apps/game-wingy`, the five new apps (`apps/game-craft-lowteen` = Craft Scout, `apps/game-craft-preteen` = Craft Ranger, `apps/game-craft_highteen` = Craft Champion, `apps/game-mind-1` = Mind Ember, `apps/game-mind-9` = Mind Presto; see `docs/PLAN-new-apps.md`) `content/` (the private content repo `ya-spark/game-content`: packs, topics, price tiers and the publish and product-sync workflows; see `docs/issue-drafts/09-content-repo.md`) and `public/` (the privacy policy site, served by GitHub Pages from `ya-spark/public`; one policy per game at `<game>/privacy.md`, kept in sync with each game's `store/google-play/privacy_policy.md`; the repo must stay public).
+`game-studio` is the master repo. The submodules are `game-factory/`, `apps/game-block-fall`, `apps/game-block-puzzle`, `apps/game-wingy`, the five new apps (`apps/game-craft-lowteen` = Craft Scout, `apps/game-craft-preteen` = Craft Ranger, `apps/game-craft_highteen` = Craft Champion, `apps/game-mind-1` = Mind Ember, `apps/game-mind-9` = Mind Presto; see `docs/PLAN-new-apps.md`), `games-web/` (`ya-spark/games-web`, the web deploy repo added by the owner; see `docs/DEPLOY-TO-VPS-AS-WEB.md`), `content/` (the private content repo `ya-spark/game-content`: packs, topics, price tiers and the publish and product-sync workflows; see `docs/issue-drafts/09-content-repo.md`) and `public/` (the privacy policy site, served by GitHub Pages from `ya-spark/public`; one policy per game at `<game>/privacy.md`, kept in sync with each game's `store/google-play/privacy_policy.md`; the repo must stay public).
 
 - Whenever `main` of any submodule repo changes, the master pin must be updated to that new `main` commit. Do it in the same session, not later.
 - To move a pin: `git submodule update --remote <path>` (or check out the submodule's `main` tip) and commit only the pointer change.

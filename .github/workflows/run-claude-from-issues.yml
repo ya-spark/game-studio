@@ -10,7 +10,7 @@
 #   CROSS_REPO_TOKEN         fine-grained token, Contents + Pull requests + Issues write on
 #                            game-studio, game-factory and every game repo
 # It never references the release secrets (keystore, Play service account), those live in the game repos.
-name: claude
+name: run-claude-from-issues
 
 on:
   issues:
@@ -22,13 +22,10 @@ on:
   pull_request_review:
     types: [submitted]
 
-env:
-  # Pinned. Keep in sync with the game repos' ci.yml and the factory's .flutter-version.
-  FLUTTER_VERSION: "3.47.8"
 
 # One run at a time per issue or PR, and never cancel one that is mid-push.
 concurrency:
-  group: claude-${{ github.event.issue.number || github.event.pull_request.number || github.run_id }}
+  group: run-claude-from-issues-${{ github.event.issue.number || github.event.pull_request.number || github.run_id }}
   cancel-in-progress: false
 
 jobs:
@@ -78,9 +75,13 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
+      - name: Read the Flutter pin
+        id: flutter
+        run: echo "version=$(tr -d '[:space:]' < game-factory/.flutter-version)" >> "$GITHUB_OUTPUT"
+
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version: ${{ steps.flutter.outputs.version }}
           channel: stable
           cache: true
 

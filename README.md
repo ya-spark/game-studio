@@ -4,7 +4,7 @@ Master repo and single entry point of the game studio. It pins exact commits of 
 every game as git submodules, so one clone gives the whole studio, and it holds the orchestration:
 the `/new-app` and `/change-app` skills and stage agents (`.claude/`), the issue inbox
 (`.github/ISSUE_TEMPLATE/`, `docs/INBOX.md`), the owner's decisions (`docs/DECISIONS.md`) and the
-`@claude` workflow (`.github/workflows/claude.yml`). Application code lives in the submodules.
+`@claude` workflow (`.github/workflows/run-claude-from-issues.yml`). Application code lives in the submodules.
 
 ```
 game-studio

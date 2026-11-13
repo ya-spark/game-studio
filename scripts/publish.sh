@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Trigger the `release` GitHub Actions workflow of a game repo: build the signed AAB and
-# upload it to the Play INTERNAL testing track.
+# Trigger the release workflow of a game repo (`release-to-closed-testing`; `release` in the three
+# older games): build the signed AAB and upload it to the Play CLOSED testing (alpha) track.
 # Usage: publish.sh <game> [--no-watch] [--test-apk]
-#   <game>       game-block-fall | game-block-puzzle | game-wingy  (or "all")
+#   <game>       a folder name under apps/, for example game-wingy  (or "all")
 #   --no-watch   trigger only; do not follow the run
 #   --test-apk   also build an installable release APK
 # `all` triggers every game's workflow first (they build in parallel on GitHub), then watches
@@ -11,7 +11,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-WORKFLOW="release.yml"
+WORKFLOW=""  # set per game by trigger_one: release-to-closed-testing.yml, or release.yml in the older games
 
 game=""
 watch=1
@@ -57,6 +57,11 @@ trigger_one() {
 
   local repo
   repo=$(repo_of "$name")
+  if [[ -f "$dir/.github/workflows/release-to-closed-testing.yml" ]]; then
+    WORKFLOW="release-to-closed-testing.yml"
+  else
+    WORKFLOW="release.yml"
+  fi
 
   git -C "$dir" fetch -q origin main
   if [[ "$(git -C "$dir" rev-parse HEAD)" != "$(git -C "$dir" rev-parse origin/main)" ]]; then
@@ -65,9 +70,9 @@ trigger_one() {
 
   local before
   before=$(latest_run_id "$repo")
-  echo "== $name ($repo): trigger $WORKFLOW (track=internal, upload=true)" >&2
+  echo "== $name ($repo): trigger $WORKFLOW (track=alpha, upload=true)" >&2
   gh workflow run "$WORKFLOW" --repo "$repo" --ref main \
-    -f track=internal -f upload=true -f test_apks="$test_apk" >&2
+    -f track=alpha -f upload=true -f test_apks="$test_apk" >&2
 
   # Wait for GitHub to register the new run (its id differs from the previous latest).
   local id="" tries=0

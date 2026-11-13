@@ -1,17 +1,17 @@
 # Deploy the web build of every game (or chosen games) from `main` to the Hostinger VPS for UAT.
-# Started by hand only: Actions, web-vps, Run workflow. See docs/WEB-VPS.md.
+# Started by hand only: Actions, deploy-to-vps-as-web, Run workflow. See docs/DEPLOY-TO-VPS-AS-WEB.md.
 #
 # Builds each game's current main (not the pinned commit), uploads the built games over SSH, and the VPS builds
 # one Docker image with all games and restarts the container game-studio, via scripts/deploy.sh. The login (basic auth) and the Caddy
 # route live in the cloud-deploy master repo; a one-off `scripts/deploy.sh proxy` there adds the route.
 #
 # Repo secrets (Settings, Secrets and variables, Actions; never in a file):
-#   CROSS_REPO_TOKEN     already used by claude.yml (read access to every submodule, incl. private ones)
+#   CROSS_REPO_TOKEN     already used by run-claude-from-issues.yml (read access to every submodule, incl. private ones)
 #   VPS_SSH_KEY          private key of a deploy key authorised for the VPS deploy user
 #   VPS_SSH_HOST         VPS host name or IP
 #   VPS_SSH_USER         SSH user (track)
 #   VPS_SSH_KNOWN_HOSTS  output of `ssh-keyscan -t ed25519 <host>`
-name: web-vps
+name: deploy-to-vps-as-web
 
 on:
   workflow_dispatch:
@@ -30,16 +30,13 @@ permissions:
 
 # One deploy at a time; never cancel one that is mid-upload.
 concurrency:
-  group: web-vps
+  group: deploy-to-vps-as-web
   cancel-in-progress: false
 
-env:
-  # Pinned. Keep in sync with claude.yml and the game repos' ci.yml.
-  FLUTTER_VERSION: "3.47.8"
 
 jobs:
-  web-vps:
-    # Only the owner can start a run (same gate as claude.yml).
+  deploy-to-vps-as-web:
+    # Only the owner can start a run (same gate as run-claude-from-issues.yml).
     if: github.actor == 'yaseengem'
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -56,9 +53,13 @@ jobs:
           git submodule foreach 'case "$sm_path" in apps/*) git checkout main && git pull --ff-only origin main ;; esac'
           git submodule status -- apps
 
+      - name: Read the Flutter pin
+        id: flutter
+        run: echo "version=$(tr -d '[:space:]' < game-factory/.flutter-version)" >> "$GITHUB_OUTPUT"
+
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version: ${{ steps.flutter.outputs.version }}
           channel: stable
           cache: true
 

@@ -141,14 +141,14 @@ each section with the date.
 - **Default release track is closed testing (Alpha, `track=alpha`).** Never release to internal testing unless the owner
   or the issue explicitly says so (owner, 2026-11-09). This applies to every release, including auto-releases after a change.
 - Claude may send an app to **any Play track except production**: closed testing (Alpha) by default; internal testing and open
-  testing (beta) only when the owner or the issue asks. Use the `release` workflow (`track=alpha`, `upload=true`).
+  testing (beta) only when the owner or the issue asks. Use the `release-to-closed-testing` workflow (`track=alpha`, `upload=true`; named `release` in the three older games).
 - **Browser test before closed testing (owner, 2026-11-09).** Before every closed-testing release, check in a real browser that the
   features in the game's `docs/SPEC.md` work: build the web target (`flutter build web --release`, temporary; Flutter pinned by
   `FLUTTER_VERSION` in the workflows, do not commit `platforms.web.enabled` changes or secrets), serve it locally, drive it with
   the pre-installed Playwright Chromium, and walk each SPEC rule and key `Key('...')` test ID (start, play, game over, restart,
   settings). Report pass/fail per feature with screenshots. Any failure blocks the release and goes back to the code agent.
   Web is a test harness only (Android-only product); platform-only features (ads, billing, Play Games) are checked by the existing unit and bot tests, not in the browser.
-- **Alpha goes live at once (owner, 2026-11-09).** `release.yml` publishes alpha (closed testing) and internal as `completed`, so
+- **Alpha goes live at once (owner, 2026-11-09).** `release-to-closed-testing` publishes alpha (closed testing) and internal as `completed`, so
   testers get the build without a Roll out click in Play Console. Beta stays a draft.
 - **Testing countries: Australia and India only (owner, 2026-11-09).** The owner's games are tested only in those two countries, so
   the closed testing (alpha) track targets Australia and India, and each game's one-time products (`remove_ads_all`, `coins_500`,
@@ -158,7 +158,7 @@ each section with the date.
   Big Coin Pack A$3.99 / ₹79, Coin Chest A$7.99 / ₹149 (US base $2.99, $0.99, $2.49, $4.99). Pricing for other countries is set
   only when a public launch is planned. Do not assume any other market when testing ads, billing or the listing.
 - **Production always needs the owner**: no production release, promotion or rollout without the owner's explicit approval in the
-  conversation (`promote-production` stays owner-only).
+  conversation (`promote-to-production` stays owner-only).
 - The Play service account holds: view app information, view app quality information, release apps to testing tracks, manage testing
   tracks and tester lists, manage store presence. It must not get production release, Admin, financial or draft-delete permissions.
 - Declarations (Advertising ID, Data safety, content rating, target audience, trader status) are made by the owner in Play Console.
@@ -177,7 +177,7 @@ each section with the date.
 
 ## Operational notes
 - The hourly `factory-runner-task` routine on claude.ai is disabled (owner, 2026-11-05). Work starts
-  from `@claude` in a `game-studio` issue (`.github/workflows/claude.yml`) or from a live session.
+  from `@claude` in a `game-studio` issue (`.github/workflows/run-claude-from-issues.yml`) or from a live session.
 - CI runs take about 10 to 12 minutes (the debug APK build is the slow job). Cancelling a run
   needs a re-run before merging.
 - Stop-hook warnings about "unpushed commits and no remote branch" on freshly cloned repos are
@@ -189,6 +189,8 @@ each section with the date.
 - Content and store setup order (owner, 2026-11-11): **Claude writes the initial content** (Craft Scout first, 1,400 items in issues C1 to C7, maths and English, Foundation to Year 6; Ranger and Champion content follow), the owner reviews it before any pack is marked live; packs are original, en-AU, no curriculum wording, no people, an explanation on every item. The draft `topics.yaml` stands as written unless the owner changes it. **Finish the apps first**; the Play Console, AdMob and Cloudflare setup and the real prices for the content price tiers (placeholders t1 to t6 for now) come later, before the first release.
 - Existing games in the hubs as synced copies (owner, 2026-11-11; this replaces the same-day "shared module" decision): Block Puzzle, Blockfall and Wingy stay exactly as they are as standalone apps and are **copied** into the Mind hubs (Ember: Block Puzzle, Blockfall; Presto: Wingy), kept identical by a sync script and a lock file, the same way the engine is synced. The standalone app is the source of truth: a fix is made there and a sync issue carries it to the hub. The copy gets an adapter so it uses the hub's single coin balance, one Remove Ads and the ad pacing (banner before and after a game only, optional rewarded Continue, no interstitials); saves are separate from the standalone apps. The standalone apps are not changed by this work. No release, tag or store upload without the owner's explicit approval.
 
-- Hostinger VPS web hosting (owner, 2026-11-12): the five new apps also get a web build, hosted on the same Hostinger VPS behind Caddy at one web host (one folder per app, for example `/scout/`, `/ranger/`, `/champion/`, `/ember/`, `/presto/`). **Access control is done in Caddy** (basic auth on the web host), never in the apps. Builds are uploaded by a GitHub workflow over SSH with a restricted deploy-only key, the same pattern as the content publish. This widens the earlier "web is a test harness only" rule to a hosted web copy on the Hostinger VPS; the product stays Android-only, `platforms.web.enabled` stays false in `app.config.yaml` unless the issue says otherwise, and platform-only features (ads, billing, Play Games, notifications) are stubbed on web, never faked as working. No secrets in repos; the VPS, Caddy, DNS and Cloudflare steps are the owner's (see `docs/WEB-VPS.md`).
+- Hostinger VPS web hosting (owner, 2026-11-12): the five new apps also get a web build, hosted on the same Hostinger VPS behind Caddy at one web host (one folder per app, for example `/scout/`, `/ranger/`, `/champion/`, `/ember/`, `/presto/`). **Access control is done in Caddy** (basic auth on the web host), never in the apps. Builds are uploaded by a GitHub workflow over SSH with a restricted deploy-only key, the same pattern as the content publish. This widens the earlier "web is a test harness only" rule to a hosted web copy on the Hostinger VPS; the product stays Android-only, `platforms.web.enabled` stays false in `app.config.yaml` unless the issue says otherwise, and platform-only features (ads, billing, Play Games, notifications) are stubbed on web, never faked as working. No secrets in repos; the VPS, Caddy, DNS and Cloudflare steps are the owner's (see `docs/DEPLOY-TO-VPS-AS-WEB.md`).
 - DNS (owner, 2026-11-12): everything under `activemindcraft.com` (content, web, and later the privacy site) points at the Hostinger VPS, served by one Caddy.
 - VPS location (owner, 2026-11-12): the Hostinger VPS is in India. Latency to Australia is higher than from Singapore or Malaysia, so the free Cloudflare proxy (Sydney edge cache for free content) matters more; the web copy and the purchase check are low-traffic and fine.
+- Workflow structure and names (owner, 2026-11-13): every name says what it does. Studio: `run-claude-from-issues`, `deploy-to-vps-as-web`. Game pipelines live once in `game-factory/.github/workflows/shared-*.yml` (`shared-check-code`, `shared-release-to-closed-testing`, `shared-check-play-status`, `shared-promote-to-production`); each game repo has a thin caller named `check-code`, `release-to-closed-testing`, `check-play-status`, `promote-to-production`. The five new apps and the template use them; the three older games (Block Puzzle, Blockfall, Wingy) keep their own `ci`, `release`, `play-status`, `promote-production` and `store-screenshots` files until the owner says to convert them. The per-game `web-vps.yml` files are removed. Change agents are `change-agent` (plan and code) and `change-release-agent`; the agent folders are `.claude/agents/new-app/` and `change-app/`.
+
