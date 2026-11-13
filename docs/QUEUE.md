@@ -96,7 +96,19 @@ Craft apps (Scout, Ranger, Champion):
   `ExamSession` in `lib/engine/` with injected clock and random; the quiz item widgets show feedback at once, so the run wraps or reuses them to return an answer
   without feedback (the main work). Test IDs, Champion SPEC.md exact values. Out of scope: coins, stars, leaderboards, sharing results (C3), Game mode, new
   content, other item types. Medium to large.
-- **C8 Family mode**: two siblings on one device in a tug-of-war round. Small.
+- **C8 Family mode** (PLANNED, decisions made 2026-11-13; independent of C1 to C7, no new save fields; put after C7): today Tug of war is single player
+  (child against "the quiz"), mcq only, Game mode only, coin-locked at 200 as a device-wide unlock, Scout from Year 3, younger and older levels. Scope: a
+  "Play with a sibling" button on the Tug of war start screen, shown only when the game is unlocked and at least two profiles on the device are eligible;
+  second-player picker lists the other eligible profiles. Turn-based, pass the device: players alternate, each turn is one mcq from that player's OWN open
+  items (own year), a right answer pulls the rope one step toward that player; between turns a "Pass to <nickname>" screen with the next avatar and an
+  "I'm ready" button hides the question. First to win 2 rounds (a round ends when the rope reaches an end); subject (Maths or English) chosen jointly. Fair
+  settings: if either player would get the younger level, the gentler rules apply to both (no timer, a wrong answer never pulls back). Each answer is
+  recorded to its own profile as in solo play (accuracy, first-pass stars, mistakes, normal capped coin trickle); NO winner bonus, no extra stars, no new
+  price (needs Tug of war unlocked, both players eligible). Play time is credited to the player whose turn it is (small `ProfileStore` addition; today it
+  counts the active child only). Calm wording, never labels a loser. Screen reader announces whose turn it is, 150 percent text, reduce motion, test IDs.
+  Config flag `family_mode.enabled`: on for Scout, Ranger and Champion. Pure-Dart `FamilyTugRun` in `lib/engine/` reusing `TugOfWarRun`, two
+  `QuizSession`s (one per child), SPEC.md exact values. Out of scope: simultaneous split-screen (maybe a tablet follow-up), online play, other
+  minigames, winner prizes, changing the 200-coin price. Small to medium.
 Mind apps (Ember, Presto):
 - **M1 Daily puzzle**: one puzzle a day seeded by the day, with a streak. Small.
 - **M2 Personal bests and stats**: per-game best, average and streak on device. Small.
