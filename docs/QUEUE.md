@@ -61,7 +61,17 @@ Craft apps (Scout, Ranger, Champion):
   `ShareService.shareText`; the app sends nothing itself). Nickname in the shared text: default OFF in Scout and Ranger, ON in Champion, with a switch.
   Pure-Dart `ProgressReport` in `lib/engine/`, behind the parent gate, SPEC.md updated with exact values. Out of scope: CSV or PDF export, per-question
   detail, the mastery map (C5). Medium.
-- **C4 Goals and gentle reminders**: parent sets a weekly goal, local notification at a chosen time, no pressure wording. Small.
+- **C4 Goals and gentle reminders** (PLANNED, decisions made 2026-11-13; post after C3, they touch `settings_screen.dart`, `parent_area_screen.dart` and the save):
+  today one device-wide repeating "Daily reminder" (fixed text, child-reachable Settings, no skip when the goal is met, never stops) and fixed
+  goals in app config. Scope: Parent area (behind the gate) gets "Goals and reminders". Goals per child, presets Light, Steady, Big = 3, 5, 8
+  items a day and 15, 25, 40 a week (Steady = today's values); coin payouts unchanged and still under the weekly coin cap. Reminders per device:
+  switch, time (07:00 to 20:00 in child apps), days of the week; system permission asked when the parent turns it on (Android 13+), a calm note
+  if denied. `NotificationService` gains scheduled-at-time with an id: schedule the next 7 days as one-offs, reschedule on app open and close,
+  cancel today's once the daily goal is met, stop silently after 3 days without opening (next open restores). 3 or 4 neutral rotating texts: no
+  streak-loss wording, no coins, no nickname, no due counts. Verify the Android boot receiver is declared (only POST_NOTIFICATIONS found), add it
+  if missing; no new permission. Scout and Ranger: the Settings reminder row moves into the Parent area; Champion keeps its Settings switch too.
+  Web unchanged (reminders do nothing). Pure-Dart schedule builder in `lib/engine/` with an injected clock, test IDs, SPEC.md exact values. Out
+  of scope: push, server anything, topic or due-item reminders, exact alarms. Small to medium.
 - **C5 Mastery map per topic**: visual path of topics with stars and "ready to revise" markers. Medium; after C1 and C2.
 - **C7 Exam-style practice (Champion)**: timed sets across a topic, result review with explanations. Medium.
 - **C8 Family mode**: two siblings on one device in a tug-of-war round. Small.
