@@ -18,7 +18,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 
 ## Active
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
-- template-ci manual re-run on game-factory main (after #145): check result.
+- template-ci manual re-run on game-factory main (after #145): DONE, passed (run 169, 2026-11-12).
 - #149 DONE (2026-11-13): web build on all five apps; Playwright smoke PASS for all five (hubs skip the Settings check). Real bugs fixed on the way: daily release never ran, Craft year picker range, Champion packs asset line.
 - #150 DONE; web smoke PASS for all five. Owner (2026-11-13) replaced the per-game web design with ONE studio-level workflow, `deploy-to-vps-as-web` (see `docs/DEPLOY-TO-VPS-AS-WEB.md`). The per-game `web-vps.yml` files are removed. The VPS is owner only; Claude may run a `dry_run` build-only run if asked. The `games-web` submodule (ya-spark/games-web) was added by the owner.
 - Screenshots: last, when the owner says.
@@ -43,6 +43,31 @@ Craft screen fixes (#132); engine lock fixes, engine.exclude, hubs and Craft app
   Parent area (signed save export and import); (3) purchase and spend ledger in the save with a "bought, spent,
   remaining" view for parents; (4) make coins matter less (minigame unlocks and shop items restorable, balance rebuyable).
   Leaning: 1 plus 3 first, 2 later. Decision needed: should coins survive a reinstall at all?
+
+## Feature backlog (owner picked these, 2026-11-13; order and go-ahead still to be decided, not for runs)
+Craft apps (Scout, Ranger, Champion):
+- **C1 Mistakes notebook**: wrong answers collect in a revision list with a "Practise my mistakes" round. Small.
+- **C2 Spaced repetition**: items return at growing intervals, mixed into daily challenges. Medium; after C1.
+- **C3 Parent progress report**: weekly summary in the Parent area (time, topics mastered, weak spots), shareable as text, no child data leaves the device. Medium.
+- **C4 Goals and gentle reminders**: parent sets a weekly goal, local notification at a chosen time, no pressure wording. Small.
+- **C5 Mastery map per topic**: visual path of topics with stars and "ready to revise" markers. Medium; after C1 and C2.
+- **C7 Exam-style practice (Champion)**: timed sets across a topic, result review with explanations. Medium.
+- **C8 Family mode**: two siblings on one device in a tug-of-war round. Small.
+Mind apps (Ember, Presto):
+- **M1 Daily puzzle**: one puzzle a day seeded by the day, with a streak. Small.
+- **M2 Personal bests and stats**: per-game best, average and streak on device. Small.
+- **M3 Difficulty and hints** in Sudoku, Solitaire and Mahjong (easy to expert, optional hint). Medium.
+- **M4 Themes and sound packs bought with coins**: extends the shop. Small.
+- **M5 Zen mode**: no timer, no score, no ads during play (Ember's calm brand). Small.
+- **M6 Achievements (local)**: badge list across all games. Medium.
+- **M7 Optional Play Games leaderboards**: adults only (Mind apps), needs the owner's Play Games setup. Medium.
+Cross-cutting:
+- **X2 Web version of the apps**: the web builds exist (#149, #150). Direction (owner, 2026-11-13): the web save stays on the web and
+  is never moved to or from the Android app; the web copy earns from ads only (Google AdSense, added later by the owner). Open
+  points: AdSense is probably not allowed in the child-directed Scout and Ranger apps (check the policy), so those may need to stay
+  ad-free on the web or use the child-safe path; web ads and purchases are honest stubs today; the AdService interface must hold
+  the AdSense code (no vendor SDK in game or UI code).
+Not picked: C6 read-aloud and hints (read-aloud is already in issue 01c2), C9 content editor (editor type still unclear), X3 accessibility pass, X4 localisation.
 
 ## Owner items (not for runs)
 Review content packs and each app's `docs/SPEC.md`; copy game-content workflows and add secrets; Cloudflare and VPS;
