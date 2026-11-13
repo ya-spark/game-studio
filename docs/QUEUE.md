@@ -34,6 +34,16 @@ Privacy pages in ya-spark/public for Craft Scout, Craft Champion and Mind Presto
 hub sync script and Block Puzzle, Blockfall (#120, #129), Wingy (#133); Ember Sudoku, Solitaire, Ball sort (#134), Mahjong, Merge (#135); Presto Snake, Brick breaker, Stack tower, Runner (#136); hubs no longer learning apps (#137, art left to #138);
 Craft screen fixes (#132); engine lock fixes, engine.exclude, hubs and Craft apps synced (#142 to #144); hub art and game-based challenges (#138); Craft Settings and Parent area (#139); Craft Challenges payouts (#140); AppImage loader in the template (#141; copying into the five apps left for regeneration).
 
+## Backlog (owner to think and decide; not for runs until moved to "Next")
+- **Purchased coins after a reinstall (2026-11-13).** Today coins are one local number in the save. Coin packs are
+  consumables, `deliverPurchase` skips restored consumables, and there is no purchase or spend record. A reinstall
+  therefore loses the balance unless the save is restored some other way. Play Games cloud save is off, and Scout and
+  Ranger players are under 13 (check the Play policy on saved games for children's profiles). No backend allowed.
+  Options: (1) configure and test Android Auto Backup (no `allowBackup` setting exists today); (2) recovery code in the
+  Parent area (signed save export and import); (3) purchase and spend ledger in the save with a "bought, spent,
+  remaining" view for parents; (4) make coins matter less (minigame unlocks and shop items restorable, balance rebuyable).
+  Leaning: 1 plus 3 first, 2 later. Decision needed: should coins survive a reinstall at all?
+
 ## Owner items (not for runs)
 Review content packs and each app's `docs/SPEC.md`; copy game-content workflows and add secrets; Cloudflare and VPS;
 prices, AdMob, Play Console; name and trademark checks; set `CI_ENABLED` when CI should run.
