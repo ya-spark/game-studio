@@ -13,7 +13,7 @@ and `docs/issue-drafts/README.md` first. Times are AEDT (UTC+11). Update this fi
 
 ## Standing rules (never break)
 No release, tag, version bump or store upload. No secrets, keystores or real ad IDs. Nothing for Play Console, AdMob,
-prices, Cloudflare or the VPS (owner only). Do not touch the three old games' CI or code. No people in any art.
+prices, Cloudflare or the VPS (owner only). Do not touch the three old games' code (their workflows now call the shared ones, like every game). No people in any art.
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
@@ -28,7 +28,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 2. Issue 10 (purchase check on the VPS): only after the owner has set up VPS and Cloudflare.
 
 ## Done
-Workflow streamlining (2026-11-13): clear names, shared pipelines in game-factory with thin callers in the five new apps and the template, per-game web-vps removed, one `change-agent`, shared agent rules, issue handling in INBOX.md (see DECISIONS.md, "Workflow structure and names"). Not converted: the three older games and their `store-screenshots`.
+Workflow streamlining (2026-11-13): clear names, shared pipelines in game-factory with thin callers in the five new apps and the template, per-game web-vps removed, one `change-agent`, shared agent rules, issue handling in INBOX.md (see DECISIONS.md, "Workflow structure and names"). The three older games were converted too (owner, 2026-11-13).
 Privacy pages in ya-spark/public for Craft Scout, Craft Champion and Mind Presto (copied from each app's store policy; index lists all eight games). #145 (game_challenges moved to core/retention; all four generated audiences pass); #146 Ranger four minigames registered; #147 Science cancelled by owner. Design phase and Figma file; factory 1A to 1D, 2A, 2B1, 2B2; minigames M1 to M4b; five apps generated (#113 to #117, #121,
 #122, #130, #131); content Scout Years 0 to 6 (70 packs), Ranger Years 7 to 10 (40), Champion Years 11 to 12 (20);
 hub sync script and Block Puzzle, Blockfall (#120, #129), Wingy (#133); Ember Sudoku, Solitaire, Ball sort (#134), Mahjong, Merge (#135); Presto Snake, Brick breaker, Stack tower, Runner (#136); hubs no longer learning apps (#137, art left to #138);

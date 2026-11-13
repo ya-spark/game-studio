@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Trigger the release workflow of a game repo (`release-to-closed-testing`; `release` in the three
-# older games): build the signed AAB and upload it to the Play CLOSED testing (alpha) track.
+# Trigger the `release-to-closed-testing` workflow of a game repo: build the signed AAB and
+# upload it to the Play CLOSED testing (alpha) track.
 # Usage: publish.sh <game> [--no-watch] [--test-apk]
 #   <game>       a folder name under apps/, for example game-wingy  (or "all")
 #   --no-watch   trigger only; do not follow the run
@@ -11,7 +11,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-WORKFLOW=""  # set per game by trigger_one: release-to-closed-testing.yml, or release.yml in the older games
+WORKFLOW="release-to-closed-testing.yml"
 
 game=""
 watch=1
@@ -20,7 +20,7 @@ for arg in "$@"; do
   case "$arg" in
     --no-watch) watch=0 ;;
     --test-apk) test_apk=true ;;
-    -h|--help) sed -n '2,11p' "${BASH_SOURCE[0]}"; exit 0 ;;
+    -h|--help) sed -n '2,10p' "${BASH_SOURCE[0]}"; exit 0 ;;
     -*) echo "Unknown option: $arg" >&2; exit 1 ;;
     *) game="$arg" ;;
   esac
@@ -57,11 +57,6 @@ trigger_one() {
 
   local repo
   repo=$(repo_of "$name")
-  if [[ -f "$dir/.github/workflows/release-to-closed-testing.yml" ]]; then
-    WORKFLOW="release-to-closed-testing.yml"
-  else
-    WORKFLOW="release.yml"
-  fi
 
   git -C "$dir" fetch -q origin main
   if [[ "$(git -C "$dir" rev-parse HEAD)" != "$(git -C "$dir" rev-parse origin/main)" ]]; then

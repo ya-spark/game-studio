@@ -86,7 +86,7 @@ Used by `/new-app` and `/change-app` when a run starts from an issue or an `@cla
   1. Raise the version in `pubspec.yaml` (version name only, no `+N`; patch bump for a user-visible change), CI green.
   2. Run the browser test from `docs/DECISIONS.md`. If it fails, release nothing and say what failed.
   3. Push the tag `vX.Y.Z` from that `main` commit, which runs the `release-to-closed-testing` workflow
-     (`release.yml` in the three older games). If the tag push is refused, run it from `main` with
+     (the same name in every game). If the tag push is refused, run it from `main` with
      `track=alpha` and `upload=true`.
   4. Watch the run, comment the result (marker `released-closed-testing`), close the issue.
   Never promote to production, enable real ads or purchases, or touch secrets. If blocked (missing secrets,
