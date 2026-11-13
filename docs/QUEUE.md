@@ -110,7 +110,20 @@ Craft apps (Scout, Ranger, Champion):
   `QuizSession`s (one per child), SPEC.md exact values. Out of scope: simultaneous split-screen (maybe a tablet follow-up), online play, other
   minigames, winner prizes, changing the 200-coin price. Small to medium.
 Mind apps (Ember, Presto):
-- **M1 Daily puzzle**: one puzzle a day seeded by the day, with a streak. Small.
+- **M1 Daily puzzle** (PLANNED, decisions made 2026-11-13; Mind Ember only in v1, repo `game-mind-1`; do BEFORE M3 and M2, they touch the same puzzle screens and M2 reuses its
+  history): today the Games tab only puts a "Daily" badge on one tile (`today % playable games`), with no special puzzle and no completion record; the play-day streak,
+  game challenges and daily reward already exist. Scope: one daily puzzle from a day seed (local calendar date, so everyone on the same date gets the same puzzle; no
+  server, no leaderboard). Ember's four puzzle games rotate by day (Sudoku, Ball sort, Solitaire, Mahjong); difficulty by weekday mapped to each game's own levels
+  (easy early in the week, hardest at the weekend); Merge and Presto's arcade games are out of v1. A "Today's puzzle" card at the top of the Games tab replaces the
+  Daily badge: game, difficulty, Play or Solved with time, streak, 7-day strip of solved days (shapes only, no people). Solved = the game's own win condition; leaving
+  mid-puzzle keeps the existing autosave and resumes the same day; unfinished expires at the end of the day (no archive, no catch-up). Save: today's record (day, game,
+  status, seconds, mistakes), streak and best streak, 30-day history of solves (migration, old saves start empty; M2 reuses it). Separate daily-puzzle streak that resets
+  after a missed day, best streak kept, plus a calm "Solved this month" count; no streak freeze in v1. Reward: 15 coins on the first solve each day, +30 on every 7th
+  consecutive day, once a day; no new ad placements (existing pacing applies). The Mind hubs' daily reminder text becomes "Today's puzzle is ready." Clock guard: a
+  solved day is keyed by day, so moving the clock back cannot re-award it. Pure-Dart `DailyPuzzle` (seed, game and difficulty by day, streak update, injected clock) in
+  Ember's hub files; each of the four puzzle screens gets an entry point (start from a given seed and difficulty, report solved with time and mistakes). The run must
+  prove each generator gives the same puzzle for the same seed and that every daily deal is solvable (search over 30 seeds per game, like the existing specs). Test IDs,
+  SPEC.md exact values. Out of scope: Merge, Presto's games (a Runner "daily run" later), archive, leaderboards or sharing, streak freezes, new ad placements. Small to medium.
 - **M2 Personal bests and stats**: per-game best, average and streak on device. Small.
 - **M3 Difficulty and hints** in Sudoku, Solitaire and Mahjong (easy to expert, optional hint). Medium.
 - **M4 Themes and sound packs bought with coins**: extends the shop. Small.
