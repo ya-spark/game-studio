@@ -83,7 +83,19 @@ Craft apps (Scout, Ranger, Champion):
   shapes and icons, no people; bigger nodes for Scout and Ranger; ordered-list semantics for screen readers, 150 percent text, reduce motion, contrast 4.5
   to 1. Pure-Dart `TopicMap` in `lib/engine/`, test IDs, SPEC.md exact values. Out of scope: locking or prerequisites, a Game-mode map, animation beyond
   a pip fill, new content, changing mastery thresholds. Medium.
-- **C7 Exam-style practice (Champion)**: timed sets across a topic, result review with explanations. Medium.
+- **C7 Exam-style practice (Champion)** (PLANNED, decisions made 2026-11-13; post after C5, it touches `study_tab.dart` like C5 and the child profile like C3):
+  today Champion has Quick quiz only (10 items, instant feedback, untimed in Study mode) and items come only from the open pool (daily release). Scope: "Exam practice"
+  in Study mode. Setup: subject, topic or mixed, 10, 20 or 30 questions (capped by open items; under 10 open: "Open a few more questions first" with a link to
+  practice), 10, 20 or 30 minutes or no timer. Exam screen: one overall countdown, no feedback while answering, previous and next, a grid of answered, skipped
+  and flagged questions, Flag, submit confirmation listing unanswered, auto-submit at time up. Results: score and percent, time used, per-topic breakdown,
+  review of every question (student answer, correct answer, explanation), links to practise the weakest topics. Study mode only: no coins or stars, but
+  answers update accuracy, passes and mistakes like a quiz round (feeds C1 and C2); unanswered questions are not recorded as wrong. Last 10 exams per child on
+  device (date, subject, count, score, seconds; save migration, old saves start empty) with a trend on the Progress page. Timer counts in-app time only
+  (pauses in the background); "Extra time" none, +25 percent, +50 percent in the Parent area behind the gate. Calm wording, no rankings. v1 item types:
+  multiple choice (incl. true or false) and numeric only. Config flag `exam_practice.enabled`: on for Champion, off for Scout, Ranger and the Mind hubs. Pure-Dart
+  `ExamSession` in `lib/engine/` with injected clock and random; the quiz item widgets show feedback at once, so the run wraps or reuses them to return an answer
+  without feedback (the main work). Test IDs, Champion SPEC.md exact values. Out of scope: coins, stars, leaderboards, sharing results (C3), Game mode, new
+  content, other item types. Medium to large.
 - **C8 Family mode**: two siblings on one device in a tug-of-war round. Small.
 Mind apps (Ember, Presto):
 - **M1 Daily puzzle**: one puzzle a day seeded by the day, with a streak. Small.
