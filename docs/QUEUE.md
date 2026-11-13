@@ -47,8 +47,20 @@ Craft screen fixes (#132); engine lock fixes, engine.exclude, hubs and Craft app
 ## Feature backlog (owner picked these, 2026-11-13; order and go-ahead still to be decided, not for runs)
 Craft apps (Scout, Ranger, Champion):
 - **C1 Mistakes notebook**: POSTED as #154 (2026-11-13): a Practise my mistakes round (quiz; Flash review for Scout's younger level), mistakes clear after two correct answers in a row, `lastSeenDay` added for C2. Small.
-- **C2 Spaced repetition** (plan next, after #154 is done): items return at growing intervals, mixed into daily challenges. Medium; after C1.
-- **C3 Parent progress report**: weekly summary in the Parent area (time, topics mastered, weak spots), shareable as text, no child data leaves the device. Medium.
+- **C2 Spaced repetition** (PLANNED, decisions made 2026-11-13; post only after #154 is done, they share `ItemResult`): every answered item gets a
+  `box` 0 to 4 (correct +1, wrong back to 0; moves at most once a day). Due when `today - lastSeenDay >= [1, 3, 7, 21, 45]` days by box (separate
+  field, not the #154 streak). Old saves: box from `passes` and `lastCorrect` (wrong 0, passed 1). #154's round becomes ONE merged "Today's review"
+  entry: due items first (mistakes first, then most overdue), 10 per round, Home count capped at 20, calm "Nothing due today" at 0, Flash review cards
+  for Scout's younger level. The "Revise your mistakes" challenge counts due items answered right. Parent area switch to turn it off (default on).
+  Clock back: nothing due; clock forward: the cap handles it. Update SPEC.md with exact values. Medium.
+- **C3 Parent progress report** (PLANNED, decisions made 2026-11-13; post after C2, they touch `child_profile.dart` and the Parent area): today `ChildReport`
+  shows this-week time plus ALL-TIME topic count and accuracy under a "This week" heading, with no history, weak spots or sharing. Scope: an 8-week
+  per-child daily activity log on device (answers, correct, newly passed, topic keys; migration, old saves start empty); report sections this week vs last
+  week (time, answers, accuracy, newly passed, days-in-a-row), strongest topics (mastered), "Needs attention" (up to 3 topics with most mistakes, each
+  linking to practise); calm wording, no comparison between children. "Share this week's summary" as plain text through the system share sheet (new
+  `ShareService.shareText`; the app sends nothing itself). Nickname in the shared text: default OFF in Scout and Ranger, ON in Champion, with a switch.
+  Pure-Dart `ProgressReport` in `lib/engine/`, behind the parent gate, SPEC.md updated with exact values. Out of scope: CSV or PDF export, per-question
+  detail, the mastery map (C5). Medium.
 - **C4 Goals and gentle reminders**: parent sets a weekly goal, local notification at a chosen time, no pressure wording. Small.
 - **C5 Mastery map per topic**: visual path of topics with stars and "ready to revise" markers. Medium; after C1 and C2.
 - **C7 Exam-style practice (Champion)**: timed sets across a topic, result review with explanations. Medium.
