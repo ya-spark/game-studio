@@ -72,7 +72,17 @@ Craft apps (Scout, Ranger, Champion):
   if missing; no new permission. Scout and Ranger: the Settings reminder row moves into the Parent area; Champion keeps its Settings switch too.
   Web unchanged (reminders do nothing). Pure-Dart schedule builder in `lib/engine/` with an injected clock, test IDs, SPEC.md exact values. Out
   of scope: push, server anything, topic or due-item reminders, exact alarms. Small to medium.
-- **C5 Mastery map per topic**: visual path of topics with stars and "ready to revise" markers. Medium; after C1 and C2.
+- **C5 Mastery map per topic** (PLANNED, decisions made 2026-11-13; post after C2 so the revise badge counts due items; it only reads progress, no new save
+  fields): today Study mode shows a flat card list sorted by year then alphabetically by topic id, only topics with open items, and `topics.yaml` has no
+  order or prerequisites. Scope: a "Map" page in Study mode next to Learn, Progress and Revise, with a Maths and English switch, a path of topic nodes
+  for the child's year (year switch lists only years with content, `contentYears()`). Node order is the order in `topics.yaml`, documented there as the
+  teaching order, covered by a test and added to the owner's content review. States, each with its own icon and text (never colour alone): Not open yet
+  (dimmed, "Opens as you go", tappable, just explains), Learning, Getting there, Mastered (existing rule, three pips), and a "Ready to revise" badge with
+  the topic's mistakes (plus due items after C2). Nothing is locked; any open topic starts practice. Tapping a node opens a sheet: progress, mastery,
+  revise count, accuracy (not Scout), buttons Practise and Revise this topic (only when there is something to revise). Winding vertical path, original
+  shapes and icons, no people; bigger nodes for Scout and Ranger; ordered-list semantics for screen readers, 150 percent text, reduce motion, contrast 4.5
+  to 1. Pure-Dart `TopicMap` in `lib/engine/`, test IDs, SPEC.md exact values. Out of scope: locking or prerequisites, a Game-mode map, animation beyond
+  a pip fill, new content, changing mastery thresholds. Medium.
 - **C7 Exam-style practice (Champion)**: timed sets across a topic, result review with explanations. Medium.
 - **C8 Family mode**: two siblings on one device in a tug-of-war round. Small.
 Mind apps (Ember, Presto):
