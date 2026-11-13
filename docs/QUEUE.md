@@ -46,8 +46,8 @@ Craft screen fixes (#132); engine lock fixes, engine.exclude, hubs and Craft app
 
 ## Feature backlog (owner picked these, 2026-11-13; order and go-ahead still to be decided, not for runs)
 Craft apps (Scout, Ranger, Champion):
-- **C1 Mistakes notebook**: wrong answers collect in a revision list with a "Practise my mistakes" round. Small.
-- **C2 Spaced repetition**: items return at growing intervals, mixed into daily challenges. Medium; after C1.
+- **C1 Mistakes notebook**: POSTED as #154 (2026-11-13): a Practise my mistakes round (quiz; Flash review for Scout's younger level), mistakes clear after two correct answers in a row, `lastSeenDay` added for C2. Small.
+- **C2 Spaced repetition** (plan next, after #154 is done): items return at growing intervals, mixed into daily challenges. Medium; after C1.
 - **C3 Parent progress report**: weekly summary in the Parent area (time, topics mastered, weak spots), shareable as text, no child data leaves the device. Medium.
 - **C4 Goals and gentle reminders**: parent sets a weekly goal, local notification at a chosen time, no pressure wording. Small.
 - **C5 Mastery map per topic**: visual path of topics with stars and "ready to revise" markers. Medium; after C1 and C2.
