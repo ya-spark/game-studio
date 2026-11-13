@@ -124,7 +124,20 @@ Mind apps (Ember, Presto):
   Ember's hub files; each of the four puzzle screens gets an entry point (start from a given seed and difficulty, report solved with time and mistakes). The run must
   prove each generator gives the same puzzle for the same seed and that every daily deal is solvable (search over 30 seeds per game, like the existing specs). Test IDs,
   SPEC.md exact values. Out of scope: Merge, Presto's games (a Runner "daily run" later), archive, leaderboards or sharing, streak freezes, new ad placements. Small to medium.
-- **M2 Personal bests and stats**: per-game best, average and streak on device. Small.
+- **M2 Personal bests and stats** (PLANNED, decisions made 2026-11-13; both Mind hubs; do AFTER M1 (reuses its daily-puzzle history and the solved callback) and BEFORE M3
+  and M6): today the hub keeps only a best score and a `passed` count per game (`GameStat`), `LifetimeStats` are block-game counters, games report a score only (no time,
+  win, mistakes or difficulty) and there is no stats screen; the copied games (Block Puzzle, Blockfall, Wingy) can only be reached through their `host/` adapters. Scope: one
+  richer report per finished run (game id, score, won, active seconds, mistakes where the game has them, variant such as Sudoku Hard) next to the existing score call. Per game,
+  on device: plays, wins and win rate where a game has wins, best score, average of the last 20 plays, fastest solve per variant (puzzles), active time, last played day, last 20
+  runs (day, score, seconds, won). Timer rule shared with M1: active seconds count only in the foreground, a resumed puzzle continues from its saved seconds, measured by the hub
+  so no game needs its own timer. Copied games get plays, best, average and host-measured time only. A Stats page opened from the Challenges tab (new section next to achievements,
+  not a new bottom tab): overview (time played this week and total, days played, daily puzzles solved and best daily streak from M1) and one card per game with a small trend
+  line drawn in code plus a text equivalent for screen readers. A calm one-line "New personal best" message at hub level when a best score or fastest time improves. "Reset game
+  stats" in Settings with a confirm: clears history, averages and times; keeps tile bests, coins and achievements. Device-only, no sharing in v1; elapsed time clamped at zero if the
+  clock moves back. Built in the factory template (stats rules, save addition with migration, report hook, Stats page, flag `game_stats.enabled`: on for Mind Ember and Mind
+  Presto, off for the Craft apps) and synced to both hubs through `engine.lock`; then each hub-native game screen reports time, wins and mistakes (Ember: Sudoku, Solitaire, Ball
+  sort, Mahjong, Merge; Presto: its four arcade games, confirm the screens follow the same score pattern) and the host adapters report the copied games. Test IDs, both hubs'
+  SPEC.md exact values. Out of scope: sharing or export, leaderboards, comparisons, cloud sync of stats, any Craft app. Small to medium.
 - **M3 Difficulty and hints** in Sudoku, Solitaire and Mahjong (easy to expert, optional hint). Medium.
 - **M4 Themes and sound packs bought with coins**: extends the shop. Small.
 - **M5 Zen mode**: no timer, no score, no ads during play (Ember's calm brand). Small.
