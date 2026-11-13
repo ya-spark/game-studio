@@ -138,7 +138,20 @@ Mind apps (Ember, Presto):
   Presto, off for the Craft apps) and synced to both hubs through `engine.lock`; then each hub-native game screen reports time, wins and mistakes (Ember: Sudoku, Solitaire, Ball
   sort, Mahjong, Merge; Presto: its four arcade games, confirm the screens follow the same score pattern) and the host adapters report the copied games. Test IDs, both hubs'
   SPEC.md exact values. Out of scope: sharing or export, leaderboards, comparisons, cloud sync of stats, any Craft app. Small to medium.
-- **M3 Difficulty and hints** in Sudoku, Solitaire and Mahjong (easy to expert, optional hint). Medium.
+- **M3 Difficulty and hints** (PLANNED, decisions made 2026-11-13; Mind Ember only, repo `game-mind-1`, hub-native games, no factory change; do AFTER M1 and M2): Ember's spec
+  already has Sudoku levels by clue count (Easy 40, Medium 34, Hard 30, Expert 26) with 3 fill-in hints, and Mahjong with nine small layouts (24 to 34 tiles), a hint (-40) and a shuffle (-80);
+  Solitaire has Draw one or three and a "Winnable deals" switch but NO levels and NO hint. Scope: Solitaire levels as presets (Easy: draw one, winnable, 3 hints, win bonus 300; Medium:
+  draw one, plain shuffle, 3 hints, 500; Hard: draw three, winnable, 1 hint, 800; Expert: draw three, plain shuffle, no hints, 1200); the win bonus replaces today's flat 500, stars stay
+  500, 1000, 1500; the Draw and Winnable switches stay under "Custom". Solitaire hint: pure-Dart best-move finder (foundation, then turn a face-down card, then king to an empty column,
+  then other column moves, then draw from the stock), highlights source and target, says so when nothing useful exists, costs 10 points (never below 0). Sudoku stepped hint: first
+  highlight where to look (free), then explain in words, e.g. "Only one place for 7 in this row" (free), then fill the digit (counts as one of the 3 hints, -100 as today); v1 explains
+  naked and hidden singles only, harder puzzles fall back to the reveal; levels stay by clue count. Mahjong tiers: Easy = today's layouts, unlimited hints at -40, as now; Medium = today's
+  layouts, 3 hints, 2 shuffles; Hard = new layouts of about 48 to 64 tiles, 3 hints, 1 shuffle; Expert = new layouts up to about 72 tiles, 1 hint, 1 shuffle; solvable by construction,
+  each layout proven by search over 25 seeds; tiles at least 40 dp or the board scrolls. A per-game "Hints" on/off switch in all three menus (default on; off hides the hint button, no
+  scoring change). M2's variant labels use the new level names; M1's weekday mapping for Solitaire and Mahjong is updated to the new levels in the same commit. Old saved menu choices
+  (draw, winnable, layout) map to a level on first load. Pure-Dart `SolitaireLevel`, hint finder and `SudokuHintStep` rules with injected randomness; test IDs; SPEC.md 4.2, 4.3 and 4.5
+  exact values. Out of scope: technique-based Sudoku grading (pairs, X-wing), hints for Ball sort or Merge, rewarded-ad hints (the only rewarded placement stays the Continue), Presto,
+  profile save changes. Medium.
 - **M4 Themes and sound packs bought with coins**: extends the shop. Small.
 - **M5 Zen mode**: no timer, no score, no ads during play (Ember's calm brand). Small.
 - **M6 Achievements (local)**: badge list across all games. Medium.
