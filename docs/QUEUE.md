@@ -208,11 +208,28 @@ Mind apps (Ember, Presto):
   stays `false` in the repo; fake-service tests per rule; test IDs; both hubs' SPEC.md exact values. Out of scope: Craft apps, the daily puzzle (M1), a Play daily or weekly puzzle board (Play's time
   windows follow its own clock, not the local date), anti-cheat (client trusted, no backend), friends, challenges, cloud-save changes. Medium.
 Cross-cutting:
-- **X2 Web version of the apps**: the web builds exist (#149, #150). Direction (owner, 2026-11-13): the web save stays on the web and
-  is never moved to or from the Android app; the web copy earns from ads only (Google AdSense, added later by the owner). Open
-  points: AdSense is probably not allowed in the child-directed Scout and Ranger apps (check the policy), so those may need to stay
-  ad-free on the web or use the child-safe path; web ads and purchases are honest stubs today; the AdService interface must hold
-  the AdSense code (no vendor SDK in game or UI code).
+- **X2 Web version of the apps, funded by AdSense** (PLANNED, decisions made 2026-11-14, split into two issues; nothing goes live until the owner steps below are done). FOUND: the web copy is a UAT
+  copy behind Caddy basic auth (`platforms.web.enabled: false`, DECISIONS says "test harness only"); `platform_services_web.dart` stubs ads, purchases, notifications and Play Games; the page title still says
+  "Web test copy of the Android game."; saves use fixed `shared_preferences` keys (`save.json`, `save.backup.json`, `lb.*`, `ach.*`) with NO per-game prefix, and every game is served from the same origin
+  (`activemindcraft.com/appgames/<name>/`), so games in one browser most likely OVERWRITE each other's saves (code reading only, not run; check whether the three older games' web builds use the same
+  keys, they are outside this change). Owner direction: the web save stays in the browser and is never moved to or from the Android app; the web copy earns from ads only (AdSense, IDs added later by the
+  owner). Owner decision 2026-11-14 (option B): AdSense on ALL FIVE apps for v1, child-directed apps tagged: Scout and Ranger `CHILD`, Champion `TEEN`, Mind Ember and Mind Presto no child tag; Google's age
+  tag is TFAT (`data-tag-for-age-treatment`, replaces the deprecated TFCD and TFUA, announced May 2026); child and teen treatment means non-personalised ads only. Scout is included; the owner may drop it.
+  **X2a (post first, independent, worth doing even for the test copies; medium; game-factory then the five apps):** (1) per-game storage namespace on web: set the prefix from the app id before first
+  use, native unchanged; (2) Settings note on web: "Progress is saved in this browser only. Clearing site data, or using another browser or device, starts fresh. The Android app keeps its own save."; no
+  sync; (3) hide real-money items on web (no coin packs, no Remove Ads) instead of today's "not available" message; (4) public-ready page: real title and description per game, social preview tags,
+  "Get the Android app" link read from config (empty until live), loading screen, `platforms.web.enabled: true` for the five apps. **X2b (after X2a; medium):** AdSense behind the existing `AdService`
+  interface: a web implementation chosen by conditional import in `lib/core/platform/` using `dart:js_interop`, the vendor script only there and in a build-time `index.html` injection; placements `menu`,
+  `pre_game`, `post_game` ONLY, banner or display units in a slot outside the Flutter canvas (`HtmlElementView`), never in play, none near game controls, no interstitials, no rewarded ads (no Continue on
+  web). Config: an `adsense:` section in `app.config.yaml` (`enabled: false`, placeholder publisher and slot ids, test-mode flag giving `data-adtest="on"` in non-release builds, `age_treatment: child|teen|none`
+  per audience profile); the script tag is injected only when enabled AND a real publisher id is present, so repo builds stay ad-free; real ids are added by the owner only and never committed by Claude.
+  Checks: `scripts/ad_safety_check.sh` rejects a real AdSense publisher id in the repo; a compliance check FAILS CI if AdSense is enabled for a child or teen audience profile without the matching age
+  treatment, and never allows personalised ads there. Consent: a web "Ad privacy choices" Settings row that reopens Google's consent dialog when present (the EEA and UK need a certified consent tool,
+  set up in the AdSense account by the owner). Docs: a web section in each app's `store/google-play/privacy_policy.md` and the matching page in `public/` (AdSense cookies, local storage, ad treatment),
+  `docs/DEPLOY-TO-VPS-AS-WEB.md`, SPEC.md of each app (web section). Out of scope: AdSense for Games or H5 rewarded and interstitial ads, cloud sync of the web save, real-money items on web, the three
+  older games' code, any VPS, DNS, Caddy or Cloudflare change. Owner steps (not for runs): AdSense account and site approval (the site must be public with a privacy page); publish a consent message for
+  the EEA and UK; `ads.txt` at the domain root; remove Caddy basic auth for the public games and decide the public URLs and any Cloudflare setup; put the publisher and slot ids in `app.config.yaml`; review
+  the privacy text and the COPPA and local-law side (Claude has not assessed them); confirm Google's current child-directed AdSense policy page.
 Not picked: C6 read-aloud and hints (read-aloud is already in issue 01c2), C9 content editor (editor type still unclear), X3 accessibility pass, X4 localisation.
 
 ## Owner items (not for runs)
