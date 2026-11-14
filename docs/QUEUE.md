@@ -17,6 +17,7 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' co
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
+- #156 M1: first run (2026-11-14 01:05 UTC) ended with no comment and nothing pushed; `@claude Please continue` commented (2026-11-14, owner asked). Check its result.
 - RUNNING (2026-11-14): #155 C2 spaced repetition, #156 M1 daily puzzle, #157 M4 themes and sound packs, #158 C8 family mode, #159 X2a web shell. That is 5 at once, above the usual limit of 3: the owner asked for more in parallel; if a run fails with no comment (usage limit), comment `@claude Please continue` on it. Overlaps: #155 and #158 and #157 touch game-factory; #156 and #157 touch game-mind-1; runs must pull and rebase, never force-push.
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): DONE, passed (run 169, 2026-11-12).
