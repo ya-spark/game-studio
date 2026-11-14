@@ -192,7 +192,21 @@ Mind apps (Ember, Presto):
   start after the update, achievements already earned by old data unlock together with one summary message and their coins. Save: `unlockedAchievements` stays; a small `seenAchievements` set is added (old saves
   start empty). Pure-Dart catalogue and evaluator, test IDs, both hubs' SPEC.md get the full list and exact values; calm adult wording, shapes only, no people. Out of scope: Play Games achievement sync (M7 may use
   the stable IDs later), Craft apps, secret achievements, time-limited events, sharing beyond the existing card. Medium.
-- **M7 Optional Play Games leaderboards**: adults only (Mind apps), needs the owner's Play Games setup. Medium.
+- **M7 Play Games leaderboards (optional, adults only)** (PLANNED, decisions made 2026-11-14; Mind Ember and Mind Presto; do AFTER M2 (Stats page entry) and M5 (Zen flag), ideally after M6 (stable
+  achievement IDs); cannot be tested on a device until the owner does the Play Console steps below): FOUND: the optional Play Games sign-in row in Settings, `LeaderboardService`
+  (`submitScore`, `showLeaderboard`, `unlockAchievement`, `showAchievements`) and `PlayGamesLeaderboardService` (best effort, always writes to a local fallback) exist, `play_games.enabled` is `false`;
+  `app.config.yaml` has only ONE slot (`leaderboard_high_score`) and after sign-in the hub submits one overall best score; Ember's spec says "No Play Games leaderboard from the hub for these games" and
+  Presto's section 9 says "A leaderboard per game later; IDs go in `app.config.yaml`"; the three copied games stub `submitScore` as a no-op in `host/services.dart`; hub-native games report a score to the hub
+  but submit nothing per game. Scope: ONE leaderboard per game, IDs in `app.config.yaml` as a map from game id to Play leaderboard ID (public IDs; a game with no ID submits nothing). Ember: Sudoku, Solitaire,
+  Ball sort, Mahjong, Merge (Classic only, Relaxed has no game over) plus Block Puzzle, Blockfall and Wingy through their host adapters (synced code untouched). Presto: Snake, Brick breaker, Stack tower,
+  Runner plus the copied games it hosts. Submit after a finished run only when the score is a new personal best on the device and the player is signed in; failures are silent and every write goes to the
+  local fallback first; Zen runs (M5) NEVER submit; on first sign-in submit all current bests once (replaces the single overall submit). Entries: a "See leaderboard" trophy on each game's results screen
+  (only when signed in), a row on the Stats page (M2), the existing Settings row; no nagging, signed out shows one line "Sign in to see leaderboards" inside those entries only. Optional achievements
+  mirror: a config mapping from M6's stable achievement IDs to Play achievement IDs, off by default until the owner picks which to mirror (Play Console limits apply); the existing `unlockAchievement` is used.
+  Update each hub's `store/google-play/privacy_policy.md` and `data_safety.md` drafts and the matching page in `public/` if it exists (signing in submits scores and a player ID to Google), and replace the
+  specs' "no leaderboard" lines with the real behaviour. Web unchanged. Pure-Dart `LeaderboardPlan` (which games submit, new-best rule, sign-in catch-up) behind the existing interface; `play_games.enabled`
+  stays `false` in the repo; fake-service tests per rule; test IDs; both hubs' SPEC.md exact values. Out of scope: Craft apps, the daily puzzle (M1), a Play daily or weekly puzzle board (Play's time
+  windows follow its own clock, not the local date), anti-cheat (client trusted, no backend), friends, challenges, cloud-save changes. Medium.
 Cross-cutting:
 - **X2 Web version of the apps**: the web builds exist (#149, #150). Direction (owner, 2026-11-13): the web save stays on the web and
   is never moved to or from the Android app; the web copy earns from ads only (Google AdSense, added later by the owner). Open
@@ -202,6 +216,9 @@ Cross-cutting:
 Not picked: C6 read-aloud and hints (read-aloud is already in issue 01c2), C9 content editor (editor type still unclear), X3 accessibility pass, X4 localisation.
 
 ## Owner items (not for runs)
+- **Play Games for the Mind hubs (before M7 can go live, once per hub; steps in `game-factory/docs/PLAY_GAMES_SETUP.md`):** create the Play Games Services project and one leaderboard per game
+  (integer, larger is better) plus the achievements to mirror; add credentials for the Play App Signing key and the upload key; add testers, then publish; put the IDs in `app.config.yaml` and set
+  `play_games.enabled: true`; confirm the Data safety form lists Player ID and leaderboard scores.
 Review content packs and each app's `docs/SPEC.md`; copy game-content workflows and add secrets; Cloudflare and VPS;
 prices, AdMob, Play Console; name and trademark checks; set `CI_ENABLED` when CI should run.
 
