@@ -18,6 +18,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 
 ## Active
 - #156 M1: first run (2026-11-14 01:05 UTC) ended with no comment and nothing pushed; `@claude Please continue` commented (2026-11-14, owner asked). Check its result.
+- 12:25 pm AEDT 14 Nov: #158 C8 DONE. #159 X2a first run failed with no comment at 12:15 pm AEDT after pushing only the template (639ad3e): `@claude Please continue` commented. #157 M4 steps 2 to 4 are on game-factory (69adece, 12:15 pm AEDT), apps still to come. #156 M1 rules and save pushed to game-mind-1 (a970cf9, 81ee9f1). #161 C5 posted. Deploy run 1 (started 12:12 pm AEDT) still running.
 - DONE 2026-11-14: #155 C2. #157 M4 step 1 done, steps 2 to 4 continuing. #160 C3 posted. #156 M1 restarted (run 8). #158 C8 and #159 X2a still running. Monitoring: the studio session re-checks every 20 to 30 minutes and posts the next item when its dependency is done (C5 after #158; C4 after #160; M2 after #156; X2b after #159).
 - RUNNING (2026-11-14): #155 C2 spaced repetition, #156 M1 daily puzzle, #157 M4 themes and sound packs, #158 C8 family mode, #159 X2a web shell. That is 5 at once, above the usual limit of 3: the owner asked for more in parallel; if a run fails with no comment (usage limit), comment `@claude Please continue` on it. Overlaps: #155 and #158 and #157 touch game-factory; #156 and #157 touch game-mind-1; runs must pull and rebase, never force-push.
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
@@ -75,7 +76,7 @@ Craft apps (Scout, Ranger, Champion):
   if missing; no new permission. Scout and Ranger: the Settings reminder row moves into the Parent area; Champion keeps its Settings switch too.
   Web unchanged (reminders do nothing). Pure-Dart schedule builder in `lib/engine/` with an injected clock, test IDs, SPEC.md exact values. Out
   of scope: push, server anything, topic or due-item reminders, exact alarms. Small to medium.
-- **C5 Mastery map per topic** (PLANNED, decisions made 2026-11-13; post after C2 so the revise badge counts due items; it only reads progress, no new save
+- **C5 Mastery map per topic** (POSTED as #161, 12:25 pm AEDT 14 Nov 2026; decisions made 2026-11-13; was: post after C2 so the revise badge counts due items; it only reads progress, no new save
   fields): today Study mode shows a flat card list sorted by year then alphabetically by topic id, only topics with open items, and `topics.yaml` has no
   order or prerequisites. Scope: a "Map" page in Study mode next to Learn, Progress and Revise, with a Maths and English switch, a path of topic nodes
   for the child's year (year switch lists only years with content, `contentYears()`). Node order is the order in `topics.yaml`, documented there as the
@@ -99,7 +100,7 @@ Craft apps (Scout, Ranger, Champion):
   `ExamSession` in `lib/engine/` with injected clock and random; the quiz item widgets show feedback at once, so the run wraps or reuses them to return an answer
   without feedback (the main work). Test IDs, Champion SPEC.md exact values. Out of scope: coins, stars, leaderboards, sharing results (C3), Game mode, new
   content, other item types. Medium to large.
-- **C8 Family mode** (POSTED as #158, 2026-11-14; decisions made 2026-11-13; independent of C1 to C7, no new save fields; put after C7): today Tug of war is single player
+- **C8 Family mode** (DONE as #158, 12:17 pm AEDT 14 Nov 2026: game-factory 8c60812, eda902c, 429d10d, Scout 77bb4f5, Ranger e07d027, Champion cdb82f7, pins 882ebee; generator unittests not re-run after the final rebase, `no_secrets_check`, `network_safety_check`, `check_asset_licenses` not run, CI generator job not run; was POSTED as #158; decisions made 2026-11-13; independent of C1 to C7, no new save fields; put after C7): today Tug of war is single player
   (child against "the quiz"), mcq only, Game mode only, coin-locked at 200 as a device-wide unlock, Scout from Year 3, younger and older levels. Scope: a
   "Play with a sibling" button on the Tug of war start screen, shown only when the game is unlocked and at least two profiles on the device are eligible;
   second-player picker lists the other eligible profiles. Turn-based, pass the device: players alternate, each turn is one mcq from that player's OWN open
