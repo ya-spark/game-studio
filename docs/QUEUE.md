@@ -152,7 +152,19 @@ Mind apps (Ember, Presto):
   (draw, winnable, layout) map to a level on first load. Pure-Dart `SolitaireLevel`, hint finder and `SudokuHintStep` rules with injected randomness; test IDs; SPEC.md 4.2, 4.3 and 4.5
   exact values. Out of scope: technique-based Sudoku grading (pairs, X-wing), hints for Ball sort or Merge, rewarded-ad hints (the only rewarded placement stays the Continue), Presto,
   profile save changes. Medium.
-- **M4 Themes and sound packs bought with coins**: extends the shop. Small.
+- **M4 Themes and sound packs bought with coins** (PLANNED, decisions made 2026-11-14; factory template first, then synced to all five apps; new content for the Mind hubs only; independent of M1 to
+  M3, no profile save migration): FOUND: the shop already sells colour themes (Sunset, Forest, Ocean at 50) and stores `colorTheme` on the profile, but nothing reads it, so a bought theme changes no
+  colours (checked in Ember and Scout; the Craft apps share the same shop code). DECISIONS.md says a colour theme costs 60 and an avatar 40; the code charges 50 for themes. Step 1 (all five apps, factory
+  template): apply the active player's equipped theme (seed colour plus light or dark) when the app builds its colour scheme, the design system recomputes from it, scene art unchanged; a test checks
+  contrast (text and button, at least 4.5 to 1) for every theme; correct the three existing themes to 60. Step 2 (Mind hubs): four new themes beside Classic, Sunset, Forest and Ocean (for example
+  Midnight (dark), Lavender, Sand, Slate), 60 coins each; the Craft apps keep their four. Step 3 (Mind hubs): four new ambience packs (for example Rain, Waves, Forest wind, Fireplace), 80 coins each;
+  the five existing loops stay free; owned packs appear in the Settings ambience list, locked ones show a lock and "Get it in the Shop"; a saved ambience that is not owned falls back to the default;
+  new Shop section "Sounds". Voice and sound-effect packs are out of v1. Step 4: preview before buying: a sheet with swatches and a small sample (card and button in that theme) with Buy or Use; a
+  10-second sample button for sound packs (new preview call on `AudioService`; the vendor audio package stays in its one implementation file). Save: no migration; new items reuse `ownedItems` (a new
+  `sound` kind) and the existing `ambience` setting. Audio: the run makes four original loops (mono, about 64 kbps like the existing ones) and logs each in `assets/LICENSES.md` (made by a script, or
+  from a source whose licence allows it); if a pack cannot be made to a good standard it ships fewer and says so; the OWNER REVIEWS the sound before release. Flags `shop.extra_themes` and
+  `shop.sound_packs`: on for Mind Ember and Mind Presto, off for the Craft apps. Test IDs on every control, both hubs' SPEC.md (Shop and prices) exact values. Out of scope: real-money items, avatar
+  changes, voice packs, sound-effect packs, new art beyond theme swatches, Craft content. Medium. Step 1 could also go out alone as a small fix (nothing is released yet).
 - **M5 Zen mode**: no timer, no score, no ads during play (Ember's calm brand). Small.
 - **M6 Achievements (local)**: badge list across all games. Medium.
 - **M7 Optional Play Games leaderboards**: adults only (Mind apps), needs the owner's Play Games setup. Medium.
