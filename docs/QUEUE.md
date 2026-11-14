@@ -177,7 +177,20 @@ Mind apps (Ember, Presto):
   Challenges and Stats. The three copied games (Block Puzzle, Blockfall, Wingy) and Mind Presto play as usual, with a one-line note on their menus: "Zen mode: this game plays as usual". Pure-Dart rules for
   what a Zen run records (a Zen flag on M2's run report); config flag `zen_mode.enabled`: on for Mind Ember, off for Mind Presto and the Craft apps; test IDs on every new control; Ember SPEC.md gets a Zen
   section with exact values. Out of scope: Presto, the copied games, a zen-only game, new ambience (M4), "take a break" nudges, changes to ad placements. Small to medium.
-- **M6 Achievements (local)**: badge list across all games. Medium.
+- **M6 Achievements (local)** (PLANNED, decisions made 2026-11-14; both Mind hubs; do AFTER M1, M2 and M3, best after M4 and M5 too; independent of M7): FOUND: the engine has 9 achievements (First Steps,
+  Regular, Line Cleaner, Line Master, Four Digits, High Roller, Combo Starter, Builder, Week Warrior; 25 to 250 coins) built on block-game counters; only Block Puzzle and Blockfall call `recordGameFinished`, so
+  Sudoku, Solitaire, Ball sort, Mahjong and Merge never count (not traced: whether the copied games' adapters feed the hub's counters); and the shipped hub never shows achievements: the list lives on the old
+  `ChallengesScreen`, reached only from the legacy `HomeScreen`, while `AppShell` and its Challenges tab have none. IDs are the key for a possible Play Games mapping, so they stay stable. Scope: a data-driven
+  catalogue (an id, title, description, stat metric, target and tier) reading M2's per-game stats and M1's history; the 9 existing IDs untouched; about 30 for Ember in groups: Getting started (first game, try N
+  different games, first win, first daily puzzle), Puzzles solved (Sudoku 1, 10, 50 and an Expert solve, Solitaire wins, Mahjong clears, Ball sort levels 10, 50, 100, a Merge stage milestone), Skill (clean win
+  with no mistakes and no hints, fast solve per game; the M2 run report gains a hints count), Habit (daily-puzzle streaks 3, 7, 30; daily puzzles solved 10, 50, 100; days played 10, 50, 100; the existing 7-day
+  streak), Collection (own N shop items, unlock a coin-locked game). Mind Presto: the generic ones plus auto-generated per-game ones (first play, 10 plays, best score reaching 3 stars). Craft apps excluded.
+  Rewards: coin tiers 25, 50, 100, 250, paid once and automatically at unlock. A calm message on the results screen when a run unlocks something, never mid-play; in Zen (M5) the message is held back and shows
+  later as a "New" marker; Zen counts only plays, solves, time, the daily puzzle and streaks, so score, speed and clean-run achievements do not progress in Zen. A new Achievements page reached from the
+  Challenges tab, grouped by category, each row with progress ("7 of 10") including locked ones; a "New" dot on the Challenges tab for unseen unlocks; the existing share button and share card stay. At first
+  start after the update, achievements already earned by old data unlock together with one summary message and their coins. Save: `unlockedAchievements` stays; a small `seenAchievements` set is added (old saves
+  start empty). Pure-Dart catalogue and evaluator, test IDs, both hubs' SPEC.md get the full list and exact values; calm adult wording, shapes only, no people. Out of scope: Play Games achievement sync (M7 may use
+  the stable IDs later), Craft apps, secret achievements, time-limited events, sharing beyond the existing card. Medium.
 - **M7 Optional Play Games leaderboards**: adults only (Mind apps), needs the owner's Play Games setup. Medium.
 Cross-cutting:
 - **X2 Web version of the apps**: the web builds exist (#149, #150). Direction (owner, 2026-11-13): the web save stays on the web and
