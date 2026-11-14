@@ -17,6 +17,7 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' co
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
+- RUNNING (2026-11-14): #155 C2 spaced repetition, #156 M1 daily puzzle, #157 M4 themes and sound packs, #158 C8 family mode. That is 4 at once, above the usual limit of 3: the owner asked for more in parallel; if a run fails with no comment (usage limit), comment `@claude Please continue` on it. Overlaps: #155 and #158 and #157 touch game-factory; #156 and #157 touch game-mind-1; runs must pull and rebase, never force-push.
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): DONE, passed (run 169, 2026-11-12).
 - #149 DONE (2026-11-13): web build on all five apps; Playwright smoke PASS for all five (hubs skip the Settings check). Real bugs fixed on the way: daily release never ran, Craft year picker range, Champion packs asset line.
@@ -96,7 +97,7 @@ Craft apps (Scout, Ranger, Champion):
   `ExamSession` in `lib/engine/` with injected clock and random; the quiz item widgets show feedback at once, so the run wraps or reuses them to return an answer
   without feedback (the main work). Test IDs, Champion SPEC.md exact values. Out of scope: coins, stars, leaderboards, sharing results (C3), Game mode, new
   content, other item types. Medium to large.
-- **C8 Family mode** (PLANNED, decisions made 2026-11-13; independent of C1 to C7, no new save fields; put after C7): today Tug of war is single player
+- **C8 Family mode** (POSTED as #158, 2026-11-14; decisions made 2026-11-13; independent of C1 to C7, no new save fields; put after C7): today Tug of war is single player
   (child against "the quiz"), mcq only, Game mode only, coin-locked at 200 as a device-wide unlock, Scout from Year 3, younger and older levels. Scope: a
   "Play with a sibling" button on the Tug of war start screen, shown only when the game is unlocked and at least two profiles on the device are eligible;
   second-player picker lists the other eligible profiles. Turn-based, pass the device: players alternate, each turn is one mcq from that player's OWN open
@@ -152,7 +153,7 @@ Mind apps (Ember, Presto):
   (draw, winnable, layout) map to a level on first load. Pure-Dart `SolitaireLevel`, hint finder and `SudokuHintStep` rules with injected randomness; test IDs; SPEC.md 4.2, 4.3 and 4.5
   exact values. Out of scope: technique-based Sudoku grading (pairs, X-wing), hints for Ball sort or Merge, rewarded-ad hints (the only rewarded placement stays the Continue), Presto,
   profile save changes. Medium.
-- **M4 Themes and sound packs bought with coins** (PLANNED, decisions made 2026-11-14; factory template first, then synced to all five apps; new content for the Mind hubs only; independent of M1 to
+- **M4 Themes and sound packs bought with coins** (POSTED as #157, 2026-11-14; decisions made 2026-11-14; factory template first, then synced to all five apps; new content for the Mind hubs only; independent of M1 to
   M3, no profile save migration): FOUND: the shop already sells colour themes (Sunset, Forest, Ocean at 50) and stores `colorTheme` on the profile, but nothing reads it, so a bought theme changes no
   colours (checked in Ember and Scout; the Craft apps share the same shop code). DECISIONS.md says a colour theme costs 60 and an avatar 40; the code charges 50 for themes. Step 1 (all five apps, factory
   template): apply the active player's equipped theme (seed colour plus light or dark) when the app builds its colour scheme, the design system recomputes from it, scene art unchanged; a test checks
