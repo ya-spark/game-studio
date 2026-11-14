@@ -20,7 +20,8 @@ builds each game's `main` and runs `scripts/deploy.sh`. Optional inputs: `games`
    so the other games stay.
 
 Games are served at `https://activemindcraft.com/appgames/<name>/` and the same under `www.` The name is the folder
-name without `game-` (for example `/appgames/wingy/`). Other apps share the domain under their own paths
+name without `game-`, with any underscore turned into a hyphen (for example `/appgames/wingy/`, and `game-craft_highteen` is
+served at `/appgames/craft-highteen/`; owner, 2026-11-15: URL names use hyphens only). Other apps share the domain under their own paths
 (astro-writer is `/writer`).
 
 ## Owner setup

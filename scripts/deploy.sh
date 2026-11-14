@@ -43,6 +43,8 @@ for arg in "$@"; do
     games+=("$arg")
   elif [ -f "$APPS_DIR/game-${arg#game-}/pubspec.yaml" ]; then
     games+=("game-${arg#game-}")
+  elif n="${arg#game-}" && [ -f "$APPS_DIR/game-${n//-/_}/pubspec.yaml" ]; then
+    games+=("game-${n//-/_}")   # URL name given (craft-highteen) for a folder with an underscore (game-craft_highteen)
   elif [ -z "$alias_arg" ] && [ ! -e "$APPS_DIR/$arg" ] && [[ "$arg" != game-* ]]; then
     alias_arg="$arg"
   else
@@ -109,6 +111,7 @@ for game in "${games[@]}"; do
   dir="$APPS_DIR/$game"
   [ -f "$dir/pubspec.yaml" ] || { echo "Skipping $game: no pubspec.yaml"; failed+=("$game"); continue; }
   slug="${game#game-}"
+  slug="${slug//_/-}"   # URL names use hyphens only: game-craft_highteen is served at /craft-highteen/
   echo "==> Building $game (base href $BASE_PATH/$slug/)"
   if (
     cd "$dir"
@@ -172,6 +175,9 @@ if [ "$PARTIAL" = 1 ]; then
   fi
   for g in $BUILT; do
     rm -rf "${DEPLOY:?}/.build/seed/$g"
+    # Drop a copy deployed under the old underscore name (craft_highteen), now served as craft-highteen.
+    old="${g//-/_}"
+    if [ "$old" != "$g" ]; then rm -rf "${DEPLOY:?}/.build/seed/$old"; fi
     mv "$DEPLOY/.build/web/$g" "$DEPLOY/.build/seed/$g"
   done
   rm -rf "${DEPLOY:?}/.build/web"
