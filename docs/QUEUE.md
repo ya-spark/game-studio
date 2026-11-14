@@ -17,7 +17,7 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' co
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Active
-- RUNNING (2026-11-14): #155 C2 spaced repetition, #156 M1 daily puzzle, #157 M4 themes and sound packs, #158 C8 family mode. That is 4 at once, above the usual limit of 3: the owner asked for more in parallel; if a run fails with no comment (usage limit), comment `@claude Please continue` on it. Overlaps: #155 and #158 and #157 touch game-factory; #156 and #157 touch game-mind-1; runs must pull and rebase, never force-push.
+- RUNNING (2026-11-14): #155 C2 spaced repetition, #156 M1 daily puzzle, #157 M4 themes and sound packs, #158 C8 family mode, #159 X2a web shell. That is 5 at once, above the usual limit of 3: the owner asked for more in parallel; if a run fails with no comment (usage limit), comment `@claude Please continue` on it. Overlaps: #155 and #158 and #157 touch game-factory; #156 and #157 touch game-mind-1; runs must pull and rebase, never force-push.
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): DONE, passed (run 169, 2026-11-12).
 - #149 DONE (2026-11-13): web build on all five apps; Playwright smoke PASS for all five (hubs skip the Settings check). Real bugs fixed on the way: daily release never ran, Craft year picker range, Champion packs asset line.
@@ -215,7 +215,7 @@ Cross-cutting:
   keys, they are outside this change). Owner direction: the web save stays in the browser and is never moved to or from the Android app; the web copy earns from ads only (AdSense, IDs added later by the
   owner). Owner decision 2026-11-14 (option B): AdSense on ALL FIVE apps for v1, child-directed apps tagged: Scout and Ranger `CHILD`, Champion `TEEN`, Mind Ember and Mind Presto no child tag; Google's age
   tag is TFAT (`data-tag-for-age-treatment`, replaces the deprecated TFCD and TFUA, announced May 2026); child and teen treatment means non-personalised ads only. Scout is included (owner confirmed, 2026-11-14).
-  **X2a (post first, independent, worth doing even for the test copies; medium; game-factory then the five apps):** (1) per-game storage namespace on web: set the prefix from the app id before first
+  **X2a (POSTED as #159, 2026-11-14; independent, worth doing even for the test copies; medium; game-factory then the five apps):** (1) per-game storage namespace on web: set the prefix from the app id before first
   use, native unchanged; (2) Settings note on web: "Progress is saved in this browser only. Clearing site data, or using another browser or device, starts fresh. The Android app keeps its own save."; no
   sync; (3) hide real-money items on web (no coin packs, no Remove Ads) instead of today's "not available" message; (4) public-ready page: real title and description per game, social preview tags,
   "Get the Android app" link read from config (empty until live), loading screen, `platforms.web.enabled: true` for the five apps. **X2b (after X2a; medium):** AdSense behind the existing `AdService`
