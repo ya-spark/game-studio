@@ -214,7 +214,7 @@ Cross-cutting:
   (`activemindcraft.com/appgames/<name>/`), so games in one browser most likely OVERWRITE each other's saves (code reading only, not run; check whether the three older games' web builds use the same
   keys, they are outside this change). Owner direction: the web save stays in the browser and is never moved to or from the Android app; the web copy earns from ads only (AdSense, IDs added later by the
   owner). Owner decision 2026-11-14 (option B): AdSense on ALL FIVE apps for v1, child-directed apps tagged: Scout and Ranger `CHILD`, Champion `TEEN`, Mind Ember and Mind Presto no child tag; Google's age
-  tag is TFAT (`data-tag-for-age-treatment`, replaces the deprecated TFCD and TFUA, announced May 2026); child and teen treatment means non-personalised ads only. Scout is included; the owner may drop it.
+  tag is TFAT (`data-tag-for-age-treatment`, replaces the deprecated TFCD and TFUA, announced May 2026); child and teen treatment means non-personalised ads only. Scout is included (owner confirmed, 2026-11-14).
   **X2a (post first, independent, worth doing even for the test copies; medium; game-factory then the five apps):** (1) per-game storage namespace on web: set the prefix from the app id before first
   use, native unchanged; (2) Settings note on web: "Progress is saved in this browser only. Clearing site data, or using another browser or device, starts fresh. The Android app keeps its own save."; no
   sync; (3) hide real-money items on web (no coin packs, no Remove Ads) instead of today's "not available" message; (4) public-ready page: real title and description per game, social preview tags,
