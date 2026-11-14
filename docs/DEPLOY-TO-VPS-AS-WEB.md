@@ -1,8 +1,12 @@
 # Deploy to the VPS as web (owner decisions 2026-11-12 and 2026-11-13)
 
 The web copy of every game is a UAT copy on the owner's Hostinger VPS. The product stays Android-only.
-Claude does not touch the VPS, DNS, Cloudflare or secrets, and does not run a real deploy: only the owner does.
-A `dry_run` (build only) run is fine when the owner asks.
+Claude does not touch the VPS directly, DNS, Cloudflare, Caddy or secrets. **Owner decision 2026-11-14:** Claude MAY start real deploys of
+the web UAT copies by running this workflow (`deploy-to-vps-as-web`, Run workflow) without asking: after a run reports a game done, its checks
+pass and the pin matches the game's `main`, Claude deploys the affected games (the `games` input), one deploy at a time, batched per
+monitoring round. The workflow uses the repo secrets itself; Claude never reads or changes them. If a deploy fails because of the VPS, SSH
+or secrets, Claude stops deploying and tells the owner; if the build of one game fails, Claude sends it back to that game's issue
+(`@claude Please continue`). Not covered: DNS, Caddy, Cloudflare, login changes, store releases, tags, version bumps.
 
 ## How it works
 One workflow in this repo, `.github/workflows/deploy-to-vps-as-web.yml` (Actions, `deploy-to-vps-as-web`, Run workflow),
