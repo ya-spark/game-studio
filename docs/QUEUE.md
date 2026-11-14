@@ -46,8 +46,8 @@ Craft screen fixes (#132); engine lock fixes, engine.exclude, hubs and Craft app
 
 ## Feature backlog (owner picked these, 2026-11-13; order and go-ahead still to be decided, not for runs)
 Craft apps (Scout, Ranger, Champion):
-- **C1 Mistakes notebook**: POSTED as #154 (2026-11-13): a Practise my mistakes round (quiz; Flash review for Scout's younger level), mistakes clear after two correct answers in a row, `lastSeenDay` added for C2. Small.
-- **C2 Spaced repetition** (PLANNED, decisions made 2026-11-13; post only after #154 is done, they share `ItemResult`): every answered item gets a
+- **C1 Mistakes notebook**: DONE as #154 (2026-11-13; game-factory acd70de, cf12881, Scout d464641, Ranger 0ddfd04, Champion cc39ca7, pins 0bcfb42; CI generator job not run; Ranger and Champion round is multiple-choice only). Was: a Practise my mistakes round (quiz; Flash review for Scout's younger level), mistakes clear after two correct answers in a row, `lastSeenDay` added for C2. Small.
+- **C2 Spaced repetition** (POSTED as #155, 2026-11-14; decisions made 2026-11-13): every answered item gets a
   `box` 0 to 4 (correct +1, wrong back to 0; moves at most once a day). Due when `today - lastSeenDay >= [1, 3, 7, 21, 45]` days by box (separate
   field, not the #154 streak). Old saves: box from `passes` and `lastCorrect` (wrong 0, passed 1). #154's round becomes ONE merged "Today's review"
   entry: due items first (mistakes first, then most overdue), 10 per round, Home count capped at 20, calm "Nothing due today" at 0, Flash review cards
@@ -110,7 +110,7 @@ Craft apps (Scout, Ranger, Champion):
   `QuizSession`s (one per child), SPEC.md exact values. Out of scope: simultaneous split-screen (maybe a tablet follow-up), online play, other
   minigames, winner prizes, changing the 200-coin price. Small to medium.
 Mind apps (Ember, Presto):
-- **M1 Daily puzzle** (PLANNED, decisions made 2026-11-13; Mind Ember only in v1, repo `game-mind-1`; do BEFORE M3 and M2, they touch the same puzzle screens and M2 reuses its
+- **M1 Daily puzzle** (POSTED as #156, 2026-11-14; decisions made 2026-11-13; Mind Ember only in v1, repo `game-mind-1`; do BEFORE M3 and M2, they touch the same puzzle screens and M2 reuses its
   history): today the Games tab only puts a "Daily" badge on one tile (`today % playable games`), with no special puzzle and no completion record; the play-day streak,
   game challenges and daily reward already exist. Scope: one daily puzzle from a day seed (local calendar date, so everyone on the same date gets the same puzzle; no
   server, no leaderboard). Ember's four puzzle games rotate by day (Sudoku, Ball sort, Solitaire, Mahjong); difficulty by weekday mapped to each game's own levels
