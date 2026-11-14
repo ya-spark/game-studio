@@ -18,6 +18,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 
 ## Active
 - #156 M1: first run (2026-11-14 01:05 UTC) ended with no comment and nothing pushed; `@claude Please continue` commented (2026-11-14, owner asked). Check its result.
+- DONE 2026-11-14: #155 C2. #157 M4 step 1 done, steps 2 to 4 continuing. #160 C3 posted. #156 M1 restarted (run 8). #158 C8 and #159 X2a still running. Monitoring: the studio session re-checks every 20 to 30 minutes and posts the next item when its dependency is done (C5 after #158; C4 after #160; M2 after #156; X2b after #159).
 - RUNNING (2026-11-14): #155 C2 spaced repetition, #156 M1 daily puzzle, #157 M4 themes and sound packs, #158 C8 family mode, #159 X2a web shell. That is 5 at once, above the usual limit of 3: the owner asked for more in parallel; if a run fails with no comment (usage limit), comment `@claude Please continue` on it. Overlaps: #155 and #158 and #157 touch game-factory; #156 and #157 touch game-mind-1; runs must pull and rebase, never force-push.
 - None running. #148 curriculum coverage is PAUSED by the owner (2026-11-12) after batch 2: Maths Y0 to Y3 gaps filled (152 packs, Scout 92). Resume with `@claude Please continue` on #148 (Maths Y4 to 12, English all years, Y1 planned rows, accuracy read). Map: content/docs/CURRICULUM-GAPS.md (unverified).
 - template-ci manual re-run on game-factory main (after #145): DONE, passed (run 169, 2026-11-12).
@@ -49,13 +50,13 @@ Craft screen fixes (#132); engine lock fixes, engine.exclude, hubs and Craft app
 ## Feature backlog (owner picked these, 2026-11-13; order and go-ahead still to be decided, not for runs)
 Craft apps (Scout, Ranger, Champion):
 - **C1 Mistakes notebook**: DONE as #154 (2026-11-13; game-factory acd70de, cf12881, Scout d464641, Ranger 0ddfd04, Champion cc39ca7, pins 0bcfb42; CI generator job not run; Ranger and Champion round is multiple-choice only). Was: a Practise my mistakes round (quiz; Flash review for Scout's younger level), mistakes clear after two correct answers in a row, `lastSeenDay` added for C2. Small.
-- **C2 Spaced repetition** (POSTED as #155, 2026-11-14; decisions made 2026-11-13): every answered item gets a
+- **C2 Spaced repetition** (DONE as #155, 2026-11-14: game-factory 7c7df3b, Scout 522aa9d, Ranger 5cafd85, Champion aedd9e7, pins a8d905e; save v6; CI generator job not run; the apps' engine lock is behind the template after #158's engine commits, re-run `sync_engine.py`; was POSTED as #155; decisions made 2026-11-13): every answered item gets a
   `box` 0 to 4 (correct +1, wrong back to 0; moves at most once a day). Due when `today - lastSeenDay >= [1, 3, 7, 21, 45]` days by box (separate
   field, not the #154 streak). Old saves: box from `passes` and `lastCorrect` (wrong 0, passed 1). #154's round becomes ONE merged "Today's review"
   entry: due items first (mistakes first, then most overdue), 10 per round, Home count capped at 20, calm "Nothing due today" at 0, Flash review cards
   for Scout's younger level. The "Revise your mistakes" challenge counts due items answered right. Parent area switch to turn it off (default on).
   Clock back: nothing due; clock forward: the cap handles it. Update SPEC.md with exact values. Medium.
-- **C3 Parent progress report** (PLANNED, decisions made 2026-11-13; post after C2, they touch `child_profile.dart` and the Parent area): today `ChildReport`
+- **C3 Parent progress report** (POSTED as #160, 2026-11-14; decisions made 2026-11-13; was: post after C2, they touch `child_profile.dart` and the Parent area): today `ChildReport`
   shows this-week time plus ALL-TIME topic count and accuracy under a "This week" heading, with no history, weak spots or sharing. Scope: an 8-week
   per-child daily activity log on device (answers, correct, newly passed, topic keys; migration, old saves start empty); report sections this week vs last
   week (time, answers, accuracy, newly passed, days-in-a-row), strongest topics (mastered), "Needs attention" (up to 3 topics with most mistakes, each
@@ -154,7 +155,7 @@ Mind apps (Ember, Presto):
   (draw, winnable, layout) map to a level on first load. Pure-Dart `SolitaireLevel`, hint finder and `SudokuHintStep` rules with injected randomness; test IDs; SPEC.md 4.2, 4.3 and 4.5
   exact values. Out of scope: technique-based Sudoku grading (pairs, X-wing), hints for Ball sort or Merge, rewarded-ad hints (the only rewarded placement stays the Continue), Presto,
   profile save changes. Medium.
-- **M4 Themes and sound packs bought with coins** (POSTED as #157, 2026-11-14; decisions made 2026-11-14; factory template first, then synced to all five apps; new content for the Mind hubs only; independent of M1 to
+- **M4 Themes and sound packs bought with coins** (POSTED as #157, 2026-11-14; STEP 1 DONE: game-factory 18ce35b, Scout 05a0408, Ranger 5990ed7, Champion 86b831b, Ember 3be4ebf, Presto bc8941d, themes apply and cost 60; steps 2 to 4 not done, `@claude Please continue` commented 2026-11-14; decisions made 2026-11-14; factory template first, then synced to all five apps; new content for the Mind hubs only; independent of M1 to
   M3, no profile save migration): FOUND: the shop already sells colour themes (Sunset, Forest, Ocean at 50) and stores `colorTheme` on the profile, but nothing reads it, so a bought theme changes no
   colours (checked in Ember and Scout; the Craft apps share the same shop code). DECISIONS.md says a colour theme costs 60 and an avatar 40; the code charges 50 for themes. Step 1 (all five apps, factory
   template): apply the active player's equipped theme (seed colour plus light or dark) when the app builds its colour scheme, the design system recomputes from it, scene art unchanged; a test checks
