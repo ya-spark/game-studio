@@ -165,7 +165,18 @@ Mind apps (Ember, Presto):
   from a source whose licence allows it); if a pack cannot be made to a good standard it ships fewer and says so; the OWNER REVIEWS the sound before release. Flags `shop.extra_themes` and
   `shop.sound_packs`: on for Mind Ember and Mind Presto, off for the Craft apps. Test IDs on every control, both hubs' SPEC.md (Shop and prices) exact values. Out of scope: real-money items, avatar
   changes, voice packs, sound-effect packs, new art beyond theme swatches, Craft content. Medium. Step 1 could also go out alone as a small fix (nothing is released yet).
-- **M5 Zen mode**: no timer, no score, no ads during play (Ember's calm brand). Small.
+- **M5 Zen mode** (PLANNED, decisions made 2026-11-14; Mind Ember only, repo `game-mind-1`; do AFTER M1, M2 and M3: needs M3's hints, M2's run report and M1's daily puzzle, and touches the same five
+  puzzle screens; M7 must skip Zen runs): Ember's five hub-native games (Sudoku, Solitaire, Ball sort, Mahjong, Merge) are already calm and untimed, Merge has Relaxed, and ads never show in play
+  (banners only on the menu and results, no interstitials; the rewarded Continue exists only in the copied block games). What still shows: scores, move and mistake counters, stars, "Best N", coin and
+  best-score messages, voice cues, vibration, tips, and (after M2) "New personal best". Scope: a Zen switch in Settings plus a quick leaf toggle in the Games tab top bar; remembered across launches;
+  applies to the next game started. In the five native games Zen shows NO score, move count, mistake count, stars, best, coin messages or personal-best messages during play or on results (results say
+  "Finished. Well played."); no timer anywhere; Merge always Relaxed; UNLIMITED FREE hints (Sudoku, Mahjong, and the Solitaire hint from M3); no tips dialogs, no voice cues, no vibration; the player's
+  chosen ambience still plays (Off stays Off); reduce motion on; ads unchanged. The quiet settings apply for the run only and never overwrite the player's saved volume, voice or vibration choices.
+  Counted in Zen: plays, solves, active time, the daily puzzle (M1) and its streak, the play-day streak, the "play N different games" challenge. NOT counted: scores, stars, best scores, fastest-solve records,
+  the "score points" challenge, leaderboards (M7), because unlimited hints and endless Merge are not comparable with normal runs. Nothing is lost by choosing Zen: earned progress and coins show later in
+  Challenges and Stats. The three copied games (Block Puzzle, Blockfall, Wingy) and Mind Presto play as usual, with a one-line note on their menus: "Zen mode: this game plays as usual". Pure-Dart rules for
+  what a Zen run records (a Zen flag on M2's run report); config flag `zen_mode.enabled`: on for Mind Ember, off for Mind Presto and the Craft apps; test IDs on every new control; Ember SPEC.md gets a Zen
+  section with exact values. Out of scope: Presto, the copied games, a zen-only game, new ambience (M4), "take a break" nudges, changes to ad placements. Small to medium.
 - **M6 Achievements (local)**: badge list across all games. Medium.
 - **M7 Optional Play Games leaderboards**: adults only (Mind apps), needs the owner's Play Games setup. Medium.
 Cross-cutting:
