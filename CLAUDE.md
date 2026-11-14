@@ -8,6 +8,7 @@ The factory rules (no backend, interfaces, secrets, ...) apply to every change:
 
 @game-factory/CLAUDE.md
 
+- Times: always give times to the owner in AEDT (UTC+11, Australia/Sydney), for example "12:28 pm AEDT", never UTC alone. Convert GitHub and workflow timestamps (UTC) before reporting them. `docs/QUEUE.md` already uses AEDT (owner, 2026-11-14).
 - Application code is not written in this repo's own files: it is changed inside the submodule checkouts
   (`game-factory/` and `apps/*`). This repo holds pins, orchestration and workflow config.
 - Never commit secrets. `.github/workflows/run-claude-from-issues.yml` uses only `CLAUDE_CODE_OAUTH_TOKEN` and
