@@ -48,6 +48,14 @@ Craft screen fixes (#132); engine lock fixes, engine.exclude, hubs and Craft app
   remaining" view for parents; (4) make coins matter less (minigame unlocks and shop items restorable, balance rebuyable).
   Leaning: 1 plus 3 first, 2 later. Decision needed: should coins survive a reinstall at all?
 
+## Backlog: games-web (owner, 2026-11-14; later, after the owner connects the repo)
+- **Move the web code into `ya-spark/games-web`.** Owner: that repo is supposed to hold the games' web code. Today the web code lives in game-factory (`template/.../lib/core/platform/*_web.dart`, `web/`, `web_shell.py`)
+  and is copied into each app (#149, #150, #159 X2a); the deploy workflow `deploy-to-vps-as-web` and `scripts/deploy.sh` build each `apps/game-*` main and do not read `games-web`. `games-web` is a submodule of
+  `game-studio` pinned at ca856a3 and has not been read in a session. Not started: the owner connects the repo first, then Claude READS it before any change, then a plan decides what moves (web platform
+  stubs, web shell, AdSense code from X2b, per-app `web/` files, the deploy path) and what the deploy workflow reads. Until then X2a and X2b keep the web code where it is; if the owner wants X2b to wait for
+  this move, say so before X2b is posted. Open questions for the owner: what the repo already contains; whether it replaces the per-app web files or only the deploy side; whether the three older games' web builds
+  move into it too.
+
 ## Feature backlog (owner picked these, 2026-11-13; order and go-ahead still to be decided, not for runs)
 Craft apps (Scout, Ranger, Champion):
 - **C1 Mistakes notebook**: DONE as #154 (2026-11-13; game-factory acd70de, cf12881, Scout d464641, Ranger 0ddfd04, Champion cc39ca7, pins 0bcfb42; CI generator job not run; Ranger and Champion round is multiple-choice only). Was: a Practise my mistakes round (quiz; Flash review for Scout's younger level), mistakes clear after two correct answers in a row, `lastSeenDay` added for C2. Small.
