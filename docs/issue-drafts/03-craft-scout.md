@@ -1,6 +1,6 @@
 # [new-game] Craft Scout Games (Foundation to Year 6)
 
-**Repo:** ya-spark/game-craft-lowteen   **Package:** com.activemindcraft.craftscout   **Id:** craft_lowteen   **Audience:** Foundation to Year 6, about 5-12; child-directed. **Depends on:** 1C, 1D, issue 2, M1 to M3.
+**Repo:** ya-spark/game-craft-preteen   **Package:** com.activemindcraft.craftscout   **Id:** craft_lowteen   **Audience:** Foundation to Year 6, about 5-12; child-directed. **Depends on:** 1C, 1D, issue 2, M1 to M3.
 
 ## Goal
 Generate the app with `--profile craft --audience child`, wire in the engine, theme, minigames and starter content, and make it ready for the owner's first build.

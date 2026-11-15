@@ -7,8 +7,8 @@ Nothing here is implemented. The issue drafts are in `docs/issue-drafts/` and ar
 
 | App (Play Store name) | Audience | Repo | Package | Id |
 |---|---|---|---|---|
-| Craft Scout Games | Foundation to Year 6, about 5-12 | `ya-spark/game-craft-lowteen` | `com.activemindcraft.craftscout` | `craft_lowteen` |
-| Craft Ranger Games | Years 7-10, includes under-13s | `ya-spark/game-craft-preteen` | `com.activemindcraft.craftranger` | `craft_preteen` |
+| Craft Scout Games | Foundation to Year 6, about 5-12 | `ya-spark/game-craft-preteen` | `com.activemindcraft.craftscout` | `craft_lowteen` |
+| Craft Ranger Games | Years 7-10, includes under-13s | `ya-spark/game-craft-lowteen` | `com.activemindcraft.craftranger` | `craft_preteen` |
 | Craft Champion Games | Years 11-12 (senior secondary), about 16-18 | `ya-spark/game-craft_highteen` | `com.activemindcraft.craftchampion` | `craft_highteen` |
 | Mind Ember Games | Adults, calm puzzle and block games | `ya-spark/game-mind-1` | `com.activemindcraft.mindember` | `mind_1` |
 | Mind Presto Games | Adults, fast casual games | `ya-spark/game-mind-9` | `com.activemindcraft.mindpresto` | `mind_9` |

@@ -1,6 +1,6 @@
 # [new-game] Craft Ranger Games (Years 7-10)
 
-**Repo:** ya-spark/game-craft-preteen   **Package:** com.activemindcraft.craftranger   **Audience:** Years 7-10, includes under-13s; child-directed
+**Repo:** ya-spark/game-craft-lowteen   **Package:** com.activemindcraft.craftranger   **Audience:** Years 7-10, includes under-13s; child-directed
 
 ## Goal
 Generate the app from the template with the shared engine, then build the launch minigames and starter content.
