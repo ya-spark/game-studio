@@ -1,7 +1,7 @@
 # Design: the web catalog (W1) and rules dialog (R1) — DRAFT for the owner to approve
 
 Status: draft by the studio session, 2026-11-15, not approved, nothing built. Source: the owner's description of the web version
-(see `docs/DECISIONS.md`, "Web product shape" and "Web catalog answers") and `docs/QUEUE.md` items W1 and R1.
+(see `docs/DECISIONS.md`, "Web product shape" and "Web catalog answers") and `docs/FEATURE-SPECS.md` items W1 and R1.
 
 ## What the visitor sees
 
