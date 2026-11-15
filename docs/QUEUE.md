@@ -258,6 +258,8 @@ Cross-cutting:
 Not picked: C6 read-aloud and hints (read-aloud is already in issue 01c2), C9 content editor (editor type still unclear), X3 accessibility pass, X4 localisation.
 
 ## games-web: first proofs (studio session, 2026-11-15)
+
+- **Live (2026-11-15, 2:41 am AEDT):** `https://activemindcraft.com/games/ember/` and `/games/scout/` are served from the separate `games-web` container on port 7080 (Caddy route by the owner). Version check: `/games/<slug>/build-info.json` and the `/games/` index. Presto, Ranger, Champion are not built yet. See `docs/DECISIONS.md`.
 - `ya-spark/games-web` now holds a thin web shell per game family (`overlay/mind`, `overlay/craft`), `games.yaml` (slug, app repo, family) and `scripts/build_game.sh`, which copies an app checkout to a temp folder, copies the overlay on top and builds the web bundle; the app repos are untouched, nothing is saved in the browser. Built and looked at in Chromium: `ember` (game list with the new icons, Sudoku plays) and `scout` (year, subject, topic in the `topics.yaml` order, Quick quiz on an empty progress, all starter packs open). Not built yet: `presto`, `ranger`, `champion`, the Craft minigames beyond the Quick quiz, the landing page, the ad slot, the hosting container for the public `/games/<slug>/` URLs (owner: container and Caddy route).
 - PREVIEW: `scripts/deploy.sh web-ember web-scout` (and the `deploy-to-vps-as-web` workflow, `games` input) builds these two with games-web and serves them at `https://activemindcraft.com/appgames/web-ember/` and `/appgames/web-scout/` behind the existing login. Temporary, until the real `/games/` hosting exists.
 
