@@ -85,6 +85,13 @@ http.createServer((req, res) => {
   }
   const pathname = base ? full.slice(base.length) : full;
   if (pathname === '/') {
+    // A landing page deployed at the root (games-web: index.html + catalog.json) wins over the plain list of games.
+    const landing = path.join(rootAbs, 'index.html');
+    if (fs.existsSync(landing)) {
+      res.writeHead(200, { ...headers, 'Content-Type': MIME['.html'] });
+      fs.createReadStream(landing).pipe(res);
+      return;
+    }
     res.writeHead(200, { ...headers, 'Content-Type': MIME['.html'] }).end(indexPage());
     return;
   }

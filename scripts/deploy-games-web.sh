@@ -60,6 +60,15 @@ for slug in "${slugs[@]}"; do
 done
 [ "${#built[@]}" -gt 0 ] || { echo "Nothing built."; exit 1; }
 
+# The landing page: index.html, catalog.json (made from the app checkouts, live games only) and the card art.
+# (Skipped while games-web main has no site/ yet.)
+if [ -f "$GW/scripts/make_catalog.py" ] && [ -f "$GW/site/index.html" ]; then
+  echo "==> Making the catalog page"
+  python3 "$GW/scripts/make_catalog.py" --apps "$APPS_DIR" --games "$GW/games.yaml" --out "$STAGE_DIR/web/catalog.json"
+  cp "$GW/site/index.html" "$STAGE_DIR/web/index.html"
+  mkdir -p "$STAGE_DIR/web/_site" && cp -R "$GW/site/art" "$STAGE_DIR/web/_site/art"
+fi
+
 if [ -n "${DRY_RUN:-}" ]; then
   echo "DRY_RUN: built ${built[*]}; nothing uploaded."
   [ "${#failed[@]}" -eq 0 ] || { echo "Build failed or skipped: ${failed[*]}"; exit 1; }
@@ -96,6 +105,11 @@ if [ "$PARTIAL" = 1 ]; then
     rm -rf "${DEPLOY:?}/.build/seed/$g"
     mv "$DEPLOY/.build/web/$g" "$DEPLOY/.build/seed/$g"
   done
+  # The landing page files are always replaced (they are not games).
+  if [ -f "$DEPLOY/.build/web/index.html" ]; then
+    cp -f "$DEPLOY/.build/web/index.html" "$DEPLOY/.build/web/catalog.json" "$DEPLOY/.build/seed/"
+    rm -rf "${DEPLOY:?}/.build/seed/_site"; mv "$DEPLOY/.build/web/_site" "$DEPLOY/.build/seed/_site"
+  fi
   rm -rf "${DEPLOY:?}/.build/web"; mv "$DEPLOY/.build/seed" "$DEPLOY/.build/web"
 fi
 chmod -R a+rX "$DEPLOY/.build"
