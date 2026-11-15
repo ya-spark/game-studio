@@ -85,7 +85,7 @@ if [ "${#games[@]}" -eq 0 ] && [ "${#web_slugs[@]}" -eq 0 ]; then
     [ -f "$d/pubspec.yaml" ] && games+=("$(basename "$d")")
   done
 fi
-[ "${#games[@]}" -gt 0 ] || { echo "No games found in $APPS_DIR"; exit 1; }
+[ "${#games[@]}" -gt 0 ] || [ "${#web_slugs[@]}" -gt 0 ] || { echo "No games found in $APPS_DIR"; exit 1; }
 
 IMAGE="game-studio"
 TAG="$(date +%Y%m%d%H%M%S)"
