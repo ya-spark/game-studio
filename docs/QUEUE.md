@@ -39,7 +39,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | W1b Presto, Ranger, Champion on the web | DONE, live 3:53 am | Catalog then had 164 cards. |
 | W1c Craft minigames as catalog cards | DONE, live 9:03 am | 775 cards (12 Fun, 152 Quick quiz, 611 minigame cards). |
 | #171 M6 Achievements (Ember, Presto) | DONE 9:05 am | Ember 8520637, Presto 535276c, pins moved; 969 and 669 tests; summary posted on the issue. |
-| R1b Rules dialog in the Mind hubs (#172) | POSTED 9:10 am, running | Texts start from the web copy; the run reports every text it changes. |
+| R1b Rules dialog in the Mind hubs (#172) | DONE (Ember 1e886a9, Presto be98899) | Texts changed from the web copy are listed in the issue comment and QUEUE-LOG. |
 | R1a Rules dialog in the Craft apps and template (#173) | POSTED 9:10 am, running | Runs in parallel with R1b (a different code base). |
 | M7 Play Games leaderboards | NEXT, after R1b (same hubs and save) | Cannot be tested on a device until the owner does the Play Console steps. |
 | X2 AdSense | Code in the apps (#165), switched OFF | Owner steps later (account, ids, privacy pages). |
@@ -49,7 +49,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`. |
 
 ## Active (running now)
-- #172 R1b (Ember, Presto) and #173 R1a (Craft apps, template): posted 9:10 am; read their checklist and summary comments, restart a stopped run with `@claude Please continue`.
+- #172 R1b done; #173 R1a (Craft apps, template): posted 9:10 am; read their checklist and summary comments, restart a stopped run with `@claude Please continue`.
 
 ## Next (post in this order, as dependencies finish)
 - M7 Play Games leaderboards (Ember and Presto): after #172 is done.
