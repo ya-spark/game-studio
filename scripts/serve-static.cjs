@@ -46,7 +46,7 @@ function indexPage() {
     .map((d) => d.name).sort();
   const ver = (g) => {
     try {
-      const v = JSON.parse(fs.readFileSync(path.join(rootAbs, g, 'version.json'), 'utf8'));
+      const v = JSON.parse(fs.readFileSync(path.join(rootAbs, g, 'build-info.json'), 'utf8'));
       return ` <small>app ${String(v.appCommit).slice(0, 7)}, web ${String(v.gamesWebCommit).slice(0, 7)}, built ${v.builtAt}</small>`;
     } catch { return ''; }
   };
