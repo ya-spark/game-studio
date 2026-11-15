@@ -105,6 +105,19 @@ http.createServer((req, res) => {
     res.writeHead(404, headers).end('Not Found');
     return;
   }
-  res.writeHead(200, { ...headers, 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream' });
+  // ETag from size and mtime: a repeat visit revalidates with a 304 instead of downloading the whole bundle again.
+  const st = fs.statSync(file);
+  const etag = `W/"${st.size.toString(16)}-${Math.floor(st.mtimeMs).toString(16)}"`;
+  const h = { ...headers, ETag: etag, 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream' };
+  // SERVE_CACHE=1 (the public games-web container): content packs and the CanvasKit files may be reused for a while,
+  // so a page can fetch them in parallel ahead of the app and the app's one-by-one reads then come from the browser cache.
+  if (process.env.SERVE_CACHE === '1' && /\/(assets|canvaskit)\//.test(pathname)) {
+    h['Cache-Control'] = 'public, max-age=300';
+  }
+  if (req.headers['if-none-match'] === etag) {
+    res.writeHead(304, h).end();
+    return;
+  }
+  res.writeHead(200, h);
   fs.createReadStream(file).pipe(res);
 }).listen(port, process.env.SERVE_HOST || '127.0.0.1');

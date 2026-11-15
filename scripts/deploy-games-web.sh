@@ -115,7 +115,7 @@ fi
 chmod -R a+rX "$DEPLOY/.build"
 echo "Games in the image: $(ls "$DEPLOY/.build/web" | tr '\n' ' ')"
 docker build -f "$DEPLOY/.build/Dockerfile" -t "$IMAGE:$TAG" -t "$IMAGE:latest" \
-  --build-arg "SERVE_PORT=$PORT" --build-arg "SERVE_BASE=$BASE" "$DEPLOY/.build"
+  --build-arg "SERVE_PORT=$PORT" --build-arg "SERVE_BASE=$BASE" --build-arg "SERVE_CACHE=1" "$DEPLOY/.build"
 PREV="$(docker inspect -f '{{.Config.Image}}' "$IMAGE" 2>/dev/null || true)"
 PREV_TAG="${PREV#*:}"
 echo "Starting the container..."
