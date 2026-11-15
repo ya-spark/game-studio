@@ -44,7 +44,13 @@ function indexPage() {
   const games = fs.readdirSync(rootAbs, { withFileTypes: true })
     .filter((d) => d.isDirectory() && fs.existsSync(path.join(rootAbs, d.name, 'index.html')))
     .map((d) => d.name).sort();
-  const items = games.map((g) => `<li><a href="${base}/${g}/">${g}</a></li>`).join('') || '<li>No games deployed yet</li>';
+  const ver = (g) => {
+    try {
+      const v = JSON.parse(fs.readFileSync(path.join(rootAbs, g, 'version.json'), 'utf8'));
+      return ` <small>app ${String(v.appCommit).slice(0, 7)}, web ${String(v.gamesWebCommit).slice(0, 7)}, built ${v.builtAt}</small>`;
+    } catch { return ''; }
+  };
+  const items = games.map((g) => `<li><a href="${base}/${g}/">${g}</a>${ver(g)}</li>`).join('') || '<li>No games deployed yet</li>';
   return `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">` +
     `<title>Game Studio web</title><h1>Game Studio web</h1><ul>${items}</ul>`;
 }
