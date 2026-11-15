@@ -257,6 +257,11 @@ Cross-cutting:
   the privacy text and the COPPA and local-law side (Claude has not assessed them); confirm Google's current child-directed AdSense policy page.
 Not picked: C6 read-aloud and hints (read-aloud is already in issue 01c2), C9 content editor (editor type still unclear), X3 accessibility pass, X4 localisation.
 
+## Owner decisions 2026-11-15 (the studio session guides the owner through the owner items; NO new issues are posted until the owner says)
+- Token from #154's log: rotate later. New icons: good. M4 sound packs: assumed good for now, listen later. AdSense accounts and IDs, Play Console, AdMob, prices, name checks, Cloudflare and VPS: when the games are ready. X2a web smoke and the save collision: check later. #148 curriculum, coins after a reinstall: not decided.
+- TOPIC ORDER (C5): the owner wants to work on it now: review each app's `content/topics.yaml` order per year (the order is the Map's teaching order); the studio session shows the order and the owner says what moves, then a run (or the studio session on the owner's word) changes `content/topics.yaml` in game-content, the three Craft apps and their `assets/content/topics.yaml`.
+- WEB STRATEGY REWORK (see DECISIONS.md, 2026-11-15): `appgames/<name>` = test copies of the store apps (same repo and code); the web product = a separate web version of each game in `ya-spark/games-web`, hosted on the website with AdSense. What the studio sells (coins may not work) is to be reworked. The studio session cannot read `games-web` (not attached to this session: add_repo said no access); the owner connects it first.
+
 ## Owner items (not for runs)
 - **Play Games for the Mind hubs (before M7 can go live, once per hub; steps in `game-factory/docs/PLAY_GAMES_SETUP.md`):** create the Play Games Services project and one leaderboard per game
   (integer, larger is better) plus the achievements to mirror; add credentials for the Play App Signing key and the upload key; add testers, then publish; put the IDs in `app.config.yaml` and set
