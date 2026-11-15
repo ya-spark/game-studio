@@ -1,11 +1,25 @@
 # Deploy the public web versions of the games (games-web repo, main) to the VPS as their own container,
 # games-web on 127.0.0.1:7080, served at https://activemindcraft.com/games/<slug>/ (Caddy route set by the owner).
-# Started by hand only: Actions, deploy-games-web, Run workflow. Never touches /appgames or the game-studio container.
+# Starts in two ways. (1) By hand: Actions, deploy-games-web, Run workflow (slugs, or empty for all). (2) By a push to
+# main that moves one of the pins of games-web or of a web game's app repo: the pin update after every change to a repo's
+# main is the signal. A push run rebuilds every LIVE web game that is behind the checked-out main of its app repo or of
+# games-web (scripts/plan-games-web.sh compares the site's build-info.json), so a queued run that was replaced is
+# caught by the next one. A game with no build on the site yet is deployed by hand once first.
+# Never touches /appgames or the game-studio container. Secrets stay here (none in games-web).
 # Uses the same repo secrets as deploy-to-vps-as-web (CROSS_REPO_TOKEN, VPS_SSH_KEY, VPS_SSH_HOST, VPS_SSH_USER,
 # VPS_SSH_KNOWN_HOSTS).
 name: deploy-games-web
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - games-web
+      - apps/game-mind-1
+      - apps/game-mind-9
+      - apps/game-craft-preteen
+      - apps/game-craft-lowteen
+      - apps/game-craft_highteen
   workflow_dispatch:
     inputs:
       games:
@@ -28,8 +42,9 @@ concurrency:
 
 jobs:
   deploy-games-web:
-    # Only the owner can start a run (same gate as run-claude-from-issues.yml).
-    if: github.actor == 'yaseengem'
+    # By hand only the owner can start a run (same gate as run-claude-from-issues.yml); a push to main is by someone
+    # who can already write to main.
+    if: github.event_name == 'push' || github.actor == 'yaseengem'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -45,20 +60,37 @@ jobs:
           git submodule foreach 'case "$sm_path" in apps/*|games-web) git checkout main && git pull --ff-only origin main ;; esac'
           git submodule status -- apps
 
+      - name: Which games to deploy
+        id: plan
+        env:
+          EVENT: ${{ github.event_name }}
+          GAMES_INPUT: ${{ inputs.games }}
+        run: |
+          if [ "$EVENT" = workflow_dispatch ]; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"; echo "games=$GAMES_INPUT" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          behind="$(bash scripts/plan-games-web.sh)"
+          echo "Behind: ${behind:-nothing, the live games are up to date}"
+          if [ -n "$behind" ]; then echo "run=yes" >> "$GITHUB_OUTPUT"; else echo "run=no" >> "$GITHUB_OUTPUT"; fi
+          echo "games=$behind" >> "$GITHUB_OUTPUT"
+
       - name: Read the Flutter pin
+        if: steps.plan.outputs.run == 'yes'
         id: flutter
         run: echo "version=$(tr -d '[:space:]' < game-factory/.flutter-version)" >> "$GITHUB_OUTPUT"
 
       - uses: subosito/flutter-action@v2
+        if: steps.plan.outputs.run == 'yes'
         with:
           flutter-version: ${{ steps.flutter.outputs.version }}
           channel: stable
           cache: true
 
       - name: Deploy
+        if: steps.plan.outputs.run == 'yes'
         env:
-          GAMES: ${{ inputs.games }}
-          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          GAMES: ${{ steps.plan.outputs.games }}
+          DRY_RUN: ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '1' || '' }}
           SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           SSH_HOST: ${{ secrets.VPS_SSH_HOST }}
           SSH_USER: ${{ secrets.VPS_SSH_USER }}
