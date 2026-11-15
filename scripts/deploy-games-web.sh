@@ -64,7 +64,22 @@ done
 # (Skipped while games-web main has no site/ yet.)
 if [ -f "$GW/scripts/make_catalog.py" ] && [ -f "$GW/site/index.html" ]; then
   echo "==> Making the catalog page"
-  python3 "$GW/scripts/make_catalog.py" --apps "$APPS_DIR" --games "$GW/games.yaml" --out "$STAGE_DIR/web/catalog.json"
+  # The minigame lists (minigames.json) of the Craft games: from this deploy's builds, else from the live site.
+  CATALOG_DIST="$(mktemp -d)"
+  for slug in $(awk '$1=="-" && $2=="slug:" {print $3}' "$GW/games.yaml"); do
+    mkdir -p "$CATALOG_DIST/$slug"
+    if [ -f "$STAGE_DIR/web/$slug/minigames.json" ]; then
+      cp "$STAGE_DIR/web/$slug/minigames.json" "$CATALOG_DIST/$slug/"
+    else
+      curl -fsS -m 20 "https://${DOMAIN}${GW_BASE}/$slug/minigames.json" -o "$CATALOG_DIST/$slug/minigames.json" 2>/dev/null \
+        || rm -f "$CATALOG_DIST/$slug/minigames.json"
+    fi
+  done
+  dist_args=()
+  python3 "$GW/scripts/make_catalog.py" --help 2>&1 | grep -q -- '--dist' && dist_args=(--dist "$CATALOG_DIST")   # older games-web: none
+  python3 "$GW/scripts/make_catalog.py" --apps "$APPS_DIR" --games "$GW/games.yaml" ${dist_args[@]+"${dist_args[@]}"} \
+    --out "$STAGE_DIR/web/catalog.json"
+  rm -rf "$CATALOG_DIST"
   cp "$GW/site/index.html" "$STAGE_DIR/web/index.html"
   mkdir -p "$STAGE_DIR/web/_site" && cp -R "$GW/site/art" "$STAGE_DIR/web/_site/art"
 fi
