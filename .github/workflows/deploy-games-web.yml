@@ -1,0 +1,78 @@
+# Deploy the public web versions of the games (games-web repo, main) to the VPS as their own container,
+# games-web on 127.0.0.1:7080, served at https://activemindcraft.com/games/<slug>/ (Caddy route set by the owner).
+# Started by hand only: Actions, deploy-games-web, Run workflow. Never touches /appgames or the game-studio container.
+# Uses the same repo secrets as deploy-to-vps-as-web (CROSS_REPO_TOKEN, VPS_SSH_KEY, VPS_SSH_HOST, VPS_SSH_USER,
+# VPS_SSH_KNOWN_HOSTS).
+name: deploy-games-web
+
+on:
+  workflow_dispatch:
+    inputs:
+      games:
+        description: "Slugs from games-web/games.yaml, space separated (empty = all), e.g. ember scout"
+        required: false
+        default: ""
+      dry_run:
+        description: "Build only, do not upload"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# One deploy at a time; never cancel one that is mid-upload.
+concurrency:
+  group: deploy-games-web
+  cancel-in-progress: false
+
+
+jobs:
+  deploy-games-web:
+    # Only the owner can start a run (same gate as run-claude-from-issues.yml).
+    if: github.actor == 'yaseengem'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.CROSS_REPO_TOKEN }}
+          submodules: recursive
+          fetch-depth: 0
+
+      # Submodules are checked out detached at the pinned commit. UAT tests main.
+      - name: Put the games on their main
+        run: |
+          git submodule foreach 'case "$sm_path" in apps/*|games-web) git checkout main && git pull --ff-only origin main ;; esac'
+          git submodule status -- apps
+
+      - name: Read the Flutter pin
+        id: flutter
+        run: echo "version=$(tr -d '[:space:]' < game-factory/.flutter-version)" >> "$GITHUB_OUTPUT"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.flutter.outputs.version }}
+          channel: stable
+          cache: true
+
+      - name: Deploy
+        env:
+          GAMES: ${{ inputs.games }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          SSH_HOST: ${{ secrets.VPS_SSH_HOST }}
+          SSH_USER: ${{ secrets.VPS_SSH_USER }}
+          SSH_KNOWN_HOSTS: ${{ secrets.VPS_SSH_KNOWN_HOSTS }}
+        run: |
+          if [ -z "$DRY_RUN" ]; then
+            [ -n "$SSH_KEY" ] && [ -n "$SSH_HOST" ] && [ -n "$SSH_USER" ] && [ -n "$SSH_KNOWN_HOSTS" ] \
+              || { echo "VPS_SSH_* secrets are not set"; exit 1; }
+            umask 077
+            install -m 700 -d ~/.ssh
+            printf '%s\n' "$SSH_KEY" > ~/.ssh/web_vps_key
+            printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+            export VPS_HOST="$SSH_HOST" VPS_USER="$SSH_USER" VPS_SSH_KEY_PATH="$HOME/.ssh/web_vps_key"
+          fi
+          # shellcheck disable=SC2086
+          bash scripts/deploy-games-web.sh $GAMES
+          rm -f ~/.ssh/web_vps_key

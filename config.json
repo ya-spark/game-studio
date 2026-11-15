@@ -10,5 +10,10 @@
   "ports": {
     "web": 7000,
     "devBase": 7001
+  },
+  "gamesWeb": {
+    "basePath": "/games",
+    "vpsDeployPath": "/home/track/pro/games-web",
+    "port": 7080
   }
 }
