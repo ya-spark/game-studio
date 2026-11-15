@@ -40,7 +40,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | W1c Craft minigames as catalog cards | DONE, live 9:03 am | 775 cards (12 Fun, 152 Quick quiz, 611 minigame cards). |
 | #171 M6 Achievements (Ember, Presto) | DONE 9:05 am | Ember 8520637, Presto 535276c, pins moved; 969 and 669 tests; summary posted on the issue. |
 | R1b Rules dialog in the Mind hubs (#172) | DONE (Ember 1e886a9, Presto be98899) | Texts changed from the web copy are listed in the issue comment and QUEUE-LOG. |
-| R1a Rules dialog in the Craft apps and template (#173) | POSTED 9:10 am, running | Runs in parallel with R1b (a different code base). |
+| R1a Rules dialog in the Craft apps and template (#173) | DONE 9:50 am (template 44424ff, Scout f228373, Ranger ea89ae4, Champion fe5774f) | Template 843, Scout 592, Ranger 615, Champion 623 tests green; Mind engine synced. Changed texts are in the issue comment; the web copy needs the same words. |
 | M7 Play Games leaderboards | NEXT, after R1b (same hubs and save) | Cannot be tested on a device until the owner does the Play Console steps. |
 | X2 AdSense | Code in the apps (#165), switched OFF | Owner steps later (account, ids, privacy pages). |
 | #148 curriculum coverage | PAUSED since 12 Nov at Maths Year 3 | Resume with `@claude Please continue` on #148 when the owner says. |
