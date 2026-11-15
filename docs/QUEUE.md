@@ -10,7 +10,7 @@ This file is a TRACKER: one line per item with where it stands, who acts next an
   2. Read the latest comment of every issue under "Active". A run that finished with a summary is done; one that failed with no comment stopped early (usage limit or turns): comment `@claude Please continue` on that issue.
   3. Move a pin only if a run did not (`git submodule status` must match each repo's `origin/main`).
   4. Post the next item from "Next" when its dependency is done, then record it here.
-  5. Move finished items to "Done" with the issue number, commit and push this file to `main`.
+  5. Mark a finished item DONE on the status board with the issue number and time (the board keeps the one-line history; detail goes to `docs/QUEUE-LOG.md`), then commit and push this file to `main`.
 - Where the rest lives:
   - `docs/FEATURE-SPECS.md`: full text of the backlog items (C1 to C8, M1 to M7, X2, W1, R1, and others).
   - `docs/QUEUE-LOG.md`: the dated log (newest first), the games-web first proofs, the owner decisions of 2026-11-15, and the history of earlier work.
