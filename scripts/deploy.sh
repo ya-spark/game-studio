@@ -11,6 +11,8 @@
 # the docker group). No .env is needed for this app.
 # The container is named game-studio and publishes 127.0.0.1:<config.json ports.web> only. The login (basic
 # auth) and the shared Caddy proxy live in the master cloud-deploy repo (apps.json + scripts/deploy.sh proxy).
+# A name that starts with web- (web-ember, web-scout) is a PREVIEW of a web version built in games-web: it is built by
+# games-web/scripts/build_game.sh from the app checkout and served at <basePath>/web-<slug>/ (same container, same login).
 # Each game is served at https://<domain><basePath>/<name>/ where <name> is the folder minus "game-"
 # (game-wingy -> /appgames/wingy/), built with flutter build web --base-href <basePath>/<name>/.
 # Builds use the submodule commits checked out here (the pins), not latest main. A game that fails to
@@ -38,8 +40,11 @@ command -v flutter >/dev/null 2>&1 || { echo "flutter not found: run scripts/set
 
 # Arguments: game names (folders under apps/) and, at most, one ssh alias.
 games=(); alias_arg=""
+web_slugs=()
 for arg in "$@"; do
-  if [ -f "$APPS_DIR/$arg/pubspec.yaml" ]; then
+  if [[ "$arg" == web-* ]] && [ -f "$ROOT_DIR/games-web/scripts/build_game.sh" ]; then
+    web_slugs+=("${arg#web-}")
+  elif [ -f "$APPS_DIR/$arg/pubspec.yaml" ]; then
     games+=("$arg")
   elif [ -f "$APPS_DIR/game-${arg#game-}/pubspec.yaml" ]; then
     games+=("game-${arg#game-}")
@@ -54,6 +59,7 @@ for arg in "$@"; do
 done
 PARTIAL=0
 [ "${#games[@]}" -gt 0 ] && PARTIAL=1
+[ "${#web_slugs[@]}" -gt 0 ] && PARTIAL=1
 
 # Target: the alias argument, else VPS_HOST (environment or .env). The alias from ~/.ssh/config supplies user/key/port.
 VPS_HOST="${alias_arg:-${VPS_HOST:-}}"
@@ -74,7 +80,7 @@ if [ -n "${VPS_SSH_KEY_PATH:-}" ]; then
 fi
 if [ -n "${VPS_USER:-}" ]; then SSH_TARGET="${VPS_USER}@${VPS_HOST}"; else SSH_TARGET="$VPS_HOST"; fi
 
-if [ "${#games[@]}" -eq 0 ]; then
+if [ "${#games[@]}" -eq 0 ] && [ "${#web_slugs[@]}" -eq 0 ]; then
   for d in "$APPS_DIR"/game-*/; do
     [ -f "$d/pubspec.yaml" ] && games+=("$(basename "$d")")
   done
@@ -107,7 +113,7 @@ mkdir -p "$STAGE_DIR/web"
 
 flutter config --enable-web >/dev/null
 built=(); failed=()
-for game in "${games[@]}"; do
+for game in ${games[@]+"${games[@]}"}; do
   dir="$APPS_DIR/$game"
   [ -f "$dir/pubspec.yaml" ] || { echo "Skipping $game: no pubspec.yaml"; failed+=("$game"); continue; }
   slug="${game#game-}"
@@ -127,6 +133,16 @@ for game in "${games[@]}"; do
   else
     echo "    build failed: $game"
     failed+=("$game")
+  fi
+done
+for slug in ${web_slugs[@]+"${web_slugs[@]}"}; do
+  name="web-$slug"
+  echo "==> Building the web version $slug (base href $BASE_PATH/$name/)"
+  if APPS_DIR="$APPS_DIR" BASE_HREF="$BASE_PATH/$name/" bash "$ROOT_DIR/games-web/scripts/build_game.sh" "$slug" "" "$STAGE_DIR/web/$name"; then
+    built+=("$name")
+  else
+    echo "    build failed: $name"
+    failed+=("$name")
   fi
 done
 [ "${#built[@]}" -gt 0 ] || { echo "Nothing built."; exit 1; }

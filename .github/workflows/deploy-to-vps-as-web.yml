@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       games:
-        description: "Games to deploy, space separated (empty = all), e.g. wingy mind-1"
+        description: "Games to deploy, space separated (empty = all apps), e.g. wingy mind-1; web-ember web-scout deploy a preview of a games-web version"
         required: false
         default: ""
       dry_run:
@@ -50,7 +50,7 @@ jobs:
       # Submodules are checked out detached at the pinned commit. UAT tests main.
       - name: Put the games on their main
         run: |
-          git submodule foreach 'case "$sm_path" in apps/*) git checkout main && git pull --ff-only origin main ;; esac'
+          git submodule foreach 'case "$sm_path" in apps/*|games-web) git checkout main && git pull --ff-only origin main ;; esac'
           git submodule status -- apps
 
       - name: Read the Flutter pin
