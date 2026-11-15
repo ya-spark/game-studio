@@ -17,24 +17,22 @@ prices, Cloudflare or the VPS (owner only). Do not touch the three old games' co
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
 ## Status board (updated 8:53 am AEDT 16 Nov 2026; one line per item; the dated log below has the detail)
-| Item | Status | Detail / next |
-|---|---|---|
-| Web hosting at `/games/` (own container, port 7080) | DONE 2:41 am AEDT 16 Nov | `/appgames` untouched (401). Previews `/appgames/web-ember/` and `/web-scout/` still there: remove on the owner's word |
-| Which version runs (`build-info.json`, `/games/` index) | DONE 3:22 am | `/appgames` has none (not changed, owner's rule) |
-| Deploy on pin push (`deploy-games-web`) | DONE, proven by run 6 (3:20 am) | Not yet known: whether a Claude run's own pin push starts it |
-| Repo names follow the audience (Scout = `game-craft-preteen`, Ranger = `game-craft-lowteen`) | DONE 3:15 am | Internal ids `craft_lowteen` (Scout) and `craft_preteen` (Ranger) stay, recorded as historical |
-| `games-web` public | DONE | No secrets or private code in it |
-| W1a landing page, filters, deep links, how-to-play dialog | DONE, live 3:34 am | Start-up fix (parallel pack prefetch) live 3:42 am |
-| W1b Presto, Ranger, Champion on the web | DONE, live 3:53 am | Catalog: 164 cards (12 Fun, 152 Learn) |
-| W1c Craft minigames as catalog cards | IN PROGRESS, paused at the owner's word (8:52 am) | Code written but UNTESTED; saved (not for main) on the games-web session branch `claude/lucid-franklin-q54040` (launcher `#/play/...`, rules text for 10 minigames, `make_catalog.py --dist`, page filter); the minigame list helper is committed on the session branch (4a52559). TODO: pass `--dist` in `deploy-games-web.sh` (fetch the live `minigames.json` of games not rebuilt), build and test in Chromium, commit, merge to games-web main, deploy |
-| #171 M6 Achievements (Ember, Presto) | RUNNING: run 63 started 8:50 am AEDT | Run 61 failed 4:43 am after its checklist; restarted 8:52 am; run 64 (comment event) queued |
-| R1 Rules and tips dialog in the apps | NEXT, after M6 | Same save and hubs as M6, so one at a time |
-| M7 Play Games leaderboards | NEXT, after M6 | Cannot be tested on a device until the owner does the Play Console steps |
-| X2 AdSense | Code in the apps (#165), switched OFF | Owner: AdSense account, ids, privacy pages later |
-| #148 curriculum coverage | PAUSED since 12 Nov at Maths Year 3 | Resume with `@claude Please continue` on #148 when the owner says |
-| Issue 10 purchase check on the VPS | WAITING on the owner (VPS and Cloudflare) | |
-| Screenshots | LAST, when the owner says | |
-| Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167) | Details in "Done" and the log below |
+- **Web hosting at `/games/` (own container, port 7080)**: DONE 2:41 am AEDT 16 Nov. `/appgames` untouched (401). Previews `/appgames/web-ember/` and `/web-scout/` still there: remove on the owner's word
+- **Which version runs (`build-info.json`, `/games/` index)**: DONE 3:22 am. `/appgames` has none (not changed, owner's rule)
+- **Deploy on pin push (`deploy-games-web`)**: DONE, proven by run 6 (3:20 am). Not yet known: whether a Claude run's own pin push starts it
+- **Repo names follow the audience (Scout = `game-craft-preteen`, Ranger = `game-craft-lowteen`)**: DONE 3:15 am. Internal ids `craft_lowteen` (Scout) and `craft_preteen` (Ranger) stay, recorded as historical
+- **`games-web` public**: DONE. No secrets or private code in it
+- **W1a landing page, filters, deep links, how-to-play dialog**: DONE, live 3:34 am. Start-up fix (parallel pack prefetch) live 3:42 am
+- **W1b Presto, Ranger, Champion on the web**: DONE, live 3:53 am. Catalog: 164 cards (12 Fun, 152 Learn)
+- **W1c Craft minigames as catalog cards**: IN PROGRESS, paused at the owner's word (8:52 am). Code written but UNTESTED; saved (not for main) on the games-web session branch `claude/lucid-franklin-q54040` (launcher `#/play/...`, rules text for 10 minigames, `make_catalog.py --dist`, page filter); the minigame list helper is committed on the session branch (4a52559). TODO: pass `--dist` in `deploy-games-web.sh` (fetch the live `minigames.json` of games not rebuilt), build and test in Chromium, commit, merge to games-web main, deploy
+- **#171 M6 Achievements (Ember, Presto)**: RUNNING: run 63 started 8:50 am AEDT. Run 61 failed 4:43 am after its checklist; restarted 8:52 am; run 64 (comment event) queued
+- **R1 Rules and tips dialog in the apps**: NEXT, after M6. Same save and hubs as M6, so one at a time
+- **M7 Play Games leaderboards**: NEXT, after M6. Cannot be tested on a device until the owner does the Play Console steps
+- **X2 AdSense**: Code in the apps (#165), switched OFF. Owner: AdSense account, ids, privacy pages later
+- **#148 curriculum coverage**: PAUSED since 12 Nov at Maths Year 3. Resume with `@claude Please continue` on #148 when the owner says
+- **Issue 10 purchase check on the VPS**: WAITING on the owner (VPS and Cloudflare).
+- **Screenshots**: LAST, when the owner says.
+- **Done earlier**: C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167). Details in "Done" and the log below
 
 ## Active
 - 8:52 am AEDT 16 Nov (session was down from about 4:45 am AEDT): #171 M6 run 61 FAILED at 4:43 am AEDT, 4 minutes after posting its checklist, no summary, nothing pushed (run 62, a comment event, was skipped). `@claude Please continue` commented on #171 at 8:52 am AEDT; one issue run active. Time corrections: three entries below were written with the wrong clock and are fixed (W1b 3:50 am, W1c 4:41 am, M6 4:43 am AEDT). Next: check #171 in a few minutes; W1c (games-web) continues in parallel.
