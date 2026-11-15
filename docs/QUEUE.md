@@ -16,7 +16,7 @@ No release, tag, version bump or store upload. No secrets, keystores or real ad 
 prices, Cloudflare or the VPS (owner only). Do not touch the three old games' code (their workflows now call the shared ones, like every game). No people in any art.
 Content packs beyond Years 0 to 12 maths and English: owner says when. Issues come from `yaseengem` only.
 
-## Status board (updated 9:05 am AEDT 16 Nov 2026; one line per item; the dated log below has the detail)
+## Status board (updated 8:53 am AEDT 16 Nov 2026; one line per item; the dated log below has the detail)
 | Item | Status | Detail / next |
 |---|---|---|
 | Web hosting at `/games/` (own container, port 7080) | DONE 2:41 am AEDT 16 Nov | `/appgames` untouched (401). Previews `/appgames/web-ember/` and `/web-scout/` still there: remove on the owner's word |
@@ -26,7 +26,7 @@ Content packs beyond Years 0 to 12 maths and English: owner says when. Issues co
 | `games-web` public | DONE | No secrets or private code in it |
 | W1a landing page, filters, deep links, how-to-play dialog | DONE, live 3:34 am | Start-up fix (parallel pack prefetch) live 3:42 am |
 | W1b Presto, Ranger, Champion on the web | DONE, live 3:53 am | Catalog: 164 cards (12 Fun, 152 Learn) |
-| W1c Craft minigames as catalog cards | IN PROGRESS, paused at the owner's word (9:00 am) | Code written but UNTESTED and UNCOMMITTED in the games-web working tree (launcher `#/play/...`, rules text for 10 minigames, `make_catalog.py --dist`, page filter); the minigame list helper is committed on the session branch (4a52559). TODO: pass `--dist` in `deploy-games-web.sh` (fetch the live `minigames.json` of games not rebuilt), build and test in Chromium, commit, merge to games-web main, deploy |
+| W1c Craft minigames as catalog cards | IN PROGRESS, paused at the owner's word (8:52 am) | Code written but UNTESTED and UNCOMMITTED in the games-web working tree (launcher `#/play/...`, rules text for 10 minigames, `make_catalog.py --dist`, page filter); the minigame list helper is committed on the session branch (4a52559). TODO: pass `--dist` in `deploy-games-web.sh` (fetch the live `minigames.json` of games not rebuilt), build and test in Chromium, commit, merge to games-web main, deploy |
 | #171 M6 Achievements (Ember, Presto) | RUNNING: run 63 started 8:50 am AEDT | Run 61 failed 4:43 am after its checklist; restarted 8:52 am; run 64 (comment event) queued |
 | R1 Rules and tips dialog in the apps | NEXT, after M6 | Same save and hubs as M6, so one at a time |
 | M7 Play Games leaderboards | NEXT, after M6 | Cannot be tested on a device until the owner does the Play Console steps |
