@@ -1,17 +1,11 @@
 # Deploy the public web versions of the games (games-web repo, main) to the VPS as their own container,
 # games-web on 127.0.0.1:7080, served at https://activemindcraft.com/games/<slug>/ (Caddy route set by the owner).
-# Runs by hand (Actions, deploy-games-web, Run workflow) and every 15 minutes on its own: the scheduled run compares each
-# live game's build-info.json with the current `main` of its app repo and of games-web and rebuilds only the ones that
-# are behind (scripts/plan-games-web.sh), so a commit on main reaches the site without anyone starting a deploy.
-# A game with no build on the site yet is not picked up by the schedule: deploy it by hand once first.
-# Never touches /appgames or the game-studio container.
+# Started by hand only: Actions, deploy-games-web, Run workflow. Never touches /appgames or the game-studio container.
 # Uses the same repo secrets as deploy-to-vps-as-web (CROSS_REPO_TOKEN, VPS_SSH_KEY, VPS_SSH_HOST, VPS_SSH_USER,
 # VPS_SSH_KNOWN_HOSTS).
 name: deploy-games-web
 
 on:
-  schedule:
-    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
     inputs:
       games:
@@ -33,38 +27,9 @@ concurrency:
 
 
 jobs:
-  plan:
-    # Only the owner can start a run by hand (same gate as run-claude-from-issues.yml); the schedule is allowed.
-    if: github.event_name == 'schedule' || github.actor == 'yaseengem'
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    outputs:
-      run: ${{ steps.plan.outputs.run }}
-      games: ${{ steps.plan.outputs.games }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          sparse-checkout: scripts
-      - name: Decide what to deploy
-        id: plan
-        env:
-          GH_TOKEN: ${{ secrets.CROSS_REPO_TOKEN }}
-          EVENT: ${{ github.event_name }}
-          GAMES: ${{ inputs.games }}
-        run: |
-          if [ "$EVENT" = workflow_dispatch ]; then
-            echo "run=yes" >> "$GITHUB_OUTPUT"; echo "games=$GAMES" >> "$GITHUB_OUTPUT"; exit 0
-          fi
-          curl -fsS -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github.raw" \
-            https://api.github.com/repos/ya-spark/games-web/contents/games.yaml?ref=main -o "$RUNNER_TEMP/games.yaml"
-          changed="$(GAMES_YAML="$RUNNER_TEMP/games.yaml" bash scripts/plan-games-web.sh)"
-          echo "Out of date: ${changed:-nothing}"
-          if [ -n "$changed" ]; then echo "run=yes" >> "$GITHUB_OUTPUT"; else echo "run=no" >> "$GITHUB_OUTPUT"; fi
-          echo "games=$changed" >> "$GITHUB_OUTPUT"
-
   deploy-games-web:
-    needs: plan
-    if: needs.plan.outputs.run == 'yes'
+    # Only the owner can start a run (same gate as run-claude-from-issues.yml).
+    if: github.actor == 'yaseengem'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -92,8 +57,8 @@ jobs:
 
       - name: Deploy
         env:
-          GAMES: ${{ needs.plan.outputs.games }}
-          DRY_RUN: ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '1' || '' }}
+          GAMES: ${{ inputs.games }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
           SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           SSH_HOST: ${{ secrets.VPS_SSH_HOST }}
           SSH_USER: ${{ secrets.VPS_SSH_USER }}
