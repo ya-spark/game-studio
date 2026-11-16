@@ -41,7 +41,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | #171 M6 Achievements (Ember, Presto) | DONE 9:05 am | Ember 8520637, Presto 535276c, pins moved; 969 and 669 tests; summary posted on the issue. |
 | R1b Rules dialog in the Mind hubs (#172) | DONE (Ember 1e886a9, Presto be98899) | Texts changed from the web copy are listed in the issue comment and QUEUE-LOG. |
 | R1a Rules dialog in the Craft apps and template (#173) | DONE 9:50 am (template 44424ff, Scout f228373, Ranger ea89ae4, Champion fe5774f) | Template 843, Scout 592, Ranger 615, Champion 623 tests green; Mind engine synced. Changed texts are in the issue comment; the web copy needs the same words. |
-| #174 M7 Play Games leaderboards (Ember, Presto) | DONE 4:14 PM AEDT | Pushed to both Mind hubs and `public/`; off in the repo (`play_games.enabled: false`). Next: owner creates the Play Console leaderboards and puts the ids in `play_games.leaderboards`. |
+| #174 M7 Play Games leaderboards (Ember, Presto) | DONE 4:14 pm | Pushed to both Mind hubs and `public/`; off in the repo (`play_games.enabled: false`). Next: owner creates the Play Console leaderboards and puts the ids in `play_games.leaderboards`. |
 | X2 AdSense | Code in the apps (#165), switched OFF | Owner steps later (account, ids, privacy pages). |
 | #148 curriculum coverage | PAUSED since 12 Nov at Maths Year 3 | Resume with `@claude Please continue` on #148 when the owner says. |
 | Issue 10 purchase check on the VPS | WAITING on the owner | Needs the VPS and Cloudflare set up first. |
@@ -51,9 +51,10 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`. |
 
 ## Active (running now)
-- #174 M7 (Ember, Presto): finished 4:14 PM AEDT; see the issue summary.
+- No issue runs. Web deploy run 16 (started 4:14 pm, from the M7 pin push) is rebuilding Ember and Presto at their new commits (Ember 97eabda, Presto 1dc31d2).
 
 ## Next (post in this order, as dependencies finish)
+- Nothing is left to post without the owner. Held for the owner: #148 curriculum (paused), the C5 topic order (review), X2 AdSense (accounts). Not picked: C6 read-aloud, C9 content editor, X3 accessibility pass, X4 localisation (see `docs/FEATURE-SPECS.md`).
 - Issue 10 (purchase check on the VPS): only after the owner has set up the VPS and Cloudflare.
 - Screenshots: once, at the very end (see `docs/SCREENSHOTS.md`).
 
