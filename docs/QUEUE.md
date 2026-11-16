@@ -26,7 +26,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
 
-## Status board (updated 4:03 pm AEDT 16 Nov 2026)
+## Status board (updated 4:07 pm AEDT 16 Nov 2026)
 
 | Item | Status | Detail / next |
 |---|---|---|
@@ -46,6 +46,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | #148 curriculum coverage | PAUSED since 12 Nov at Maths Year 3 | Resume with `@claude Please continue` on #148 when the owner says. |
 | Issue 10 purchase check on the VPS | WAITING on the owner | Needs the VPS and Cloudflare set up first. |
 | Screenshots | LAST | Once, at the very end, when the owner says (method in `docs/SCREENSHOTS.md`). |
+| Web how-to-play text synced with the apps | DONE 4:07 pm, deploying | `games-web/scripts/sync_rules.py` now generates the web text from the apps' own catalogues (25 games); the pin push starts the deploy. Re-run the script after an app's text changes. |
 | Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`. |
 
@@ -53,7 +54,6 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - #174 M7 (Ember, Presto): posted 4:03 pm; read its checklist and summary comments, restart a stopped run with `@claude Please continue`.
 
 ## Next (post in this order, as dependencies finish)
-- Studio session: copy the rules and tips text that #172 and #173 changed into the web copy (`games-web/overlay/common/lib/web_product/web_rules.dart`) so web and apps say the same words, then let the pin deploy.
 - Issue 10 (purchase check on the VPS): only after the owner has set up the VPS and Cloudflare.
 - Screenshots: once, at the very end (see `docs/SCREENSHOTS.md`).
 
@@ -62,7 +62,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Decide whether `/appgames` should get version info too.
 - Decide which is right for Scout: the docs (Door runner and Balloon pop coin-locked) or the code (free; only Tug of war is locked).
 - Review the Scout, Ranger and Champion topic order (C5) and say what moves.
-- Review the how-to-play text (`games-web/overlay/common/lib/web_product/web_rules.dart`), the content packs and each app's `docs/SPEC.md`.
+- Review the how-to-play text (`games-web/overlay/common/lib/web_product/web_rules_data.dart` is generated from the apps), the content packs and each app's `docs/SPEC.md`.
 - Listen to the M4 sound packs.
 - Decide what replaces coins, and whether coins should survive a reinstall at all.
 - Turn off the `noindex` header on the games server when the site is public.
