@@ -26,7 +26,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
 
-## Status board (updated 4:07 pm AEDT 16 Nov 2026)
+## Status board (updated 4:15 pm AEDT 16 Nov 2026)
 
 | Item | Status | Detail / next |
 |---|---|---|
@@ -46,7 +46,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | #148 curriculum coverage | PAUSED since 12 Nov at Maths Year 3 | Resume with `@claude Please continue` on #148 when the owner says. |
 | Issue 10 purchase check on the VPS | WAITING on the owner | Needs the VPS and Cloudflare set up first. |
 | Screenshots | LAST | Once, at the very end, when the owner says (method in `docs/SCREENSHOTS.md`). |
-| Web how-to-play text synced with the apps | DONE 4:07 pm, deploying | `games-web/scripts/sync_rules.py` now generates the web text from the apps' own catalogues (25 games); the pin push starts the deploy. Re-run the script after an app's text changes. |
+| Web how-to-play text synced with the apps | DONE, live (checked 4:15 pm) | Run 15 (started 4:07 pm) rebuilt all five games at games-web a7412f1; the live Blockfall dialog shows the apps' new wording; 775 cards; `/appgames` 401. `games-web/scripts/sync_rules.py` generates the text from the apps' catalogues (25 games): re-run it after an app's text changes. |
 | Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`. |
 
