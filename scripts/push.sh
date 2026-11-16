@@ -1,34 +1,14 @@
 #!/usr/bin/env bash
-# Push every submodule's main, then update the master pins and push the master.
+# Push every submodule's main, then move the pins and push game-studio.
 #
 # Usage: ./scripts/push.sh ["pin commit message"]
 #
-# Submodules are pushed first so the master never pins a commit that is not
-# on the submodule's main. Uncommitted work is never committed here; the
-# script only pushes existing commits and commits the pointer changes.
-set -euo pipefail
+# Shorthand for scripts/push-all.sh followed by scripts/bump.sh (run those directly for dry runs or
+# to limit to some submodules). Submodules are pushed first so the pins never point at a commit that
+# is not on the submodule's main.
+set -uo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT_DIR"
-MSG="${1:-Update submodule pins}"
-
-git submodule foreach --quiet '
-  echo "==> $sm_path"
-  [ "$(git rev-parse --abbrev-ref HEAD)" = main ] || { echo "not on main, skipping"; exit 0; }
-  [ -z "$(git status --porcelain)" ] || echo "warning: uncommitted changes (not pushed)"
-  git push origin main
-'
-
-echo "==> game-studio"
-pins=$(git diff --name-only --ignore-submodules=none | while read -r p; do [ -e "$p/.git" ] && echo "$p"; done || true)
-if [ -n "$pins" ]; then
-  # shellcheck disable=SC2086
-  git add $pins
-  git commit -m "$MSG
-
-Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
-fi
-git push origin main
-
+"$DIR/push-all.sh" || exit 1
 echo
-git submodule status
+if [ -n "${1:-}" ]; then exec "$DIR/bump.sh" -m "$1"; else exec "$DIR/bump.sh"; fi
