@@ -26,7 +26,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
 
-## Status board (updated 4:02 pm AEDT 16 Nov 2026)
+## Status board (updated 4:03 pm AEDT 16 Nov 2026)
 
 | Item | Status | Detail / next |
 |---|---|---|
@@ -41,7 +41,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | #171 M6 Achievements (Ember, Presto) | DONE 9:05 am | Ember 8520637, Presto 535276c, pins moved; 969 and 669 tests; summary posted on the issue. |
 | R1b Rules dialog in the Mind hubs (#172) | DONE (Ember 1e886a9, Presto be98899) | Texts changed from the web copy are listed in the issue comment and QUEUE-LOG. |
 | R1a Rules dialog in the Craft apps and template (#173) | DONE 9:50 am (template 44424ff, Scout f228373, Ranger ea89ae4, Champion fe5774f) | Template 843, Scout 592, Ranger 615, Champion 623 tests green; Mind engine synced. Changed texts are in the issue comment; the web copy needs the same words. |
-| M7 Play Games leaderboards | NEXT, ready to post (R1b is done) | Cannot be tested on a device until the owner does the Play Console steps. |
+| #174 M7 Play Games leaderboards (Ember, Presto) | POSTED 4:03 pm, running | Off in the repo (`play_games.enabled: false`); cannot be tested on a device until the owner does the Play Console steps. |
 | X2 AdSense | Code in the apps (#165), switched OFF | Owner steps later (account, ids, privacy pages). |
 | #148 curriculum coverage | PAUSED since 12 Nov at Maths Year 3 | Resume with `@claude Please continue` on #148 when the owner says. |
 | Issue 10 purchase check on the VPS | WAITING on the owner | Needs the VPS and Cloudflare set up first. |
@@ -50,10 +50,9 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`. |
 
 ## Active (running now)
-- Nothing is running. #172 R1b and #173 R1a are done.
+- #174 M7 (Ember, Presto): posted 4:03 pm; read its checklist and summary comments, restart a stopped run with `@claude Please continue`.
 
 ## Next (post in this order, as dependencies finish)
-- M7 Play Games leaderboards (Ember and Presto): ready to post now that #172 is done.
 - Studio session: copy the rules and tips text that #172 and #173 changed into the web copy (`games-web/overlay/common/lib/web_product/web_rules.dart`) so web and apps say the same words, then let the pin deploy.
 - Issue 10 (purchase check on the VPS): only after the owner has set up the VPS and Cloudflare.
 - Screenshots: once, at the very end (see `docs/SCREENSHOTS.md`).
