@@ -8,7 +8,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Starting a session or continuing the work:
   1. List `game-studio` workflow runs (`run-claude-from-issues`). Count the active ones (in progress or queued); keep at most 3 at once (usage limits).
   2. Read the latest comment of every issue under "Active". A run that finished with a summary is done; one that failed with no comment stopped early (usage limit or turns): comment `@claude Please continue` on that issue.
-  3. Move a pin only if a run did not (`git submodule status` must match each repo's `origin/main`).
+  3. Move a pin only if a run did not (`git submodule status` must match each repo's `origin/main`); `scripts/pull-all.sh`, `scripts/push-all.sh`, `scripts/bump.sh` and `scripts/push.sh` do the pulling, pushing and pin bumping (all read-only with `-n` where they take it).
   4. Post the next item from "Next" when its dependency is done, then record it here.
   5. Mark a finished item DONE on the status board with the issue number and time (the board keeps the one-line history; detail goes to `docs/QUEUE-LOG.md`), then commit and push this file to `main`.
 - Where the rest lives:
@@ -26,13 +26,13 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
 
-## Status board (updated 3:18 pm AEDT 16 Nov 2026)
+## Status board (updated 4:02 pm AEDT 16 Nov 2026)
 
 | Item | Status | Detail / next |
 |---|---|---|
 | Web hosting at `/games/` (own container, port 7080) | DONE 2:41 am | `/appgames` untouched (401). |
 | Version info (`build-info.json`, `/games/` index) | DONE 3:22 am | `/appgames` has none (owner's rule: not changed). |
-| Deploy on pin push (`deploy-games-web`) | DONE, proven by run 6 | Unknown yet: whether a Claude run's own pin push starts it. |
+| Deploy on pin push (`deploy-games-web`) | DONE, proven by runs 6 to 14 | A Claude run's own pin push DOES start it (runs 12, 13, 14 at 9:05 to 9:46 am); all five games live at the pinned app commits (checked 4:03 pm). |
 | Repo names follow the audience (Scout = `game-craft-preteen`, Ranger = `game-craft-lowteen`) | DONE 3:15 am | Internal ids `craft_lowteen` (Scout) and `craft_preteen` (Ranger) stay (historical). |
 | `games-web` public | DONE | No secrets or private code in it. |
 | W1a landing page, filters, deep links, how-to-play dialog | DONE, live 3:34 am | Start-up fix (parallel pack prefetch) live 3:42 am. |
@@ -46,6 +46,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | #148 curriculum coverage | PAUSED since 12 Nov at Maths Year 3 | Resume with `@claude Please continue` on #148 when the owner says. |
 | Issue 10 purchase check on the VPS | WAITING on the owner | Needs the VPS and Cloudflare set up first. |
 | Screenshots | LAST | Once, at the very end, when the owner says (method in `docs/SCREENSHOTS.md`). |
+| Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`. |
 
 ## Active (running now)
