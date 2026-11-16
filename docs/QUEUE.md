@@ -26,7 +26,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
 
-## Status board (updated 4:15 pm AEDT 16 Nov 2026)
+## Status board (updated 6:25 pm AEDT 16 Nov 2026)
 
 | Item | Status | Detail / next |
 |---|---|---|
@@ -47,11 +47,12 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Issue 10 purchase check on the VPS | WAITING on the owner | Needs the VPS and Cloudflare set up first. |
 | Screenshots | LAST | Once, at the very end, when the owner says (method in `docs/SCREENSHOTS.md`). |
 | Web how-to-play text synced with the apps | DONE, live (checked 4:15 pm) | Run 15 (started 4:07 pm) rebuilt all five games at games-web a7412f1; the live Blockfall dialog shows the apps' new wording; 775 cards; `/appgames` 401. `games-web/scripts/sync_rules.py` generates the text from the apps' catalogues (25 games): re-run it after an app's text changes. |
+| Preview copies `/appgames/web-ember/` and `/web-scout/` removed | DONE 6:15 pm | Owner said remove (6:05 pm). Full `/appgames` rebuild, `deploy-to-vps-as-web` run 13: the image now holds only the eight apps at their `main`. `/games/` untouched. Not checked in a browser (`/appgames` is behind the login). |
 | Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`. |
 
 ## Active (running now)
-- No issue runs. Web deploy run 16 (started 4:14 pm, from the M7 pin push) is rebuilding Ember and Presto at their new commits (Ember 97eabda, Presto 1dc31d2).
+- No issue runs, no deploys.
 
 ## Next (post in this order, as dependencies finish)
 - Nothing is left to post without the owner. Held for the owner: #148 curriculum (paused), the C5 topic order (review), X2 AdSense (accounts). Not picked: C6 read-aloud, C9 content editor, X3 accessibility pass, X4 localisation (see `docs/FEATURE-SPECS.md`).
@@ -59,7 +60,6 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Screenshots: once, at the very end (see `docs/SCREENSHOTS.md`).
 
 ## Waiting on the owner
-- Remove the two preview copies `/appgames/web-ember/` and `/appgames/web-scout/` (on the owner's word).
 - Decide whether `/appgames` should get version info too.
 - Decide which is right for Scout: the docs (Door runner and Balloon pop coin-locked) or the code (free; only Tug of war is locked).
 - Review the Scout, Ranger and Champion topic order (C5) and say what moves.
@@ -68,4 +68,5 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Decide what replaces coins, and whether coins should survive a reinstall at all.
 - Turn off the `noindex` header on the games server when the site is public.
 - Accounts and setup: AdSense account, ids and privacy pages; Play Console, AdMob and prices; Play Games setup for the Mind hubs (before M7 goes live; steps in `game-factory/docs/PLAY_GAMES_SETUP.md`); name and trademark checks; Cloudflare and VPS; copy the game-content workflows and add secrets; rotate the token from #154; set `CI_ENABLED` when CI should run.
-- Say when to resume #148.
+- Say when to resume #148 (owner, 6:05 pm 16 Nov: stays paused).
+- Block Puzzle: what replaces the paid coin packs (in discussion 6:20 pm 16 Nov: permanent, Play-restored items against keeping coins with a backup).
