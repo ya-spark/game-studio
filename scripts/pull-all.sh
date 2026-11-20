@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Pull game-studio and every submodule (game-factory, apps/*, games-web, content, public) to the
+# Pull game-studio and every submodule (game-factory, apps/*, games-web, game-content, public) to the
 # latest main.
 #   scripts/pull-all.sh              game-studio (ff-only), then each submodule on main (ff-only)
 #   scripts/pull-all.sh <path> [...] only these submodules (e.g. apps/game-mind-1)

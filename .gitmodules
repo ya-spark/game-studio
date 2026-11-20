@@ -28,8 +28,8 @@
 [submodule "apps/game-mind-9"]
 	path = apps/game-mind-9
 	url = https://github.com/ya-spark/game-mind-9.git
-[submodule "content"]
-	path = content
+[submodule "game-content"]
+	path = game-content
 	url = https://github.com/ya-spark/game-content.git
 [submodule "games-web"]
 	path = games-web
