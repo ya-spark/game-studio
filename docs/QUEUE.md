@@ -12,7 +12,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
   4. Post the next item from "Next" when its dependency is done, then record it here.
   5. Mark a finished item DONE on the status board with the issue number and time (the board keeps the one-line history; detail goes to `docs/QUEUE-LOG.md`), then commit and push this file to `main`.
 - Where the rest lives:
-  - `docs/FEATURE-SPECS.md`: full text of the backlog items (C1 to C8, M1 to M7, X2, W1, R1, and others).
+  - `docs/FEATURE-SPECS.md`: full text of the live backlog items (X2, W1, W2, R1, and others); the finished C1 to C8 and M1 to M7 are in `docs/specs-archive-C-M.md`.
   - `docs/QUEUE-LOG.md`: the dated log (newest first), the games-web first proofs, the owner decisions of 2026-11-15, and the history of earlier work.
   - `docs/DESIGN-web-catalog.md`: the web catalog and rules dialog design.
   - `docs/SCREENSHOTS.md`: how to take store screenshots without an emulator (last step).
@@ -48,8 +48,10 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Screenshots | LAST | Once, at the very end, when the owner says (method in `docs/SCREENSHOTS.md`). |
 | Web how-to-play text synced with the apps | DONE, live (checked 4:15 pm) | Run 15 (started 4:07 pm) rebuilt all five games at games-web a7412f1; the live Blockfall dialog shows the apps' new wording; 775 cards; `/appgames` 401. `games-web/scripts/sync_rules.py` generates the text from the apps' catalogues (25 games): re-run it after an app's text changes. |
 | Preview copies `/appgames/web-ember/` and `/web-scout/` removed | DONE 6:15 pm | Owner said remove (6:05 pm). Full `/appgames` rebuild, `deploy-to-vps-as-web` run 13: the image now holds only the eight apps at their `main`. `/games/` untouched. Not checked in a browser (`/appgames` is behind the login). |
+| W2 Landing page redesign (games-web) | SPEC WRITTEN 1:15 am AEDT 21 Nov, not posted | Modern, audience-neutral page: hero with Play / Maths / English / Surprise me, recents on the device, Play shelf, year chips, search. Full text in `docs/FEATURE-SPECS.md` (W2). Next: owner says go, then the orchestrator builds it in `games-web/site/index.html` and moves the pin. |
+| W2.1 Landing page revision (Kahoot-style) | SPEC WRITTEN 1:30 am AEDT 21 Nov, not posted | Sticky coloured top bar, Jump in row, themed shelves, colourful tiles. W2 page is built in the working tree (uncommitted, not browser-checked). Art from Figma (studio session). Next: owner OK on Figma credits, then tech lead. Text in `docs/FEATURE-SPECS.md` (W2.1). |
 | Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
-| Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`. |
+| Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`, older in `docs/queue-log-archive.md`. |
 
 ## Active (running now)
 - No issue runs, no deploys.
