@@ -16,3 +16,4 @@ Verbatim archive from `docs/DECISIONS.md` (split 2026-11-21 to save tokens). The
 
 ## Web landing page (owner, 2026-11-21)
 - The games-web landing page does not say who it is for and never mentions an age, "kids", "parents" or "teachers". It is designed so any visitor, from the youngest school years to teenagers, finds it easy and good-looking. Recent games are kept on the visitor's device in the browser (`localStorage`, nothing sent anywhere). Spec: `docs/FEATURE-SPECS.md` W2.
+- Landing page art and priority (owner, 2026-11-21): W2/W2.1 continue now despite the vision doc's hold (the owner released it). Learn comes before Play in the page order. Site art is hand-drawn original SVG: no AI image generation (the Figma illustration generator counts as AI), consistent with the standing art rule; Figma-designed art comes later in one batch.

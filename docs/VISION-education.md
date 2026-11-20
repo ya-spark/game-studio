@@ -95,4 +95,4 @@ Skill progress is the objective; games are the interface to it. The learner sees
 - **Name:** open. Internal name `trail`. Options: Trail, Path, Stepping stones, Journey, Voyage, Expedition, Climb, Summit, Constellation, Garden, Quest line, Roadmap. Recommendation: one shared screen, shown as Scout "Path", Ranger "Trail", Champion "Climb", Mind "Journey"; Constellation if a distinctive look is wanted. No trademark or Play Store check done on these words.
 
 ## 9. On hold until the loop exists
-W2 / W2.1 landing page redesign, X2 AdSense, and any new standalone Mind game that has no skill. Web catalog and store work continue only where they already run.
+W2 / W2.1 landing page redesign (RELEASED by the owner 2026-11-21: it continues, Learn first), X2 AdSense, and any new standalone Mind game that has no skill. Web catalog and store work continue only where they already run.
