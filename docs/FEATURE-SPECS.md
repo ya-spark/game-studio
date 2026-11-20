@@ -40,11 +40,11 @@ T1 format limits, then T2 skills, then T3 mastery. T4 game limits and Study on a
 
 ### T1 Format limits and size classes (engine, validator, content tool)
 - New `lib/engine/content/format_limits.dart`: the envelope of `docs/FORMAT-CONSTRAINTS.md` section 2 as constants, read by the validator, the CSV tool, the pool report and tests.
-- Validator: envelope breaches are errors with item, field and limit named. Every maths `numeric` item must carry an `expression` (error for subject `maths`).
+- Validator: envelope breaches are errors with item, field and limit named.
 - Derived `SizeClass` (`short`: prompt 150, `mcq` options 30, tiles 24; else `long`), a getter on `ContentItem`; never authored, never stored in packs.
 - `content_cli pool` reports, per topic: items by format and size class, and (after T4) accepted items per game.
-- Content repo: fix the handful of items outside the envelope (a 14-letter word, a pair set with a repeated right side, a 3-item category, categories with a single item to be counted) and backfill `expression` on the 265 maths `numeric` items (the tool derives it for simple `a op b` prompts, the rest by hand, checked by the validator).
-- Update `docs/CONTENT_FORMAT.md` in the template and the apps (add the limits and size class; keep the type list). Tests: one per envelope rule, size-class boundaries, expression required.
+- Content repo: fix what the validator rejects. DONE in the IDE session: after the limits were widened to fit the real content (see `docs/FORMAT-CONSTRAINTS.md` section 7) the only error was one pair set (`maths_3_time_calendars.0013`, repeated rights), fixed to three pairs; the pack is now version 2 and Scout's bundled copy updated.
+- Update `docs/CONTENT_FORMAT.md` in the template and the apps (add the limits and size class; keep the type list). Tests: one per envelope rule, size-class boundaries.
 - Done when: all packs validate, `sync_engine.py` drift check green in the five apps, analyse, format and tests green in each.
 
 ### T2 Skills (content model)
@@ -65,7 +65,7 @@ T1 format limits, then T2 skills, then T3 mastery. T4 game limits and Study on a
 - Tests: window and weighting arithmetic, day rule, decay, skip-ahead pass and fail, migration of a version 8 save.
 
 ### T4 Game limits and Study on every format
-- `MiniGame` gains an accepts declaration (formats, size class `short` or `any`, required fields such as `expression`, optional counts such as 3 to 10 letters); the matcher, `minPool` and the pool report count only accepted items. Retrofit the 13 existing games from the table in `docs/FORMAT-CONSTRAINTS.md` section 3 (confirm each from its layout and rules code; adapt layouts to the envelope where that is cheap before narrowing).
+- `MiniGame` gains an accepts declaration (formats, size class `short` or `any`, required value ranges such as a whole-number answer from 0 to 999 for Equation builder, optional counts such as 3 to 10 letters); the matcher, `minPool` and the pool report count only accepted items. Retrofit the 13 existing games from the table in `docs/FORMAT-CONSTRAINTS.md` section 3 (confirm each from its layout and rules code; adapt layouts to the envelope where that is cheap before narrowing).
 - Contract test per game: build items at the minimum and maximum of its declared limits for each format it supports (generated from `format_limits.dart`); the game must build and finish a round.
 - Quick quiz and Study mode play every format (reuse the Flash review card renderer or one renderer per format) so no item type is unreachable in Study; `child_report.dart` and `study_tab.dart` stop using `quickQuizGame.itemTypes` as the only types.
 - Done when: pools never count an item a game cannot play; Study reaches all seven formats.

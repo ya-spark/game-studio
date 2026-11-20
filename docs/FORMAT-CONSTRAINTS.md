@@ -26,14 +26,14 @@ Action games (shooter, snake, balloon pop, door runner, memory match) accept `sh
 
 | Format | Constraint |
 |---|---|
-| All | `prompt` 1 to 300 characters (over 150 makes the item `long`); `explanation` 1 to 250; plain text only (no markup, no emoji); no leading or trailing spaces; `difficulty` 1 to 5; at most one image, with `image_alt` of 1 to 120; text that is read aloud must be speakable (symbols such as ×, ÷ and = are allowed) |
-| `mcq` | 2 to 4 options, all different, each 1 to 60 characters; **exactly one correct** (a multiple-answer question is not an `mcq`); true or false is the 2-option case |
-| `series` | 3 to 8 steps, all different, each 1 to 24 characters; one unambiguous correct order |
-| `pairs` | 3 to 6 pairs; every left different **and every right different**; each side 1 to 24 characters |
-| `category` | 2 to 4 categories (each name 1 to 20 characters); 4 to 12 items (each 1 to 24), every item in exactly one category, **every category has at least 2 items** |
-| `word` | `answer` is one word of letters only, 3 to 12 letters; `hint` 1 to 100; `letters` (if given) at most 20 and contains every letter of the answer |
-| `numeric` | maths items must carry an `expression` that equals the answer; answer is an integer or decimal of at most 8 digits and 3 decimal places; `unit` at most 12 characters; typeable on a number pad (digits, `.`, `-`); `tolerance` 0 or more |
-| `cloze` | 1 to 3 gaps; each gap has 1 to 4 accepted forms, each 1 to 20 characters; whole text at most 200 characters; every gap in the text has an entry and no entry is unused |
+| All | `prompt` 1 to 300 characters (over 150 makes the item `long`); `explanation` 1 to 250; plain text only (no markup; emoji allowed as simple pictures, never people); no leading or trailing spaces; `difficulty` 1 to 5; at most one image, with `image_alt` of 1 to 120; text that is read aloud must be speakable (symbols such as ×, ÷ and = are allowed) |
+| `mcq` | 2 to 4 options, all different, each 1 to 150 characters; **exactly one correct** (a multiple-answer question is not an `mcq`); true or false is the 2-option case |
+| `series` | 3 to 8 steps, all different, each 1 to 80 characters; one unambiguous correct order |
+| `pairs` | 3 to 6 pairs; every left different **and every right different**; each side 1 to 60 characters |
+| `category` | 2 to 4 categories (each name 1 to 30 characters); 3 to 12 items (each 1 to 80), every item in exactly one category, every category has at least one item |
+| `word` | `answer` is one word of letters only, 3 to 14 letters; `hint` 1 to 100; `letters` (if given) at most 20 and contains every letter of the answer |
+| `numeric` | answer is an integer or decimal of at most 8 digits and 3 decimal places; `unit` at most 20 characters; an optional `expression` must equal the answer; typeable on a number pad (digits, `.`, `-`); `tolerance` 0 or more |
+| `cloze` | 1 to 3 gaps; each gap has 1 to 6 accepted forms, each 1 to 20 characters; whole text at most 200 characters; every gap in the text has an entry and no entry is unused |
 
 ## 3. Game limits (proposed; confirm from each game's layout and code when its manifest is written)
 Games take the envelope as far as they can. What they add beyond it is below. `short` and `any` are the size classes above.
@@ -50,10 +50,10 @@ Games take the envelope as far as they can. What they add beyond it is below. `s
 | Sort into bins | `category`, `any` |
 | Word builder | `word` and `cloze`, `any` |
 | Word search and crossword | `word` of 3 to 10 letters only (as in `word_grid_rules.dart` today); several words per round |
-| Equation builder | `numeric` **with an `expression`** (265 of 778 numeric items lack one) |
+| Equation builder | `numeric` whose answer is a **whole number from 0 to 999** (644 of 778 numeric items today; the game builds its own solution from the target and does not use `expression`) |
 | Flash review, Quick quiz | everything inside the envelope, `any` (Quick quiz today plays `mcq` only; see the gaps in the vision document) |
 
-Limits can be a size (options, steps, pairs), a length (characters), a size class, or a required field (`expression`).
+Limits can be a size (options, steps, pairs), a length (characters), a size class, or a required value range (a whole-number answer).
 
 ## 4. Existing content against the envelope (content repo, 2026-11-21)
 
@@ -71,9 +71,9 @@ So the envelope would reject only a handful of items (to fix, not to grandfather
 
 
 ### Fit to the `short` band (same data, 2026-11-21)
-Share of items in the `short` class (prompt at most 150, options at most 30, tiles at most 24): `mcq` 77%, `series` 66%, `pairs` 68%, `category` 56%, `word` 99% (3 to 12 letters), `cloze` 100%, `numeric` 65% (the rest lack an `expression`, which Equation builder needs; prompts over 150 are few). A tighter band (options 20, tiles 8 to 14) would have cut `series` to 36% and `pairs` to 42%, so those numbers are too strict. The long items are mostly sentences in English topics (story steps, reading answers), which is why the two size classes exist. Action games therefore see roughly two thirds of the items of their formats, and the card games see all.
+Share of items in the `short` class (prompt at most 150, options at most 30, tiles at most 24): `mcq` 77%, `series` 66%, `pairs` 68%, `category` 56%, `word` 99% (3 to 12 letters), `cloze` 100%, `numeric` 98% (only long prompts are over the band). A tighter band (options 20, tiles 8 to 14) would have cut `series` to 36% and `pairs` to 42%, so those numbers are too strict. The long items are mostly sentences in English topics (story steps, reading answers), which is why the two size classes exist. Action games therefore see roughly two thirds of the items of their formats, and the card games see all.
 
-Authoring guidance that follows: write `short` items by default, give every maths `numeric` an `expression`, and use `long` only where the topic is sentence-based.
+Authoring guidance that follows: write `short` items by default, and use `long` only where the topic is sentence-based.
 
 ## 5. How it is enforced
 
@@ -85,9 +85,12 @@ Authoring guidance that follows: write `short` items by default, give every math
 6. **Changes:** widening a limit is safe. Narrowing one needs a content fix first. A new format or a changed field shape is an engine version bump that the three Craft apps and the Mind hubs take together through `sync_engine.py`.
 
 ## 6a. Decided (owner delegated, recommendation adopted, 2026-11-21)
-- **Every maths `numeric` item carries an `expression`** (an error for subject `maths`). Equation builder then has no special case. The 265 numeric items without one are backfilled (the tool can derive it for simple `a op b` prompts; the rest by hand). Check: the validator already confirms an `expression` equals the answer.
+- **No `expression` rule (corrected 2026-11-21).** The first version required every maths `numeric` item to carry an `expression`, on the belief that Equation builder needs it. The code shows no game reads `expression` (it is only a validator cross-check) and Equation builder needs a whole-number answer from 0 to 999. 265 items lack an `expression` and almost none have a natural one, so the rule was dropped (owner, 2026-11-21): `expression` stays optional and is checked when present; Equation builder's limit is the whole-number answer.
 - **One set of `short` thresholds for all apps** (prompt 150, options 30, tiles 24). Measured by school stage: Scout content (Years 0 to 6) is 89% `short`, Ranger (7 to 10) 72%, Champion (11 to 12) 64%, so Scout does not need a tighter band; the pool report shows each app's rate, and the thresholds can be revisited if a game rejects too much.
 - **Envelope `mcq` stays at 2 to 4 options and exactly one correct answer.** A fifth option or a multiple-answer question would be a deliberate engine change (a new format for multiple answers).
 
 ## 6. Open points
 - Confirm the section 3 numbers from the real layouts (phone and tablet, large text sizes) when each manifest is written.
+
+## 7. Corrections after running the validator over all content (2026-11-21)
+The first envelope was written from a sample and rejected 555 of 3,040 items. The real maxima are options 145 characters, series steps 73, pair sides 49, category items 74, units 17, words 14 letters, and some cloze gaps have 5 accepted forms. The envelope was widened to fit (options 150, steps 80, pair sides 60, category items 80, category names 30, units 20, words 14 letters, cloze forms 6, categories from 3 items), a category may have a single item (nine items do), and emoji are allowed (Foundation to Year 2 counting items use fruit, fish and coloured circles as pictures). The `short` thresholds (prompt 150, options 30, tiles 24) are unchanged; the envelope must sit above them or no item could be `long`. After this the validator found one real content error (a month-days pair set whose rights repeat), fixed in the content repo. The tile and option limits are therefore generous on purpose: Quick quiz and Flash review must wrap long text.
