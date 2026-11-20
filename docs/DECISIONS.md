@@ -35,6 +35,8 @@ The topic files hold the full original text and win over the digest where they d
 
 ## Digest of the topic files (read the file before acting on anything in it)
 
+- **Vision (owner, 2026-11-21): an education platform; games are the medium.** Content and games are modules joined by a closed set of question formats; Mind hubs are "keeping the mind sharp". Read `docs/VISION-education.md` before planning any app, game or content work.
+
 - `decisions/craft-and-mind-apps.md`: Craft Scout/Ranger/Champion (education, by school stage) and Mind Ember/Presto
   (adult casual hubs). Store names only on Play; repos and ids use age-band names (ids are historical, see `web.md`).
   Packages `com.activemindcraft.<name>`. Content is original, en-AU, never mentions a curriculum, no people in art.
