@@ -40,8 +40,8 @@ Games take the envelope as far as they can. What they add beyond it is below. `s
 
 | Game | Formats and limits beyond the envelope |
 |---|---|
-| Shooter (new) | `mcq` and `category`, `short` only (targets must be readable) |
-| Snake (new) | `series` (3 to 8 steps), `word` (3 to 10 letters), `numeric` (at most 4 digits), `short` only |
+| Shooter (built) | `mcq` (single answer, 2 to 4 targets) and `category` (which group is this entry in), `short` only |
+| Snake (built) | `series` (3 to 8 steps of 8 characters or fewer), `word` (3 to 10 letters), `numeric` (a whole-number answer of 4 digits or fewer), `short` only |
 | Door runner | `mcq`, `short` only (doors carry the option text) |
 | Balloon pop | `mcq` and `numeric`, `short` only (wrong balloons are made by the game) |
 | Memory match | `pairs`, `short` only (card faces) |
