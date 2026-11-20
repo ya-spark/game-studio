@@ -81,10 +81,10 @@ Used by `/new-app` and `/change-app` when a run starts from an issue or an `@cla
   check CI is green; comment and close. For "factory": commit to game-factory `main`. Either way, move the
   pin in `game-studio` in the same run.
 - **Auto-release to closed testing (game changes):** when the change is on `main` and nothing is needed
-  from the owner, finish the job without asking. Track, browser test and approvals are in `docs/DECISIONS.md`,
+  from the owner, finish the job without asking. Track, browser test and approvals are in `docs/decisions/release-and-store.md`,
   section "Release tracks"; do not restate or change them here.
   1. Raise the version in `pubspec.yaml` (version name only, no `+N`; patch bump for a user-visible change), CI green.
-  2. Run the browser test from `docs/DECISIONS.md`. If it fails, release nothing and say what failed.
+  2. Run the browser test from `docs/decisions/release-and-store.md`. If it fails, release nothing and say what failed.
   3. Push the tag `vX.Y.Z` from that `main` commit, which runs the `release-to-closed-testing` workflow
      (the same name in every game). If the tag push is refused, run it from `main` with
      `track=alpha` and `upload=true`.

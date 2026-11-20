@@ -6,7 +6,7 @@ Every agent in `new-app/` and `change-app/` follows these. Each agent file adds 
 - Read `CLAUDE.md`, `game-factory/CLAUDE.md` (hard rules) and the game's `docs/SPEC.md` first.
 - Commit directly to `main` (the branch/PR workflow is suspended).
 - Never create, read, print or commit secrets. Never publish, enable real ads or purchases, or spend money without the user's explicit approval in the conversation.
-- Release rules (track, browser test, who approves) are in `docs/DECISIONS.md`, section "Release tracks". Do not restate them.
+- Release rules (track, browser test, who approves) are in `docs/decisions/release-and-store.md`, section "Release tracks". Do not restate them.
 - One agent at a time per repo. A failed gate goes back to the agent that owns the cause.
 
 ## New-app agents (`new-app/`)

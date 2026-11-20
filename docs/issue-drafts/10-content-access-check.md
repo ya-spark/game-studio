@@ -1,6 +1,6 @@
 # [change] content access: purchase check on the VPS and Cloudflare in front (issue 10, later)
 
-**Status:** draft, not posted. Needs the VPS ready and Cloudflare in front of `content.activemindcraft.com`. Decision: `docs/DECISIONS.md` ("Content hosting and access", owner, 2026-11-11).
+**Status:** draft, not posted. Needs the VPS ready and Cloudflare in front of `content.activemindcraft.com`. Decision: `docs/decisions/operations.md` ("Content hosting and access", owner, 2026-11-11).
 
 ## Goal
 Only buyers can download a paid pack, without accounts and without storing personal data.
