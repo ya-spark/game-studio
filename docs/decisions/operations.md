@@ -5,7 +5,7 @@
 - The failing-checks-stop-the-push rule is removed: checks are run where the tools exist, failures are logged, work is still pushed.
 - Pushing to the VPS (pin push to `main` starts `deploy-games-web`) is allowed. Still banned: secrets, real ad ids, Play uploads, tags, version bumps, production promotion, force-push.
 - All app games are paused (owner): no changes to `apps/*`, R2, K1 for apps or app screens; they are dumped once the web is complete.
-- Access: `public` (push refused) and `game-content` (not reachable) need the Claude GitHub App installed on those repos; the owner does that.
+- Access: the owner added the Claude GitHub App to `public` and `game-content` (22 Nov); both are attached and cloned.
 
 Verbatim archive from `docs/DECISIONS.md` (split 2026-11-21 to save tokens). The index there says when to read this file.
 
