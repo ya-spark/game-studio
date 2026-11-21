@@ -129,6 +129,22 @@ for game in ${games[@]+"${games[@]}"}; do
   ); then
     rm -rf "${STAGE_DIR:?}/web/$slug"   # replace, don't nest inside, a game copied from the VPS
     cp -R "$dir/build/web" "$STAGE_DIR/web/$slug"
+    # Version badge + build-info.json: app commit, game-factory commit (from the app's lock file), studio commit.
+    app_sha="$(git -C "$dir" rev-parse HEAD 2>/dev/null || echo unknown)"
+    games_sha="$(awk '/resolved-ref:/ {gsub(/"/,"",$2); r=$2} /url:.*game-factory/ {print r; exit}' "$dir/pubspec.lock" 2>/dev/null)"
+    studio_sha="$(git -C "$ROOT_DIR" rev-parse HEAD 2>/dev/null || echo unknown)"
+    printf '{"slug":"%s","appCommit":"%s","gamesCommit":"%s","studioCommit":"%s","builtAt":"%s"}\n' \
+      "$slug" "$app_sha" "${games_sha:-unknown}" "$studio_sha" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > "$STAGE_DIR/web/$slug/build-info.json"
+    python3 - "$STAGE_DIR/web/$slug/index.html" "${app_sha:0:7}" "${games_sha:-unknown}" "${studio_sha:0:7}" <<'PY'
+import sys
+p, a, g, w = sys.argv[1:5]
+s = open(p).read()
+tag = ('<div id="build-version" aria-hidden="true" style="position:fixed;left:6px;bottom:4px;z-index:2147483647;'
+       'pointer-events:none;font:10px/1 monospace;color:#fff;background:rgba(0,0,0,.45);padding:2px 5px;border-radius:4px">'
+       'app ' + a + ' · games ' + g[:7] + ' · studio ' + w + '</div>')
+if '</body>' in s:
+    open(p, 'w').write(s.replace('</body>', tag + '</body>', 1))
+PY
     built+=("$slug")
   else
     echo "    build failed: $game"
