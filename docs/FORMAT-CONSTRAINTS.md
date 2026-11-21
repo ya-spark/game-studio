@@ -18,7 +18,7 @@ Item limits and game limits are designed together so that **most items play in m
 - `short`: prompt at most 150 characters, `mcq` options at most 30, tiles (series steps, pair sides, category items) at most 24. Numbers, single words, short phrases.
 - `long`: inside the envelope but beyond `short`: sentences, story steps, reading answers.
 
-Action games (shooter, snake, balloon pop, door runner, memory match) accept `short` only. Card-style games (tug of war, series builder, sort into bins, cloze fix, quick quiz, flash review, true or false) accept both. So a sentence-heavy English topic feeds the card games and a number or vocabulary topic feeds all of them.
+Action games (shooter, balloon pop, door runner, memory match) accept `short` only. Card-style games (tug of war, series builder, sort into bins, cloze fix, quick quiz, flash review, true or false) accept both. So a sentence-heavy English topic feeds the card games and a number or vocabulary topic feeds all of them.
 
 **Measures** (shown by `content_cli pool`): per game, the share of items of its formats it accepts; per topic, how many games can play it. A game that rejects more than a quarter of the items of its formats must either adapt or say why.
 
@@ -41,7 +41,6 @@ Games take the envelope as far as they can. What they add beyond it is below. `s
 | Game | Formats and limits beyond the envelope |
 |---|---|
 | Shooter (built) | `mcq` (single answer, 2 to 4 targets) and `category` (which group is this entry in), `short` only |
-| Snake (built) | `series` (3 to 8 steps of 8 characters or fewer), `word` (3 to 10 letters), `numeric` (a whole-number answer of 4 digits or fewer), `short` only |
 | Door runner | `mcq`, `short` only (doors carry the option text) |
 | Balloon pop | `mcq` and `numeric`, `short` only (wrong balloons are made by the game) |
 | Memory match | `pairs`, `short` only (card faces) |

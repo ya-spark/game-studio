@@ -40,7 +40,7 @@ Source documents (read first): `docs/VISION-education.md` (why, formats, game ma
 - **T3 mastery:** `mastery.dart` (evidence, advance rule by year band, skip-ahead check, migration from item results), save version one higher in every app. Rules follow the child's year (Years 0 to 6 as Scout, 7 to 10 as Ranger, 11 to 12 as Champion), so no config plumbing.
 - **T4:** `MiniGame.canPlay` (formats, `SizeAccept`, `accepts`); matcher, pools and rounds use it; Equation builder accepts whole-number answers 0 to 999 (the `expression` rule was dropped), Word search 3 to 10 letters, Cloze fix grammar items. Study mode reaches every format through the trail (a rung's Practise picks any game that can play it, in Study mode too); the old topic sheet still uses Quick quiz (`mcq` only).
 - **T5:** `trail.dart` (Trail, NextStep), `TrailScreen` with Continue, pick a game and skip ahead, entry on the Learn page. Not built: the parent lock to Auto (screen has `autoOnly`, no setting sets it); the daily release is unchanged, so a rung whose items are not released says "Opens as you go" and skip-ahead works only within open items (the owner decision stands: recommendation is opening by progress).
-- **T6:** Shooter and Snake (`snake_series`) with rules, screens, tests, art, how-to-play text; free with ads, Game mode; in the three Craft apps. Not in the Mind hubs. The web catalog and `games-web/scripts/sync_rules.py` have not been re-run for the new games.
+- **T6:** Shooter with rules, screen, tests, art, how-to-play text and keyboard play; free with ads, Game mode; in the three Craft apps. Not in the Mind hubs. **Snake for series was built and then removed** (owner, 3:10 PM AEDT: Snake is only for Mind Presto, and taking questions in it is not a good experience); the engine files, screens, art and tests are gone from the template and the apps. The web catalog and `games-web/scripts/sync_rules.py` have not been re-run for the new games.
 - **T7:** `cognitive_skills.dart` (skills, levels from each game's star scores, trend, deterministic daily workout), "Your journey" screen in both hubs with a Play button per workout game. Level thresholds are proposals, to tune from real scores.
 
 - **Update 21 Nov (after the owner's answers):** skills now carry authored names (`skill_names.yaml`; review list `docs/SKILLS-REVIEW.md`); the Study topic sheet has "Other question types"; Shooter and Snake support the keyboard (K1); web progress and opening are specified in `docs/decisions/web.md` (M8, W3 queued, not built).
@@ -89,7 +89,7 @@ T1 format limits, then T2 skills, then T3 mastery. T4 game limits and Study on a
 
 ### T6 New games (against the T4 contract)
 - **Shooter:** the child shoots the right answer. Formats `mcq` and `category` (`short` only). Pure-Dart rules in `lib/engine/minigames/shooter/rules/`, screen in `lib/ui/minigames/`, how-to-play entry in `how_to_play_catalogue.dart`, access `free_with_ads` or `coins` per the existing rule. Game score is separate from evidence.
-- **Snake for series:** eat the items in the right order. Formats `series` (3 to 8 steps), `word` (3 to 10 letters), `numeric` (at most 4 digits), `short` only. A wrong item costs a life, not the run; steering mistakes are never evidence (only the choice of item counts).
+- **Snake for series:** DROPPED (owner, 3:10 PM AEDT). Snake stays a Mind Presto game with no questions.
 - Each ships with its contract test, rules tests and web rules text. Mind Presto may reuse both later.
 
 ### T7 Mind hubs: skill contract and daily workout (later)

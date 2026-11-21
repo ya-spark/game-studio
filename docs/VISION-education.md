@@ -58,7 +58,7 @@ mcq 1613, numeric 778, series 185, pairs 168, category 149, word 97, cloze 50.
 `word` and `cloze` are thin; `series`, `pairs` and `category` are modest. A topic's usable games follow its formats, so authoring should choose formats on purpose (a patterns topic wants `series`, a vocabulary topic wants `word` and `pairs`).
 
 ## 6. Gaps found (the work this vision asks for)
-1. **No shooter and no snake-for-series.** Snake exists only as a standalone Mind game with no items. Both are the owner's headline examples: shooter (`mcq`, `category`), snake (`series`, `word`, `numeric`).
+1. **No shooter** (built since; a question-taking Snake was tried and dropped, see the decision of 3:10 PM AEDT). Snake stays a Mind Presto game with no questions. The shooter was one of the owner's headline examples: shooter (`mcq`, `category`), snake (`series`, `word`, `numeric`).
 2. **Quick quiz and Study mode only play `mcq`.** `study_tab.dart` and `child_report.dart` use `quickQuizGame.itemTypes`, so pairs, series, category, word, numeric and cloze items are not reachable in Study except through Flash review. Study mode should cover every format.
 3. **No skill map.** Items carry subject, year, topic and difficulty, but not a skill, so the app cannot say what a child has mastered or what to offer next.
 4. **No learning loop beyond the mistakes notebook.** Needed: placement, next-skill choice, spaced revision (1, 3, 7 days), mastery per skill.
@@ -70,7 +70,7 @@ mcq 1613, numeric 778, series 185, pairs 168, category 149, word 97, cloze 50.
 1. Skill trail in the content model (skills per topic, prerequisites, `skill` on every item), mastery states and the advance rule (section 8).
 2. Study mode and reports play every format.
 3. Manifest limits (options, series length, words per round) checked by the matcher.
-4. New mechanics against the contract: shooter, then snake for series.
+4. New mechanics against the contract: shooter (built). Snake for series was dropped (owner, 3:10 PM AEDT): Snake is for Mind Presto only.
 5. Revision loop (spaced review of mistakes and weak skills).
 6. Mind hubs: skill contract, daily workout, per-skill trend; reuse the Craft mechanics where they fit.
 7. More `word`, `cloze`, `series`, `pairs` and `category` content, then resume #148 so content lands on skills.
@@ -95,7 +95,7 @@ Skill progress is the objective; games are the interface to it. The learner sees
 - **Name: Constellation** (owner, 2026-11-21, as in the mock; each topic a small constellation, each rung a star). One shared component. It shows skill progress, never game progress: on the web one Constellation for all web games, in the apps one per app (Scout, Ranger, Champion, new apps), not shared between them (owner, 2:56 PM AEDT). Internal name `trail`. Earlier options, kept for the record: Options: Trail, Path, Stepping stones, Journey, Voyage, Expedition, Climb, Summit, Constellation, Garden, Quest line, Roadmap. Recommendation: one shared screen, shown as Scout "Path", Ranger "Trail", Champion "Climb", Mind "Journey"; Constellation if a distinctive look is wanted. No trademark or Play Store check done on these words.
 
 ## 8a. Built so far (2026-11-21, IDE session; not pushed)
-Skills and the trail (T2, T3, T5), game limits (T4), Shooter and Snake (T6), Mind skills and the workout (T7) exist in the template and the five apps. First skill ladder is mechanical (three rungs per topic by release order), to be reviewed and refined. See `docs/FEATURE-SPECS.md` for what is and is not built.
+Skills and the trail (T2, T3, T5), game limits (T4), Shooter (T6), Mind skills and the workout (T7) exist in the template and the five apps. First skill ladder is mechanical (three rungs per topic by release order), to be reviewed and refined. See `docs/FEATURE-SPECS.md` for what is and is not built.
 
 ## 9. On hold until the loop exists
 W2 / W2.1 landing page redesign (RELEASED by the owner 2026-11-21: it continues, Learn first), X2 AdSense, and any new standalone Mind game that has no skill. Web catalog and store work continue only where they already run.
