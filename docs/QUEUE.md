@@ -57,7 +57,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | T1 Exact question formats (limits, size class) | DONE, pushed | Built in the IDE session (issue #175 was cancelled and closed). Limits widened to fit real content; `expression` stays optional. |
 | T2 to T7 Skills, mastery, game limits, trail, Shooter, Snake, Mind journey | DONE, pushed | game-factory c3466c6, Scout 29e0014, Ranger 4da7248, Champion 8865209, Ember 9914fd7, Presto 366d9f8, `game-content` dcf9fd5. Detail and what is not built: `docs/FEATURE-SPECS.md`. |
 | Skill list (152 topics, 3 named rungs each) | APPROVED by the owner, kept | `docs/SKILLS-REVIEW.md`; names in `game-content/skill_names.yaml`. |
-| Trail look: Constellation | DECIDED (owner), NOT BUILT | Each topic a constellation, each rung a star (mock: artifact "Trail as a Constellation"). Open: apply to the three Craft apps that already have the trail, or only new apps. |
+| Trail look: Constellation | DECIDED (owner), NOT BUILT | Skill progress, not game progress. Web: one Constellation for all web games. Apps: each app (Scout, Ranger, Champion, new apps) has its own, not shared between apps or with the web. One shared component in the template (also used by the Mind journey and the web). Each topic a constellation, each rung a star (mock: artifact "Trail as a Constellation"); star art drawn in code, keyboard and screen-reader labels. For new apps and the web; the existing apps keep their trail screen until the rewrite (R2). |
 | Study "Other question types", web how-to text, Mind levels | DONE, pushed | Mind level thresholds are proposals, tuned later with real scores. |
 | K1 Keyboard play in every game (app and web) | PARTLY DONE | Shooter and Snake have it (tests); existing games and the shared choice screen still to do. |
 | W4 Responsive web layout | RULE DONE for NEW apps and games | Helpers and `docs/WEB_LAYOUT.md` in the template; current apps unchanged by the owner's choice. |
@@ -65,6 +65,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | W3 Web ads and browser-saved progress | SPEC NEEDED | AdSense H5 Games Ads (closed beta; child-directed eligibility unconfirmed). Needs the owner's AdSense account and approval. |
 | W5 Browser notifications on the web | SPEC NEEDED | Owner said add it. No backend means no push when the site is closed; the spec settles what a client-only version does. |
 | Topic list and order review | BACKLOG (owner deferred) | Order kept for now; review later. Order lives in `game-content/topics.yaml`. Replaces the old C5 review.
+| R2 Rewrite the earlier Craft apps and games with the new-game features | BACKLOG (owner: later, 2:57 PM AEDT 21 Nov) | Scout, Ranger, Champion and the earlier games get the Constellation trail, responsive web layout, keyboard play and the shared contracts that new apps get from the template. Not started; no change to them until then. |
 | Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`, older in `docs/queue-log-archive.md`. |
 
@@ -81,7 +82,6 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 ## Waiting on the owner
 - Decide whether `/appgames` should get version info too.
 - Decide which is right for Scout: the docs (Door runner and Balloon pop coin-locked) or the code (free; only Tug of war is locked).
-- Say whether the Constellation look goes on the three Craft apps that already have the trail, or only on new apps.
 - Web and app money (M8, W3): the AdSense account and approval for web game ads, and the go-ahead after the Families and child-directed ad check; the spec follows.
 - Review the how-to-play text (`games-web/overlay/common/lib/web_product/web_rules_data.dart` is generated from the apps), the content packs and each app's `docs/SPEC.md`.
 - Listen to the M4 sound packs.
