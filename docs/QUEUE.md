@@ -32,7 +32,8 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026 (36 hours). Wake: every 60 minutes (`send_later`).
 - Current: Constellation trail for the web (decided, not built): one Constellation for all web games, drawn in code, keyboard and screen-reader labels. DONE so far: Shooter art (12:05 PM AEDT 22 Nov, live).
 - Access: `public` and `game-content` are attached and cloned (owner added the Claude app, 10:55 AM AEDT 22 Nov); no longer blocked.
-- Paused by the owner: all app games (R2, K1 for apps, DR1 follow-ups, app screens, Constellation in apps).
+- Iterations (owner, 2026-11-22): we are in ITERATION 3 = web games and the website. ITERATION 4 = app games (below).
+- Owner answers 22 Nov (noon): W5 client-only notifications are OK (they only show while the site is open). M8 coins live only in the browser (local storage, gone if cleared; no backend, no sign-in). Constellation: Claude draws it in code now (Figma later if the owner wants). Topic list review: start now with the owner.
 
 ## Status board (updated 10:15 AM AEDT 22 Nov 2026)
 
@@ -69,13 +70,18 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Study "Other question types", web how-to text, Mind levels | DONE, pushed | Mind level thresholds are proposals, tuned later with real scores. |
 | K1 Keyboard play in every game (app and web) | PARTLY DONE | Shooter has it (tests); existing games and the shared choice screen still to do. |
 | W4 Responsive web layout | RULE DONE for NEW apps and games | Helpers and `docs/WEB_LAYOUT.md` in the template; current apps unchanged by the owner's choice. |
-| M8 Rung opening by purchase or ad, coins with sign-in | SPEC NEEDED | Replaces the daily release. Check Families and child-directed ad rules first. See `docs/decisions/web.md`. |
-| W3 Web ads and browser-saved progress | SPEC NEEDED | AdSense H5 Games Ads (closed beta; child-directed eligibility unconfirmed). Needs the owner's AdSense account and approval. |
-| W5 Browser notifications on the web | SPEC NEEDED | Owner said add it. No backend means no push when the site is closed; the spec settles what a client-only version does. |
+| M8 Rung opening by purchase or ad, coins (web: browser only) | SPEC TO WRITE (owner 22 Nov: coins stored in the browser only, gone if cleared; no sign-in) | Replaces the daily release. Check Families and child-directed ad rules first. See `docs/decisions/web.md`. |
+| W3 Web ads and browser-saved progress | SPEC TO WRITE; ads wait for the owner's AdSense ids (see Ads in CLAUDE.md); saved progress can start | AdSense H5 Games Ads (closed beta; child-directed eligibility unconfirmed). Needs the owner's AdSense account and approval. |
+| W5 Browser notifications on the web | SPEC TO WRITE (owner 22 Nov: client-only is OK, shown only while the site is open) | Owner said add it. No backend means no push when the site is closed; the spec settles what a client-only version does. |
 | Topic list and order review | BACKLOG (owner deferred) | Order kept for now; review later. Order lives in `game-content/topics.yaml`. Replaces the old C5 review.
 | R2 Rewrite the earlier Craft apps and games with the new-game features, together with SH1 (one shared games package) | SPEC IN PROGRESS (owner rules 11:07 PM AEDT 21 Nov in `docs/decisions/craft-and-mind-apps.md`; order decided: games, then screens, then Constellation; Figma first, prompt for the owner in `docs/art-prompts/r2-layout-figma-prompt.md` (Figma limit reached 11:12 PM AEDT 21 Nov, waiting for the result); two-player: Tug of war, Memory match, Door runner, Blockfall); ALL FOUR two-player modes built with the defaults (Memory match, Tug of war head to head, Door runner race, Blockfall versus; `game-factory/docs/TWO_PLAYER.md`), keys, frame and the games' wrapping built, pushed and LIVE on `/games` and `/appgames` 22 Nov (not played on a real keyboard or device yet); waiting for the Figma result, the apps' own screens and the Constellation | Scout, Ranger, Champion and the earlier games get the Constellation trail, responsive web layout, keyboard play and the shared contracts that new apps get from the template. Not started; no change to them until then. |
 | Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`, older in `docs/queue-log-archive.md`. |
+
+## Iteration 4: app games (parked, owner 2026-11-22)
+- R2 (rewrite Craft apps and games with new-game features), K1 for apps, the apps' own screens, Constellation in the apps, DR1 follow-ups.
+- Issue 10 purchase check on the VPS, Play Console, AdMob/app ads, store screenshots, the old three games.
+- Start only when the owner says iteration 4 begins.
 
 ## Active (running now)
 - No issue runs. A web deploy (`deploy-games-web`) started by the 3:15 PM AEDT pin push (Snake for series removed) was still running at 3:15 PM AEDT; the one before it finished successfully. `games-web` is the owner's to change; the studio session does not touch it.
