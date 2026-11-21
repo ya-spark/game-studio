@@ -26,7 +26,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
 
-## Status board (updated 1:05 PM AEDT 21 Nov 2026)
+## Status board (updated 1:10 PM AEDT 21 Nov 2026)
 
 | Item | Status | Detail / next |
 |---|---|---|
@@ -50,6 +50,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Preview copies `/appgames/web-ember/` and `/web-scout/` removed | DONE 6:15 pm | Owner said remove (6:05 pm). Full `/appgames` rebuild, `deploy-to-vps-as-web` run 13: the image now holds only the eight apps at their `main`. `/games/` untouched. Not checked in a browser (`/appgames` is behind the login). |
 | W2 Landing page redesign (games-web) | BUILT, pushed 2:50 AM AEDT 21 Nov (games-web 746e946) | Superseded by W2.1 (same page). Not checked in a real browser (no browser in the session). |
 | W2.1 Landing page revision (Kahoot-style) + Active Mind Craft logos | BUILT, pushed 2:50 AM AEDT 21 Nov (games-web 746e946), deploy started by the pin push | Sticky top bar (Learn first), shelves, 14 hand-drawn tiles, three-circles logos in the top bar and footer. NOT browser-tested: owner to look at `/games/`, then run the testing agent if wanted. Trademark search for the logo not done. Figma art later, in one batch. |
+| Local dev: watch mode by default, footer device note removed (games-web) | DONE, pushed 1:08 PM AEDT 21 Nov (games-web 9a0d8a2, pin 7b0bb58) | `scripts/run.sh` rebuilds and reloads on change; start builds only games missing from `dist/` (`FULL=1` for all, `WATCH=0` to opt out). Not run end to end. |
 | Education vision and format contract | DONE, pushed (21 Nov) | `docs/VISION-education.md`, `docs/FORMAT-CONSTRAINTS.md`; decisions in `docs/decisions/craft-and-mind-apps.md`. |
 | T1 Exact question formats (limits, size class) | DONE, pushed | Built in the IDE session (issue #175 was cancelled and closed). Limits widened to fit real content; `expression` stays optional. |
 | T2 to T7 Skills, mastery, game limits, trail, Shooter, Snake, Mind journey | DONE, pushed | game-factory c3466c6, Scout 29e0014, Ranger 4da7248, Champion 8865209, Ember 9914fd7, Presto 366d9f8, `game-content` dcf9fd5. Detail and what is not built: `docs/FEATURE-SPECS.md`. |
