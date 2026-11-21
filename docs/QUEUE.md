@@ -26,7 +26,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
 
-## Status board (updated 6:25 pm AEDT 16 Nov 2026)
+## Status board (updated 1:05 PM AEDT 21 Nov 2026)
 
 | Item | Status | Detail / next |
 |---|---|---|
@@ -50,33 +50,36 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Preview copies `/appgames/web-ember/` and `/web-scout/` removed | DONE 6:15 pm | Owner said remove (6:05 pm). Full `/appgames` rebuild, `deploy-to-vps-as-web` run 13: the image now holds only the eight apps at their `main`. `/games/` untouched. Not checked in a browser (`/appgames` is behind the login). |
 | W2 Landing page redesign (games-web) | BUILT, pushed 2:50 AM AEDT 21 Nov (games-web 746e946) | Superseded by W2.1 (same page). Not checked in a real browser (no browser in the session). |
 | W2.1 Landing page revision (Kahoot-style) + Active Mind Craft logos | BUILT, pushed 2:50 AM AEDT 21 Nov (games-web 746e946), deploy started by the pin push | Sticky top bar (Learn first), shelves, 14 hand-drawn tiles, three-circles logos in the top bar and footer. NOT browser-tested: owner to look at `/games/`, then run the testing agent if wanted. Trademark search for the logo not done. Figma art later, in one batch. |
-| Education vision and format contract | WRITTEN and pushed (c3f3866), 21 Nov | `docs/VISION-education.md`: modules joined by question format, game-by-format matrix from the code, gaps, order of work. Next: owner confirms Scout first, then specs for skill map, Study on all formats, shooter, snake-for-series. W2/W2.1, X2 and new skill-less Mind games wait. Format limits in `docs/FORMAT-CONSTRAINTS.md`. |
-| Education trail T1 to T7 | T1 and T2 to T7 PUSHED 10:54 AM AEDT 21 Nov (IDE session) | Pushed: game-factory c622041, Scout f39db0d, Ranger d5e53e1, Champion 7c3c6f8, Ember 9914fd7, Presto 366d9f8, content (`factory.lock` now c622041), pins moved. Built: game-factory template, five apps, `game-content` (`skills.yaml`, `gen_skills.py`, tool `--skills`). All checks green (template 967 tests; Scout 722, Ranger 745, Champion 753, Ember 1,124, Presto 806). Waiting on the owner: push; review of the generated skill list and the C5 topic order; the daily release against the trail (skip-ahead only works within open items until then); the trail's visible name (still `trail`). Not built: the parent lock to Auto, Mind skill thresholds from real scores, web catalog and rules text for the new games. Details in `docs/FEATURE-SPECS.md`. |
-| K1 Keyboard play in every game (app and web) | PARTLY DONE and pushed 11:51 AM AEDT: Shooter, Snake built with it (number keys, arrows and WASD, Tab focus, tests); the trail uses standard focusable controls; existing games and the shared choice screen still to do. NEW 11:43 AM AEDT 21 Nov, queued | New games (Shooter, Snake, the trail) get it now; the existing games follow later. Per game: every control reachable by Tab and Enter or Space, plus arrow and letter keys where it fits, a visible focus ring, no mouse-only gesture. |
-| M8 Rung opening by purchase or ad, coins with sign-in | SPEC NEEDED (owner decided 2026-11-21) | Replaces the daily release. Web: all open, an ad may show when a rung opens. App: purchase opens any, else a rewarded ad; extra packs by purchase, coins or ad; coins only with Play Games sign-in. Check Families and child-directed rules first. See `docs/decisions/web.md`. |
-| W3 Web ads and browser-saved progress | SPEC NEEDED | AdSense H5 Games Ads (closed beta, application, child-directed eligibility unconfirmed); trail progress in browser local storage with privacy text; supersedes X2's no-rewarded and no-save rules. Owner: AdSense account and approval. |
-| Skill list review | APPROVED by the owner 1:01 PM AEDT; kept as is. (was: NAMES PUSHED 11:51 AM AEDT 21 Nov, awaiting the owner | All 152 topics have real rung names (Ranger, then Champion, then Scout last), in `docs/SKILLS-REVIEW.md`; the item ranges are unchanged. Reply with renames; a different split is a bigger change.) |
-| Trail visible name | MOCK SHOWN 11:51 AM AEDT (owner asked to see Constellation) | Artboards `Your sky` and `Star states` (private claude.ai artifact). Owner to pick: Constellation, themed per app, or Trail everywhere. |
-| Study topic sheet, web how-to text, Mind levels | DONE and pushed 11:51 AM AEDT | Map sheet has "Other question types" (Flash review on non-mcq items); `games-web/scripts/sync_rules.py` re-run (27 games); Mind level thresholds kept as proposals (tune later with real scores). |
-| W4 Responsive web layout for NEW apps and games | RULE AND HELPERS PUSHED (c3466c6) 12:38 PM AEDT 21 Nov | Owner: not for the current apps, only new ones from here. Template has `lib/ui/layout/responsive.dart` (compact, medium, expanded; `ResponsiveBody`, `TwoPane`, `gridColumns`), tests and `docs/WEB_LAYOUT.md`; `game-factory/CLAUDE.md` carries the rule. Every new screen is checked at 390, 800 and 1440 wide. |
-| W5 Browser notifications on the web | SPEC NEEDED (owner said add, 1:01 PM AEDT) | Reminders and review nudges for the web. Limit to settle first: no backend means no push when the site is closed; decide what a client-only version does (in-page reminders, installed web app) or whether it waits for the backend. See `docs/decisions/web.md`. |
-| Topic list and order review | BACKLOG, owner deferred 1:04 PM AEDT 21 Nov | Owner: "keep the order, good for now; we will review the topics list and the order later". Today's order is the teaching order in `game-content/topics.yaml` (and it sets the trail: a topic's first rung opens after the first rung of the topic before it). Review: topics per year, their names and their order, then skills follow (`skill_names.yaml` stays unless a topic changes). Replaces the old C5 review item. |
-| Trail look: Constellation | DECIDED 1:04 PM AEDT 21 Nov, not built | Owner chose Constellation as in the mock (artifact "Trail as a Constellation"): each topic a small constellation, each rung a star, lit by progress, lines join what is done. Build the visual in the trail screen (star art drawn in code, no people, no AI images; keyboard and screen-reader labels kept). Open: apply it to the three Craft apps that already have the trail, or only to new apps (owner said not to change current apps for the web layout; not answered for this). |
+| Education vision and format contract | DONE, pushed (21 Nov) | `docs/VISION-education.md`, `docs/FORMAT-CONSTRAINTS.md`; decisions in `docs/decisions/craft-and-mind-apps.md`. |
+| T1 Exact question formats (limits, size class) | DONE, pushed | Built in the IDE session (issue #175 was cancelled and closed). Limits widened to fit real content; `expression` stays optional. |
+| T2 to T7 Skills, mastery, game limits, trail, Shooter, Snake, Mind journey | DONE, pushed | game-factory c3466c6, Scout 29e0014, Ranger 4da7248, Champion 8865209, Ember 9914fd7, Presto 366d9f8, `game-content` dcf9fd5. Detail and what is not built: `docs/FEATURE-SPECS.md`. |
+| Skill list (152 topics, 3 named rungs each) | APPROVED by the owner, kept | `docs/SKILLS-REVIEW.md`; names in `game-content/skill_names.yaml`. |
+| Trail look: Constellation | DECIDED (owner), NOT BUILT | Each topic a constellation, each rung a star (mock: artifact "Trail as a Constellation"). Open: apply to the three Craft apps that already have the trail, or only new apps. |
+| Study "Other question types", web how-to text, Mind levels | DONE, pushed | Mind level thresholds are proposals, tuned later with real scores. |
+| K1 Keyboard play in every game (app and web) | PARTLY DONE | Shooter and Snake have it (tests); existing games and the shared choice screen still to do. |
+| W4 Responsive web layout | RULE DONE for NEW apps and games | Helpers and `docs/WEB_LAYOUT.md` in the template; current apps unchanged by the owner's choice. |
+| M8 Rung opening by purchase or ad, coins with sign-in | SPEC NEEDED | Replaces the daily release. Check Families and child-directed ad rules first. See `docs/decisions/web.md`. |
+| W3 Web ads and browser-saved progress | SPEC NEEDED | AdSense H5 Games Ads (closed beta; child-directed eligibility unconfirmed). Needs the owner's AdSense account and approval. |
+| W5 Browser notifications on the web | SPEC NEEDED | Owner said add it. No backend means no push when the site is closed; the spec settles what a client-only version does. |
+| Topic list and order review | BACKLOG (owner deferred) | Order kept for now; review later. Order lives in `game-content/topics.yaml`. Replaces the old C5 review.
 | Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`, older in `docs/queue-log-archive.md`. |
 
 ## Active (running now)
-- No issue runs, no deploys. (#175 was cancelled and closed; T1 is done in the IDE session.)
+- No issue runs. A web deploy (`deploy-games-web`) was started by the pin push at 12:44 pm AEDT 21 Nov; result not yet checked here.
 
 ## Next (post in this order, as dependencies finish)
-- Nothing is left to post without the owner. Held for the owner: #148 curriculum (paused), the topic list and order review (deferred, backlog), X2 AdSense (accounts). Not picked: C6 read-aloud, C9 content editor, X3 accessibility pass, X4 localisation (see `docs/FEATURE-SPECS.md`).
+- Specs to write, in this order, once the owner has the accounts and checks ready: M8 (rung opening by purchase or ad; Families check first), W3 (web ads and browser-saved progress; AdSense approval), W5 (browser notifications).
+- Build next (owner decided, no blocker): the Constellation look for the trail (scope question below); K1 keyboard play in the existing games.
+- Held for the owner: #148 curriculum (paused), X2 AdSense (accounts), the topic list and order review (backlog). Not picked: C6 read-aloud, C9 content editor, X3 accessibility pass, X4 localisation (see `docs/FEATURE-SPECS.md`).
 - Issue 10 (purchase check on the VPS): only after the owner has set up the VPS and Cloudflare.
 - Screenshots: once, at the very end (see `docs/SCREENSHOTS.md`).
 
 ## Waiting on the owner
 - Decide whether `/appgames` should get version info too.
 - Decide which is right for Scout: the docs (Door runner and Balloon pop coin-locked) or the code (free; only Tug of war is locked).
-- (Deferred by the owner, 1:04 PM AEDT 21 Nov: topic order kept as it is for now; the topic list and order get a full review later, see the backlog row "Topic list and order review".)
+- Say whether the Constellation look goes on the three Craft apps that already have the trail, or only on new apps.
+- Web and app money (M8, W3): the AdSense account and approval for web game ads, and the go-ahead after the Families and child-directed ad check; the spec follows.
 - Review the how-to-play text (`games-web/overlay/common/lib/web_product/web_rules_data.dart` is generated from the apps), the content packs and each app's `docs/SPEC.md`.
 - Listen to the M4 sound packs.
 - Decide what replaces coins, and whether coins should survive a reinstall at all.
