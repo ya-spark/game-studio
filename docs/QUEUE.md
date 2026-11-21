@@ -55,10 +55,13 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | K1 Keyboard play in every game (app and web) | PARTLY DONE and pushed 11:51 AM AEDT: Shooter, Snake built with it (number keys, arrows and WASD, Tab focus, tests); the trail uses standard focusable controls; existing games and the shared choice screen still to do. NEW 11:43 AM AEDT 21 Nov, queued | New games (Shooter, Snake, the trail) get it now; the existing games follow later. Per game: every control reachable by Tab and Enter or Space, plus arrow and letter keys where it fits, a visible focus ring, no mouse-only gesture. |
 | M8 Rung opening by purchase or ad, coins with sign-in | SPEC NEEDED (owner decided 2026-11-21) | Replaces the daily release. Web: all open, an ad may show when a rung opens. App: purchase opens any, else a rewarded ad; extra packs by purchase, coins or ad; coins only with Play Games sign-in. Check Families and child-directed rules first. See `docs/decisions/web.md`. |
 | W3 Web ads and browser-saved progress | SPEC NEEDED | AdSense H5 Games Ads (closed beta, application, child-directed eligibility unconfirmed); trail progress in browser local storage with privacy text; supersedes X2's no-rewarded and no-save rules. Owner: AdSense account and approval. |
-| Skill list review | NAMES PUSHED 11:51 AM AEDT 21 Nov, awaiting the owner | All 152 topics have real rung names (Ranger, then Champion, then Scout last), in `docs/SKILLS-REVIEW.md`; the item ranges are unchanged. Reply with renames; a different split is a bigger change. |
+| Skill list review | APPROVED by the owner 1:01 PM AEDT; kept as is. (was: NAMES PUSHED 11:51 AM AEDT 21 Nov, awaiting the owner | All 152 topics have real rung names (Ranger, then Champion, then Scout last), in `docs/SKILLS-REVIEW.md`; the item ranges are unchanged. Reply with renames; a different split is a bigger change.) |
 | Trail visible name | MOCK SHOWN 11:51 AM AEDT (owner asked to see Constellation) | Artboards `Your sky` and `Star states` (private claude.ai artifact). Owner to pick: Constellation, themed per app, or Trail everywhere. |
 | Study topic sheet, web how-to text, Mind levels | DONE and pushed 11:51 AM AEDT | Map sheet has "Other question types" (Flash review on non-mcq items); `games-web/scripts/sync_rules.py` re-run (27 games); Mind level thresholds kept as proposals (tune later with real scores). |
 | W4 Responsive web layout for NEW apps and games | RULE AND HELPERS PUSHED (c3466c6) 12:38 PM AEDT 21 Nov | Owner: not for the current apps, only new ones from here. Template has `lib/ui/layout/responsive.dart` (compact, medium, expanded; `ResponsiveBody`, `TwoPane`, `gridColumns`), tests and `docs/WEB_LAYOUT.md`; `game-factory/CLAUDE.md` carries the rule. Every new screen is checked at 390, 800 and 1440 wide. |
+| W5 Browser notifications on the web | SPEC NEEDED (owner said add, 1:01 PM AEDT) | Reminders and review nudges for the web. Limit to settle first: no backend means no push when the site is closed; decide what a client-only version does (in-page reminders, installed web app) or whether it waits for the backend. See `docs/decisions/web.md`. |
+| Topic list and order review | BACKLOG, owner deferred 1:04 PM AEDT 21 Nov | Owner: "keep the order, good for now; we will review the topics list and the order later". Today's order is the teaching order in `game-content/topics.yaml` (and it sets the trail: a topic's first rung opens after the first rung of the topic before it). Review: topics per year, their names and their order, then skills follow (`skill_names.yaml` stays unless a topic changes). Replaces the old C5 review item. |
+| Trail look: Constellation | DECIDED 1:04 PM AEDT 21 Nov, not built | Owner chose Constellation as in the mock (artifact "Trail as a Constellation"): each topic a small constellation, each rung a star, lit by progress, lines join what is done. Build the visual in the trail screen (star art drawn in code, no people, no AI images; keyboard and screen-reader labels kept). Open: apply it to the three Craft apps that already have the trail, or only to new apps (owner said not to change current apps for the web layout; not answered for this). |
 | Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`, older in `docs/queue-log-archive.md`. |
 
@@ -66,14 +69,14 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - No issue runs, no deploys. (#175 was cancelled and closed; T1 is done in the IDE session.)
 
 ## Next (post in this order, as dependencies finish)
-- Nothing is left to post without the owner. Held for the owner: #148 curriculum (paused), the C5 topic order (review), X2 AdSense (accounts). Not picked: C6 read-aloud, C9 content editor, X3 accessibility pass, X4 localisation (see `docs/FEATURE-SPECS.md`).
+- Nothing is left to post without the owner. Held for the owner: #148 curriculum (paused), the topic list and order review (deferred, backlog), X2 AdSense (accounts). Not picked: C6 read-aloud, C9 content editor, X3 accessibility pass, X4 localisation (see `docs/FEATURE-SPECS.md`).
 - Issue 10 (purchase check on the VPS): only after the owner has set up the VPS and Cloudflare.
 - Screenshots: once, at the very end (see `docs/SCREENSHOTS.md`).
 
 ## Waiting on the owner
 - Decide whether `/appgames` should get version info too.
 - Decide which is right for Scout: the docs (Door runner and Balloon pop coin-locked) or the code (free; only Tug of war is locked).
-- Review the Scout, Ranger and Champion topic order (C5) and say what moves.
+- (Deferred by the owner, 1:04 PM AEDT 21 Nov: topic order kept as it is for now; the topic list and order get a full review later, see the backlog row "Topic list and order review".)
 - Review the how-to-play text (`games-web/overlay/common/lib/web_product/web_rules_data.dart` is generated from the apps), the content packs and each app's `docs/SPEC.md`.
 - Listen to the M4 sound packs.
 - Decide what replaces coins, and whether coins should survive a reinstall at all.

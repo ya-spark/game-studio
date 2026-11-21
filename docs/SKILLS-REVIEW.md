@@ -1,4 +1,4 @@
-# Skill list for review (2026-11-21)
+# Skill list (APPROVED by the owner, 1:01 PM AEDT 21 Nov 2026: "Skill list is good, keep it")
 
 Source: `game-content/skill_names.yaml` (names) and `game-content/skills.yaml` (generated). Each topic has three rungs: items 1 to 6, 7 to 13 and 14 to 20 of its pack. The names were written by reading what the items in each range test; the ranges themselves are unchanged, so no pack changed and progress already saved still fits.
 
