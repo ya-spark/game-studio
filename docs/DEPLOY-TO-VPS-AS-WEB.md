@@ -33,6 +33,9 @@ served at `/appgames/craft-highteen/`; owner, 2026-11-15: URL names use hyphens 
 - **Local deploy:** `scripts/deploy.sh <ssh-alias> [game ...]` (`wingy` or `game-wingy`), or
   `DRY_RUN=1 scripts/deploy.sh wingy` to build only.
 
+## Version
+Every app gets `<base>/build-info.json` (appCommit, gamesCommit, studioCommit, builtAt) and a small bottom-left label in its page, written by `scripts/deploy.sh`. `/appgames/*/build-info.json` is served without the login (public path in the cloud-deploy Caddy route); check what is deployed with `curl https://activemindcraft.com/appgames/<name>/build-info.json` (names follow the repos: craft-preteen, craft-lowteen, craft-highteen, mind-1, mind-9, wingy, block-puzzle, block-fall).
+
 ## What the web copy does and does not do
 Billing, Play Games and notifications are not available in a browser and are stubbed (purchases disabled with a clear
 message; ads are off until AdSense is switched on, see below), so the web copy covers screens, learning content, progress and the games, not store
