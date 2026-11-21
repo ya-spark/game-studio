@@ -66,7 +66,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`, older in `docs/queue-log-archive.md`. |
 
 ## Active (running now)
-- No issue runs. A web deploy (`deploy-games-web`) was started by the pin push at 12:44 pm AEDT 21 Nov; result not yet checked here.
+- No issue runs, no deploys. The web deploy started by the 12:44 pm AEDT pin push (21 Nov) finished successfully. `games-web` is being changed by the owner; the studio session does not touch it.
 
 ## Next (post in this order, as dependencies finish)
 - Specs to write, in this order, once the owner has the accounts and checks ready: M8 (rung opening by purchase or ad; Families check first), W3 (web ads and browser-saved progress; AdSense approval), W5 (browser notifications).
