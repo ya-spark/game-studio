@@ -1,5 +1,7 @@
 # Skills
 
-- [`new-app`](new-app/SKILL.md): the `/new-app` orchestrator. Takes a game prompt, runs the Q&A,
-  then drives the stage subagents in `.claude/agents/new-app/` using `game-factory/scripts/pipeline.py` for state.
-- [`change-app`](change-app/SKILL.md): the `/change-app` orchestrator for changes to an existing game or the factory.
+The role agents were removed (owner, 2026-11-22). One session does the work.
+
+- [`run-queue`](run-queue/SKILL.md): the loop. Works through `docs/QUEUE.md`, pushes, deploys to the VPS, wakes itself hourly.
+- [`change-app`](change-app/SKILL.md): a change to an existing game or the web (app repos paused).
+- [`new-app`](new-app/SKILL.md): a new game (app games paused; web games go through `games-web`).

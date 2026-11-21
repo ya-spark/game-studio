@@ -1,5 +1,12 @@
 # Operations, VPS, workflows
 
+## Queue loop and paused app games (owner, 2026-11-22)
+- Working model: one live session does everything (no role agents; `.claude/agents/` deleted). `/run-queue` loops through the unblocked items in `docs/QUEUE.md`, each through to the push and the VPS deploy, then the next. The session wakes itself every 60 minutes (`send_later`) for 36 hours (deadline 10:30 PM AEDT Mon 23 Nov) and resumes from the "Loop" block. Subagents are allowed only as task helpers to save tokens.
+- The failing-checks-stop-the-push rule is removed: checks are run where the tools exist, failures are logged, work is still pushed.
+- Pushing to the VPS (pin push to `main` starts `deploy-games-web`) is allowed. Still banned: secrets, real ad ids, Play uploads, tags, version bumps, production promotion, force-push.
+- All app games are paused (owner): no changes to `apps/*`, R2, K1 for apps or app screens; they are dumped once the web is complete.
+- Access: `public` (push refused) and `game-content` (not reachable) need the Claude GitHub App installed on those repos; the owner does that.
+
 Verbatim archive from `docs/DECISIONS.md` (split 2026-11-21 to save tokens). The index there says when to read this file.
 
 ## Operational notes

@@ -19,6 +19,7 @@ The topic files hold the full original text and win over the digest where they d
 - Overnight `@claude` runs push to each submodule's `main` and move the pin in the same run (owner,
   2026-11-05); the rules are in `CLAUDE.md`. Setup and infrastructure changes are not covered by that
   and are pushed only when the owner says so.
+- Queue loop (owner, 2026-11-22): one session does all work with `/run-queue`, wakes hourly for 36 hours; role agents deleted; checks are not a gate (log, still push); VPS web deploy by pin push allowed; app games paused until the web is complete. Detail: `docs/decisions/operations.md`.
 - Do not create repos in `ya-spark` (403). The owner creates them; attach them with `add_repo`.
 - Never touch secrets. Test ad IDs only in debug; the owner has supplied the real release AdMob IDs (in `app.config.yaml` `admob.release`, 2026-10-31).
 

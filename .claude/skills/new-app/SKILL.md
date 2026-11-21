@@ -1,52 +1,15 @@
 ---
 name: new-app
-description: Orchestrates a new game end to end, from the user's prompt and a short Q&A through spec, repo, code, assets, tests, build, listing and publish, one stage subagent at a time. Use when the user says /new-app or asks for a new game.
+description: Starts a new game. PAUSED for app games (owner, 2026-11-22); web games are added through games-web. Use when the user says /new-app or asks for a new game.
 ---
 
-# /new-app: the orchestrator
+# /new-app (paused)
 
-You run in the main session. You do the Q&A with the user, then call one stage subagent at a
-time (defined in `.claude/agents/new-app/`), record every result with `game-factory/scripts/pipeline.py`, and stop at
-the gates. All state lives in the repos (`game-factory/registry/games/<id>.json`), never in your memory, so any
-session, or an `@claude` run from a `game-studio` issue, can resume it. Always work from the `game-studio` root.
+The stage subagents are gone (owner, 2026-11-22). The session itself does the work, one stage at a time.
 
-## 1. Intake (you, with the user)
-1. Take the user's prompt. Ask only what the prompt does not answer, in one round: genre and template
-   (block puzzle exists; falling blocks is not built), key features, monetization preferences,
-   art style, retention features to switch off (all ON by default), anything they do not want,
-   the game's name (original; no existing game names or keywords).
-2. Derive: `id` (snake_case), repo `ya-spark/game-<id-kebab>`, package `com.activemindcraft.<idwithoutunderscores>`,
-   seed color. Check the package id is not already a Play listing (store URL) when you can.
-3. Start tracking: `python3 game-factory/scripts/pipeline.py init <id> --repo ya-spark/game-<kebab> --package <pkg>`
-   (commit directly to `main` of game-factory).
-
-## 2. Run the stages in order
-Use `python3 game-factory/scripts/pipeline.py next --json` to learn the next (game, stage, agent). Start that
-subagent with the game id, the Q&A answers and the paths it needs. When it returns, read its
-final message and confirm the stage status with `pipeline.py status <id>`. Then call `next` again.
-
-| Stage | Agent | You must stop for |
-|-------|-------|-------------------|
-| spec | spec-agent | the user's approval of `docs/SPEC.md` (then set `done`) |
-| repo | repo-agent | the user creating the empty private repo (GitHub gives us a 403) and (no branch rule or auto-merge needed while the PR workflow is suspended) |
-| coder | coder-agent | nothing; CI green per push |
-| asset | asset-agent | nothing; license check green |
-| test | test-agent | nothing; CI green |
-| build | build-agent | the five release secrets + real AdMob IDs (blocked until the user sets them) |
-| listing | listing-agent | the user's review of the store text |
-| publish | publish-agent | every promotion; the first release needs the user in Play Console |
-| monitor | monitor-agent | none |
-
-## 3. Rules
-- One subagent at a time per repo (the git proxy allows two concurrent operations per repo).
-- A failed gate goes back to the agent that owns the cause, not forward.
-- Branch/PR workflow is suspended: Claude commits directly to `main` and checks CI is green. The user approves: the spec, production promotion,
-  monetization changes, and anything involving accounts, money or secrets.
-- Never publish, enable real ads or purchases, spend money, or touch secrets without the user.
-- If a stage is `blocked`, tell the user exactly the note's text and stop; the next `@claude` comment
-  or session resumes it once the requirement exists.
-- Report briefly after each stage: what changed, commit link, status, what is next.
-
-## 4. Starting from a GitHub issue
-When the work comes from a `game-studio` issue (an `@claude` run), follow "How a run handles an issue" in
-`docs/INBOX.md`: trust rules, comment markers, the new-game steps (questions, approval, repo stage, progress, finish).
+- App games are paused until the web is complete. If asked for a new app game, say so and ask if the owner wants
+  it queued in `docs/QUEUE.md` instead of built now.
+- A new web game: add the game package in `game-factory/games/<game>/` (rules, ui, assets, tests, `docs/SPEC.md`),
+  list it in `games-web/games.yaml`, push, move pins, and let `deploy-games-web` publish it.
+- Generators and state helpers stay in `game-factory/scripts/` (`new_game.py`, `pipeline.py`, see `scripts/README.md`).
+- Rules: `CLAUDE.md` (pins, no secrets) and `game-factory/CLAUDE.md`. Work from the `game-studio` root.

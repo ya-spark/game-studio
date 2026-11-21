@@ -20,11 +20,19 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 ## Standing rules (never break)
 - No release, tag, version bump or store upload.
 - No secrets, keystores or real ad IDs.
-- Nothing for Play Console, AdMob, prices, Cloudflare or the VPS (owner only).
+- Nothing for Play Console, AdMob, prices or Cloudflare (owner only). The VPS web deploy by pin push is allowed (owner, 2026-11-22).
+- Checks (analyze, format, tests, ad-safety) are not a gate: log failures, still push (owner, 2026-11-22).
+- App games are PAUSED (owner, 2026-11-22): no changes to `apps/*`, no R2, no K1 for apps. Web work only.
 - Do not touch the three old games' code (their workflows now call the shared ones, like every game).
 - No people in any art.
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
+
+## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026)
+- State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026 (36 hours). Wake: every 60 minutes (`send_later`).
+- Current: none yet (first wake picks the next unblocked web item).
+- Blocked on access: `public` (push refused) and `game-content` (not reachable) need the Claude GitHub App on those repos; the owner fixes it.
+- Paused by the owner: all app games (R2, K1 for apps, DR1 follow-ups, app screens, Constellation in apps).
 
 ## Status board (updated 10:15 AM AEDT 22 Nov 2026)
 
