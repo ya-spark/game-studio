@@ -30,7 +30,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 
 ## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026)
 - State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026 (36 hours). Wake: every 60 minutes (`send_later`).
-- Current: web tile art, `shooter.svg` is 404 on `/games/` (found by the 10:45 AM browser check, live site is fine otherwise). Then: Constellation trail for the web (decided, not built).
+- Current: Constellation trail for the web (decided, not built): one Constellation for all web games, drawn in code, keyboard and screen-reader labels. DONE so far: Shooter art (12:05 PM AEDT 22 Nov, live).
 - Access: `public` and `game-content` are attached and cloned (owner added the Claude app, 10:55 AM AEDT 22 Nov); no longer blocked.
 - Paused by the owner: all app games (R2, K1 for apps, DR1 follow-ups, app screens, Constellation in apps).
 
