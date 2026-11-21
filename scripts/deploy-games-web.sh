@@ -82,6 +82,7 @@ if [ -f "$GW/scripts/make_catalog.py" ] && [ -f "$GW/site/index.html" ]; then
   rm -rf "$CATALOG_DIST"
   cp "$GW/site/index.html" "$STAGE_DIR/web/index.html"
   mkdir -p "$STAGE_DIR/web/_site" && cp -R "$GW/site/art" "$STAGE_DIR/web/_site/art"
+  [ -f "$GW/site/progress.js" ] && cp "$GW/site/progress.js" "$STAGE_DIR/web/_site/progress.js"
 fi
 
 if [ -n "${DRY_RUN:-}" ]; then
