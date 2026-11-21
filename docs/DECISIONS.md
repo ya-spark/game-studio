@@ -21,6 +21,7 @@ The topic files hold the full original text and win over the digest where they d
   and are pushed only when the owner says so.
 - Queue loop (owner, 2026-11-22): one session does all work with `/run-queue`, wakes hourly for 36 hours; role agents deleted; checks are not a gate (log, still push); VPS web deploy by pin push allowed; app games paused until the web is complete. Detail: `docs/decisions/operations.md`.
 - Do not create repos in `ya-spark` (403). The owner creates them; attach them with `add_repo`.
+- Ads (owner, 2026-11-22): web AdSense real ids/slots may be used and changed freely; ask only before creating new ad units or deleting ads; AdMob stays out until the owner gives access. Replaces "no real ad ids" for web.
 - Never touch secrets. Test ad IDs only in debug; the owner has supplied the real release AdMob IDs (in `app.config.yaml` `admob.release`, 2026-10-31).
 
 ## Naming and public identity

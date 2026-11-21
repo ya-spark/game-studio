@@ -14,5 +14,5 @@ No role agents any more (owner, 2026-11-22). The session does the change itself.
 4. Push the submodule `main`, move the pin here, push `main`. The pin push deploys the web (`deploy-games-web`).
 5. Update `docs/QUEUE.md` with the AEDT time. Report briefly: what changed, commit link, what is next.
 
-Never: secrets, real ad ids, Play uploads, tags, version bumps, production promotion, force-push.
+Web AdSense ids and slots may be used and edited freely; ask the owner only before creating new ad units or deleting ads (owner, 2026-11-22). Never: secrets, AdMob ids, Play uploads, tags, version bumps, production promotion, force-push.
 Issue-driven work follows "How a run handles an issue" in `docs/INBOX.md`.

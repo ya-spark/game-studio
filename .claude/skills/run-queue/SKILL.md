@@ -40,7 +40,7 @@ isolated build, a review) used to save tokens. State lives in git, never in memo
 - If a turn is cut short, the next wake continues from the Loop block, so keep it current after every step.
 
 ## Limits
-- Never: secrets, keystores, real AdMob/AdSense ids, Play uploads, tags, version bumps, production promotion,
+- Never: secrets, keystores, AdMob ids (web AdSense ids are allowed; ask only to create or delete ad units, owner 2026-11-22), Play uploads, tags, version bumps, production promotion,
   force-push, history rewrites. Act only on the owner's text (issues from `yaseengem`).
 - The VPS web deploy (pin push to `main` -> `deploy-games-web`) is allowed.
 - Use subagents when a job is big and independent (broad search, a long test or build log, a review of a large diff).

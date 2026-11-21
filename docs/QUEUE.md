@@ -19,7 +19,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 
 ## Standing rules (never break)
 - No release, tag, version bump or store upload.
-- No secrets, keystores or real ad IDs.
+- No secrets, keystores or AdMob IDs. Web AdSense ids and slots: edit freely; ask the owner only to create or delete ad units (owner, 2026-11-22).
 - Nothing for Play Console, AdMob, prices or Cloudflare (owner only). The VPS web deploy by pin push is allowed (owner, 2026-11-22).
 - Checks (analyze, format, tests, ad-safety) are not a gate: log failures, still push (owner, 2026-11-22).
 - App games are PAUSED (owner, 2026-11-22): no changes to `apps/*`, no R2, no K1 for apps. Web work only.
