@@ -26,7 +26,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
 
-## Status board (updated 1:10 PM AEDT 21 Nov 2026)
+## Status board (updated 3:15 PM AEDT 21 Nov 2026)
 
 | Item | Status | Detail / next |
 |---|---|---|
@@ -55,7 +55,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | U1 Review every game for UI and responsiveness (owner, 2026-11-21) | LATER, not started | Covers: tile art for `shooter`, the existing games' own title bars (new games have none), responsive layout, the in-game bar on narrow screens. |
 | Education vision and format contract | DONE, pushed (21 Nov) | `docs/VISION-education.md`, `docs/FORMAT-CONSTRAINTS.md`; decisions in `docs/decisions/craft-and-mind-apps.md`. |
 | T1 Exact question formats (limits, size class) | DONE, pushed | Built in the IDE session (issue #175 was cancelled and closed). Limits widened to fit real content; `expression` stays optional. |
-| T2 to T7 Skills, mastery, game limits, trail, Shooter, Mind journey (Snake for series built, then DROPPED 3:10 PM AEDT) | DONE, pushed | game-factory c3466c6, Scout 29e0014, Ranger 4da7248, Champion 8865209, Ember 9914fd7, Presto 366d9f8, `game-content` dcf9fd5. Detail and what is not built: `docs/FEATURE-SPECS.md`. |
+| T2 to T7 Skills, mastery, game limits, trail, Shooter, Mind journey | DONE, pushed | game-factory fb2823d, Scout 9bc4cce, Ranger a7421a3, Champion 7ed1ac1, Ember 7587c7e, Presto 11d1e87, `game-content` dcf9fd5. Snake for series was built and then DROPPED (owner, 3:10 PM AEDT: Snake is for Presto only; questions in it are not a good experience). Detail and what is not built: `docs/FEATURE-SPECS.md`. |
 | Skill list (152 topics, 3 named rungs each) | APPROVED by the owner, kept | `docs/SKILLS-REVIEW.md`; names in `game-content/skill_names.yaml`. |
 | Trail look: Constellation | DECIDED (owner), NOT BUILT | Skill progress, not game progress. Web: one Constellation for all web games. Apps: each app (Scout, Ranger, Champion, new apps) has its own, not shared between apps or with the web. One shared component in the template (also used by the Mind journey and the web). Each topic a constellation, each rung a star (mock: artifact "Trail as a Constellation"); star art drawn in code, keyboard and screen-reader labels. For new apps and the web; the existing apps keep their trail screen until the rewrite (R2). |
 | Study "Other question types", web how-to text, Mind levels | DONE, pushed | Mind level thresholds are proposals, tuned later with real scores. |
@@ -70,7 +70,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`, older in `docs/queue-log-archive.md`. |
 
 ## Active (running now)
-- No issue runs, no deploys. The web deploy started by the 12:44 pm AEDT pin push (21 Nov) finished successfully. `games-web` is being changed by the owner; the studio session does not touch it.
+- No issue runs. A web deploy (`deploy-games-web`) started by the 3:15 PM AEDT pin push (Snake for series removed) was still running at 3:15 PM AEDT; the one before it finished successfully. `games-web` is the owner's to change; the studio session does not touch it.
 
 ## Next (post in this order, as dependencies finish)
 - Specs to write, in this order, once the owner has the accounts and checks ready: M8 (rung opening by purchase or ad; Families check first), W3 (web ads and browser-saved progress; AdSense approval), W5 (browser notifications).
