@@ -43,6 +43,8 @@ Source documents (read first): `docs/VISION-education.md` (why, formats, game ma
 - **T6:** Shooter and Snake (`snake_series`) with rules, screens, tests, art, how-to-play text; free with ads, Game mode; in the three Craft apps. Not in the Mind hubs. The web catalog and `games-web/scripts/sync_rules.py` have not been re-run for the new games.
 - **T7:** `cognitive_skills.dart` (skills, levels from each game's star scores, trend, deterministic daily workout), "Your journey" screen in both hubs with a Play button per workout game. Level thresholds are proposals, to tune from real scores.
 
+- **Update 21 Nov (after the owner's answers):** skills now carry authored names (`skill_names.yaml`; review list `docs/SKILLS-REVIEW.md`); the Study topic sheet has "Other question types"; Shooter and Snake support the keyboard (K1); web progress and opening are specified in `docs/decisions/web.md` (M8, W3 queued, not built).
+
 ### Order and dependencies
 T1 format limits, then T2 skills, then T3 mastery. T4 game limits and Study on all formats can start after T1. T5 the trail screen needs T2, T3 and T4. T6 new games need T4. T7 Mind skills needs T3. Each T is one issue, Scout first, then the engine is synced to the other apps in the same run.
 

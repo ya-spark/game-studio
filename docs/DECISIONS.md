@@ -50,7 +50,7 @@ The topic files hold the full original text and win over the digest where they d
 - `decisions/operations.md`: design handoff (Figma file, palettes, fonts, no human figures), content hosting and
   the one purchase-check service exception, `CI_ENABLED` switch, content setup order, hub copies of old games,
   VPS web hosting and DNS, workflow and agent names, automatic UAT deploys (no secrets, DNS, Caddy, tags, versions).
-- `decisions/web.md`: web is a separate catalog product in `ya-spark/games-web` (public, no secrets), live at
+- `decisions/web.md` (read its 2026-11-21 section "Web and app differ on purpose" first: web all free and ad-funded, progress saved in the browser, rungs open by purchase or ad in the app, keyboard play everywhere): web is a separate catalog product in `ya-spark/games-web` (public, no secrets), live at
   `activemindcraft.com/games/<slug>/`, no saved progress, nothing purchasable; `/appgames/` is test copies the studio
   session does not touch; issue posting resumed 2026-11-16; landing page never mentions age or audience.
 
