@@ -1,21 +1,10 @@
 # Work queue (tracker)
 
-This file is a TRACKER: one row per item with where it stands, who acts next and where the detail is. Keep it short: the status board is a table (one row per item), everything else is bullets. Times are AEDT (UTC+11). Read `docs/DECISIONS.md` and `docs/issue-drafts/README.md` first.
+Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. Times AEDT (UTC+11). Read `docs/DECISIONS.md` and `docs/issue-drafts/README.md` first. Layout changed Sun Nov 22 14:24:47 AEDT 2026.
 
 ## How to use this file
-- Update it in the same commit as any change in the status of a spec or item: posted, started, a step done, run failed or stopped, blocked, paused, resumed, finished, or an owner answer. Put the time in AEDT.
-- Detail does not go here. A dated finding, a run result or a long note goes at the top of the log in `docs/QUEUE-LOG.md`; the full text of an item (spec, decisions, scope) is in `docs/FEATURE-SPECS.md`; a decision is also written in `docs/DECISIONS.md`.
-- Starting a session or continuing the work:
-  1. List `game-studio` workflow runs (`run-claude-from-issues`). Count the active ones (in progress or queued); keep at most 3 at once (usage limits).
-  2. Read the latest comment of every issue under "Active". A run that finished with a summary is done; one that failed with no comment stopped early (usage limit or turns): comment `@claude Please continue` on that issue.
-  3. Move a pin only if a run did not (`git submodule status` must match each repo's `origin/main`); `scripts/pull-all.sh`, `scripts/push-all.sh`, `scripts/bump.sh` and `scripts/push.sh` do the pulling, pushing and pin bumping (all read-only with `-n` where they take it).
-  4. Post the next item from "Next" when its dependency is done, then record it here.
-  5. Mark a finished item DONE on the status board with the issue number and time (the board keeps the one-line history; detail goes to `docs/QUEUE-LOG.md`), then commit and push this file to `main`.
-- Where the rest lives:
-  - `docs/FEATURE-SPECS.md`: full text of the live backlog items (X2, W1, W2, R1, and others); the finished C1 to C8 and M1 to M7 are in `docs/specs-archive-C-M.md`.
-  - `docs/QUEUE-LOG.md`: the dated log (newest first), the games-web first proofs, the owner decisions of 2026-11-15, and the history of earlier work.
-  - `docs/DESIGN-web-catalog.md`: the web catalog and rules dialog design.
-  - `docs/SCREENSHOTS.md`: how to take store screenshots without an emulator (last step).
+- When an item changes, edit its own file in `docs/queue/` and its one line here (same commit, AEDT time). Dated detail goes at the top of `docs/QUEUE-LOG.md`; full item text in `docs/FEATURE-SPECS.md`; decisions in `docs/DECISIONS.md`.
+- Keep each line under 20 words. Full procedure: [HOW-TO-USE](queue/HOW-TO-USE.md). Folder guide: [README](queue/README.md).
 
 ## Standing rules (never break)
 - No release, tag, version bump or store upload.
@@ -24,118 +13,80 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 - Checks (analyze, format, tests, ad-safety) are not a gate: log failures, still push (owner, 2026-11-22).
 - App games are PAUSED (owner, 2026-11-22): no changes to `apps/*`, no R2, no K1 for apps. Web work only.
 - Do not touch the three old games' code (their workflows now call the shared ones, like every game).
-- No living beings in the games (owner, 2026-11-22): no people and no animals as characters or in art. Characters are toys, robots, shapes or objects.
+- No living beings in the games (owner, 2026-11-22): no people or animals as characters or in art; toys, robots, shapes, objects.
 - Content packs beyond Years 0 to 12 maths and English: the owner says when.
 - Issues come from `yaseengem` only.
 
-## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026)
-- State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026 (36 hours). Wake: every hour at :20 past by a recurring scheduled task (`trig_01LytVbHGqXbL6UeHP4pPLtT`, created 2:21 PM AEDT 22 Nov; it repeats by itself, no `send_later` needed; disable it at the deadline).
-- Current: U3 Bridge builder (subagent building); U2 spec drafted, waits for the owner's start; planning W5 and M8 specs with the owner (no code), then U1 audit (needs owner input). AdSense paused by the owner (1:00 PM AEDT 22 Nov; Verify failed 3 times, site is ready: meta tag, snippet, ads.txt, no noindex). DONE: Shooter art, My stars page (`/trail.html`, 1:05 PM AEDT 22 Nov).
-- Access: `public` and `game-content` are attached and cloned (owner added the Claude app, 10:55 AM AEDT 22 Nov); no longer blocked.
-- Iterations (owner, 2026-11-22): we are in ITERATION 3 = web games and the website. ITERATION 4 = app games (below).
-- Owner answers 22 Nov (noon): W5 client-only notifications are OK (they only show while the site is open). M8 coins live only in the browser (local storage, gone if cleared; no backend, no sign-in). Constellation: Claude draws it in code now (Figma later if the owner wants). Topic list review: start now with the owner.
+## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026; detail: [LOOP](queue/LOOP.md))
+- State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026. Recurring task `trig_01LytVbHGqXbL6UeHP4pPLtT` at :20 each hour; disable at the deadline.
+- Current: U3 built; planning W5 and M8 specs with owner, then U1 audit.
+- Iteration 3 = web games and site; iteration 4 = app games (parked).
 
-## Status board (updated 10:15 AM AEDT 22 Nov 2026)
+## Status board
 
-| Item | Status | Detail / next |
+| Item | Status | Next |
 |---|---|---|
-| Games at the domain root `/` + AdSense root files (owner, 2026-11-22) | DONE, waiting on AdSense Verify (12:34 PM AEDT) | Games live at `/` (12:13 PM), `/ads.txt` live (12:21 PM), AdSense meta tag on `/` live (12:32 PM, games-web site/index.html). `/games/` removed. Owner: pick Meta tag option and click Verify. Open: remove `X-Robots-Tag: noindex` (owner yes needed). Then slot ids. |
-| Web hosting at `/games/` (own container, port 7080) | DONE 2:41 am | `/appgames` untouched (401). |
-| Version info (`build-info.json`, label on every game page, `/games/` footer) | DONE 3:22 am; extended 10:15 am 22 Nov | Every game on `/games` and `/appgames` shows `app <commit> · games <commit> · site/studio <commit>` bottom-left; `build-info.json` has appCommit, gamesCommit (game-factory), gamesWebCommit/studioCommit. `/appgames/*/build-info.json` is open (no login) through a cloud-deploy Caddy route; the pages stay behind login. Checked live 10:13 am: all as pinned. |
-| Deploy on pin push (`deploy-games-web`) | DONE, proven by runs 6 to 14 | A Claude run's own pin push DOES start it (runs 12, 13, 14 at 9:05 to 9:46 am); all five games live at the pinned app commits (checked 4:03 pm). |
-| Repo names follow the audience (Scout = `game-craft-preteen`, Ranger = `game-craft-lowteen`) | DONE 3:15 am | Internal ids `craft_lowteen` (Scout) and `craft_preteen` (Ranger) stay (historical). |
-| `games-web` public | DONE | No secrets or private code in it. |
-| W1a landing page, filters, deep links, how-to-play dialog | DONE, live 3:34 am | Start-up fix (parallel pack prefetch) live 3:42 am. |
-| W1b Presto, Ranger, Champion on the web | DONE, live 3:53 am | Catalog then had 164 cards. |
-| W1c Craft minigames as catalog cards | DONE, live 9:03 am | 775 cards (12 Fun, 152 Quick quiz, 611 minigame cards). |
-| #171 M6 Achievements (Ember, Presto) | DONE 9:05 am | Ember 8520637, Presto 535276c, pins moved; 969 and 669 tests; summary posted on the issue. |
-| R1b Rules dialog in the Mind hubs (#172) | DONE (Ember 1e886a9, Presto be98899) | Texts changed from the web copy are listed in the issue comment and QUEUE-LOG. |
-| R1a Rules dialog in the Craft apps and template (#173) | DONE 9:50 am (template 44424ff, Scout f228373, Ranger ea89ae4, Champion fe5774f) | Template 843, Scout 592, Ranger 615, Champion 623 tests green; Mind engine synced. Changed texts are in the issue comment; the web copy needs the same words. |
-| #174 M7 Play Games leaderboards (Ember, Presto) | DONE 4:14 pm | Pushed to both Mind hubs and `public/`; off in the repo (`play_games.enabled: false`). Next: owner creates the Play Console leaderboards and puts the ids in `play_games.leaderboards`. |
-| X2 AdSense | Code in the apps (#165), switched OFF | Owner steps later (account, ids, privacy pages). |
-| #148 curriculum coverage | PAUSED since 12 Nov at Maths Year 3 | Resume with `@claude Please continue` on #148 when the owner says. |
-| Issue 10 purchase check on the VPS | WAITING on the owner | Needs the VPS and Cloudflare set up first. |
-| Screenshots | LAST | Once, at the very end, when the owner says (method in `docs/SCREENSHOTS.md`). |
-| Web how-to-play text synced with the apps | DONE, live (checked 4:15 pm) | Run 15 (started 4:07 pm) rebuilt all five games at games-web a7412f1; the live Blockfall dialog shows the apps' new wording; 775 cards; `/appgames` 401. `games-web/scripts/sync_rules.py` generates the text from the apps' catalogues (25 games): re-run it after an app's text changes. |
-| Preview copies `/appgames/web-ember/` and `/web-scout/` removed | DONE 6:15 pm | Owner said remove (6:05 pm). Full `/appgames` rebuild, `deploy-to-vps-as-web` run 13: the image now holds only the eight apps at their `main`. `/games/` untouched. Not checked in a browser (`/appgames` is behind the login). |
-| W2 Landing page redesign (games-web) | BUILT, pushed 2:50 AM AEDT 21 Nov (games-web 746e946) | Superseded by W2.1 (same page). Not checked in a real browser (no browser in the session). |
-| W2.1 Landing page revision (Kahoot-style) + Active Mind Craft logos | BUILT, pushed 2:50 AM AEDT 21 Nov (games-web 746e946), deploy started by the pin push | Sticky top bar (Learn first), shelves, 14 hand-drawn tiles, three-circles logos in the top bar and footer. NOT browser-tested: owner to look at `/games/`, then run the testing agent if wanted. Trademark search for the logo not done. Figma art later, in one batch. |
-| Local dev: watch mode by default, footer device note removed (games-web) | DONE, pushed 1:08 PM AEDT 21 Nov (games-web 9a0d8a2, pin 7b0bb58) | `scripts/run.sh` rebuilds and reloads on change; start builds only games missing from `dist/` (`FULL=1` for all, `WATCH=0` to opt out). Not run end to end. |
-| W6 Games-first web flow (games-web): year, topics, I know this, Learn | DONE, live 3:27 PM AEDT 21 Nov (games-web 0d0741d, pin b542d9e) | Steps 1 to 5 shipped; all five games and `catalog.json` (42 games, 13 years, 130 topics) checked live by file; Scout holds 152 packs. NOT looked at in a real browser yet: owner to open `/games/` and report. Owner answers: duplicate Craft cards per app are expected; the game's own title bar stays on existing games (rule for new games only, game-factory 17c7ea5); `shooter` and `snake_series` tile art and a UI and responsiveness review of every game come later (U1 below). |
-| DR1 Door runner rewrite (Scout first; owner, 2026-11-21) | DONE and LIVE at /games/scout/ (deployed 4:39 PM AEDT 21 Nov; Scout 941dad2, pin 373de33, run 44871722740 green) | Real runner: perspective lanes, steer, zap, slow, pause, hearts (older), question dialog, ad placeholder (rail or strip), glowing Wingy-style look. Spec in Scout `docs/SPEC.md` ("Door runner rewrite"); rules `lib/game/door_runner/`, UI `lib/ui/minigames/door_runner/`, screen `door_runner_screen.dart`. Scout: 745 tests, analyze, format, engine lock, ad-safety green. Next: owner tries it live and on a device (feel, swipe, read aloud) and reports; Ranger and Champion get a copy when the owner says. Someone else has uncommitted Balloon pop work in the Scout checkout (not part of this). The how-to-play text (engine file, synced to every app) still describes the old game and needs a synced change. |
-| SH1 One copy of the games: shared package in `game-factory` used by every app and the web (owner, 2026-11-21) | STEPS 1 TO 6 DONE, PUSHED AND LIVE 22 Nov (game-factory 4c07f78, games-web 06a715c, apps on `main`, studio 55c41a4; `/games` and `/appgames` built from them and checked 10:15 am AEDT) (earlier note: step 5 = template and generators, step 6 = one audio kit incl. the arcade games; game-factory 0ac9b6f, all 8 apps pinned to 0ac9b6f and verified; older figures below are from 4c431c1): `game_core` (257 tests, incl. the Mind kit) + 25 game packages in `game-factory/games/` + `packages` CI job: game-factory 4c431c1; all 8 apps are containers on local branches `sh1-game-core`, all pinned to 4c431c1 and verified with no local overrides: Scout 365, Ranger 369, Champion 371, Wingy 156, Block Puzzle 198, Blockfall 262, Presto 387, Ember 481 tests | `docs/VISION-education.md`, `docs/FORMAT-CONSTRAINTS.md`; decisions in `docs/decisions/craft-and-mind-apps.md`. |
-| T1 Exact question formats (limits, size class) | DONE, pushed | Built in the IDE session (issue #175 was cancelled and closed). Limits widened to fit real content; `expression` stays optional. |
-| T2 to T7 Skills, mastery, game limits, trail, Shooter, Mind journey | DONE, pushed | game-factory fb2823d, Scout 9bc4cce, Ranger a7421a3, Champion 7ed1ac1, Ember 7587c7e, Presto 11d1e87, `game-content` dcf9fd5. Snake for series was built and then DROPPED (owner, 3:10 PM AEDT: Snake is for Presto only; questions in it are not a good experience). Detail and what is not built: `docs/FEATURE-SPECS.md`. |
-| Skill list (152 topics, 3 named rungs each) | APPROVED by the owner, kept | `docs/SKILLS-REVIEW.md`; names in `game-content/skill_names.yaml`. |
-| Trail look: Constellation | WEB PAGE BUILT (`/trail.html`, 1:05 PM AEDT 22 Nov, topic stars from `amc.state`); Flutter component pushed |  Shared `ConstellationTrail` in game_core (game-factory 0f35e10, local; site was 404 at 11:50 AM AEDT 22 Nov). Next: push when the site is up, W3 progress store, web page, then apps (iteration 4). Look: skill progress, one per topic, rung = star, drawn in code, keyboard and screen-reader labels. |
-| Study "Other question types", web how-to text, Mind levels | DONE, pushed | Mind level thresholds are proposals, tuned later with real scores. |
-| K1 Keyboard play in the games (web) | MOSTLY DONE, live 11:11 AM AEDT 22 Nov (game-factory 3ef2c30, pin 22a71f9, deploy run 35 green) | Arcade frame and 12 more games (Enter, arrows, number keys, Esc, Space); not played on a real keyboard; shared choice screen not confirmed. Apps get it in iteration 4. |
-| W4 Responsive web layout | RULE DONE for NEW apps and games | Helpers and `docs/WEB_LAYOUT.md` in the template; current apps unchanged by the owner's choice. |
-| M8 Rung opening by purchase or ad, coins (web: browser only) | SPEC DRAFTED (2:21 PM AEDT 22 Nov), waiting for the owner's answers | Spec in `docs/FEATURE-SPECS.md` (M8): coins buy extras only, every rung stays open; 4 owner questions; child-directed ad check (C9) is the owner's. |
-| W3 Web ads and browser-saved progress | Saved progress: SPEC WRITTEN and STORE BUILT 12:37 PM AEDT 22 Nov (game-factory; `BrowserProgress`, not yet wired to a web page or the games); ads: SPEC TO WRITE, wait for the owner's AdSense ids (see Ads in CLAUDE.md); saved progress can start | AdSense H5 Games Ads (closed beta; child-directed eligibility unconfirmed). Needs the owner's AdSense account and approval. |
-| W5 Browser notifications on the web | SPEC DRAFTED (1:56 PM AEDT 22 Nov), owner CONFIRMED all proposals ("your choices", 2:00 PM AEDT 22 Nov); still open: the owner's child-directed check, then the owner says start (build behind `REMIND_ENABLED = false` until then) | Spec in `docs/FEATURE-SPECS.md` (W5): local-only reminders, My stars toggle, 1 a day, N = 20 min; owner item: child-directed rules check. |
-| U2 Owner change list (22 Nov, 1:20 PM AEDT) | TO DISCUSS, NOT STARTED (owner: do not code until asked) | (1) Game start screen: show the Active Mind Craft logo, not the "Craft Ranger games" banner/loading page. (2) Space accepts "Next" after an answer in every game (hands stay put; Space still pauses in play). (3) Unsupported skill in a game: besides the games that do support it, also list the other topics this game supports. (4) Rewrite Series builder first (scope to agree). Owner said yes to all three; Series builder dropped (U3 replaces it). SPEC DRAFTED 2:05 PM AEDT in `docs/FEATURE-SPECS.md`. Item 3 (other topics when a game cannot run the topic) is APPROVED TO START (owner, 2:20 PM AEDT): a subagent starts when the Bridge builder subagent finishes. Items 1 and 2 still wait for the owner's start. Item 1 DONE 1:50 PM AEDT 22 Nov (games-web 98210d2: `scripts/loading_logo.py` called from `build_game.sh` puts the Active Mind Craft logo on the `#loading` screen of all five web games; Playwright screenshots at 390 and 1280, light and dark, checked; owner told to look live). Item 2 DONE 1:55 PM AEDT 22 Nov (game-factory 6d110e4, games-web a38b195 factory.ref: Space = Enter on Next, intro and results, pauses in play; changed: choice kit (Tug of war, True or false, Cloze fix, Balloon pop, Shooter shell), ArcadeFrame games, series_builder, sort_bins, word_builder, flash_review, word_grid, memory_match (1 and 2 players), door_runner (race and wrong-answer Next), tug head to head, ball_sort, merge, mahjong, sudoku, solitaire, blockfall (choice and versus); equation_builder, block_puzzle and wingy already fine). Item 3 DONE 2:05 PM AEDT 22 Nov (games-web 5312763: unsupported screen also lists "This game plays these topics" for the year; 2 widget tests, analyze clean). |
-| U3 Equation builder rewrite as a bridge game (owner, 22 Nov 1:35 PM AEDT) | BUILT and pushed 1:50 PM AEDT 22 Nov (game-factory 0dd2fec, games-web da67764, pins moved; deploy-games-web runs) | Bridge builder: toy wind-up robot at a gap, sign with the target, tiles dragged or tapped into slots, right sum lays a plank and the robot crosses, wrong sum wobbles and resets; river, canyon, sky stages end at a flag with stars; younger 3 slots no timer, older 5 slots and a gentle timer; keyboard incl. Space = Next. Id `equation_builder` kept. Art drawn in code (Figma limit blocked writes); Figma prompt for the owner: `docs/art-prompts/bridge-builder-figma-prompt.md`. Spec: `game-factory/games/equation_builder/docs/SPEC.md`. Look at it live after the deploy; send changes. |
-| Topic list and order review | BACKLOG (owner deferred) | Order kept for now; review later. Order lives in `game-content/topics.yaml`. Replaces the old C5 review.
-| R2 Rewrite the earlier Craft apps and games with the new-game features, together with SH1 (one shared games package) | SPEC IN PROGRESS (owner rules 11:07 PM AEDT 21 Nov in `docs/decisions/craft-and-mind-apps.md`; order decided: games, then screens, then Constellation; Figma first, prompt for the owner in `docs/art-prompts/r2-layout-figma-prompt.md` (Figma limit reached 11:12 PM AEDT 21 Nov, waiting for the result); two-player: Tug of war, Memory match, Door runner, Blockfall); ALL FOUR two-player modes built with the defaults (Memory match, Tug of war head to head, Door runner race, Blockfall versus; `game-factory/docs/TWO_PLAYER.md`), keys, frame and the games' wrapping built, pushed and LIVE on `/games` and `/appgames` 22 Nov (not played on a real keyboard or device yet); waiting for the Figma result, the apps' own screens and the Constellation | Scout, Ranger, Champion and the earlier games get the Constellation trail, responsive web layout, keyboard play and the shared contracts that new apps get from the template. Not started; no change to them until then. |
-| Pin and push helper scripts | DONE by the owner 3:59 pm (0fa6740) | `scripts/pull-all.sh`, `push-all.sh`, `bump.sh`, `push.sh`: pull everything, push every submodule main, move and push the pins (never forced; a pin must be on the submodule's origin/main). |
-| Done earlier | C1 to C5, C7, C8, M1 to M5, X2a, X2b, icons (#167), workflow streamlining, privacy pages | Detail in `docs/QUEUE-LOG.md`, older in `docs/queue-log-archive.md`. |
+| [Games at the domain root + AdSense root files](queue/ROOT-DOMAIN-ADSENSE.md) | DONE; waiting on AdSense Verify | Owner picks Meta tag option, clicks Verify; noindex removal needs owner yes |
+| [W3 Web ads and browser-saved progress](queue/W3-web-ads-progress.md) | Progress store BUILT 12:37 PM 22 Nov; ads spec to write | Wait for owner AdSense ids; wire store to a web page |
+| [M8 Rung opening by purchase or ad, coins](queue/M8-rung-opening-coins.md) | SPEC DRAFTED 2:21 PM 22 Nov | Owner answers 4 questions |
+| [W5 Browser notifications](queue/W5-notifications.md) | SPEC DRAFTED 1:56 PM 22 Nov; owner confirmed proposals 2:00 PM | Owner child-directed check, then says start |
+| [U2 Owner change list (22 Nov 1:20 PM)](queue/U2-owner-change-list.md) | Items 1, 2, 3 DONE; item 4 dropped | None open |
+| [U3 Bridge builder (Equation builder rewrite)](queue/U3-bridge-builder.md) | BUILT, pushed 1:50 PM 22 Nov | Owner looks live, sends changes |
+| [Trail look: Constellation](queue/TRAIL-constellation.md) | Web page built 1:05 PM 22 Nov; Flutter component pushed | Push when site is up, W3 progress store, then apps (iteration 4) |
+| [K1 Keyboard play (web)](queue/K1-keyboard-play.md) | MOSTLY DONE, live 11:11 AM 22 Nov | Owner plays on a real keyboard; apps get it in iteration 4 |
+| [W6 Games-first web flow](queue/W6-games-first-flow.md) | DONE, live 3:27 PM 21 Nov | Owner opens `/games/` and reports |
+| [DR1 Door runner rewrite](queue/DR1-door-runner.md) | DONE, live at /games/scout/ 4:39 PM 21 Nov | Owner tries it live and on a device; Ranger and Champion copy later |
+| [SH1 One copy of the games](queue/SH1-shared-games-package.md) | STEPS 1 TO 6 DONE, live 22 Nov | None open |
+| [W2 / W2.1 Landing page redesign](queue/W2-1-landing-redesign.md) | BUILT 2:50 AM 21 Nov, not browser-tested | Owner looks at `/games/`, then testing agent if wanted |
+| [Topic list and order review](queue/TOPIC-LIST-REVIEW.md) | BACKLOG (owner deferred) | Review later; order lives in `game-content/topics.yaml` |
+| [X2 AdSense](queue/X2-adsense.md) | Code in apps (#165), switched OFF | Owner steps later: account, ids, privacy pages |
+| [#148 Curriculum coverage](queue/148-curriculum-coverage.md) | PAUSED since 12 Nov at Maths Year 3 | Resume with `@claude Please continue` on #148 when owner says |
+| [Issue 10 purchase check on the VPS](queue/ISSUE-10-purchase-check.md) | WAITING on the owner | Owner sets up VPS and Cloudflare first |
+| [Screenshots](queue/SCREENSHOTS.md) | LAST, at the very end | Do once, when the owner says (method in `docs/SCREENSHOTS.md`) |
+| [R2 Rewrite earlier Craft apps and games](queue/R2-rewrite-craft-apps.md) | SPEC IN PROGRESS; parked (iteration 4) | Waiting for Figma result, apps' own screens, Constellation |
+| [Done items](queue/DONE.md) | 23 items finished (hosting, W1, M6, M7, R1, T1-T7, SH1 steps) | Detail in file |
 
-## Game rewrite list (owner, 2:00 PM AEDT 22 Nov 2026)
-- Every game is reimagined, discussed with the owner, specified, then rewritten (like U3 Bridge builder, DONE: Equation builder). One item per game below; Bridge builder is not in the list.
-- Each rewrite gets everything a new game gets: `game-factory/docs/BEST_PRACTICES.md`, keyboard (Space goes on), frame and chrome, responsive web layout, question and skill contracts, SPEC with a test map, Figma art (code art if Figma is blocked), no living beings (toys, robots, shapes, objects only), cartoon look unless the owner says otherwise.
-- Discuss ONE game at a time with the owner; code only when the owner says start for that game. Suggested first picks (owner to say): the boring ones that most children meet first: Tug of war, True or false, Balloon pop, Sort bins.
+## Game rewrite list (owner, 2:00 PM AEDT 22 Nov)
+- Reimagine, discuss, spec, build only on owner start; one game at a time. Rules: [GAMES-REWRITE](queue/GAMES-REWRITE.md).
 
-| Game | Status | Detail / next |
-|---|---|---|
-| G-01 Ball sort (`ball_sort`) | NOT STARTED: reimagine, discuss with owner, then spec | Mind hub game and Craft minigame. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-02 Balloon pop (`balloon_pop`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft minigame (choice kit). Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-03 Block puzzle (`block_puzzle`) | NOT STARTED: reimagine, discuss with owner, then spec | standalone app game; web version only for now (apps paused). Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-04 Blockfall (`blockfall`) | NOT STARTED: reimagine, discuss with owner, then spec | standalone app game; web version only for now (apps paused). Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-05 Brick breaker (`brick_breaker`) | NOT STARTED: reimagine, discuss with owner, then spec | Mind arcade. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-06 Cloze fix (`cloze_fix`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft minigame (choice kit). Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-07 Door runner (`door_runner`) | NOT STARTED: reimagine, discuss with owner, then spec | already rewritten (DR1, owner happy 22 Nov); review only, lowest priority. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-08 Flash review (`flash_review`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft minigame. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-09 Mahjong (`mahjong`) | NOT STARTED: reimagine, discuss with owner, then spec | Mind. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-10 Memory match (`memory_match`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft/Mind, has two-player. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-11 Merge (`merge`) | NOT STARTED: reimagine, discuss with owner, then spec | Mind. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-12 Runner (`runner`) | NOT STARTED: reimagine, discuss with owner, then spec | Mind arcade. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-13 Series builder (`series_builder`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft minigame (owner dropped a rewrite-first on 22 Nov, to be re-planned in this list). Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-14 Shooter (`shooter`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft/Mind (choice kit). Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-15 Snake (`snake`) | NOT STARTED: reimagine, discuss with owner, then spec | Mind Presto only. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-16 Solitaire (`solitaire`) | NOT STARTED: reimagine, discuss with owner, then spec | Mind. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-17 Sort bins (`sort_bins`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft minigame. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-18 Stack tower (`stack_tower`) | NOT STARTED: reimagine, discuss with owner, then spec | Mind arcade. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-19 Sudoku (`sudoku`) | NOT STARTED: reimagine, discuss with owner, then spec | Mind. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-20 True or false (`true_false`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft minigame (choice kit). Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-21 Tug of war (`tug_of_war`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft minigame, has head to head. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-22 Wingy (`wingy`) | NOT STARTED: reimagine, discuss with owner, then spec | standalone app game; web version only for now (apps paused). Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-23 Word builder (`word_builder`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft minigame. Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
-| G-24 Word grid (`word_grid`) | NOT STARTED: reimagine, discuss with owner, then spec | Craft minigame (word search and crossword). Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start. |
+| Game | Status |
+|---|---|
+| [G-01 Ball sort](queue/G-01-ball-sort.md) | not started |
+| [G-02 Balloon pop](queue/G-02-balloon-pop.md) | not started |
+| [G-03 Block puzzle](queue/G-03-block-puzzle.md) | not started |
+| [G-04 Blockfall](queue/G-04-blockfall.md) | not started |
+| [G-05 Brick breaker](queue/G-05-brick-breaker.md) | not started |
+| [G-06 Cloze fix](queue/G-06-cloze-fix.md) | not started |
+| [G-07 Door runner](queue/G-07-door-runner.md) | not started |
+| [G-08 Flash review](queue/G-08-flash-review.md) | not started |
+| [G-09 Mahjong](queue/G-09-mahjong.md) | not started |
+| [G-10 Memory match](queue/G-10-memory-match.md) | not started |
+| [G-11 Merge](queue/G-11-merge.md) | not started |
+| [G-12 Runner](queue/G-12-runner.md) | not started |
+| [G-13 Series builder](queue/G-13-series-builder.md) | not started |
+| [G-14 Shooter](queue/G-14-shooter.md) | not started |
+| [G-15 Snake](queue/G-15-snake.md) | not started |
+| [G-16 Solitaire](queue/G-16-solitaire.md) | not started |
+| [G-17 Sort bins](queue/G-17-sort-bins.md) | not started |
+| [G-18 Stack tower](queue/G-18-stack-tower.md) | not started |
+| [G-19 Sudoku](queue/G-19-sudoku.md) | not started |
+| [G-20 True or false](queue/G-20-true-false.md) | not started |
+| [G-21 Tug of war](queue/G-21-tug-of-war.md) | not started |
+| [G-22 Wingy](queue/G-22-wingy.md) | not started |
+| [G-23 Word builder](queue/G-23-word-builder.md) | not started |
+| [G-24 Word grid](queue/G-24-word-grid.md) | not started |
 
 ## Iteration 4: app games (parked, owner 2026-11-22)
-- R2 (rewrite Craft apps and games with new-game features), K1 for apps, the apps' own screens, Constellation in the apps, DR1 follow-ups.
-- Issue 10 purchase check on the VPS, Play Console, AdMob/app ads, store screenshots, the old three games.
-- Start only when the owner says iteration 4 begins.
+- R2, K1 for apps, app screens, Constellation in apps, DR1 follow-ups; Issue 10, Play Console, AdMob, screenshots, old three games. Starts when the owner says. Active and Next lists: [NEXT-AND-ACTIVE](queue/NEXT-AND-ACTIVE.md).
 
-## Active (running now)
-- No issue runs. A web deploy (`deploy-games-web`) started by the 3:15 PM AEDT pin push (Snake for series removed) was still running at 3:15 PM AEDT; the one before it finished successfully. `games-web` is the owner's to change; the studio session does not touch it.
-
-## Next (post in this order, as dependencies finish)
-- Specs to write, in this order, once the owner has the accounts and checks ready: M8 (rung opening by purchase or ad; Families check first), W3 (web ads and browser-saved progress; AdSense approval), W5 (browser notifications).
-- Build next (owner decided, no blocker): the Constellation look for the trail (scope question below); K1 keyboard play in the existing games.
-- Held for the owner: #148 curriculum (paused), X2 AdSense (accounts), the topic list and order review (backlog). Not picked: C6 read-aloud, C9 content editor, X3 accessibility pass, X4 localisation (see `docs/FEATURE-SPECS.md`).
-- Issue 10 (purchase check on the VPS): only after the owner has set up the VPS and Cloudflare.
-- Screenshots: once, at the very end (see `docs/SCREENSHOTS.md`).
-
-## Waiting on the owner
-- Decide whether `/appgames` should get version info too.
-- Decide which is right for Scout: the docs (Door runner and Balloon pop coin-locked) or the code (free; only Tug of war is locked).
-- Web and app money (M8, W3): the AdSense account and approval for web game ads, and the go-ahead after the Families and child-directed ad check; the spec follows.
-- Review the how-to-play text (`games-web/overlay/common/lib/web_product/web_rules_data.dart` is generated from the apps), the content packs and each app's `docs/SPEC.md`.
+## Waiting on the owner (full text: [WAITING-ON-OWNER](queue/WAITING-ON-OWNER.md))
+- Decide whether `/appgames` gets version info too.
+- Scout: docs (Door runner, Balloon pop coin-locked) or code (free; only Tug of war locked)?
+- AdSense account, approval, then Families check go-ahead (M8, W3).
+- Review how-to-play text, content packs and each app's `docs/SPEC.md`.
 - Listen to the M4 sound packs.
-- Decide what replaces coins, and whether coins should survive a reinstall at all.
-- Turn off the `noindex` header on the games server when the site is public.
-- Accounts and setup: AdSense account, ids and privacy pages; Play Console, AdMob and prices; Play Games setup for the Mind hubs (before M7 goes live; steps in `game-factory/docs/PLAY_GAMES_SETUP.md`); name and trademark checks; Cloudflare and VPS; copy the game-content workflows and add secrets; rotate the token from #154; set `CI_ENABLED` when CI should run.
-- Say when to resume #148 (owner, 6:05 pm 16 Nov: stays paused).
-- Block Puzzle: what replaces the paid coin packs (in discussion 6:20 pm 16 Nov: permanent, Play-restored items against keeping coins with a backup).
+- Decide what replaces coins and whether they survive reinstall.
+- Turn off the `noindex` header when the site is public.
+- Accounts and setup: AdSense, Play Console, AdMob, Play Games, trademark, Cloudflare, VPS, tokens, `CI_ENABLED`.
+- Say when to resume #148 (stays paused).
+- Block Puzzle: what replaces the paid coin packs.

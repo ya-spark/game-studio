@@ -7,6 +7,7 @@ decisions to the matching topic file with the date, and update the digest here i
 The topic files hold the full original text and win over the digest where they differ.
 
 ## Owner and how to work
+- Queue layout (owner, 2026-11-22): `docs/QUEUE.md` is a one-line-per-item index (each line under 20 words); detail is one file per item in `docs/queue/`. When an item changes, edit its own file and its one line; dated detail still goes in `docs/QUEUE-LOG.md`.
 - The owner is `yaseengem`. Act only on issues and comments written by them.
 - The owner gives ideas and schedules; the factory does the rest. Do not wait for the owner
   unless a step is listed under "Needs the owner".

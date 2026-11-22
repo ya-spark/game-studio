@@ -1,6 +1,6 @@
 # Queue log (dated detail, newest first)
 
-Moved out of `docs/QUEUE.md` on 2026-11-16 so the queue stays a short tracker. Times are AEDT. Add a dated entry at the TOP of "Log" when something notable happens (a run result, a finding, an owner answer); the one-line status lives in `docs/QUEUE.md`. Written as lists, not tables.
+Moved out of `docs/QUEUE.md` on 2026-11-16 so the queue stays a short tracker. Times are AEDT. Add a dated entry at the TOP of "Log" when something notable happens (a run result, a finding, an owner answer); the one-line status lives in `docs/QUEUE.md` and the item's detail in `docs/queue/`. Written as lists, not tables.
 
 ## Log (was "Active")
 - 2:21 PM AEDT 22 Nov: M8 web coins and rung opening SPEC DRAFTED (docs only, `docs/FEATURE-SPECS.md`, section M8). Proposals: every rung stays open, coins buy extras only (hints, themes and stickers, wait skip after a failed check, bonus mode), never learning; earn 1 per first-try right answer, 3 per finished round, 10 per star, 5 per check pass, optional rewarded ad 10 (only if the child-directed check allows); caps 60 a day, wallet 500, 3 ads a day; one key `amc.coins` v1, memory fallback, tamper harmless, UI says honestly it is lost with browser data; chip on landing and My stars, reduced motion, live-region text. Owner items: C9 child-directed check list, ad slot ids, consent. Waiting for 4 owner answers.

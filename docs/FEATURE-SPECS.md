@@ -1,6 +1,6 @@
 # Feature specs and backlog details
 
-Moved out of `docs/QUEUE.md` on 2026-11-16. This is where the full text of each backlog item lives (C1 to C8, M1 to M7, X2, W1, R1 and the others), including the decisions the owner made. The tracker `docs/QUEUE.md` only says where each item stands. Issues posted before 2026-11-16 say "Backlog item ... in `docs/QUEUE.md`": the item text is here now. Status words inside an item can be old; the tracker is the truth.
+Moved out of `docs/QUEUE.md` on 2026-11-16. This is where the full text of each backlog item lives (C1 to C8, M1 to M7, X2, W1, R1 and the others), including the decisions the owner made. The tracker `docs/QUEUE.md` (item detail in `docs/queue/`) only says where each item stands. Issues posted before 2026-11-16 say "Backlog item ... in `docs/QUEUE.md`": the item text is here now. Status words inside an item can be old; the tracker is the truth.
 
 ## Feature backlog (owner picked these, 2026-11-13; order and go-ahead still to be decided, not for runs)
 Craft apps (Scout, Ranger, Champion):

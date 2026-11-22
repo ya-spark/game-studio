@@ -11,7 +11,7 @@ isolated build, a review) used to save tokens. State lives in git, never in memo
 ## Each wake (start here every time)
 1. `git pull --recurse-submodules` in `game-studio`. Check the checkouts exist (`game-factory`, `games-web`, `public`, `apps/*`).
    If a folder is empty or missing, re-clone it (`add_repo` first if the session lost it).
-2. Read the "Loop" block and the status board in `docs/QUEUE.md`. Time is AEDT (`TZ=Australia/Sydney date`).
+2. Read the "Loop" block and the status board in `docs/QUEUE.md`, then the item file in `docs/queue/` of the item you work on. Time is AEDT (`TZ=Australia/Sydney date`).
 3. If now is past the deadline in the Loop block: set `Loop: STOPPED`, report, and do not schedule another wake.
 4. Resume the item named "Current". If none, pick the next item (see "Pick").
 
@@ -30,7 +30,7 @@ isolated build, a review) used to save tokens. State lives in git, never in memo
    to open pages). Checks are NOT a gate: a failure is written in `docs/QUEUE-LOG.md` and the work is still pushed.
 3. Commit and push the submodule `main`, then move the pin here (`scripts/bump.sh` / `push.sh`) and push this repo's `main`.
    The pin push starts `deploy-games-web`; wait for the run, then check the live `/games/` by file or in Chromium.
-4. Update `docs/QUEUE.md` (status board row, Loop block) in the same commit as the pin, with the AEDT time.
+4. Update the item's file in `docs/queue/` and its one line in `docs/QUEUE.md` (under 20 words; Loop block if it changed) in the same commit as the pin, with the AEDT time.
    Dated detail goes at the top of `docs/QUEUE-LOG.md`. Finished item text moves to the archive (see `CLAUDE.md`).
 5. Pick the next item.
 
