@@ -19,7 +19,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 
 ## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026; detail: [LOOP](queue/LOOP.md))
 - State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026. Recurring task `trig_01LytVbHGqXbL6UeHP4pPLtT` at :20 each hour; disable at the deadline.
-- Current: U3 built; planning W5 and M8 specs with owner, then U1 audit.
+- Current: review of all games and screens running; backlog waits for owner start.
 - Iteration 3 = web games and site; iteration 4 = app games (parked).
 
 ## Status board
