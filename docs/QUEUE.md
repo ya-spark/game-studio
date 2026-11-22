@@ -88,7 +88,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-12 Wind-up dash (was Runner)](queue/G-12-runner.md) | spec drafted 4:15 PM AEDT 22 Nov; owner answers 5 questions |
 | [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | BUILT 4:05 PM AEDT 22 Nov (factory 37470d7), web overlay done 7:26 PM; owner answers 3 questions, G-13c content |
 | [G-14 Shooter](queue/G-14-shooter.md) | BORING (review 22 Nov); not started |
-| [G-15 Parcel train (was Snake)](queue/G-15-snake.md) | spec drafted 4:02 PM AEDT 22 Nov; owner answers 5 questions |
+| [G-15 Parcel train (was Snake)](queue/G-15-snake.md) | BUILT 7:55 PM AEDT 22 Nov (factory 3e710d3, web 01516e1); owner plays it live |
 | [G-16 Solitaire](queue/G-16-solitaire.md) | not started |
 | [G-17 Sort bins](queue/G-17-sort-bins.md) | BORING (review 22 Nov); not started |
 | [G-18 Crane tower (was Stack tower)](queue/G-18-stack-tower.md) | BORING; spec drafted 4:02 PM AEDT 22 Nov; owner answers 5 questions |
@@ -98,6 +98,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-22 Wingy](queue/G-22-wingy.md) | not started |
 | [G-23 Word builder](queue/G-23-word-builder.md) | BORING (review 22 Nov); not started |
 | [G-24 Word grid](queue/G-24-word-grid.md) | not started |
+| [G-25 Snake series (`snake_series`)](queue/G-25-snake-series.md) | NEW 22 Nov; living-snake art and title; own rewrite spec later |
 
 ## Iteration 4: app games (parked, owner 2026-11-22)
 - R2, K1 for apps, app screens, Constellation in apps, DR1 follow-ups; Issue 10, Play Console, AdMob, screenshots, old three games. Starts when the owner says. Active and Next lists: [NEXT-AND-ACTIVE](queue/NEXT-AND-ACTIVE.md).

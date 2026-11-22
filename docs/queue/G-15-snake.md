@@ -1,8 +1,8 @@
 # G-15 Snake -> Parcel train (`snake` -> `parcel_train`)
 
-- Status: SPEC DRAFTED 4:02 PM AEDT 22 Nov (docs only, `docs/FEATURE-SPECS.md` section "G-15 Parcel train"); owner answers 5 questions, then build only on owner start
-- Owner decisions: none yet (rules of the rewrite list apply: toys only, no title bar, folder/package/id = title)
-- Next step: owner answers the 5 questions (title, courses and bumpers, tunnels, Games-tab score, speed and `snake_series`); then build steps 1 to 5 in the spec (1 rename and migration first).
+- Status: BUILT 7:55 PM AEDT 22 Nov (game-factory 02e1687 and earlier, 3e710d3 last; games-web 01516e1 and c795d72 with factory.ref 3e710d3; pins moved). Owner answered the 5 questions 22 Nov ("rest you choose"); see "Owner decisions" and "Built" below.
+- Owner decisions (22 Nov 2026): title Parcel train (`parcel_train`, `game_parcel_train`); courses as proposed (5 courses unlocked by 1 star each, station goal, golden parcel, 3 bumpers, a derail restarts the course, Free ride always open with one life); keep the tunnels; Games-tab best score and stars from Free ride only; slower course speed (courses 0.26 s down to 0.12 s, Free ride 0.20 s down to 0.08 s); `snake_series` becomes item G-25 (own rewrite spec later). Rules of the rewrite list apply: toys only, no title bar, folder/package/id = title.
+- Next step: owner plays it live (courses, Free ride, keyboard) and sends changes; Figma art later if the owner's limit allows (code art now); sound files are a later item; G-25 `snake_series` spec.
 - Links: rules in `docs/queue/GAMES-REWRITE.md`; review in `docs/queue/GAME-REVIEW.md` (look 2, feel 2, depth 4); spec in `docs/FEATURE-SPECS.md`; current game `game-factory/games/snake` (SPEC and rules code kept, renamed).
 
 ## Summary of the proposal
@@ -15,3 +15,9 @@
 ## Detail (verbatim from the old queue row)
 - Note: Mind Presto only.
 - Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start.
+
+## Built (7:55 PM AEDT 22 Nov, G-15)
+- game-factory: `19b3edd` step 1 (rename `snake` -> `parcel_train`: folder, package, classes `TrainGame` ..., tests, `gameSkill` key, how-to entry, tile art, `renamedGameIds['snake']`, `new_game.py` ARCADE table), `802e9ef` steps 2 and 3 (rules, screen), `02e1687` SPEC with test map, README, KEYBOARD row, `3e710d3` hint row fix. Rules in `lib/src/rules/` (pure Dart, purity test), 5 maps in `train_courses.dart`, saved data `parcel_train_progress.dart` (old `arcade.snake.*` keys move on first load), screen with code art (`ui/parcel_train_art.dart`: mats, rails, block stacks, fences, pond, tunnels, station, parcels with distinct ribbons, engine and wagons from above, smoke, steam, confetti). 81 tests in the package pass (rules with a BFS bot that clears all 5 courses over 20 seeds with 3 and 0 bumpers and gets 3 stars, flow, input, progression, semantics, keys shown, layout matrix 7 sizes x 2 text scales); game_core 335 tests, `flutter analyze` and `dart format` clean, ad safety OK.
+- games-web `01516e1`: `web_rules_data.dart` (regenerated from the factory catalogue; `sync_rules.py` now replaces the Mind app's old `snake` text), `renamedGameIds` (`snake` -> `parcel_train`) so saved `amc.state` follows, old `#/play/snake` link maps (`snake_series` untouched), `patch_renamed_games.py` entry with regex word boundaries (keeps `game_snake_series`, swaps the app's snake tile art), site tile art `parcel_train.svg` and `tile-parcel_train.svg`, `factory.ref` -> `3e710d3`.
+- Browser check (Chromium, Playwright, a harness page and a real Mind Presto web build at 390x844, 844x390, 1280x720): detail in QUEUE-LOG (a parcel was picked and a wagon coupled by real keyboard play; a course arrival only through a preset game and the tests). Later commit games-web `c795d72` makes `#/game/snake` open Parcel train.
+- Not done: Figma art and prompt file (code art only), sound files, an arrow pad on wide windows (keys shown instead), apps (paused). Course scores do not feed the Games tab (owner answer 4).
