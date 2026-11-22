@@ -24,6 +24,7 @@ Each item: what, why, where, state. Items with a spec are marked; the rest need 
 - **W5 browser notifications** (proposals confirmed; builds behind `REMIND_ENABLED = false` until the owner's child-directed check C9).
 - **M8 web coins** (owner has 4 open questions).
 - **W7 web game layout with side panels** (decisions applied; 4 questions answered).
+- **G-26 Judge bot content** (about 2 native true/false statements per topic; owner answer 22 Nov; content, not code; `docs/queue/G-26-judge-bot-content.md`).
 - **G-13c ordering content** (132 new series items for 2 per topic, 425 for 4): content, not code.
 
 ## Needs a discussion, then a spec

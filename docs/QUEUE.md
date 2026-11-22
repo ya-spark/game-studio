@@ -93,12 +93,13 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-17 Sort bins](queue/G-17-sort-bins.md) | BORING (review 22 Nov); not started |
 | [G-18 Crane tower (was Stack tower)](queue/G-18-stack-tower.md) | HELD (owner: no new items, 12:20 AM 23 Nov); spec drafted 4:02 PM; owner answers 5 questions |
 | [G-19 Sudoku](queue/G-19-sudoku.md) | not started |
-| [G-20 Judge bot (was True or false)](queue/G-20-true-false.md) | BORING; spec drafted 3:59 PM AEDT 22 Nov; owner answers 5 questions |
+| [G-20 Judge bot (was True or false)](queue/G-20-true-false.md) | BUILT 22 Nov (factory d422d24, web 83549b1); deployed; owner plays it live |
 | [G-21 Tug of war](queue/G-21-tug-of-war.md) | not started |
 | [G-22 Wingy](queue/G-22-wingy.md) | not started |
 | [G-23 Word builder](queue/G-23-word-builder.md) | BORING (review 22 Nov); not started |
 | [G-24 Word grid](queue/G-24-word-grid.md) | not started |
 | [G-25 Snake series (`snake_series`)](queue/G-25-snake-series.md) | NEW 22 Nov; living-snake art and title; own rewrite spec later |
+| [G-26 Judge bot content](queue/G-26-judge-bot-content.md) | NEW 22 Nov; about 2 native true/false statements per topic; not started |
 
 ## Iteration 4: app games (parked, owner 2026-11-22)
 - R2, K1 for apps, app screens, Constellation in apps, DR1 follow-ups; Issue 10, Play Console, AdMob, screenshots, old three games. Starts when the owner says. Active and Next lists: [NEXT-AND-ACTIVE](queue/NEXT-AND-ACTIVE.md).

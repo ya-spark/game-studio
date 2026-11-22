@@ -1,8 +1,8 @@
 # G-20 Judge bot (rewrite of True or false, `true_false`)
 
-- Status: SPEC DRAFTED 3:59 PM AEDT 22 Nov 2026 (docs only); owner answers 5 questions, then "start".
-- Owner decisions: none yet on this spec; rules fixed by the owner: no living beings, no title bar, folder/package/id = title, Space does not pause a game with choices (B-01), every button has a key.
-- Next step: owner answers the questions in `docs/FEATURE-SPECS.md` (section "G-20 Judge bot"); build only when the owner says start.
+- Status: BUILT 8:35 PM AEDT 22 Nov 2026 (game-factory 88aa754 rename, 8429a35, dfa6016, 7d4338a, 9002989, d06612f, d422d24; games `games/judge_bot`). Owner answers (given to the builder 22 Nov): 1 name Judge bot (`judge_bot`, `game_judge_bot`); 2 younger: a wrong answer shows the right verdict and moves on, no retry; 3 older: a right answer without an explanation moves on after 1.2 s; 4 light skill evidence (2 right in a row = one pass; `QuizSession.answer(skillEvidence:)`); 5 content item queued as G-26, nothing written now.  Web: games-web 83549b1 (rules text, `patch_renamed_games.py` entry, `renamedGameIds`, tile art, factory.ref d422d24, merged with the Wind-up dash mapping).
+- Owner decisions: the 5 answers above; rules fixed earlier: no living beings, no title bar, folder/package/id = title, Space never pauses a game with choices (B-01), every button has a key.
+- Next step: owner plays it live (keys, younger and older levels); Figma art and sound later; G-26 content.
 - Links: spec in `docs/FEATURE-SPECS.md`; rules in `docs/queue/GAMES-REWRITE.md`; review in `docs/queue/GAME-REVIEW.md`; bugs B-15, B-08, B-16 (queue).
 
 ## Summary of the spec
