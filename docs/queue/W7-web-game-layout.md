@@ -11,3 +11,8 @@
 
 ## Known shell bug (found 22 Nov ~3:15 PM AEDT by the Bridge builder fix)
 - At 390 px wide the web bar's Rules button overlaps the Game menu button (`games-web/overlay/common/lib/web_product/web_bar.dart`). Not fixed; fold into W7 step 1 (shell work) or fix on the owner's say.
+
+## Owner change 4:05 PM AEDT 22 Nov: left panel order (all games)
+- The left panel shows scores in two levels, in this order: (1) OVERALL (course level: the child's year across all games: total stars, topics lit, coins, achievements, link to My stars), then (2) THIS GAME (game level: best score, stars and level or course progress of the game being played).
+- Needs a source of both numbers: overall comes from `amc.progress.v1` (topic stars) and the coin count; game level from `amc.best.<gameId>` and the game's own stars. Wording of "course" to confirm with the owner (my reading: the whole year's course of topics, not a game's own courses such as Parcel train's).
+- Applies to every game through the shared web shell; no game draws it. Start with W7.
