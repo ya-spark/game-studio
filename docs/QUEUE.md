@@ -19,7 +19,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 
 ## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026; detail: [LOOP](queue/LOOP.md))
 - State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026. Recurring task `trig_01LytVbHGqXbL6UeHP4pPLtT` at :20 each hour; disable at the deadline.
-- Current: review of all games and screens running; backlog waits for owner start.
+- Current: owner said start 3:30 PM AEDT 22 Nov, up to 4 subagents. Running: Domino chain build, My stars 404 fix. Next: B-09, B-13.
 - Iteration 3 = web games and site; iteration 4 = app games (parked).
 
 ## Status board
@@ -51,15 +51,23 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 ## Backlog (nothing starts until the owner says start; detail: [BACKLOG](queue/BACKLOG.md))
 - B-01 Bridge builder: Space selects, not pause. DONE 3:40 PM AEDT (factory 756700c); other games' Space review open.
 - B-02 Bridge builder: slots 4/5 after selection. DONE 3:40 PM AEDT (unused slots now laid planks); cause guessed, owner to confirm.
-- B-03 Domino chain build: stopped by owner, partial work in a git stash.
+- B-03 Domino chain build: RUNNING since 3:34 PM AEDT 22 Nov (subagent).
 - B-04 Unsupported-topic screen: done 3:38 PM AEDT 22 Nov (games-web c7f0ee1); year buttons, topics first, keys; widget tests not run.
-- B-09 Every button has a shortcut key and shows it (Play again, Next, all dialogs).
+- B-09 Every button has a shortcut key and shows it. Next to start, after Domino chain.
 - B-10 Bridge builder: obvious start. DONE 3:40 PM AEDT (big Start, Enter / Space shown).
 - B-11 Game review: boring games list (owner 3:30 PM AEDT 22 Nov); done, see GAME-REVIEW.
 - B-12 Journey and screens review: clear, interesting screens from selection to play; done.
+- B-13 Empty games: show only games and topics with content for the year; Word grid, Fill the gap empty.
+- B-14 `/trail.html` 404 live (My stars): fix agent running since 3:43 PM AEDT.
+- B-15 Question text moves on before feedback (Balloon pop, Shooter, True or false).
+- B-16 Enter bugs: how-to dialog, Door runner Start, Merge hints, Runner jump key. Part of B-09.
+- B-17 Clipped letters (Word builder) and digits (Sudoku) under key hints; "1-4 tile" hint.
+- B-18 Hide Remove ads and rewarded Continue on web game-over cards.
+- B-19 Wingy hero is a moth: replaced in G-22 rewrite.
+- B-20 Five journey proposals from SCREEN-REVIEW: owner to discuss, then spec.
 - B-05 Web bar overlap at 390 px; B-06 Bridge builder tile art; B-07 Figma art.
 - Specs ready, waiting for start: W5, M8, W7, G-13c content.
-- To discuss: W8 web naming, G-01..G-24 rewrites, Constellation wiring, U1 audit.
+- To discuss: W8 web naming (inside B-20), G-01..G-24 rewrites, Constellation wiring, U1 audit.
 
 ## Game rewrite list (owner, 2:00 PM AEDT 22 Nov)
 - Reimagine, discuss, spec, build only on owner start; one game at a time. Rules: [GAMES-REWRITE](queue/GAMES-REWRITE.md).
