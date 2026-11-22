@@ -49,12 +49,12 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [Done items](queue/DONE.md) | 23 items finished (hosting, W1, M6, M7, R1, T1-T7, SH1 steps) | Detail in file |
 
 ## Backlog (nothing starts until the owner says start; detail: [BACKLOG](queue/BACKLOG.md))
-- B-01 Bridge builder: Space selects, not pause; review each game's Space.
-- B-02 Bridge builder: slots 4 and 5 not shown after selection.
+- B-01 Bridge builder: Space selects, not pause. DONE 3:40 PM AEDT (factory 756700c); other games' Space review open.
+- B-02 Bridge builder: slots 4/5 after selection. DONE 3:40 PM AEDT (unused slots now laid planks); cause guessed, owner to confirm.
 - B-03 Domino chain build: stopped by owner, partial work in a git stash.
 - B-04 Unsupported-topic screen improvements: stopped by owner, stash in games-web.
 - B-09 Every button has a shortcut key and shows it (Play again, Next, all dialogs).
-- B-10 Bridge builder: make the start obvious.
+- B-10 Bridge builder: obvious start. DONE 3:40 PM AEDT (big Start, Enter / Space shown).
 - B-05 Web bar overlap at 390 px; B-06 Bridge builder tile art; B-07 Figma art.
 - Specs ready, waiting for start: W5, M8, W7, G-13c content.
 - To discuss: W8 web naming, G-01..G-24 rewrites, Constellation wiring, U1 audit.
