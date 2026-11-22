@@ -93,7 +93,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-17 Sort bins](queue/G-17-sort-bins.md) | BORING (review 22 Nov); not started |
 | [G-18 Stack tower](queue/G-18-stack-tower.md) | BORING (review 22 Nov); not started |
 | [G-19 Sudoku](queue/G-19-sudoku.md) | not started |
-| [G-20 True or false](queue/G-20-true-false.md) | BORING (review 22 Nov); not started |
+| [G-20 Judge bot (was True or false)](queue/G-20-true-false.md) | BORING; spec drafted 3:59 PM AEDT 22 Nov; owner answers 5 questions |
 | [G-21 Tug of war](queue/G-21-tug-of-war.md) | not started |
 | [G-22 Wingy](queue/G-22-wingy.md) | not started |
 | [G-23 Word builder](queue/G-23-word-builder.md) | BORING (review 22 Nov); not started |
