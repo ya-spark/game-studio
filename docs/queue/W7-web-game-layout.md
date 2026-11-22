@@ -16,3 +16,7 @@
 - The left panel shows scores in two levels, in this order: (1) OVERALL (course level: the child's year across all games: total stars, topics lit, coins, achievements, link to My stars), then (2) THIS GAME (game level: best score, stars and level or course progress of the game being played).
 - Needs a source of both numbers: overall comes from `amc.progress.v1` (topic stars) and the coin count; game level from `amc.best.<gameId>` and the game's own stars. Wording of "course" to confirm with the owner (my reading: the whole year's course of topics, not a game's own courses such as Parcel train's).
 - Applies to every game through the shared web shell; no game draws it. Start with W7.
+
+## Owner change 4:10 PM AEDT 22 Nov: game-level score highlighted in the game screen
+- The game-level score (this game's score, best, stars) must be clearly highlighted on the game screen itself (a prominent score chip in the play area, not only in the left panel). Panel keeps overall first, then game.
+- Needs a shared score chip in game_core's frame/chrome so every game gets it; each game's SPEC says which numbers it shows. Check no overlap with the keys row at 390 px. Part of W7 start; owner to confirm placement (top centre?).

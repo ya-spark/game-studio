@@ -31,7 +31,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [M8 Rung opening by purchase or ad, coins](queue/M8-rung-opening-coins.md) | SPEC DRAFTED 2:21 PM 22 Nov | Owner answers 4 questions |
 | [W5 Browser notifications](queue/W5-notifications.md) | SPEC DRAFTED 1:56 PM 22 Nov; owner confirmed proposals 2:00 PM | Owner child-directed check, then says start |
 | [U2 Owner change list (22 Nov 1:20 PM)](queue/U2-owner-change-list.md) | Items 1, 2, 3 DONE; item 4 dropped | None open |
-| [W7 Web game layout: side panels](queue/W7-web-game-layout.md) | Spec drafted 2:54 PM; left panel: overall scores then game scores (4:05 PM) | Owner answers 4 questions, then says start |
+| [W7 Web game layout: side panels](queue/W7-web-game-layout.md) | Spec drafted 2:54 PM; left panel: overall then game scores; game score highlighted in play (4:10 PM) | Owner answers 4 questions, then says start |
 | [W8 Web shows games only, no app names](queue/W8-web-naming.md) | Owner rule 22 Nov | Discuss URLs and wording, then spec |
 | [U3 Bridge builder (rewrite of the sum game)](queue/U3-bridge-builder.md) | Renamed bridge_builder, pushed 3:07 PM AEDT 22 Nov | Owner looks live, sends changes |
 | [Trail look: Constellation](queue/TRAIL-constellation.md) | Web page built 1:05 PM 22 Nov; Flutter component pushed | Push when site is up, W3 progress store, then apps (iteration 4) |
