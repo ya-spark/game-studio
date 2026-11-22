@@ -91,7 +91,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-15 Parcel train (was Snake)](queue/G-15-snake.md) | BUILT 7:55 PM AEDT 22 Nov (factory 3e710d3, web 01516e1); owner plays it live |
 | [G-16 Solitaire](queue/G-16-solitaire.md) | not started |
 | [G-17 Sort bins](queue/G-17-sort-bins.md) | BORING (review 22 Nov); not started |
-| [G-18 Crane tower (was Stack tower)](queue/G-18-stack-tower.md) | BORING; spec drafted 4:02 PM AEDT 22 Nov; owner answers 5 questions |
+| [G-18 Crane tower (was Stack tower)](queue/G-18-stack-tower.md) | HELD (owner: no new items, 12:20 AM 23 Nov); spec drafted 4:02 PM; owner answers 5 questions |
 | [G-19 Sudoku](queue/G-19-sudoku.md) | not started |
 | [G-20 Judge bot (was True or false)](queue/G-20-true-false.md) | BORING; spec drafted 3:59 PM AEDT 22 Nov; owner answers 5 questions |
 | [G-21 Tug of war](queue/G-21-tug-of-war.md) | not started |
