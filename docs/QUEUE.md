@@ -52,7 +52,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 - B-01 Bridge builder: Space selects, not pause. DONE 3:40 PM AEDT (factory 756700c); other games' Space review open.
 - B-02 Bridge builder: slots 4/5 after selection. DONE 3:40 PM AEDT (unused slots now laid planks); cause guessed, owner to confirm.
 - B-03 Domino chain build: stopped by owner, partial work in a git stash.
-- B-04 Unsupported-topic screen improvements: stopped by owner, stash in games-web.
+- B-04 Unsupported-topic screen: done 3:38 PM AEDT 22 Nov (games-web c7f0ee1); year buttons, topics first, keys; widget tests not run.
 - B-09 Every button has a shortcut key and shows it (Play again, Next, all dialogs).
 - B-10 Bridge builder: obvious start. DONE 3:40 PM AEDT (big Start, Enter / Space shown).
 - B-05 Web bar overlap at 390 px; B-06 Bridge builder tile art; B-07 Figma art.
