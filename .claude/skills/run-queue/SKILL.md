@@ -29,7 +29,7 @@ isolated build, a review) used to save tokens. State lives in git, never in memo
 2. Run checks where the tools exist (no Flutter here; web scripts, Python and JS can run; use Playwright Chromium
    to open pages). Checks are NOT a gate: a failure is written in `docs/QUEUE-LOG.md` and the work is still pushed.
 3. Commit and push the submodule `main`, then move the pin here (`scripts/bump.sh` / `push.sh`) and push this repo's `main`.
-   The pin push starts `deploy-games-web`; wait for the run, then check the live `/games/` by file or in Chromium.
+   The pin push starts `deploy-games-web`; wait for the run, then check the site is live with the new code: `build-info.json` of a game shows the new `gamesCommit` and `gamesWebCommit`, and the changed game or page opens in Chromium (owner, 2026-11-22: push and verify after every item, never batch).
 4. Update the item's file in `docs/queue/` and its one line in `docs/QUEUE.md` (under 20 words; Loop block if it changed) in the same commit as the pin, with the AEDT time.
    Dated detail goes at the top of `docs/QUEUE-LOG.md`. Finished item text moves to the archive (see `CLAUDE.md`).
 5. Pick the next item.
