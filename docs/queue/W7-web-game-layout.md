@@ -8,3 +8,6 @@
 ## Owner answers 22 Nov ~3:10 PM AEDT
 - Questions 1 to 3 (1100 px breakpoint and 1000 px column, the six derived achievements, empty right column with no placeholder until C9): owner said "your choice" = the spec's proposals stand.
 - Question 4 (do the list pages get the panels): the web must NOT show the app names (Craft, Scout, Ranger, Champion, Mind, Ember, Presto) in any wording; to a visitor it is all just games under the web. Same layout for every page; see item W8 (web naming, to discuss).
+
+## Known shell bug (found 22 Nov ~3:15 PM AEDT by the Bridge builder fix)
+- At 390 px wide the web bar's Rules button overlaps the Game menu button (`games-web/overlay/common/lib/web_product/web_bar.dart`). Not fixed; fold into W7 step 1 (shell work) or fix on the owner's say.
