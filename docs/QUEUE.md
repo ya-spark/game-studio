@@ -30,7 +30,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 
 ## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026)
 - State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026 (36 hours). Wake: every 60 minutes (`send_later`).
-- Current: Constellation trail for the web (decided, not built): one Constellation for all web games, drawn in code, keyboard and screen-reader labels. DONE so far: Shooter art (12:05 PM AEDT 22 Nov, live).
+- Current: W5/M8 specs next, then U1 audit (needs owner input). AdSense paused by the owner (1:00 PM AEDT 22 Nov; Verify failed 3 times, site is ready: meta tag, snippet, ads.txt, no noindex). DONE: Shooter art, My stars page (`/trail.html`, 1:05 PM AEDT 22 Nov).
 - Access: `public` and `game-content` are attached and cloned (owner added the Claude app, 10:55 AM AEDT 22 Nov); no longer blocked.
 - Iterations (owner, 2026-11-22): we are in ITERATION 3 = web games and the website. ITERATION 4 = app games (below).
 - Owner answers 22 Nov (noon): W5 client-only notifications are OK (they only show while the site is open). M8 coins live only in the browser (local storage, gone if cleared; no backend, no sign-in). Constellation: Claude draws it in code now (Figma later if the owner wants). Topic list review: start now with the owner.
@@ -67,7 +67,7 @@ This file is a TRACKER: one row per item with where it stands, who acts next and
 | T1 Exact question formats (limits, size class) | DONE, pushed | Built in the IDE session (issue #175 was cancelled and closed). Limits widened to fit real content; `expression` stays optional. |
 | T2 to T7 Skills, mastery, game limits, trail, Shooter, Mind journey | DONE, pushed | game-factory fb2823d, Scout 9bc4cce, Ranger a7421a3, Champion 7ed1ac1, Ember 7587c7e, Presto 11d1e87, `game-content` dcf9fd5. Snake for series was built and then DROPPED (owner, 3:10 PM AEDT: Snake is for Presto only; questions in it are not a good experience). Detail and what is not built: `docs/FEATURE-SPECS.md`. |
 | Skill list (152 topics, 3 named rungs each) | APPROVED by the owner, kept | `docs/SKILLS-REVIEW.md`; names in `game-content/skill_names.yaml`. |
-| Trail look: Constellation | WEB COMPONENT BUILT, NOT PUSHED | Shared `ConstellationTrail` in game_core (game-factory 0f35e10, local; site was 404 at 11:50 AM AEDT 22 Nov). Next: push when the site is up, W3 progress store, web page, then apps (iteration 4). Look: skill progress, one per topic, rung = star, drawn in code, keyboard and screen-reader labels. |
+| Trail look: Constellation | WEB PAGE BUILT (`/trail.html`, 1:05 PM AEDT 22 Nov, topic stars from `amc.state`); Flutter component pushed |  Shared `ConstellationTrail` in game_core (game-factory 0f35e10, local; site was 404 at 11:50 AM AEDT 22 Nov). Next: push when the site is up, W3 progress store, web page, then apps (iteration 4). Look: skill progress, one per topic, rung = star, drawn in code, keyboard and screen-reader labels. |
 | Study "Other question types", web how-to text, Mind levels | DONE, pushed | Mind level thresholds are proposals, tuned later with real scores. |
 | K1 Keyboard play in the games (web) | MOSTLY DONE, live 11:11 AM AEDT 22 Nov (game-factory 3ef2c30, pin 22a71f9, deploy run 35 green) | Arcade frame and 12 more games (Enter, arrows, number keys, Esc, Space); not played on a real keyboard; shared choice screen not confirmed. Apps get it in iteration 4. |
 | W4 Responsive web layout | RULE DONE for NEW apps and games | Helpers and `docs/WEB_LAYOUT.md` in the template; current apps unchanged by the owner's choice. |
