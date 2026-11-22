@@ -49,7 +49,7 @@ Games take the envelope as far as they can. What they add beyond it is below. `s
 | Sort into bins | `category`, `any` |
 | Word builder | `word` and `cloze`, `any` |
 | Word search and crossword | `word` of 3 to 10 letters only (as in `word_grid_rules.dart` today); several words per round |
-| Equation builder | `numeric` whose answer is a **whole number from 0 to 999** (644 of 778 numeric items today; the game builds its own solution from the target and does not use `expression`) |
+| Bridge builder (id `equation_builder`) | `numeric` whose answer is a **whole number from 0 to 999** (644 of 778 numeric items today; the game builds its own solution from the target and does not use `expression`) |
 | Flash review, Quick quiz | everything inside the envelope, `any` (Quick quiz today plays `mcq` only; see the gaps in the vision document) |
 
 Limits can be a size (options, steps, pairs), a length (characters), a size class, or a required value range (a whole-number answer).
