@@ -19,7 +19,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 
 ## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026; detail: [LOOP](queue/LOOP.md))
 - State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026. Recurring task `trig_01LytVbHGqXbL6UeHP4pPLtT` at :20 each hour; disable at the deadline.
-- Current: owner said start 3:30 PM AEDT 22 Nov, up to 4 subagents. Running: B-09 keys, Parcel train build, Domino overlay fix. Done: Domino chain, B-13, B-14. Next wave after deploy: Wind-up dash, Judge bot, Crane tower.
+- Current: 12:20 AM AEDT Mon 23 Nov: owner says finish in-progress items only (Wind-up dash, Judge bot), no new items, then deploy; owner tests apps thoroughly.
 - Iteration 3 = web games and site; iteration 4 = app games (parked).
 
 ## Status board
