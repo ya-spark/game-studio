@@ -53,6 +53,8 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 - B-02 Bridge builder: slots 4 and 5 not shown after selection.
 - B-03 Domino chain build: stopped by owner, partial work in a git stash.
 - B-04 Unsupported-topic screen improvements: stopped by owner, stash in games-web.
+- B-09 Every button has a shortcut key and shows it (Play again, Next, all dialogs).
+- B-10 Bridge builder: make the start obvious.
 - B-05 Web bar overlap at 390 px; B-06 Bridge builder tile art; B-07 Figma art.
 - Specs ready, waiting for start: W5, M8, W7, G-13c content.
 - To discuss: W8 web naming, G-01..G-24 rewrites, Constellation wiring, U1 audit.
