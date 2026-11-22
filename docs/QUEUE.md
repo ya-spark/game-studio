@@ -19,7 +19,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 
 ## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026; detail: [LOOP](queue/LOOP.md))
 - State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026. Recurring task `trig_01LytVbHGqXbL6UeHP4pPLtT` at :20 each hour; disable at the deadline.
-- Current: 12:20 AM AEDT Mon 23 Nov: owner says finish in-progress items only (Wind-up dash, Judge bot), no new items, then deploy; owner tests apps thoroughly.
+- Current: 1:10 AM AEDT Mon 23 Nov: all in-progress items finished and deployed (all five sites on games d422d24, web b139dc7). No new items started. Waiting for the owner's thorough check.
 - Iteration 3 = web games and site; iteration 4 = app games (parked).
 
 ## Status board
@@ -85,7 +85,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-09 Mahjong](queue/G-09-mahjong.md) | not started |
 | [G-10 Memory match](queue/G-10-memory-match.md) | BORING (review 22 Nov); not started |
 | [G-11 Merge](queue/G-11-merge.md) | not started |
-| [G-12 Wind-up dash (was Runner)](queue/G-12-runner.md) | BUILT 12:20 AM AEDT 23 Nov (factory 271c023, web 0b6a3dc); owner plays it live |
+| [G-12 Wind-up dash (was Runner)](queue/G-12-runner.md) | BUILT and live 23 Nov (factory 271c023, web b139dc7); owner checks it |
 | [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | BUILT 4:05 PM AEDT 22 Nov (factory 37470d7), web overlay done 7:26 PM; owner answers 3 questions, G-13c content |
 | [G-14 Shooter](queue/G-14-shooter.md) | BORING (review 22 Nov); not started |
 | [G-15 Parcel train (was Snake)](queue/G-15-snake.md) | BUILT 7:55 PM AEDT 22 Nov (factory 3e710d3, web 01516e1); owner plays it live |
@@ -93,7 +93,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-17 Sort bins](queue/G-17-sort-bins.md) | BORING (review 22 Nov); not started |
 | [G-18 Crane tower (was Stack tower)](queue/G-18-stack-tower.md) | HELD (owner: no new items, 12:20 AM 23 Nov); spec drafted 4:02 PM; owner answers 5 questions |
 | [G-19 Sudoku](queue/G-19-sudoku.md) | not started |
-| [G-20 Judge bot (was True or false)](queue/G-20-true-false.md) | BUILT 22 Nov (factory d422d24, web 83549b1); deployed; owner plays it live |
+| [G-20 Judge bot (was True or false)](queue/G-20-true-false.md) | BUILT 22 Nov (factory d422d24, web b139dc7); live; owner checks it |
 | [G-21 Tug of war](queue/G-21-tug-of-war.md) | not started |
 | [G-22 Wingy](queue/G-22-wingy.md) | not started |
 | [G-23 Word builder](queue/G-23-word-builder.md) | BORING (review 22 Nov); not started |
