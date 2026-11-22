@@ -21,4 +21,15 @@ while read -r slug repo; do
   app_tip="$(git -C "$ROOT/apps/${repo#*/}" rev-parse HEAD)"
   if [ "$live_app" != "$app_tip" ] || [ "$live_web" != "$WEB_TIP" ]; then out+=("$slug"); fi
 done < <(awk '$1=="-" && $2=="slug:" {s=$3} $1=="app:" {print s, $2}' "$YAML")
+# A landing-page file (site/trail.html) that is in games-web but not live (a partial deploy once dropped it, 404): rebuild
+# one live game, which also replaces the landing files.
+if [ "${#out[@]}" -eq 0 ] && [ -f "$ROOT/games-web/site/trail.html" ]; then
+  code="$(curl -s -o /dev/null -m 20 -w '%{http_code}' "$SITE/trail.html" || true)"
+  if [ "$code" = 404 ]; then
+    first="$(awk '$1=="-" && $2=="slug:" {print $3}' "$YAML" | while read -r s; do
+      curl -fsS -m 20 "$SITE/$s/build-info.json" 2>/dev/null | grep -q '^{"slug"' && { echo "$s"; break; }
+    done)"
+    [ -n "$first" ] && out+=("$first")
+  fi
+fi
 echo "${out[*]:-}"

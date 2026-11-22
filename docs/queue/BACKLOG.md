@@ -50,3 +50,5 @@ Each item: what, why, where, state. Items with a spec are marked; the rest need 
 - **B-18 Web shows store things.** Mind game-over cards show "Remove ads" and a rewarded "Continue" on the web; hide on web. Also app names on cards, tab titles, version line (W8).
 - **B-19 Wingy hero is a moth** (animal): breaks the no-living-beings rule; fixed by the G-22 rewrite.
 - **B-20 Journey proposals (to discuss with owner).** (1) one-tap Play hero card; (2) never open an empty game; (3) no app names, one card and one address per game; (4) every intro has one big Start (Enter), how-to as a banner; (5) results with stars, Next game, Play again, and a shorter host bar. Detail: SCREEN-REVIEW.md.
+
+- **B-13 /trail.html 404 (owner, 22 Nov).** Cause: partial deploys (push runs) copied only index.html, catalog.json, ads.txt into the image, so trail.html never went live. Fixed in `scripts/deploy-games-web.sh` (all top-level files), `plan-games-web.sh` (redeploys when trail.html is 404), `serve-static.cjs` (`/trail` works, friendly 404 page with a Games link). Pushed ~5:05 PM AEDT; verify after deploy.

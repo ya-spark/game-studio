@@ -15,6 +15,9 @@ on:
     branches: [main]
     paths:
       - games-web
+      - scripts/deploy-games-web.sh
+      - scripts/plan-games-web.sh
+      - scripts/serve-static.cjs
       - apps/game-mind-1
       - apps/game-mind-9
       - apps/game-craft-preteen

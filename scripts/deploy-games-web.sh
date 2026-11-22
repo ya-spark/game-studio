@@ -126,8 +126,8 @@ if [ "$PARTIAL" = 1 ]; then
   done
   # The landing page files are always replaced (they are not games).
   if [ -f "$DEPLOY/.build/web/index.html" ]; then
-    cp -f "$DEPLOY/.build/web/index.html" "$DEPLOY/.build/web/catalog.json" "$DEPLOY/.build/seed/"
-    [ -f "$DEPLOY/.build/web/ads.txt" ] && cp -f "$DEPLOY/.build/web/ads.txt" "$DEPLOY/.build/seed/"
+    # Every top-level file (index.html, catalog.json, trail.html, ads.txt, ...): a list here once left trail.html out (404).
+    find "$DEPLOY/.build/web" -maxdepth 1 -type f -exec cp -f {} "$DEPLOY/.build/seed/" \;
     rm -rf "${DEPLOY:?}/.build/seed/_site"; mv "$DEPLOY/.build/web/_site" "$DEPLOY/.build/seed/_site"
   fi
   rm -rf "${DEPLOY:?}/.build/web"; mv "$DEPLOY/.build/seed" "$DEPLOY/.build/web"

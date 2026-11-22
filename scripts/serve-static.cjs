@@ -55,6 +55,17 @@ function indexPage() {
     `<title>Game Studio web</title><h1>Game Studio web</h1><ul>${items}</ul>`;
 }
 
+// Friendly page for unknown addresses (instead of a bare "Not Found").
+function notFound(res, headers) {
+  const body = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">` +
+    `<title>Page not found</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;` +
+    `background:#0f1226;color:#eef;font-family:system-ui,sans-serif;text-align:center}a{display:inline-block;margin-top:18px;` +
+    `padding:12px 28px;border-radius:999px;background:#ffd166;color:#222;font-weight:700;text-decoration:none}</style>` +
+    `<main><h1>We could not find that page</h1><p>It may have moved, or the address is mistyped.</p>` +
+    `<a href="${base}/">Games</a></main></html>`;
+  res.writeHead(404, { ...headers, 'Content-Type': MIME['.html'] }).end(body);
+}
+
 function resolveFile(urlPath) {
   let rel;
   try { rel = decodeURIComponent((urlPath || '/').split('?')[0]).replace(/^\/+/, ''); } catch { return null; }
@@ -80,7 +91,7 @@ http.createServer((req, res) => {
     return;
   }
   if (base && !full.startsWith(base + '/')) {
-    res.writeHead(404, headers).end('Not Found');
+    notFound(res, headers);
     return;
   }
   const pathname = base ? full.slice(base.length) : full;
@@ -100,9 +111,10 @@ http.createServer((req, res) => {
     res.writeHead(301, { ...headers, Location: base + pathname + '/' }).end();
     return;
   }
-  const file = resolveFile(pathname);
+  let file = resolveFile(pathname);
+  if (!file && /^\/[^/.]+$/.test(pathname)) file = resolveFile(pathname + '.html'); // /trail -> /trail.html
   if (!file) {
-    res.writeHead(404, headers).end('Not Found');
+    notFound(res, headers);
     return;
   }
   // ETag from size and mtime: a repeat visit revalidates with a 304 instead of downloading the whole bundle again.
