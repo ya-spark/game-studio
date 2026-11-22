@@ -18,7 +18,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 - Issues come from `yaseengem` only.
 
 ## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026; detail: [LOOP](queue/LOOP.md))
-- State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026. Recurring task `trig_01LytVbHGqXbL6UeHP4pPLtT` at :20 each hour; disable at the deadline.
+- State: STOPPED (owner, 1:30 AM AEDT 23 Nov; hourly trigger disabled). Deadline: 10:30 PM AEDT Mon 23 Nov 2026. Recurring task `trig_01LytVbHGqXbL6UeHP4pPLtT` at :20 each hour; disable at the deadline.
 - Current: 1:10 AM AEDT Mon 23 Nov: all in-progress items finished and deployed (all five sites on games d422d24, web b139dc7). No new items started. Waiting for the owner's thorough check.
 - Iteration 3 = web games and site; iteration 4 = app games (parked).
 
