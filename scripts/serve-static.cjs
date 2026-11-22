@@ -73,7 +73,7 @@ function resolveFile(urlPath) {
 }
 
 http.createServer((req, res) => {
-  const headers = { 'Cache-Control': 'no-cache', 'X-Robots-Tag': 'noindex, nofollow' };
+  const headers = { 'Cache-Control': 'no-cache' }; // public site: no noindex (owner yes, 2026-11-22, for AdSense)
   const full = (req.url || '/').split('?')[0];
   if (base && full === base) {
     res.writeHead(301, { ...headers, Location: base + '/' }).end();
