@@ -1,6 +1,6 @@
 # Bridge builder art kit: Figma prompt (owner runs it, hands the result back)
 
-The Figma MCP limit blocks writes (22 Nov 2026: `use_figma` answered "tool call limit on the Starter plan"; the plan also has a View seat). A blank file was created: https://www.figma.com/design/SWayJx5Gv0KIshgXzs2u6n ("Bridge builder kit"). Paste the prompt below into Figma (AI, Make or First Draft), then give Claude the result (share the file link or export the frames as SVG). The game works today with the same art drawn in code (`game-factory/games/equation_builder/lib/src/ui/bridge_art.dart`); the Figma result replaces or refines it.
+The Figma MCP limit blocks writes (22 Nov 2026: `use_figma` answered "tool call limit on the Starter plan"; the plan also has a View seat). A blank file was created: https://www.figma.com/design/SWayJx5Gv0KIshgXzs2u6n ("Bridge builder kit"). Paste the prompt below into Figma (AI, Make or First Draft), then give Claude the result (share the file link or export the frames as SVG). The game works today with the same art drawn in code (`game-factory/games/bridge_builder/lib/src/ui/bridge_art.dart`); the Figma result replaces or refines it.
 
 Hard rule (owner, 2026-11-22): no living beings. No people, no animals, no faces of creatures. The character is a toy robot.
 
@@ -23,4 +23,4 @@ Name layers like the item names. Reuse the plank, tile and star components in th
 
 ## What the result feeds
 - `lib/src/ui/bridge_art.dart`: the painters (`paintToyRobot`, `BridgeScenePainter`) are replaced by exported SVG (or kept and redrawn to match).
-- Any exported file goes under `game-factory/games/equation_builder/assets/` and gets a row in `assets/LICENSES.md` (original art, made for the studio).
+- Any exported file goes under `game-factory/games/bridge_builder/assets/` and gets a row in `assets/LICENSES.md` (original art, made for the studio).

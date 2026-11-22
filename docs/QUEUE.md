@@ -33,7 +33,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [U2 Owner change list (22 Nov 1:20 PM)](queue/U2-owner-change-list.md) | Items 1, 2, 3 DONE; item 4 dropped | None open |
 | [W7 Web game layout: side panels](queue/W7-web-game-layout.md) | Spec drafted 2:54 PM AEDT 22 Nov | Owner answers 4 questions, then says start |
 | [W8 Web shows games only, no app names](queue/W8-web-naming.md) | Owner rule 22 Nov | Discuss URLs and wording, then spec |
-| [U3 Bridge builder (Equation builder rewrite)](queue/U3-bridge-builder.md) | Bugs fixed 3:05 PM AEDT 22 Nov (no title bar, fits window) | Owner looks live, sends changes |
+| [U3 Bridge builder (rewrite of the sum game)](queue/U3-bridge-builder.md) | Renamed bridge_builder, pushed 3:07 PM AEDT 22 Nov | Owner looks live, sends changes |
 | [Trail look: Constellation](queue/TRAIL-constellation.md) | Web page built 1:05 PM 22 Nov; Flutter component pushed | Push when site is up, W3 progress store, then apps (iteration 4) |
 | [K1 Keyboard play (web)](queue/K1-keyboard-play.md) | MOSTLY DONE, live 11:11 AM 22 Nov | Owner plays on a real keyboard; apps get it in iteration 4 |
 | [W6 Games-first web flow](queue/W6-games-first-flow.md) | DONE, live 3:27 PM 21 Nov | Owner opens `/games/` and reports |

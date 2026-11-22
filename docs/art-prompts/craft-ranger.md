@@ -13,7 +13,7 @@ App: `apps/game-craft-lowteen` (registry `lib/ui/game_registry.dart`). Workflow,
 | 4 | Tug of war (`tug_of_war`) | TODO | rope, centre flag, two team mascots (animals), pull effects | |
 | 5 | Series builder (`series_builder`) | TODO | number/item tiles, empty slot, track | |
 | 6 | Word search and crossword (`word_grid`) | TODO | letter tile, selected tile, found highlight, word chips | |
-| 7 | Equation builder (`equation_builder`) | TODO | blank tiles, operator plates, equals bar, balance | |
+| 7 | Bridge builder (`bridge_builder`) | TODO | blank tiles, operator plates, equals bar, balance | |
 | 8 | Sort into bins (`sort_bins`) | TODO | 3 bins, item cards, drop glow | |
 | 9 | True or false (`true_false`) | TODO | big true/false buttons, statement card | |
 | 10 | Flash review (`flash_review`) | TODO | card front/back, know it / again buttons, deck | |

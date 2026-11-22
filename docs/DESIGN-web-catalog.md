@@ -37,7 +37,7 @@ Status: draft by the studio session, 2026-11-15, not approved, nothing built. So
 
 1. Year and Topic apply to Learn cards. If a visitor picks a Year or Topic, Fun cards are hidden (they have no year); with Type = Fun, Year and Topic are disabled. Say if Fun cards should stay visible instead.
 2. Ranger (Years 7 to 10) and Champion (Years 11 to 12) appear in the same catalog as Scout (Foundation to Year 6); the Year filter simply shows the years that exist. Visitors never see an "app" name unless the owner wants one on the card.
-3. Learn games on the web today: Quick quiz only (built-in starter packs). Scout's minigames (Equation builder, Word search and crossword, Tug of war) come later as separate cards; anything purchasable is not on the web (owner).
+3. Learn games on the web today: Quick quiz only (built-in starter packs). Scout's minigames (Bridge builder, Word search and crossword, Tug of war) come later as separate cards; anything purchasable is not on the web (owner).
 4. I draft the rules and tips text for every game (about 12 Fun games and the Learn games) and the owner reviews it; a run does not invent it.
 
 ## Steps (each one a small piece, posted only when the owner says)

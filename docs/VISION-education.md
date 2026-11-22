@@ -46,7 +46,7 @@ Already built (checked 2026-11-21, `lib/engine/` is identical in all five apps):
 | Sort into bins | | | | x | | | | 3 | all |
 | Word builder | | | | | x | | x | 3 | all |
 | Word search and crossword | | | | | x | | | 4 | Y3-6 |
-| Equation builder | | | | | | x | | 4 | Y3-6 |
+| Bridge builder | | | | | | x | | 4 | Y3-6 |
 | Flash review | x | x | x | x | x | x | x | 4 | all |
 
 - Games per format: mcq 7, numeric 3, word 3, cloze 3, series 2, pairs 2, category 2. Series, pairs and category each have one real game plus Flash review.

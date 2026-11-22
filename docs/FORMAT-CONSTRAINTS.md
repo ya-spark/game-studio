@@ -49,7 +49,7 @@ Games take the envelope as far as they can. What they add beyond it is below. `s
 | Sort into bins | `category`, `any` |
 | Word builder | `word` and `cloze`, `any` |
 | Word search and crossword | `word` of 3 to 10 letters only (as in `word_grid_rules.dart` today); several words per round |
-| Bridge builder (id `equation_builder`) | `numeric` whose answer is a **whole number from 0 to 999** (644 of 778 numeric items today; the game builds its own solution from the target and does not use `expression`) |
+| Bridge builder (id `bridge_builder`) | `numeric` whose answer is a **whole number from 0 to 999** (644 of 778 numeric items today; the game builds its own solution from the target and does not use `expression`) |
 | Flash review, Quick quiz | everything inside the envelope, `any` (Quick quiz today plays `mcq` only; see the gaps in the vision document) |
 
 Limits can be a size (options, steps, pairs), a length (characters), a size class, or a required value range (a whole-number answer).
@@ -84,7 +84,7 @@ Authoring guidance that follows: write `short` items by default, and use `long` 
 6. **Changes:** widening a limit is safe. Narrowing one needs a content fix first. A new format or a changed field shape is an engine version bump that the three Craft apps and the Mind hubs take together through `sync_engine.py`.
 
 ## 6a. Decided (owner delegated, recommendation adopted, 2026-11-21)
-- **No `expression` rule (corrected 2026-11-21).** The first version required every maths `numeric` item to carry an `expression`, on the belief that Equation builder needs it. The code shows no game reads `expression` (it is only a validator cross-check) and Equation builder needs a whole-number answer from 0 to 999. 265 items lack an `expression` and almost none have a natural one, so the rule was dropped (owner, 2026-11-21): `expression` stays optional and is checked when present; Equation builder's limit is the whole-number answer.
+- **No `expression` rule (corrected 2026-11-21).** The first version required every maths `numeric` item to carry an `expression`, on the belief that Bridge builder needs it. The code shows no game reads `expression` (it is only a validator cross-check) and Bridge builder needs a whole-number answer from 0 to 999. 265 items lack an `expression` and almost none have a natural one, so the rule was dropped (owner, 2026-11-21): `expression` stays optional and is checked when present; Bridge builder's limit is the whole-number answer.
 - **One set of `short` thresholds for all apps** (prompt 150, options 30, tiles 24). Measured by school stage: Scout content (Years 0 to 6) is 89% `short`, Ranger (7 to 10) 72%, Champion (11 to 12) 64%, so Scout does not need a tighter band; the pool report shows each app's rate, and the thresholds can be revisited if a game rejects too much.
 - **Envelope `mcq` stays at 2 to 4 options and exactly one correct answer.** A fifth option or a multiple-answer question would be a deliberate engine change (a new format for multiple answers).
 
