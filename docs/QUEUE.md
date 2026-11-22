@@ -53,15 +53,15 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 - B-02 Bridge builder: slots 4/5 after selection. DONE 3:40 PM AEDT (unused slots now laid planks); cause guessed, owner to confirm.
 - B-03 Domino chain build: DONE 4:05 PM AEDT 22 Nov (factory 37470d7, web ca5245a); owner to look; overlay edits done 7:26 PM AEDT.
 - B-04 Unsupported-topic screen: done 3:38 PM AEDT 22 Nov (games-web c7f0ee1); year buttons, topics first, keys; widget tests not run.
-- B-09 Every button has a shortcut key and shows it. Next to start, after Domino chain.
+- B-09 Every button has a shortcut key and shows it. DONE 8:10 PM AEDT 22 Nov; audit in queue/B-09 file.
 - B-10 Bridge builder: obvious start. DONE 3:40 PM AEDT (big Start, Enter / Space shown).
 - B-11 Game review: boring games list (owner 3:30 PM AEDT 22 Nov); done, see GAME-REVIEW.
 - B-12 Journey and screens review: clear, interesting screens from selection to play; done.
 - B-13 Empty games: DONE 4:15 PM AEDT (games-web 0dd9128); content still missing for Word grid, Memory match, Sort bins, Word builder, Fill the gap.
 - B-14 `/trail.html` 404 live (My stars): DONE 4:00 PM AEDT; deploy copies all top-level files.
 - B-15 Question text moves on before feedback (Balloon pop, Shooter, True or false).
-- B-16 Enter bugs: how-to dialog, Door runner Start, Merge hints, Runner jump key. Part of B-09.
-- B-17 Clipped letters (Word builder) and digits (Sudoku) under key hints; "1-4 tile" hint.
+- B-16 Enter bugs: how-to dialog, Door runner Start, Merge hints, Runner jump key. DONE 8:10 PM AEDT 22 Nov.
+- B-17 Clipped letters (Word builder) and digits (Sudoku) under key hints; "1-4 tile" hint. DONE 8:10 PM AEDT 22 Nov.
 - B-18 Hide Remove ads and rewarded Continue on web game-over cards.
 - B-19 Wingy hero is a moth: replaced in G-22 rewrite.
 - B-20 Five journey proposals from SCREEN-REVIEW: owner to discuss, then spec.
