@@ -48,6 +48,15 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [R2 Rewrite earlier Craft apps and games](queue/R2-rewrite-craft-apps.md) | SPEC IN PROGRESS; parked (iteration 4) | Waiting for Figma result, apps' own screens, Constellation |
 | [Done items](queue/DONE.md) | 23 items finished (hosting, W1, M6, M7, R1, T1-T7, SH1 steps) | Detail in file |
 
+## Backlog (nothing starts until the owner says start; detail: [BACKLOG](queue/BACKLOG.md))
+- B-01 Bridge builder: Space selects, not pause; review each game's Space.
+- B-02 Bridge builder: slots 4 and 5 not shown after selection.
+- B-03 Domino chain build: stopped by owner, partial work in a git stash.
+- B-04 Unsupported-topic screen improvements: stopped by owner, stash in games-web.
+- B-05 Web bar overlap at 390 px; B-06 Bridge builder tile art; B-07 Figma art.
+- Specs ready, waiting for start: W5, M8, W7, G-13c content.
+- To discuss: W8 web naming, G-01..G-24 rewrites, Constellation wiring, U1 audit.
+
 ## Game rewrite list (owner, 2:00 PM AEDT 22 Nov)
 - Reimagine, discuss, spec, build only on owner start; one game at a time. Rules: [GAMES-REWRITE](queue/GAMES-REWRITE.md).
 
