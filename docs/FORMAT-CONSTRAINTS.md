@@ -18,7 +18,7 @@ Item limits and game limits are designed together so that **most items play in m
 - `short`: prompt at most 150 characters, `mcq` options at most 30, tiles (series steps, pair sides, category items) at most 24. Numbers, single words, short phrases.
 - `long`: inside the envelope but beyond `short`: sentences, story steps, reading answers.
 
-Action games (shooter, balloon pop, door runner, memory match) accept `short` only. Card-style games (tug of war, series builder, sort into bins, cloze fix, quick quiz, flash review, true or false) accept both. So a sentence-heavy English topic feeds the card games and a number or vocabulary topic feeds all of them.
+Action games (shooter, balloon pop, door runner, memory match) accept `short` only. Card-style games (tug of war, domino chain, sort into bins, cloze fix, quick quiz, flash review, true or false) accept both. So a sentence-heavy English topic feeds the card games and a number or vocabulary topic feeds all of them.
 
 **Measures** (shown by `content_cli pool`): per game, the share of items of its formats it accepts; per topic, how many games can play it. A game that rejects more than a quarter of the items of its formats must either adapt or say why.
 
@@ -45,7 +45,7 @@ Games take the envelope as far as they can. What they add beyond it is below. `s
 | Balloon pop | `mcq` and `numeric`, `short` only (wrong balloons are made by the game) |
 | Memory match | `pairs`, `short` only (card faces) |
 | Tug of war, True or false, Cloze and grammar fix | `any` size class (cards); True or false: exactly 2 options |
-| Series builder | `series`, `any` (draggable tiles that wrap) |
+| Domino chain (was Series builder) | `series`, `any`, `minPool` 1 (was 3): short steps (all up to 24 characters) are tall dominoes, long ones wide dominoes; a session is up to 6 chains |
 | Sort into bins | `category`, `any` |
 | Word builder | `word` and `cloze`, `any` |
 | Word search and crossword | `word` of 3 to 10 letters only (as in `word_grid_rules.dart` today); several words per round |
