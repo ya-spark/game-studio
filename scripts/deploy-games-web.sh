@@ -82,6 +82,7 @@ if [ -f "$GW/scripts/make_catalog.py" ] && [ -f "$GW/site/index.html" ]; then
     --out "$STAGE_DIR/web/catalog.json"
   rm -rf "$CATALOG_DIST"
   cp "$GW/site/index.html" "$STAGE_DIR/web/index.html"
+  [ -f "$GW/site/ads.txt" ] && cp "$GW/site/ads.txt" "$STAGE_DIR/web/ads.txt"   # AdSense file, served at /ads.txt
   mkdir -p "$STAGE_DIR/web/_site" && cp -R "$GW/site/art" "$STAGE_DIR/web/_site/art"
   [ -f "$GW/site/progress.js" ] && cp "$GW/site/progress.js" "$STAGE_DIR/web/_site/progress.js"
 fi
@@ -125,6 +126,7 @@ if [ "$PARTIAL" = 1 ]; then
   # The landing page files are always replaced (they are not games).
   if [ -f "$DEPLOY/.build/web/index.html" ]; then
     cp -f "$DEPLOY/.build/web/index.html" "$DEPLOY/.build/web/catalog.json" "$DEPLOY/.build/seed/"
+    [ -f "$DEPLOY/.build/web/ads.txt" ] && cp -f "$DEPLOY/.build/web/ads.txt" "$DEPLOY/.build/seed/"
     rm -rf "${DEPLOY:?}/.build/seed/_site"; mv "$DEPLOY/.build/web/_site" "$DEPLOY/.build/seed/_site"
   fi
   rm -rf "${DEPLOY:?}/.build/web"; mv "$DEPLOY/.build/seed" "$DEPLOY/.build/web"
