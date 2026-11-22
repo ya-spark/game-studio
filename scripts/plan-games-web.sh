@@ -5,10 +5,10 @@
 # repo (apps/<repo name>) and of games-web. Prints the slugs to rebuild, space separated (nothing = up to date).
 # A slug with no build on the site is NOT picked up (a new game is deployed by hand once first). Safe to run any
 # number of times: it only looks at what is live, so a deploy that was replaced in the queue is caught by the next one.
-# Env: ROOT (game-studio checkout, default: this repo), SITE (default https://activemindcraft.com/games).
+# Env: ROOT (game-studio checkout, default: this repo), SITE (default https://activemindcraft.com, the games are at the root).
 set -euo pipefail
 ROOT="${ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
-SITE="${SITE:-https://activemindcraft.com/games}"
+SITE="${SITE:-https://activemindcraft.com}"
 YAML="$ROOT/games-web/games.yaml"
 [ -f "$YAML" ] || { echo "no games-web/games.yaml" >&2; exit 1; }
 WEB_TIP="$(git -C "$ROOT/games-web" rev-parse HEAD)"

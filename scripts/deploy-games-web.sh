@@ -12,6 +12,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/config.sh"
 GW_BASE="$(read_config_string gamesWeb.basePath)"
+GW_BASE="${GW_BASE%/}"   # "/" means the root: empty here, so $GW_BASE/<slug>/ is /<slug>/
 GW_PATH="$(read_config_string gamesWeb.vpsDeployPath)"
 GW_PORT="$(read_config_port gamesWeb.port)"
 
@@ -104,7 +105,7 @@ echo "Uploading ${built[*]}..."
 "$SCP" "${SSH_OPTS[@]}" "$STAGE_DIR.tgz" "$SSH_TARGET:/tmp/games-web-deploy.tgz"
 
 echo "Building the image and starting the container on the VPS..."
-"$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s -- "$GW_PATH" "$IMAGE" "$TAG" "$GW_PORT" "$GW_BASE" "$PARTIAL" "$(IFS=,; echo "${built[*]}")" <<'REMOTE'
+"$SSH" "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s -- "$GW_PATH" "$IMAGE" "$TAG" "$GW_PORT" "${GW_BASE:-/}" "$PARTIAL" "$(IFS=,; echo "${built[*]}")" <<'REMOTE'
 set -euo pipefail
 DEPLOY="$1"; IMAGE="$2"; TAG="$3"; PORT="$4"; BASE="$5"; PARTIAL="$6"; BUILT="${7//,/ }"   # ssh joins its arguments, so the list travels comma-separated
 ARCHIVE=/tmp/games-web-deploy.tgz
@@ -138,7 +139,7 @@ echo "Starting the container..."
 TAG="$TAG" PORT="$PORT" docker compose up -d --remove-orphans
 ok=0
 for i in $(seq 1 30); do
-  if curl -fsS -o /dev/null "http://127.0.0.1:$PORT$BASE/"; then ok=1; break; fi
+  if curl -fsS -o /dev/null "http://127.0.0.1:$PORT${BASE%/}/"; then ok=1; break; fi
   sleep 1
 done
 if [ "$ok" != 1 ]; then
