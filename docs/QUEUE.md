@@ -85,7 +85,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-09 Mahjong](queue/G-09-mahjong.md) | not started |
 | [G-10 Memory match](queue/G-10-memory-match.md) | BORING (review 22 Nov); not started |
 | [G-11 Merge](queue/G-11-merge.md) | not started |
-| [G-12 Wind-up dash (was Runner)](queue/G-12-runner.md) | spec drafted 4:15 PM AEDT 22 Nov; owner answers 5 questions |
+| [G-12 Wind-up dash (was Runner)](queue/G-12-runner.md) | BUILT 12:20 AM AEDT 23 Nov (factory 271c023, web 0b6a3dc); owner plays it live |
 | [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | BUILT 4:05 PM AEDT 22 Nov (factory 37470d7), web overlay done 7:26 PM; owner answers 3 questions, G-13c content |
 | [G-14 Shooter](queue/G-14-shooter.md) | BORING (review 22 Nov); not started |
 | [G-15 Parcel train (was Snake)](queue/G-15-snake.md) | BUILT 7:55 PM AEDT 22 Nov (factory 3e710d3, web 01516e1); owner plays it live |

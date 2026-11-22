@@ -1,8 +1,8 @@
 # G-12 Runner -> Wind-up dash (`runner` -> `wind_up_dash`)
 
-- Status: SPEC DRAFTED 4:15 PM AEDT 22 Nov (docs only, `docs/FEATURE-SPECS.md` section "G-12 Wind-up dash"); owner answers 5 questions, then build only on owner start
-- Owner decisions: none yet (rules of the rewrite list apply: toys only, no title bar, folder/package/id = title)
-- Next step: owner answers the 5 questions (title, courses and free run, Space = jump, spring meter, star thresholds); then build steps 1 to 5 in the spec (1 rename and migration first).
+- Status: BUILT 12:20 AM AEDT 23 Nov (game-factory 79e5196..271c023 as pushed, games-web 0b6a3dc, factory.ref 271c023). Browser check done (real course arrival by keyboard, 390x844, 844x390, 1280x720, no page scroll).
+- Owner decisions (22 Nov, answered to the builder): 1 title Wind-up dash (id wind_up_dash, package game_wind_up_dash); 2 yes: 5 courses each unlocked by 1 star plus always-open free run, free checkpoint restart, no rewarded Continue on the web; 3 Space = jump in play, pause P or Esc; 4 keep the spring meter; 5 star thresholds 150 / 350 / 700.
+- Next step: owner plays it live and answers feel questions (course 5 speed, spring). Not done: Figma art (code art only), real sounds (hooks only), rewarded Continue in paused apps.
 - Links: rules in `docs/queue/GAMES-REWRITE.md`; review in `docs/queue/GAME-REVIEW.md` (look 1, feel 1, depth 2); spec in `docs/FEATURE-SPECS.md`; current game `game-factory/games/runner` (SPEC and rules code kept, renamed).
 
 ## Summary of the proposal
