@@ -1,8 +1,9 @@
 # U3 Bridge builder (Equation builder rewrite)
 
-- Status: BUILT, pushed 1:50 PM 22 Nov
+- Status: FIXED 2 bugs, pushed 3:05 PM AEDT 22 Nov (game-factory de4d7ca, games-web da8f7b3)
 - Owner decisions: Owner 22 Nov 1:35 PM asked for the rewrite as a bridge game.
-- Next step: Owner looks live, sends changes
+- Next step: Owner looks live again after deploy, sends changes
+- 3:05 PM AEDT 22 Nov bug fixes (owner, live web test): (1) title strip removed (exit, read aloud, pause are 44 dp overlays, HUD in the play area); (2) game ran below the window: tiles were stretched one per row by `Container(alignment)` and the layout was fixed-height; now height-aware (scene shrinks, tray scrolls only when it must, landscape side by side). Shell not at fault. Real Chromium at 1280x720, 390x844, 844x390: scrollHeight = innerHeight.
 - Links: Spec: `game-factory/games/equation_builder/docs/SPEC.md`. Figma prompt: `docs/art-prompts/bridge-builder-figma-prompt.md`.
 
 ## Detail (verbatim from the old queue row, 22 Nov 2026)
