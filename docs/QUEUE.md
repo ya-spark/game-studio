@@ -57,7 +57,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 - B-10 Bridge builder: obvious start. DONE 3:40 PM AEDT (big Start, Enter / Space shown).
 - B-11 Game review: boring games list (owner 3:30 PM AEDT 22 Nov); done, see GAME-REVIEW.
 - B-12 Journey and screens review: clear, interesting screens from selection to play; done.
-- B-13 Empty games: show only games and topics with content for the year; Word grid, Fill the gap empty.
+- B-13 Empty games: DONE 4:15 PM AEDT (games-web 0dd9128); content still missing for Word grid, Memory match, Sort bins, Word builder, Fill the gap.
 - B-14 `/trail.html` 404 live (My stars): fix agent running since 3:43 PM AEDT.
 - B-15 Question text moves on before feedback (Balloon pop, Shooter, True or false).
 - B-16 Enter bugs: how-to dialog, Door runner Start, Merge hints, Runner jump key. Part of B-09.
