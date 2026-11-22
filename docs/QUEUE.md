@@ -65,7 +65,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-10 Memory match](queue/G-10-memory-match.md) | not started |
 | [G-11 Merge](queue/G-11-merge.md) | not started |
 | [G-12 Runner](queue/G-12-runner.md) | not started |
-| [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | concept agreed; spec next |
+| [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | spec drafted 2:58 PM; owner answers 3 questions |
 | [G-14 Shooter](queue/G-14-shooter.md) | not started |
 | [G-15 Snake](queue/G-15-snake.md) | not started |
 | [G-16 Solitaire](queue/G-16-solitaire.md) | not started |
