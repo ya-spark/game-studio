@@ -8,3 +8,6 @@
 ## Detail (verbatim from the old queue row)
 - Note: Craft minigame (owner dropped a rewrite-first on 22 Nov, to be re-planned in this list).
 - Steps: 1 ideas (2 or 3 concepts) in chat, 2 owner picks, 3 spec in `docs/FEATURE-SPECS.md`, 4 build only when the owner says start.
+
+## Build approved
+- Owner said "Start the Domino chain build" (22 Nov, afternoon AEDT). Build subagent starts when the spec (running) and the Bridge builder rename (running, touches shared game-factory files) have both finished, so the three do not clash. Folder/package/id become `domino_chain` as part of the build (owner rule: folder is the game's name).
