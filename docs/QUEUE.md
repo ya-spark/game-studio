@@ -31,6 +31,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [M8 Rung opening by purchase or ad, coins](queue/M8-rung-opening-coins.md) | SPEC DRAFTED 2:21 PM 22 Nov | Owner answers 4 questions |
 | [W5 Browser notifications](queue/W5-notifications.md) | SPEC DRAFTED 1:56 PM 22 Nov; owner confirmed proposals 2:00 PM | Owner child-directed check, then says start |
 | [U2 Owner change list (22 Nov 1:20 PM)](queue/U2-owner-change-list.md) | Items 1, 2, 3 DONE; item 4 dropped | None open |
+| [W7 Web game layout: side panels](queue/W7-web-game-layout.md) | Decided 22 Nov; spec to write | Owner says start after spec |
 | [U3 Bridge builder (Equation builder rewrite)](queue/U3-bridge-builder.md) | BUILT, pushed 1:50 PM 22 Nov | Owner looks live, sends changes |
 | [Trail look: Constellation](queue/TRAIL-constellation.md) | Web page built 1:05 PM 22 Nov; Flutter component pushed | Push when site is up, W3 progress store, then apps (iteration 4) |
 | [K1 Keyboard play (web)](queue/K1-keyboard-play.md) | MOSTLY DONE, live 11:11 AM 22 Nov | Owner plays on a real keyboard; apps get it in iteration 4 |
@@ -63,7 +64,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-10 Memory match](queue/G-10-memory-match.md) | not started |
 | [G-11 Merge](queue/G-11-merge.md) | not started |
 | [G-12 Runner](queue/G-12-runner.md) | not started |
-| [G-13 Series builder](queue/G-13-series-builder.md) | not started |
+| [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | concept agreed; spec next |
 | [G-14 Shooter](queue/G-14-shooter.md) | not started |
 | [G-15 Snake](queue/G-15-snake.md) | not started |
 | [G-16 Solitaire](queue/G-16-solitaire.md) | not started |
