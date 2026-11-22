@@ -22,6 +22,7 @@ The topic files hold the full original text and win over the digest where they d
 - Queue loop (owner, 2026-11-22): one session does all work with `/run-queue`, wakes hourly for 36 hours; role agents deleted; checks are not a gate (log, still push); VPS web deploy by pin push allowed; app games paused until the web is complete. Detail: `docs/decisions/operations.md`.
 - Do not create repos in `ya-spark` (403). The owner creates them; attach them with `add_repo`.
 - Ads (owner, 2026-11-22): web AdSense real ids/slots may be used and changed freely; ask only before creating new ad units or deleting ads; AdMob stays out until the owner gives access. Replaces "no real ad ids" for web.
+- Revised games (owner, 2026-11-22): a game that is rewritten or revised gets everything a new game gets (`game-factory/docs/BEST_PRACTICES.md`, keyboard, frame and chrome, responsive layout, question and skill contracts, SPEC, Figma or code art, no living beings).
 - No living beings in games (owner, 2026-11-22): no people and no animals as characters or in art; characters are toys, robots, shapes or objects.
 - Never touch secrets. Test ad IDs only in debug; the owner has supplied the real release AdMob IDs (in `app.config.yaml` `admob.release`, 2026-10-31).
 
