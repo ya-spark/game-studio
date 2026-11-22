@@ -43,7 +43,7 @@ Each item: what, why, where, state. Items with a spec are marked; the rest need 
 
 ## Added 3:45 PM AEDT 22 Nov (from the game and screen reviews)
 - **B-13 Empty games (content gap).** Word search and crossword has no questions on any topic tried; Fill the gap shows "0 of 0". Home cards say "Topic 1 of 10" and open games with no content (8 of 11 Scout games). Fix: show only games and topics that have content for the year; add content later. Review proposal 2.
-- **B-14 `/trail.html` is 404 live (My stars).** Cause: partial deploys copied only index.html, catalog.json, ads.txt. Fixed 5:05 PM AEDT in deploy script, plan script, serve-static (friendly 404, `/trail`); verifying after deploy.
+- **B-14 `/trail.html` is 404 live (My stars).** Cause: partial deploys copied only index.html, catalog.json, ads.txt. Fixed 5:05 PM AEDT in deploy script, plan script, serve-static (friendly 404, `/trail`); DONE and verified 5:15 PM AEDT (200, renders). Leftover: trail page scrolls 51 px at 1280x720.
 - **B-15 Question text moves on before feedback** (Balloon pop, Shooter, True or false): feedback no longer matches the shown question.
 - **B-16 Enter key bugs.** Enter does not close the how-to dialog; does not start Door runner single player (no key hint on Start); Merge shows wrong key hints; Runner shows no jump key. Part of B-09.
 - **B-17 Clipping.** Word builder letters and the Sudoku digit bar are clipped under the key hints; key row still says "1-4 tile" in Bridge builder.
