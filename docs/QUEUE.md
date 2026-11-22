@@ -19,7 +19,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 
 ## Loop (`/run-queue`, started 10:35 AM AEDT 22 Nov 2026; detail: [LOOP](queue/LOOP.md))
 - State: RUNNING. Deadline: 10:30 PM AEDT Mon 23 Nov 2026. Recurring task `trig_01LytVbHGqXbL6UeHP4pPLtT` at :20 each hour; disable at the deadline.
-- Current: owner said start 3:30 PM AEDT 22 Nov, up to 4 subagents. Domino chain built 4:05 PM; My stars 404 fix running. Next: B-09, B-13.
+- Current: owner said start 3:30 PM AEDT 22 Nov, up to 4 subagents. Running: B-09 keys, Parcel train build, Domino overlay fix. Done: Domino chain, B-13, B-14. Next wave after deploy: Wind-up dash, Judge bot, Crane tower.
 - Iteration 3 = web games and site; iteration 4 = app games (parked).
 
 ## Status board
@@ -58,7 +58,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 - B-11 Game review: boring games list (owner 3:30 PM AEDT 22 Nov); done, see GAME-REVIEW.
 - B-12 Journey and screens review: clear, interesting screens from selection to play; done.
 - B-13 Empty games: DONE 4:15 PM AEDT (games-web 0dd9128); content still missing for Word grid, Memory match, Sort bins, Word builder, Fill the gap.
-- B-14 `/trail.html` 404 live (My stars): fix agent running since 3:43 PM AEDT.
+- B-14 `/trail.html` 404 live (My stars): DONE 4:00 PM AEDT; deploy copies all top-level files.
 - B-15 Question text moves on before feedback (Balloon pop, Shooter, True or false).
 - B-16 Enter bugs: how-to dialog, Door runner Start, Merge hints, Runner jump key. Part of B-09.
 - B-17 Clipped letters (Word builder) and digits (Sudoku) under key hints; "1-4 tile" hint.
