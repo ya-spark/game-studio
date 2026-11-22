@@ -51,7 +51,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 ## Backlog (nothing starts until the owner says start; detail: [BACKLOG](queue/BACKLOG.md))
 - B-01 Bridge builder: Space selects, not pause. DONE 3:40 PM AEDT (factory 756700c); other games' Space review open.
 - B-02 Bridge builder: slots 4/5 after selection. DONE 3:40 PM AEDT (unused slots now laid planks); cause guessed, owner to confirm.
-- B-03 Domino chain build: DONE 4:05 PM AEDT 22 Nov (factory 37470d7, web ca5245a); owner to look; overlay edits open.
+- B-03 Domino chain build: DONE 4:05 PM AEDT 22 Nov (factory 37470d7, web ca5245a); owner to look; overlay edits done 7:26 PM AEDT.
 - B-04 Unsupported-topic screen: done 3:38 PM AEDT 22 Nov (games-web c7f0ee1); year buttons, topics first, keys; widget tests not run.
 - B-09 Every button has a shortcut key and shows it. Next to start, after Domino chain.
 - B-10 Bridge builder: obvious start. DONE 3:40 PM AEDT (big Start, Enter / Space shown).
@@ -86,7 +86,7 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 | [G-10 Memory match](queue/G-10-memory-match.md) | BORING (review 22 Nov); not started |
 | [G-11 Merge](queue/G-11-merge.md) | not started |
 | [G-12 Wind-up dash (was Runner)](queue/G-12-runner.md) | spec drafted 4:15 PM AEDT 22 Nov; owner answers 5 questions |
-| [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | BUILT 4:05 PM AEDT 22 Nov (factory 37470d7); owner answers 3 questions, G-13c content |
+| [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | BUILT 4:05 PM AEDT 22 Nov (factory 37470d7), web overlay done 7:26 PM; owner answers 3 questions, G-13c content |
 | [G-14 Shooter](queue/G-14-shooter.md) | BORING (review 22 Nov); not started |
 | [G-15 Parcel train (was Snake)](queue/G-15-snake.md) | spec drafted 4:02 PM AEDT 22 Nov; owner answers 5 questions |
 | [G-16 Solitaire](queue/G-16-solitaire.md) | not started |
