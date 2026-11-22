@@ -33,6 +33,9 @@ Each item: what, why, where, state. Items with a spec are marked; the rest need 
 - **Topic list review** (owner names the first year).
 - **Site look refresh** after W7 and W8.
 
+- **B-11 Game review: boring games list (owner 3:30 PM AEDT 22 Nov)** Done 5:00 PM AEDT 22 Nov: `docs/queue/GAME-REVIEW.md`. BORING (feel+depth <= 4): Runner, True or false, Stack tower, Snake, Brick breaker, Shooter, Memory match, Sort into bins, Series builder, Word builder, Ball sort. Not playable: Word search and crossword, Fill the gap. Bugs: question text moves on before feedback; many cards open an empty game.
+- **B-12 Journey and screens review: clear, interesting screens from selection to play** Done 5:00 PM AEDT 22 Nov: `docs/queue/SCREEN-REVIEW.md` (worst 5 screens, per-screen tables, journey proposal). Real bugs: `/trail.html` is 404, Enter does not close the how-to dialog or start Door runner, app names visible (W8), store buttons on web game-over.
+
 ## Owner items (not Claude)
 - AdSense: Verify (parked 1:00 PM AEDT 22 Nov), slot ids, consent message, child-directed check C9, ad units, Families rules.
 - Review the how-to-play texts and listen to the M4 sound packs; Scout coin question; resume #148 when ready.

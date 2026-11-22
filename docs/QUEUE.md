@@ -55,6 +55,8 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 - B-04 Unsupported-topic screen: done 3:38 PM AEDT 22 Nov (games-web c7f0ee1); year buttons, topics first, keys; widget tests not run.
 - B-09 Every button has a shortcut key and shows it (Play again, Next, all dialogs).
 - B-10 Bridge builder: obvious start. DONE 3:40 PM AEDT (big Start, Enter / Space shown).
+- B-11 Game review: boring games list (owner 3:30 PM AEDT 22 Nov); done, see GAME-REVIEW.
+- B-12 Journey and screens review: clear, interesting screens from selection to play; done.
 - B-05 Web bar overlap at 390 px; B-06 Bridge builder tile art; B-07 Figma art.
 - Specs ready, waiting for start: W5, M8, W7, G-13c content.
 - To discuss: W8 web naming, G-01..G-24 rewrites, Constellation wiring, U1 audit.
@@ -64,29 +66,29 @@ Tracker: one line per item (under 20 words), detail in `docs/queue/<item>.md`. T
 
 | Game | Status |
 |---|---|
-| [G-01 Ball sort](queue/G-01-ball-sort.md) | not started |
+| [G-01 Ball sort](queue/G-01-ball-sort.md) | BORING (review 22 Nov); not started |
 | [G-02 Balloon pop](queue/G-02-balloon-pop.md) | not started |
 | [G-03 Block puzzle](queue/G-03-block-puzzle.md) | not started |
 | [G-04 Blockfall](queue/G-04-blockfall.md) | not started |
-| [G-05 Brick breaker](queue/G-05-brick-breaker.md) | not started |
+| [G-05 Brick breaker](queue/G-05-brick-breaker.md) | BORING (review 22 Nov); not started |
 | [G-06 Cloze fix](queue/G-06-cloze-fix.md) | not started |
 | [G-07 Door runner](queue/G-07-door-runner.md) | not started |
 | [G-08 Flash review](queue/G-08-flash-review.md) | not started |
 | [G-09 Mahjong](queue/G-09-mahjong.md) | not started |
-| [G-10 Memory match](queue/G-10-memory-match.md) | not started |
+| [G-10 Memory match](queue/G-10-memory-match.md) | BORING (review 22 Nov); not started |
 | [G-11 Merge](queue/G-11-merge.md) | not started |
-| [G-12 Runner](queue/G-12-runner.md) | not started |
-| [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | spec drafted 2:58 PM; owner answers 3 questions |
-| [G-14 Shooter](queue/G-14-shooter.md) | not started |
-| [G-15 Snake](queue/G-15-snake.md) | not started |
+| [G-12 Runner](queue/G-12-runner.md) | BORING (review 22 Nov); not started |
+| [G-13 Domino chain (was Series builder)](queue/G-13-series-builder.md) | BORING (review 22 Nov); spec drafted 2:58 PM; owner answers 3 questions |
+| [G-14 Shooter](queue/G-14-shooter.md) | BORING (review 22 Nov); not started |
+| [G-15 Snake](queue/G-15-snake.md) | BORING (review 22 Nov); not started |
 | [G-16 Solitaire](queue/G-16-solitaire.md) | not started |
-| [G-17 Sort bins](queue/G-17-sort-bins.md) | not started |
-| [G-18 Stack tower](queue/G-18-stack-tower.md) | not started |
+| [G-17 Sort bins](queue/G-17-sort-bins.md) | BORING (review 22 Nov); not started |
+| [G-18 Stack tower](queue/G-18-stack-tower.md) | BORING (review 22 Nov); not started |
 | [G-19 Sudoku](queue/G-19-sudoku.md) | not started |
-| [G-20 True or false](queue/G-20-true-false.md) | not started |
+| [G-20 True or false](queue/G-20-true-false.md) | BORING (review 22 Nov); not started |
 | [G-21 Tug of war](queue/G-21-tug-of-war.md) | not started |
 | [G-22 Wingy](queue/G-22-wingy.md) | not started |
-| [G-23 Word builder](queue/G-23-word-builder.md) | not started |
+| [G-23 Word builder](queue/G-23-word-builder.md) | BORING (review 22 Nov); not started |
 | [G-24 Word grid](queue/G-24-word-grid.md) | not started |
 
 ## Iteration 4: app games (parked, owner 2026-11-22)
